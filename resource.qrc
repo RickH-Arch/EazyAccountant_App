@@ -1,0 +1,13 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>icon/窗口窗口化line.ico</file>
+    <file>icon/窗口最大化line.ico</file>
+    <file>icon/窗口最小化line.ico</file>
+    <file>icon/关闭.ico</file>
+    <file>icon/退出.ico</file>
+    <file>icon/表单控件复选空1.ico</file>
+    <file>icon/合同7.ico</file>
+    <file>icon/华能集团.ico</file>
+    <file>icon/menu.ico</file>
+  </qresource>
+</RCC>
