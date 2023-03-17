@@ -10,4 +10,11 @@
     <file>icon/华能集团.ico</file>
     <file>icon/menu.ico</file>
   </qresource>
+  <qresource prefix="png">
+    <file>icon/png/合同7 (2).png</file>
+    <file>icon/png/核对.png</file>
+    <file>icon/png/获取信息.png</file>
+    <file>icon/png/设置.png</file>
+    <file>icon/png/转换.png</file>
+  </qresource>
 </RCC>

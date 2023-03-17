@@ -15,16 +15,16 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel,
-    QMainWindow, QPushButton, QSizePolicy, QVBoxLayout,
-    QWidget)
+from PySide6.QtWidgets import (QApplication, QFormLayout, QFrame, QHBoxLayout,
+    QLabel, QMainWindow, QPushButton, QSizePolicy,
+    QVBoxLayout, QWidget)
 import rc_resource
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(895, 612)
+        MainWindow.resize(804, 500)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayout = QVBoxLayout(self.centralwidget)
@@ -36,7 +36,7 @@ class Ui_MainWindow(object):
         self.main_header.setMinimumSize(QSize(0, 50))
         self.main_header.setMaximumSize(QSize(16777215, 50))
         self.main_header.setStyleSheet(u"background-color:rgb(24, 34, 50)")
-        self.main_header.setFrameShape(QFrame.WinPanel)
+        self.main_header.setFrameShape(QFrame.NoFrame)
         self.main_header.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_2 = QHBoxLayout(self.main_header)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
@@ -51,7 +51,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_5.setContentsMargins(0, 0, 0, 0)
         self.left_menu_toggle = QFrame(self.title_bar_container)
         self.left_menu_toggle.setObjectName(u"left_menu_toggle")
-        self.left_menu_toggle.setMaximumSize(QSize(100, 50))
+        self.left_menu_toggle.setMinimumSize(QSize(50, 0))
+        self.left_menu_toggle.setMaximumSize(QSize(50, 50))
         self.left_menu_toggle.setStyleSheet(u"QPushButton{\n"
 "	border-radius:5px;\n"
 "}\n"
@@ -66,8 +67,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_4.setContentsMargins(0, 0, 0, 0)
         self.menuButton = QPushButton(self.left_menu_toggle)
         self.menuButton.setObjectName(u"menuButton")
-        self.menuButton.setMinimumSize(QSize(70, 35))
-        self.menuButton.setMaximumSize(QSize(70, 35))
+        self.menuButton.setMinimumSize(QSize(40, 35))
+        self.menuButton.setMaximumSize(QSize(50, 35))
         self.menuButton.setStyleSheet(u"")
         icon = QIcon()
         icon.addFile(u":/icons/icon/menu.ico", QSize(), QIcon.Normal, QIcon.Off)
@@ -146,10 +147,97 @@ class Ui_MainWindow(object):
         self.left_side_menu = QFrame(self.main_body)
         self.left_side_menu.setObjectName(u"left_side_menu")
         self.left_side_menu.setMinimumSize(QSize(50, 0))
-        self.left_side_menu.setMaximumSize(QSize(100, 16777215))
-        self.left_side_menu.setStyleSheet(u"background-color: rgb(34, 49, 71);")
+        self.left_side_menu.setMaximumSize(QSize(50, 16777215))
+        self.left_side_menu.setStyleSheet(u"*{background-color: rgb(34, 49, 71);}\n"
+"\n"
+"QPushButton{\n"
+"	padding: 20px 10px;\n"
+"	border : 1px solid '#223147';\n"
+"	background-color: rgb(24, 34, 50);\n"
+"	color: rgb(255, 255, 255);\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"	background:rgb(42, 61, 89)\n"
+"}")
         self.left_side_menu.setFrameShape(QFrame.NoFrame)
         self.left_side_menu.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_2 = QVBoxLayout(self.left_side_menu)
+        self.verticalLayout_2.setSpacing(0)
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.left_menu_top = QFrame(self.left_side_menu)
+        self.left_menu_top.setObjectName(u"left_menu_top")
+        self.left_menu_top.setFrameShape(QFrame.StyledPanel)
+        self.left_menu_top.setFrameShadow(QFrame.Raised)
+        self.formLayout = QFormLayout(self.left_menu_top)
+        self.formLayout.setObjectName(u"formLayout")
+        self.formLayout.setHorizontalSpacing(0)
+        self.formLayout.setVerticalSpacing(0)
+        self.formLayout.setContentsMargins(0, 0, 0, 0)
+        self.btn_menu_write = QPushButton(self.left_menu_top)
+        self.btn_menu_write.setObjectName(u"btn_menu_write")
+        self.btn_menu_write.setMinimumSize(QSize(80, 40))
+        self.btn_menu_write.setStyleSheet(u"background-image: url(:/png/icon/png/\u5408\u540c7 (2).png);\n"
+"background-repeat: none;\n"
+"background-position: center left;\n"
+"\n"
+"padding-left: 50px;\n"
+"font-size: 12px;")
+
+        self.formLayout.setWidget(0, QFormLayout.SpanningRole, self.btn_menu_write)
+
+        self.btn_menu_transfer = QPushButton(self.left_menu_top)
+        self.btn_menu_transfer.setObjectName(u"btn_menu_transfer")
+        self.btn_menu_transfer.setMinimumSize(QSize(80, 40))
+        self.btn_menu_transfer.setStyleSheet(u"background-image: url(:/png/icon/png/\u8f6c\u6362.png);\n"
+"background-repeat: none;\n"
+"background-position: center left;\n"
+"\n"
+"padding-left: 50px;\n"
+"font-size: 12px;")
+
+        self.formLayout.setWidget(1, QFormLayout.SpanningRole, self.btn_menu_transfer)
+
+        self.btn_menu_check = QPushButton(self.left_menu_top)
+        self.btn_menu_check.setObjectName(u"btn_menu_check")
+        self.btn_menu_check.setMinimumSize(QSize(80, 40))
+        self.btn_menu_check.setStyleSheet(u"background-image: url(:/png/icon/png/\u6838\u5bf9.png);\n"
+"background-repeat: none;\n"
+"background-position: center left;\n"
+"\n"
+"padding-left: 50px;\n"
+"font-size: 12px;")
+
+        self.formLayout.setWidget(2, QFormLayout.SpanningRole, self.btn_menu_check)
+
+        self.btn_menu_extract = QPushButton(self.left_menu_top)
+        self.btn_menu_extract.setObjectName(u"btn_menu_extract")
+        self.btn_menu_extract.setMinimumSize(QSize(80, 0))
+        self.btn_menu_extract.setStyleSheet(u"background-image: url(:/png/icon/png/\u83b7\u53d6\u4fe1\u606f.png);\n"
+"background-repeat: none;\n"
+"background-position: center left;\n"
+"\n"
+"padding-left: 50px;\n"
+"font-size: 12px;")
+
+        self.formLayout.setWidget(3, QFormLayout.SpanningRole, self.btn_menu_extract)
+
+
+        self.verticalLayout_2.addWidget(self.left_menu_top)
+
+        self.btn_menu_setting = QPushButton(self.left_side_menu)
+        self.btn_menu_setting.setObjectName(u"btn_menu_setting")
+        self.btn_menu_setting.setMinimumSize(QSize(80, 0))
+        self.btn_menu_setting.setStyleSheet(u"background-image: url(:/png/icon/png/\u8bbe\u7f6e.png);\n"
+"background-repeat: none;\n"
+"background-position: center left;\n"
+"\n"
+"padding-left: 50px;\n"
+"font-size: 12px;")
+
+        self.verticalLayout_2.addWidget(self.btn_menu_setting)
+
 
         self.horizontalLayout.addWidget(self.left_side_menu)
 
@@ -188,6 +276,11 @@ class Ui_MainWindow(object):
         self.menuButton.setText("")
         self.minimizeButton.setText("")
         self.closeButton.setText("")
+        self.btn_menu_write.setText(QCoreApplication.translate("MainWindow", u"\u5f55\u5165", None))
+        self.btn_menu_transfer.setText(QCoreApplication.translate("MainWindow", u"\u8f6c\u6362", None))
+        self.btn_menu_check.setText(QCoreApplication.translate("MainWindow", u"\u6838\u5bf9", None))
+        self.btn_menu_extract.setText(QCoreApplication.translate("MainWindow", u"\u63d0\u53d6", None))
+        self.btn_menu_setting.setText(QCoreApplication.translate("MainWindow", u"\u8bbe\u7f6e", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Main Body Item", None))
     # retranslateUi
 
