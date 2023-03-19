@@ -28,7 +28,9 @@ class MainWindow(QMainWindow):
         self.OnDrag = False
 
         #remove window title bar
-        self.setWindowFlag(Qt.FramelessWindowHint)
+        self.setWindowFlag(Qt.FramelessWindowHint | Qt.Window)
+        self.setAttribute(Qt.WA_TranslucentBackground)
+        self.setAutoFillBackground(True)
 
         #Apply shadow effect
         self.shadow = QGraphicsDropShadowEffect(self)
@@ -38,6 +40,7 @@ class MainWindow(QMainWindow):
         self.shadow.setColor(QColor(0,0,0,120))
         #apply shadow to central widget
         self.ui.centralwidget.setGraphicsEffect(self.shadow)
+        self.resize(800,500)
 
         #Button click events to top bar buttons
         #Minimize Window
@@ -52,8 +55,28 @@ class MainWindow(QMainWindow):
         #Left menu toggle button
         self.ui.menuButton.clicked.connect(lambda: self.slideLeftMenu())
 
+        #STACKED PAGES
+        #set default page
+        self.ui.stackedWidget.setCurrentWidget(self.ui.page_extract)
+        #stacked pages navigation
+        self.ui.btn_menu_check.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_check))
+        self.ui.btn_menu_extract.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_extract))
+        self.ui.btn_menu_transfer.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_transfer))
+        self.ui.btn_menu_write.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_write))
+        self.ui.btn_menu_setting.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_settings))
 
-#--------------------------------move and stretch-------------------------------------
+
+        #Menu Button Styling
+        #default button style set
+        defaultStyle = self.ui.btn_menu_extract.styleSheet()+("border-left: 1px solid rgb(255,179,54);")
+        self.ui.btn_menu_extract.setStyleSheet(defaultStyle)
+        #button style click event
+        for w in self.ui.left_side_menu.findChildren(QPushButton):
+            w.clicked.connect(self.applyButtonStyle)
+
+
+
+#--------------------------------move----------------------------------------------
     def mousePressEvent(self, event: QtGui.QMouseEvent) -> None:
         if event.button() == Qt.LeftButton:
             self.mouse_start_pt = event.globalPosition().toPoint()
@@ -71,7 +94,7 @@ class MainWindow(QMainWindow):
 
 
 #-------------------------------------------------------------------------------------
-        
+
 #-----------------------------left menu slide-----------------------------------------
     def slideLeftMenu(self):
         #get current left menu width
@@ -88,8 +111,20 @@ class MainWindow(QMainWindow):
         self.animation.setEndValue(newWidth)
         self.animation.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
         self.animation.start()
+#------------------------------------------------------------------------------------
 
+#----------------------------menu button styling--------------------------------------
+    def applyButtonStyle(self):
+        for w in self.ui.left_side_menu.findChildren(QPushButton):
+            if w.objectName() != self.sender().objectName():
+                defaultStyle = w.styleSheet().replace("border-left: 1px solid rgb(255,179,54);","")
+                w.setStyleSheet(defaultStyle)
 
+        newStyle = self.sender().styleSheet()+("border-left: 1px solid rgb(255,179,54);")
+        self.sender().setStyleSheet(newStyle)
+        return
+
+#-------------------------------------------------------------------------------------
 #-------------------------------------------------------------------------------------
     def restore_or_maximize_window(self):
         #Global windows state

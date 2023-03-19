@@ -17,16 +17,18 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QFormLayout, QFrame, QHBoxLayout,
     QLabel, QMainWindow, QPushButton, QSizePolicy,
-    QVBoxLayout, QWidget)
+    QStackedWidget, QVBoxLayout, QWidget)
 import rc_resource
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(804, 500)
+        MainWindow.resize(798, 505)
+        MainWindow.setStyleSheet(u"")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
+        self.centralwidget.setStyleSheet(u"background-color: rgba(0, 0, 0, 0);")
         self.verticalLayout = QVBoxLayout(self.centralwidget)
         self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName(u"verticalLayout")
@@ -35,7 +37,9 @@ class Ui_MainWindow(object):
         self.main_header.setObjectName(u"main_header")
         self.main_header.setMinimumSize(QSize(0, 50))
         self.main_header.setMaximumSize(QSize(16777215, 50))
-        self.main_header.setStyleSheet(u"background-color:rgb(24, 34, 50)")
+        self.main_header.setStyleSheet(u"background-color:rgb(24, 34, 50);\n"
+"border-top-left-radius:10px;\n"
+"border-top-right-radius:10px;")
         self.main_header.setFrameShape(QFrame.NoFrame)
         self.main_header.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_2 = QHBoxLayout(self.main_header)
@@ -54,7 +58,7 @@ class Ui_MainWindow(object):
         self.left_menu_toggle.setMinimumSize(QSize(50, 0))
         self.left_menu_toggle.setMaximumSize(QSize(50, 50))
         self.left_menu_toggle.setStyleSheet(u"QPushButton{\n"
-"	border-radius:5px;\n"
+"	border-radius:10px;\n"
 "}\n"
 "QPushButton:hover{\n"
 "	background:rgb(67, 98, 141);\n"
@@ -95,7 +99,7 @@ class Ui_MainWindow(object):
         self.top_right_buttons.setMinimumSize(QSize(80, 0))
         self.top_right_buttons.setMaximumSize(QSize(200, 16777215))
         self.top_right_buttons.setStyleSheet(u"QPushButton{\n"
-"	border-radius:5px;\n"
+"	border-radius:10px;\n"
 "}\n"
 "QPushButton:hover{\n"
 "	background:rgb(67, 98, 141);\n"
@@ -137,7 +141,9 @@ class Ui_MainWindow(object):
 
         self.main_body = QFrame(self.centralwidget)
         self.main_body.setObjectName(u"main_body")
-        self.main_body.setStyleSheet(u"background-color: rgb(52, 74, 108);")
+        self.main_body.setStyleSheet(u"background-color: rgb(52, 74, 108,0);\n"
+"\n"
+"")
         self.main_body.setFrameShape(QFrame.NoFrame)
         self.main_body.setFrameShadow(QFrame.Raised)
         self.horizontalLayout = QHBoxLayout(self.main_body)
@@ -148,11 +154,15 @@ class Ui_MainWindow(object):
         self.left_side_menu.setObjectName(u"left_side_menu")
         self.left_side_menu.setMinimumSize(QSize(50, 0))
         self.left_side_menu.setMaximumSize(QSize(50, 16777215))
-        self.left_side_menu.setStyleSheet(u"*{background-color: rgb(34, 49, 71);}\n"
+        self.left_side_menu.setStyleSheet(u"*{background-color: rgb(24, 34, 50);\n"
+"border-bottom-left-radius:10px;\n"
+"}\n"
 "\n"
 "QPushButton{\n"
 "	padding: 20px 10px;\n"
-"	border : 1px solid '#223147';\n"
+"	border:none;\n"
+"	border-left: 1px solid transparent;\n"
+"	border-radius: 10px;\n"
 "	background-color: rgb(24, 34, 50);\n"
 "	color: rgb(255, 255, 255);\n"
 "}\n"
@@ -185,7 +195,7 @@ class Ui_MainWindow(object):
 "padding-left: 50px;\n"
 "font-size: 12px;")
 
-        self.formLayout.setWidget(0, QFormLayout.SpanningRole, self.btn_menu_write)
+        self.formLayout.setWidget(1, QFormLayout.SpanningRole, self.btn_menu_write)
 
         self.btn_menu_transfer = QPushButton(self.left_menu_top)
         self.btn_menu_transfer.setObjectName(u"btn_menu_transfer")
@@ -197,7 +207,7 @@ class Ui_MainWindow(object):
 "padding-left: 50px;\n"
 "font-size: 12px;")
 
-        self.formLayout.setWidget(1, QFormLayout.SpanningRole, self.btn_menu_transfer)
+        self.formLayout.setWidget(2, QFormLayout.SpanningRole, self.btn_menu_transfer)
 
         self.btn_menu_check = QPushButton(self.left_menu_top)
         self.btn_menu_check.setObjectName(u"btn_menu_check")
@@ -209,7 +219,7 @@ class Ui_MainWindow(object):
 "padding-left: 50px;\n"
 "font-size: 12px;")
 
-        self.formLayout.setWidget(2, QFormLayout.SpanningRole, self.btn_menu_check)
+        self.formLayout.setWidget(3, QFormLayout.SpanningRole, self.btn_menu_check)
 
         self.btn_menu_extract = QPushButton(self.left_menu_top)
         self.btn_menu_extract.setObjectName(u"btn_menu_extract")
@@ -221,7 +231,7 @@ class Ui_MainWindow(object):
 "padding-left: 50px;\n"
 "font-size: 12px;")
 
-        self.formLayout.setWidget(3, QFormLayout.SpanningRole, self.btn_menu_extract)
+        self.formLayout.setWidget(0, QFormLayout.LabelRole, self.btn_menu_extract)
 
 
         self.verticalLayout_2.addWidget(self.left_menu_top)
@@ -246,16 +256,50 @@ class Ui_MainWindow(object):
         self.center_main_items.setStyleSheet(u"background-color: rgb(51, 74, 107);")
         self.center_main_items.setFrameShape(QFrame.NoFrame)
         self.center_main_items.setFrameShadow(QFrame.Raised)
-        self.label = QLabel(self.center_main_items)
+        self.verticalLayout_3 = QVBoxLayout(self.center_main_items)
+        self.verticalLayout_3.setSpacing(0)
+        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
+        self.stackedWidget = QStackedWidget(self.center_main_items)
+        self.stackedWidget.setObjectName(u"stackedWidget")
+        self.page_write = QWidget()
+        self.page_write.setObjectName(u"page_write")
+        self.page_write.setStyleSheet(u"")
+        self.label = QLabel(self.page_write)
         self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(290, 260, 141, 16))
+        self.label.setGeometry(QRect(333, 170, 81, 20))
+        self.stackedWidget.addWidget(self.page_write)
+        self.page_check = QWidget()
+        self.page_check.setObjectName(u"page_check")
+        self.page_check.setStyleSheet(u"")
+        self.stackedWidget.addWidget(self.page_check)
+        self.page_transfer = QWidget()
+        self.page_transfer.setObjectName(u"page_transfer")
+        self.page_transfer.setStyleSheet(u"")
+        self.label_2 = QLabel(self.page_transfer)
+        self.label_2.setObjectName(u"label_2")
+        self.label_2.setGeometry(QRect(260, 150, 101, 16))
+        self.stackedWidget.addWidget(self.page_transfer)
+        self.page_extract = QWidget()
+        self.page_extract.setObjectName(u"page_extract")
+        self.page_extract.setStyleSheet(u"")
+        self.stackedWidget.addWidget(self.page_extract)
+        self.page_settings = QWidget()
+        self.page_settings.setObjectName(u"page_settings")
+        self.page_settings.setStyleSheet(u"")
+        self.stackedWidget.addWidget(self.page_settings)
+
+        self.verticalLayout_3.addWidget(self.stackedWidget)
+
 
         self.horizontalLayout.addWidget(self.center_main_items)
 
         self.right_side_menu = QFrame(self.main_body)
         self.right_side_menu.setObjectName(u"right_side_menu")
+        self.right_side_menu.setMinimumSize(QSize(150, 0))
         self.right_side_menu.setMaximumSize(QSize(60, 16777215))
-        self.right_side_menu.setStyleSheet(u"background-color: rgb(51, 74, 107);")
+        self.right_side_menu.setStyleSheet(u"background-color: rgb(66, 96, 138);\n"
+"border-bottom-right-radius:10px;")
         self.right_side_menu.setFrameShape(QFrame.NoFrame)
         self.right_side_menu.setFrameShadow(QFrame.Raised)
 
@@ -267,6 +311,9 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
+
+        self.stackedWidget.setCurrentIndex(0)
+
 
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
@@ -281,6 +328,7 @@ class Ui_MainWindow(object):
         self.btn_menu_check.setText(QCoreApplication.translate("MainWindow", u"\u6838\u5bf9", None))
         self.btn_menu_extract.setText(QCoreApplication.translate("MainWindow", u"\u63d0\u53d6", None))
         self.btn_menu_setting.setText(QCoreApplication.translate("MainWindow", u"\u8bbe\u7f6e", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u"Main Body Item", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"write page", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"transfer page", None))
     # retranslateUi
 

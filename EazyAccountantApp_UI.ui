@@ -6,14 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>804</width>
-    <height>500</height>
+    <width>798</width>
+    <height>505</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">background-color: rgba(0, 0, 0, 0);</string>
+   </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <property name="spacing">
      <number>0</number>
@@ -45,7 +51,9 @@
        </size>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color:rgb(24, 34, 50)</string>
+       <string notr="true">background-color:rgb(24, 34, 50);
+border-top-left-radius:10px;
+border-top-right-radius:10px;</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::NoFrame</enum>
@@ -106,7 +114,7 @@
             </property>
             <property name="styleSheet">
              <string notr="true">QPushButton{
-	border-radius:5px;
+	border-radius:10px;
 }
 QPushButton:hover{
 	background:rgb(67, 98, 141);
@@ -198,7 +206,7 @@ QPushButton:hover{
          </property>
          <property name="styleSheet">
           <string notr="true">QPushButton{
-	border-radius:5px;
+	border-radius:10px;
 }
 QPushButton:hover{
 	background:rgb(67, 98, 141);
@@ -296,7 +304,9 @@ QPushButton:hover{
     <item>
      <widget class="QFrame" name="main_body">
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(52, 74, 108);</string>
+       <string notr="true">background-color: rgb(52, 74, 108,0);
+
+</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::NoFrame</enum>
@@ -335,11 +345,15 @@ QPushButton:hover{
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">*{background-color: rgb(34, 49, 71);}
+          <string notr="true">*{background-color: rgb(24, 34, 50);
+border-bottom-left-radius:10px;
+}
 
 QPushButton{
 	padding: 20px 10px;
-	border : 1px solid '#223147';
+	border:none;
+	border-left: 1px solid transparent;
+	border-radius: 10px;
 	background-color: rgb(24, 34, 50);
 	color: rgb(255, 255, 255);
 }
@@ -397,7 +411,7 @@ QPushButton:hover{
              <property name="bottomMargin">
               <number>0</number>
              </property>
-             <item row="0" column="0" colspan="2">
+             <item row="1" column="0" colspan="2">
               <widget class="QPushButton" name="btn_menu_write">
                <property name="minimumSize">
                 <size>
@@ -418,7 +432,7 @@ font-size: 12px;</string>
                </property>
               </widget>
              </item>
-             <item row="1" column="0" colspan="2">
+             <item row="2" column="0" colspan="2">
               <widget class="QPushButton" name="btn_menu_transfer">
                <property name="minimumSize">
                 <size>
@@ -439,7 +453,7 @@ font-size: 12px;</string>
                </property>
               </widget>
              </item>
-             <item row="2" column="0" colspan="2">
+             <item row="3" column="0" colspan="2">
               <widget class="QPushButton" name="btn_menu_check">
                <property name="minimumSize">
                 <size>
@@ -460,7 +474,7 @@ font-size: 12px;</string>
                </property>
               </widget>
              </item>
-             <item row="3" column="0" colspan="2">
+             <item row="0" column="0">
               <widget class="QPushButton" name="btn_menu_extract">
                <property name="minimumSize">
                 <size>
@@ -519,23 +533,91 @@ font-size: 12px;</string>
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
-         <widget class="QLabel" name="label">
-          <property name="geometry">
-           <rect>
-            <x>290</x>
-            <y>260</y>
-            <width>141</width>
-            <height>16</height>
-           </rect>
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <property name="spacing">
+           <number>0</number>
           </property>
-          <property name="text">
-           <string>Main Body Item</string>
+          <property name="leftMargin">
+           <number>0</number>
           </property>
-         </widget>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QStackedWidget" name="stackedWidget">
+            <property name="currentIndex">
+             <number>0</number>
+            </property>
+            <widget class="QWidget" name="page_write">
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <widget class="QLabel" name="label">
+              <property name="geometry">
+               <rect>
+                <x>333</x>
+                <y>170</y>
+                <width>81</width>
+                <height>20</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>write page</string>
+              </property>
+             </widget>
+            </widget>
+            <widget class="QWidget" name="page_check">
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+            </widget>
+            <widget class="QWidget" name="page_transfer">
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <widget class="QLabel" name="label_2">
+              <property name="geometry">
+               <rect>
+                <x>260</x>
+                <y>150</y>
+                <width>101</width>
+                <height>16</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>transfer page</string>
+              </property>
+             </widget>
+            </widget>
+            <widget class="QWidget" name="page_extract">
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+            </widget>
+            <widget class="QWidget" name="page_settings">
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+            </widget>
+           </widget>
+          </item>
+         </layout>
         </widget>
        </item>
        <item>
         <widget class="QFrame" name="right_side_menu">
+         <property name="minimumSize">
+          <size>
+           <width>150</width>
+           <height>0</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
            <width>60</width>
@@ -543,7 +625,8 @@ font-size: 12px;</string>
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(51, 74, 107);</string>
+          <string notr="true">background-color: rgb(66, 96, 138);
+border-bottom-right-radius:10px;</string>
          </property>
          <property name="frameShape">
           <enum>QFrame::NoFrame</enum>
