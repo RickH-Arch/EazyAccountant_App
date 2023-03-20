@@ -59,17 +59,23 @@ class MainWindow(QMainWindow):
         #set default page
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_extract)
         self.ui.stackedWidget_side.setCurrentWidget(self.ui.sidePage_extract)
+        self.ui.side_assist_window.setMinimumWidth(300)
         #stacked pages navigation
         self.ui.btn_menu_check.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_check))
         self.ui.btn_menu_check.clicked.connect(lambda: self.ui.stackedWidget_side.setCurrentWidget(self.ui.sidePage_check))
+        self.ui.btn_menu_check.clicked.connect(self.resizeAssistWindow)
         self.ui.btn_menu_extract.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_extract))
         self.ui.btn_menu_extract.clicked.connect(lambda: self.ui.stackedWidget_side.setCurrentWidget(self.ui.sidePage_extract))
+        self.ui.btn_menu_extract.clicked.connect(self.resizeAssistWindow)
         self.ui.btn_menu_transfer.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_transfer))
         self.ui.btn_menu_transfer.clicked.connect(lambda: self.ui.stackedWidget_side.setCurrentWidget(self.ui.sidePage_transfer))
+        self.ui.btn_menu_transfer.clicked.connect(self.resizeAssistWindow)
         self.ui.btn_menu_write.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_write))
         self.ui.btn_menu_write.clicked.connect(lambda: self.ui.stackedWidget_side.setCurrentWidget(self.ui.sidePage_write))
+        self.ui.btn_menu_write.clicked.connect(self.resizeAssistWindow)
         self.ui.btn_menu_setting.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_settings))
         self.ui.btn_menu_setting.clicked.connect(lambda: self.ui.stackedWidget_side.setCurrentWidget(self.ui.sidePage_settings))
+        self.ui.btn_menu_setting.clicked.connect(self.resizeAssistWindow)
 
 
         #Menu Button Styling
@@ -117,6 +123,16 @@ class MainWindow(QMainWindow):
         self.animation.setEndValue(newWidth)
         self.animation.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
         self.animation.start()
+#------------------------------------------------------------------------------------
+
+#----------------------------assist window minimumWidth-------------------------------------
+    def resizeAssistWindow(self):
+        if(self.sender().objectName() == "btn_menu_extract"):
+            self.ui.side_assist_window.setMinimumWidth(300)
+        else:
+            self.ui.side_assist_window.setMinimumWidth(100) 
+            
+
 #------------------------------------------------------------------------------------
 
 #----------------------------menu button styling--------------------------------------

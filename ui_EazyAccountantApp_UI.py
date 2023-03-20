@@ -288,7 +288,7 @@ class Ui_MainWindow(object):
 
         self.side_assist_window = QFrame(self.main_body)
         self.side_assist_window.setObjectName(u"side_assist_window")
-        self.side_assist_window.setMinimumSize(QSize(150, 0))
+        self.side_assist_window.setMinimumSize(QSize(300, 0))
         self.side_assist_window.setMaximumSize(QSize(60, 16777215))
         self.side_assist_window.setStyleSheet(u"background-color: rgb(66, 96, 138);\n"
 "border-bottom-right-radius:10px;")

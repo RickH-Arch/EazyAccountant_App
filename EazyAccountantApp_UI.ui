@@ -582,7 +582,7 @@ font-size: 12px;</string>
         <widget class="QFrame" name="side_assist_window">
          <property name="minimumSize">
           <size>
-           <width>150</width>
+           <width>300</width>
            <height>0</height>
           </size>
          </property>
