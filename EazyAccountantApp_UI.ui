@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>798</width>
-    <height>505</height>
+    <width>820</width>
+    <height>493</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -393,12 +393,6 @@ QPushButton:hover{
              <enum>QFrame::Raised</enum>
             </property>
             <layout class="QFormLayout" name="formLayout">
-             <property name="horizontalSpacing">
-              <number>0</number>
-             </property>
-             <property name="verticalSpacing">
-              <number>0</number>
-             </property>
              <property name="leftMargin">
               <number>0</number>
              </property>
@@ -411,6 +405,27 @@ QPushButton:hover{
              <property name="bottomMargin">
               <number>0</number>
              </property>
+             <item row="0" column="0" colspan="2">
+              <widget class="QPushButton" name="btn_menu_extract">
+               <property name="minimumSize">
+                <size>
+                 <width>80</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-image: url(:/png/icon/png/获取信息.png);
+background-repeat: none;
+background-position: center left;
+
+padding-left: 50px;
+font-size: 12px;</string>
+               </property>
+               <property name="text">
+                <string>提取</string>
+               </property>
+              </widget>
+             </item>
              <item row="1" column="0" colspan="2">
               <widget class="QPushButton" name="btn_menu_write">
                <property name="minimumSize">
@@ -471,27 +486,6 @@ font-size: 12px;</string>
                </property>
                <property name="text">
                 <string>核对</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="0">
-              <widget class="QPushButton" name="btn_menu_extract">
-               <property name="minimumSize">
-                <size>
-                 <width>80</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">background-image: url(:/png/icon/png/获取信息.png);
-background-repeat: none;
-background-position: center left;
-
-padding-left: 50px;
-font-size: 12px;</string>
-               </property>
-               <property name="text">
-                <string>提取</string>
                </property>
               </widget>
              </item>

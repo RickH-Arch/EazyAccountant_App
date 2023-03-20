@@ -24,7 +24,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(798, 505)
+        MainWindow.resize(820, 493)
         MainWindow.setStyleSheet(u"")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
@@ -182,9 +182,19 @@ class Ui_MainWindow(object):
         self.left_menu_top.setFrameShadow(QFrame.Raised)
         self.formLayout = QFormLayout(self.left_menu_top)
         self.formLayout.setObjectName(u"formLayout")
-        self.formLayout.setHorizontalSpacing(0)
-        self.formLayout.setVerticalSpacing(0)
         self.formLayout.setContentsMargins(0, 0, 0, 0)
+        self.btn_menu_extract = QPushButton(self.left_menu_top)
+        self.btn_menu_extract.setObjectName(u"btn_menu_extract")
+        self.btn_menu_extract.setMinimumSize(QSize(80, 0))
+        self.btn_menu_extract.setStyleSheet(u"background-image: url(:/png/icon/png/\u83b7\u53d6\u4fe1\u606f.png);\n"
+"background-repeat: none;\n"
+"background-position: center left;\n"
+"\n"
+"padding-left: 50px;\n"
+"font-size: 12px;")
+
+        self.formLayout.setWidget(0, QFormLayout.SpanningRole, self.btn_menu_extract)
+
         self.btn_menu_write = QPushButton(self.left_menu_top)
         self.btn_menu_write.setObjectName(u"btn_menu_write")
         self.btn_menu_write.setMinimumSize(QSize(80, 40))
@@ -220,18 +230,6 @@ class Ui_MainWindow(object):
 "font-size: 12px;")
 
         self.formLayout.setWidget(3, QFormLayout.SpanningRole, self.btn_menu_check)
-
-        self.btn_menu_extract = QPushButton(self.left_menu_top)
-        self.btn_menu_extract.setObjectName(u"btn_menu_extract")
-        self.btn_menu_extract.setMinimumSize(QSize(80, 0))
-        self.btn_menu_extract.setStyleSheet(u"background-image: url(:/png/icon/png/\u83b7\u53d6\u4fe1\u606f.png);\n"
-"background-repeat: none;\n"
-"background-position: center left;\n"
-"\n"
-"padding-left: 50px;\n"
-"font-size: 12px;")
-
-        self.formLayout.setWidget(0, QFormLayout.LabelRole, self.btn_menu_extract)
 
 
         self.verticalLayout_2.addWidget(self.left_menu_top)
@@ -323,10 +321,10 @@ class Ui_MainWindow(object):
         self.menuButton.setText("")
         self.minimizeButton.setText("")
         self.closeButton.setText("")
+        self.btn_menu_extract.setText(QCoreApplication.translate("MainWindow", u"\u63d0\u53d6", None))
         self.btn_menu_write.setText(QCoreApplication.translate("MainWindow", u"\u5f55\u5165", None))
         self.btn_menu_transfer.setText(QCoreApplication.translate("MainWindow", u"\u8f6c\u6362", None))
         self.btn_menu_check.setText(QCoreApplication.translate("MainWindow", u"\u6838\u5bf9", None))
-        self.btn_menu_extract.setText(QCoreApplication.translate("MainWindow", u"\u63d0\u53d6", None))
         self.btn_menu_setting.setText(QCoreApplication.translate("MainWindow", u"\u8bbe\u7f6e", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"write page", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"transfer page", None))
