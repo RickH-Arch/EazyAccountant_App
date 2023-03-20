@@ -16,9 +16,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QFormLayout, QFrame, QHBoxLayout,
-    QMainWindow, QPushButton, QSizePolicy, QStackedWidget,
+    QLabel, QListWidget, QListWidgetItem, QMainWindow,
+    QPlainTextEdit, QPushButton, QSizePolicy, QStackedWidget,
     QVBoxLayout, QWidget)
-import rc_resource
+import resource_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -275,6 +276,98 @@ class Ui_MainWindow(object):
         self.page_extract = QWidget()
         self.page_extract.setObjectName(u"page_extract")
         self.page_extract.setStyleSheet(u"")
+        self.folderPathLable = QLabel(self.page_extract)
+        self.folderPathLable.setObjectName(u"folderPathLable")
+        self.folderPathLable.setGeometry(QRect(34, 20, 91, 16))
+        font = QFont()
+        font.setPointSize(10)
+        font.setBold(True)
+        self.folderPathLable.setFont(font)
+        self.folderPathLable.setStyleSheet(u"color: rgb(255, 255, 255);")
+        self.btn_browseFolder = QPushButton(self.page_extract)
+        self.btn_browseFolder.setObjectName(u"btn_browseFolder")
+        self.btn_browseFolder.setGeometry(QRect(350, 40, 91, 41))
+        self.btn_browseFolder.setStyleSheet(u"*{border-radius:10px;\n"
+"	font-size:12px;\n"
+"	color: rgb(255, 255, 255);\n"
+"	\n"
+"	background-color: rgb(139, 176, 52);\n"
+"}\n"
+"\n"
+"*:hover{\n"
+"	\n"
+"	background-color: rgb(255, 179, 54);\n"
+"}")
+        self.list_folderPath = QListWidget(self.page_extract)
+        self.list_folderPath.setObjectName(u"list_folderPath")
+        self.list_folderPath.setGeometry(QRect(30, 40, 311, 81))
+        self.list_folderPath.setStyleSheet(u"border-radius:10px;\n"
+"border:1px solid white;\n"
+"color: rgb(255, 255, 255);")
+        self.btn_deletFolder = QPushButton(self.page_extract)
+        self.btn_deletFolder.setObjectName(u"btn_deletFolder")
+        self.btn_deletFolder.setGeometry(QRect(350, 90, 91, 31))
+        self.btn_deletFolder.setStyleSheet(u"*{border-radius:10px;\n"
+"	font-size:12px;\n"
+"	color: rgb(255, 255, 255);\n"
+"	\n"
+"	background-color: rgb(143, 56, 48);\n"
+"}\n"
+"\n"
+"*:hover{\n"
+"	\n"
+"	background-color: rgb(255, 179, 54);\n"
+"}")
+        self.searchLable = QLabel(self.page_extract)
+        self.searchLable.setObjectName(u"searchLable")
+        self.searchLable.setGeometry(QRect(30, 150, 91, 16))
+        self.searchLable.setFont(font)
+        self.searchLable.setStyleSheet(u"color: rgb(255, 255, 255);")
+        self.list_keyword = QListWidget(self.page_extract)
+        self.list_keyword.setObjectName(u"list_keyword")
+        self.list_keyword.setGeometry(QRect(30, 170, 211, 81))
+        self.list_keyword.setStyleSheet(u"border-radius:10px;\n"
+"border:1px solid white;\n"
+"color: rgb(255, 255, 255);")
+        self.btn_addKeyword = QPushButton(self.page_extract)
+        self.btn_addKeyword.setObjectName(u"btn_addKeyword")
+        self.btn_addKeyword.setGeometry(QRect(350, 170, 91, 41))
+        self.btn_addKeyword.setStyleSheet(u"*{border-radius:10px;\n"
+"	font-size:12px;\n"
+"	color: rgb(255, 255, 255);\n"
+"	\n"
+"	background-color: rgb(139, 176, 52);\n"
+"}\n"
+"\n"
+"*:hover{\n"
+"	\n"
+"	background-color: rgb(255, 179, 54);\n"
+"}")
+        self.textInput_keyword = QPlainTextEdit(self.page_extract)
+        self.textInput_keyword.setObjectName(u"textInput_keyword")
+        self.textInput_keyword.setGeometry(QRect(250, 170, 91, 81))
+        self.textInput_keyword.setStyleSheet(u"border-radius:10px;\n"
+"border:1px solid white;\n"
+"color: rgb(255, 255, 255);")
+        self.btn_deletKeyword = QPushButton(self.page_extract)
+        self.btn_deletKeyword.setObjectName(u"btn_deletKeyword")
+        self.btn_deletKeyword.setGeometry(QRect(350, 220, 91, 31))
+        self.btn_deletKeyword.setStyleSheet(u"*{border-radius:10px;\n"
+"	font-size:12px;\n"
+"	color: rgb(255, 255, 255);\n"
+"	\n"
+"	background-color: rgb(143, 56, 48);\n"
+"}\n"
+"\n"
+"*:hover{\n"
+"	\n"
+"	background-color: rgb(255, 179, 54);\n"
+"}")
+        self.line = QFrame(self.page_extract)
+        self.line.setObjectName(u"line")
+        self.line.setGeometry(QRect(7, 130, 501, 20))
+        self.line.setFrameShape(QFrame.HLine)
+        self.line.setFrameShadow(QFrame.Sunken)
         self.stackedWidget.addWidget(self.page_extract)
         self.page_settings = QWidget()
         self.page_settings.setObjectName(u"page_settings")
@@ -288,7 +381,7 @@ class Ui_MainWindow(object):
 
         self.side_assist_window = QFrame(self.main_body)
         self.side_assist_window.setObjectName(u"side_assist_window")
-        self.side_assist_window.setMinimumSize(QSize(300, 0))
+        self.side_assist_window.setMinimumSize(QSize(250, 0))
         self.side_assist_window.setMaximumSize(QSize(60, 16777215))
         self.side_assist_window.setStyleSheet(u"background-color: rgb(66, 96, 138);\n"
 "border-bottom-right-radius:10px;")
@@ -344,5 +437,11 @@ class Ui_MainWindow(object):
         self.btn_menu_transfer.setText(QCoreApplication.translate("MainWindow", u"\u8f6c\u6362", None))
         self.btn_menu_check.setText(QCoreApplication.translate("MainWindow", u"\u6838\u5bf9", None))
         self.btn_menu_setting.setText(QCoreApplication.translate("MainWindow", u"\u8bbe\u7f6e", None))
+        self.folderPathLable.setText(QCoreApplication.translate("MainWindow", u"\u6587\u4ef6\u8bfb\u53d6\u8def\u5f84", None))
+        self.btn_browseFolder.setText(QCoreApplication.translate("MainWindow", u"\u6d4f\u89c8\u6587\u4ef6\u5939", None))
+        self.btn_deletFolder.setText(QCoreApplication.translate("MainWindow", u"\u5220\u9664\u6587\u4ef6\u5939", None))
+        self.searchLable.setText(QCoreApplication.translate("MainWindow", u"\u6587\u4ef6\u68c0\u7d22\u5173\u952e\u8bcd", None))
+        self.btn_addKeyword.setText(QCoreApplication.translate("MainWindow", u"\u6dfb\u52a0\u5173\u952e\u8bcd", None))
+        self.btn_deletKeyword.setText(QCoreApplication.translate("MainWindow", u"\u5220\u9664\u5173\u952e\u8bcd", None))
     # retranslateUi
 

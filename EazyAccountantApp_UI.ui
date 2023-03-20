@@ -567,6 +567,212 @@ font-size: 12px;</string>
              <property name="styleSheet">
               <string notr="true"/>
              </property>
+             <widget class="QLabel" name="folderPathLable">
+              <property name="geometry">
+               <rect>
+                <x>34</x>
+                <y>20</y>
+                <width>91</width>
+                <height>16</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 255, 255);</string>
+              </property>
+              <property name="text">
+               <string>文件读取路径</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="btn_browseFolder">
+              <property name="geometry">
+               <rect>
+                <x>350</x>
+                <y>40</y>
+                <width>91</width>
+                <height>41</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">*{border-radius:10px;
+	font-size:12px;
+	color: rgb(255, 255, 255);
+	
+	background-color: rgb(139, 176, 52);
+}
+
+*:hover{
+	
+	background-color: rgb(255, 179, 54);
+}</string>
+              </property>
+              <property name="text">
+               <string>浏览文件夹</string>
+              </property>
+             </widget>
+             <widget class="QListWidget" name="list_folderPath">
+              <property name="geometry">
+               <rect>
+                <x>30</x>
+                <y>40</y>
+                <width>311</width>
+                <height>81</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">border-radius:10px;
+border:1px solid white;
+color: rgb(255, 255, 255);</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="btn_deletFolder">
+              <property name="geometry">
+               <rect>
+                <x>350</x>
+                <y>90</y>
+                <width>91</width>
+                <height>31</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">*{border-radius:10px;
+	font-size:12px;
+	color: rgb(255, 255, 255);
+	
+	background-color: rgb(143, 56, 48);
+}
+
+*:hover{
+	
+	background-color: rgb(255, 179, 54);
+}</string>
+              </property>
+              <property name="text">
+               <string>删除文件夹</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="searchLable">
+              <property name="geometry">
+               <rect>
+                <x>30</x>
+                <y>150</y>
+                <width>91</width>
+                <height>16</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 255, 255);</string>
+              </property>
+              <property name="text">
+               <string>文件检索关键词</string>
+              </property>
+             </widget>
+             <widget class="QListWidget" name="list_keyword">
+              <property name="geometry">
+               <rect>
+                <x>30</x>
+                <y>170</y>
+                <width>211</width>
+                <height>81</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">border-radius:10px;
+border:1px solid white;
+color: rgb(255, 255, 255);</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="btn_addKeyword">
+              <property name="geometry">
+               <rect>
+                <x>350</x>
+                <y>170</y>
+                <width>91</width>
+                <height>41</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">*{border-radius:10px;
+	font-size:12px;
+	color: rgb(255, 255, 255);
+	
+	background-color: rgb(139, 176, 52);
+}
+
+*:hover{
+	
+	background-color: rgb(255, 179, 54);
+}</string>
+              </property>
+              <property name="text">
+               <string>添加关键词</string>
+              </property>
+             </widget>
+             <widget class="QPlainTextEdit" name="textInput_keyword">
+              <property name="geometry">
+               <rect>
+                <x>250</x>
+                <y>170</y>
+                <width>91</width>
+                <height>81</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">border-radius:10px;
+border:1px solid white;
+color: rgb(255, 255, 255);</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="btn_deletKeyword">
+              <property name="geometry">
+               <rect>
+                <x>350</x>
+                <y>220</y>
+                <width>91</width>
+                <height>31</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">*{border-radius:10px;
+	font-size:12px;
+	color: rgb(255, 255, 255);
+	
+	background-color: rgb(143, 56, 48);
+}
+
+*:hover{
+	
+	background-color: rgb(255, 179, 54);
+}</string>
+              </property>
+              <property name="text">
+               <string>删除关键词</string>
+              </property>
+             </widget>
+             <widget class="Line" name="line">
+              <property name="geometry">
+               <rect>
+                <x>7</x>
+                <y>130</y>
+                <width>501</width>
+                <height>20</height>
+               </rect>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
             </widget>
             <widget class="QWidget" name="page_settings">
              <property name="styleSheet">
@@ -582,7 +788,7 @@ font-size: 12px;</string>
         <widget class="QFrame" name="side_assist_window">
          <property name="minimumSize">
           <size>
-           <width>300</width>
+           <width>250</width>
            <height>0</height>
           </size>
          </property>
