@@ -16,8 +16,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QFormLayout, QFrame, QHBoxLayout,
-    QLabel, QMainWindow, QPushButton, QSizePolicy,
-    QStackedWidget, QVBoxLayout, QWidget)
+    QMainWindow, QPushButton, QSizePolicy, QStackedWidget,
+    QVBoxLayout, QWidget)
 import rc_resource
 
 class Ui_MainWindow(object):
@@ -263,9 +263,6 @@ class Ui_MainWindow(object):
         self.page_write = QWidget()
         self.page_write.setObjectName(u"page_write")
         self.page_write.setStyleSheet(u"")
-        self.label = QLabel(self.page_write)
-        self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(333, 170, 81, 20))
         self.stackedWidget.addWidget(self.page_write)
         self.page_check = QWidget()
         self.page_check.setObjectName(u"page_check")
@@ -274,9 +271,6 @@ class Ui_MainWindow(object):
         self.page_transfer = QWidget()
         self.page_transfer.setObjectName(u"page_transfer")
         self.page_transfer.setStyleSheet(u"")
-        self.label_2 = QLabel(self.page_transfer)
-        self.label_2.setObjectName(u"label_2")
-        self.label_2.setGeometry(QRect(260, 150, 101, 16))
         self.stackedWidget.addWidget(self.page_transfer)
         self.page_extract = QWidget()
         self.page_extract.setObjectName(u"page_extract")
@@ -292,16 +286,40 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout.addWidget(self.center_main_items)
 
-        self.right_side_menu = QFrame(self.main_body)
-        self.right_side_menu.setObjectName(u"right_side_menu")
-        self.right_side_menu.setMinimumSize(QSize(150, 0))
-        self.right_side_menu.setMaximumSize(QSize(60, 16777215))
-        self.right_side_menu.setStyleSheet(u"background-color: rgb(66, 96, 138);\n"
+        self.side_assist_window = QFrame(self.main_body)
+        self.side_assist_window.setObjectName(u"side_assist_window")
+        self.side_assist_window.setMinimumSize(QSize(150, 0))
+        self.side_assist_window.setMaximumSize(QSize(60, 16777215))
+        self.side_assist_window.setStyleSheet(u"background-color: rgb(66, 96, 138);\n"
 "border-bottom-right-radius:10px;")
-        self.right_side_menu.setFrameShape(QFrame.NoFrame)
-        self.right_side_menu.setFrameShadow(QFrame.Raised)
+        self.side_assist_window.setFrameShape(QFrame.NoFrame)
+        self.side_assist_window.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_4 = QVBoxLayout(self.side_assist_window)
+        self.verticalLayout_4.setSpacing(0)
+        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
+        self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
+        self.stackedWidget_side = QStackedWidget(self.side_assist_window)
+        self.stackedWidget_side.setObjectName(u"stackedWidget_side")
+        self.sidePage_extract = QWidget()
+        self.sidePage_extract.setObjectName(u"sidePage_extract")
+        self.stackedWidget_side.addWidget(self.sidePage_extract)
+        self.sidePage_settings = QWidget()
+        self.sidePage_settings.setObjectName(u"sidePage_settings")
+        self.stackedWidget_side.addWidget(self.sidePage_settings)
+        self.sidePage_write = QWidget()
+        self.sidePage_write.setObjectName(u"sidePage_write")
+        self.stackedWidget_side.addWidget(self.sidePage_write)
+        self.sidePage_check = QWidget()
+        self.sidePage_check.setObjectName(u"sidePage_check")
+        self.stackedWidget_side.addWidget(self.sidePage_check)
+        self.sidePage_transfer = QWidget()
+        self.sidePage_transfer.setObjectName(u"sidePage_transfer")
+        self.stackedWidget_side.addWidget(self.sidePage_transfer)
 
-        self.horizontalLayout.addWidget(self.right_side_menu)
+        self.verticalLayout_4.addWidget(self.stackedWidget_side)
+
+
+        self.horizontalLayout.addWidget(self.side_assist_window)
 
 
         self.verticalLayout.addWidget(self.main_body)
@@ -310,7 +328,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(3)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -326,7 +344,5 @@ class Ui_MainWindow(object):
         self.btn_menu_transfer.setText(QCoreApplication.translate("MainWindow", u"\u8f6c\u6362", None))
         self.btn_menu_check.setText(QCoreApplication.translate("MainWindow", u"\u6838\u5bf9", None))
         self.btn_menu_setting.setText(QCoreApplication.translate("MainWindow", u"\u8bbe\u7f6e", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u"write page", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"transfer page", None))
     # retranslateUi
 

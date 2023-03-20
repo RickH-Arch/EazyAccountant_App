@@ -58,12 +58,18 @@ class MainWindow(QMainWindow):
         #STACKED PAGES
         #set default page
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_extract)
+        self.ui.stackedWidget_side.setCurrentWidget(self.ui.sidePage_extract)
         #stacked pages navigation
         self.ui.btn_menu_check.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_check))
+        self.ui.btn_menu_check.clicked.connect(lambda: self.ui.stackedWidget_side.setCurrentWidget(self.ui.sidePage_check))
         self.ui.btn_menu_extract.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_extract))
+        self.ui.btn_menu_extract.clicked.connect(lambda: self.ui.stackedWidget_side.setCurrentWidget(self.ui.sidePage_extract))
         self.ui.btn_menu_transfer.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_transfer))
+        self.ui.btn_menu_transfer.clicked.connect(lambda: self.ui.stackedWidget_side.setCurrentWidget(self.ui.sidePage_transfer))
         self.ui.btn_menu_write.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_write))
+        self.ui.btn_menu_write.clicked.connect(lambda: self.ui.stackedWidget_side.setCurrentWidget(self.ui.sidePage_write))
         self.ui.btn_menu_setting.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_settings))
+        self.ui.btn_menu_setting.clicked.connect(lambda: self.ui.stackedWidget_side.setCurrentWidget(self.ui.sidePage_settings))
 
 
         #Menu Button Styling
