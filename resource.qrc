@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="icons">
+    <file>icon/加减组件加号.ico</file>
+    <file>icon/减号.ico</file>
     <file>icon/窗口窗口化line.ico</file>
     <file>icon/窗口最大化line.ico</file>
     <file>icon/窗口最小化line.ico</file>

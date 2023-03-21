@@ -51,7 +51,9 @@ class MainWindow(QMainWindow):
         self.shadow.setColor(QColor(0,0,0,120))
         #apply shadow to central widget
         self.ui.centralwidget.setGraphicsEffect(self.shadow)
-        self.resize(820,500)
+        
+        self.setFixedHeight(500)
+        self.setFixedWidth(820)
 
         #Button click events to top bar buttons
         #Minimize Window

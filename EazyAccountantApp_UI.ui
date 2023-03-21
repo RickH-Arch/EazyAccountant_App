@@ -189,7 +189,7 @@ QPushButton:hover{
              <property name="geometry">
               <rect>
                <x>9</x>
-               <y>16</y>
+               <y>17</y>
                <width>54</width>
                <height>16</height>
               </rect>
@@ -211,7 +211,7 @@ QPushButton:hover{
              <property name="geometry">
               <rect>
                <x>47</x>
-               <y>17</y>
+               <y>19</y>
                <width>81</width>
                <height>16</height>
               </rect>
@@ -221,6 +221,28 @@ QPushButton:hover{
              </property>
              <property name="text">
               <string>accountant</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_3">
+             <property name="geometry">
+              <rect>
+               <x>119</x>
+               <y>17</y>
+               <width>54</width>
+               <height>16</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>12</pointsize>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(255, 255, 255);</string>
+             </property>
+             <property name="text">
+              <string>V1.0</string>
              </property>
             </widget>
            </widget>
@@ -608,7 +630,7 @@ font-size: 12px;</string>
              <widget class="QLabel" name="folderPathLable">
               <property name="geometry">
                <rect>
-                <x>34</x>
+                <x>30</x>
                 <y>20</y>
                 <width>91</width>
                 <height>16</height>
@@ -663,10 +685,36 @@ font-size: 12px;</string>
                </rect>
               </property>
               <property name="styleSheet">
-               <string notr="true">border-radius:10px;
+               <string notr="true">*{border-radius:10px;
 background-color: rgb(255, 255, 255);
 border:1px solid rgb(232, 232, 232);
-color: rgb(121, 121, 121)</string>
+color: rgb(121, 121, 121)}
+
+QScrollBar {              
+            border: none;
+            background:white;
+            width:3px;
+            margin: 0px 0px 0px 0px;
+        }
+        QScrollBar::handle {
+            background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+            stop: 0 rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130), stop:1 rgb(32, 47, 130));
+            min-height: 0px;
+        }
+        QScrollBar::add-line{
+            background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+            stop: 0 rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130),  stop:1 rgb(32, 47, 130));
+            height: 0px;
+            subcontrol-position: bottom;
+            subcontrol-origin: margin;
+        }
+        QScrollBar::sub-line {
+            background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+            stop: 0  rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130),  stop:1 rgb(32, 47, 130));
+            height: 0 px;
+            subcontrol-position: top;
+            subcontrol-origin: margin;
+        }</string>
               </property>
              </widget>
              <widget class="QPushButton" name="btn_deletFolder">
@@ -688,7 +736,7 @@ color: rgb(121, 121, 121)</string>
 
 *:hover{
 	
-	background-color: rgb(255, 179, 54);
+	background-color: rgb(223, 145, 146);
 }</string>
               </property>
               <property name="text">
@@ -699,7 +747,7 @@ color: rgb(121, 121, 121)</string>
               <property name="geometry">
                <rect>
                 <x>30</x>
-                <y>150</y>
+                <y>143</y>
                 <width>91</width>
                 <height>16</height>
                </rect>
@@ -721,25 +769,51 @@ color: rgb(121, 121, 121)</string>
               <property name="geometry">
                <rect>
                 <x>30</x>
-                <y>170</y>
+                <y>163</y>
                 <width>211</width>
-                <height>81</height>
+                <height>51</height>
                </rect>
               </property>
               <property name="styleSheet">
-               <string notr="true">border-radius:10px;
+               <string notr="true">*{border-radius:10px;
 background-color: rgb(255, 255, 255);
 border:1px solid rgb(232, 232, 232);
-color: rgb(121, 121, 121)</string>
+color: rgb(121, 121, 121)}
+
+QScrollBar {              
+            border: none;
+            background:white;
+            width:3px;
+            margin: 0px 0px 0px 0px;
+        }
+        QScrollBar::handle {
+            background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+            stop: 0 rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130), stop:1 rgb(32, 47, 130));
+            min-height: 0px;
+        }
+        QScrollBar::add-line{
+            background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+            stop: 0 rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130),  stop:1 rgb(32, 47, 130));
+            height: 0px;
+            subcontrol-position: bottom;
+            subcontrol-origin: margin;
+        }
+        QScrollBar::sub-line {
+            background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+            stop: 0  rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130),  stop:1 rgb(32, 47, 130));
+            height: 0 px;
+            subcontrol-position: top;
+            subcontrol-origin: margin;
+        }</string>
               </property>
              </widget>
              <widget class="QPushButton" name="btn_addKeyword">
               <property name="geometry">
                <rect>
                 <x>350</x>
-                <y>170</y>
-                <width>91</width>
-                <height>41</height>
+                <y>163</y>
+                <width>51</width>
+                <height>51</height>
                </rect>
               </property>
               <property name="styleSheet">
@@ -756,16 +830,17 @@ color: rgb(121, 121, 121)</string>
 }</string>
               </property>
               <property name="text">
-               <string>添加关键词</string>
+               <string>添加
+关键词</string>
               </property>
              </widget>
              <widget class="QPlainTextEdit" name="textInput_keyword">
               <property name="geometry">
                <rect>
                 <x>250</x>
-                <y>170</y>
+                <y>163</y>
                 <width>91</width>
-                <height>81</height>
+                <height>51</height>
                </rect>
               </property>
               <property name="styleSheet">
@@ -778,10 +853,10 @@ color: rgb(121, 121, 121)</string>
              <widget class="QPushButton" name="btn_deletKeyword">
               <property name="geometry">
                <rect>
-                <x>350</x>
-                <y>220</y>
-                <width>91</width>
-                <height>31</height>
+                <x>409</x>
+                <y>163</y>
+                <width>31</width>
+                <height>50</height>
                </rect>
               </property>
               <property name="styleSheet">
@@ -794,11 +869,344 @@ color: rgb(121, 121, 121)</string>
 
 *:hover{
 	
+	background-color: rgb(223, 145, 146);
+}</string>
+              </property>
+              <property name="text">
+               <string>删除</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="searchLable_2">
+              <property name="geometry">
+               <rect>
+                <x>30</x>
+                <y>230</y>
+                <width>91</width>
+                <height>16</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(127, 127, 127);</string>
+              </property>
+              <property name="text">
+               <string>标签组</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="btn_addTagGroup">
+              <property name="geometry">
+               <rect>
+                <x>30</x>
+                <y>250</y>
+                <width>121</width>
+                <height>25</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">*{border-radius:5px;
+	font-size:12px;
+	color: rgb(255, 255, 255);
+	
+	background-color:rgb(81, 66, 147) ;
+}
+
+*:hover{
+	
 	background-color: rgb(255, 179, 54);
 }</string>
               </property>
               <property name="text">
-               <string>删除关键词</string>
+               <string>添加标签组</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="btn_delTagGroup">
+              <property name="geometry">
+               <rect>
+                <x>327</x>
+                <y>250</y>
+                <width>71</width>
+                <height>25</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">*{border-radius:5px;
+	font-size:12px;
+	color: rgb(255, 255, 255);
+	
+	background-color:rgb(217, 217, 217) ;
+}
+
+*:hover{
+	
+	background-color: rgb(223, 145, 146);
+}</string>
+              </property>
+              <property name="text">
+               <string>删除标签组</string>
+              </property>
+             </widget>
+             <widget class="QTabWidget" name="tag_group">
+              <property name="geometry">
+               <rect>
+                <x>30</x>
+                <y>280</y>
+                <width>371</width>
+                <height>151</height>
+               </rect>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QTabWidget::Pane{
+background-color: white;
+border-radius:10px;
+border: 1px solid lightgray;
+}
+
+QTabBar::tab{
+	background: rgb(255,255,255);
+   
+  padding: 3px;
+	color: rgb(221, 221, 221);
+	border-radius:5px;
+}
+
+QTabBar::tab:hover{
+	background-color: rgb(168, 156, 225);
+}
+
+ QTabBar::tab:selected {
+  background: rgb(110, 92, 194);
+ }</string>
+              </property>
+              <property name="tabShape">
+               <enum>QTabWidget::Rounded</enum>
+              </property>
+              <property name="currentIndex">
+               <number>1</number>
+              </property>
+              <property name="tabsClosable">
+               <bool>false</bool>
+              </property>
+              <property name="movable">
+               <bool>true</bool>
+              </property>
+              <property name="tabBarAutoHide">
+               <bool>false</bool>
+              </property>
+              <widget class="QWidget" name="monthlyReport">
+               <property name="styleSheet">
+                <string notr="true">*{}
+
+QCheckBox{
+border:none;
+background-color:white;
+}</string>
+               </property>
+               <attribute name="title">
+                <string>月报</string>
+               </attribute>
+               <widget class="QTableWidget" name="table_monthlyTag">
+                <property name="geometry">
+                 <rect>
+                  <x>2</x>
+                  <y>2</y>
+                  <width>365</width>
+                  <height>124</height>
+                 </rect>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>365</width>
+                  <height>124</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>365</width>
+                  <height>124</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(255, 255, 255);</string>
+                </property>
+               </widget>
+              </widget>
+              <widget class="QWidget" name="annualReport">
+               <attribute name="title">
+                <string>年报</string>
+               </attribute>
+               <widget class="QTableWidget" name="table_annualTag">
+                <property name="geometry">
+                 <rect>
+                  <x>2</x>
+                  <y>2</y>
+                  <width>365</width>
+                  <height>124</height>
+                 </rect>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>365</width>
+                  <height>124</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>365</width>
+                  <height>124</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(255, 255, 255);</string>
+                </property>
+               </widget>
+              </widget>
+             </widget>
+             <widget class="QPushButton" name="btn_addTag">
+              <property name="geometry">
+               <rect>
+                <x>416</x>
+                <y>375</y>
+                <width>25</width>
+                <height>25</height>
+               </rect>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>25</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>25</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">*{border-radius:5px;
+	font-size:12px;
+	color: rgb(255, 255, 255);
+	
+	background-color:rgb(81, 66, 147) ;
+}
+
+*:hover{
+	
+	background-color: rgb(255, 179, 54);
+}</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="resource.qrc">
+                <normaloff>:/icons/icon/加减组件加号.ico</normaloff>:/icons/icon/加减组件加号.ico</iconset>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="btn_delTag">
+              <property name="geometry">
+               <rect>
+                <x>416</x>
+                <y>405</y>
+                <width>25</width>
+                <height>25</height>
+               </rect>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>25</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>25</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">*{border-radius:5px;
+	font-size:12px;
+	color: rgb(255, 255, 255);
+	
+	background-color:rgb(217, 217, 217) ;
+}
+
+*:hover{
+	
+	background-color: rgb(223, 145, 146);
+}</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="resource.qrc">
+                <normaloff>:/icons/icon/减号.ico</normaloff>:/icons/icon/减号.ico</iconset>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="btn_renameTagGroup">
+              <property name="geometry">
+               <rect>
+                <x>238</x>
+                <y>250</y>
+                <width>81</width>
+                <height>25</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">*{border-radius:5px;
+	font-size:12px;
+	color: rgb(255, 255, 255);
+	
+	background-color:rgb(217, 217, 217) ;
+}
+
+*:hover{
+	
+	background-color: rgb(255, 179, 54);
+}</string>
+              </property>
+              <property name="text">
+               <string>重命名</string>
+              </property>
+             </widget>
+             <widget class="QPlainTextEdit" name="textInput_tagGroupName">
+              <property name="geometry">
+               <rect>
+                <x>160</x>
+                <y>248</y>
+                <width>71</width>
+                <height>27</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>9</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">border-radius:10px;
+background-color: rgb(255, 255, 255);
+border:1px solid rgb(232, 232, 232);
+color: rgb(121, 121, 121)</string>
               </property>
              </widget>
             </widget>
