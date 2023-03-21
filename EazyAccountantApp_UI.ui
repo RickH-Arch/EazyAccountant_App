@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>820</width>
-    <height>493</height>
+    <width>857</width>
+    <height>514</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -51,7 +51,7 @@
        </size>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color:rgb(24, 34, 50);
+       <string notr="true">background-color:rgb(81,68,140);
 border-top-left-radius:10px;
 border-top-right-radius:10px;</string>
       </property>
@@ -117,7 +117,7 @@ border-top-right-radius:10px;</string>
 	border-radius:10px;
 }
 QPushButton:hover{
-	background:rgb(67, 98, 141);
+	background:rgb(125, 108, 202);
 }</string>
             </property>
             <property name="frameShape">
@@ -185,6 +185,44 @@ QPushButton:hover{
             <property name="frameShadow">
              <enum>QFrame::Raised</enum>
             </property>
+            <widget class="QLabel" name="label">
+             <property name="geometry">
+              <rect>
+               <x>9</x>
+               <y>16</y>
+               <width>54</width>
+               <height>16</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>12</pointsize>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(255, 255, 255);</string>
+             </property>
+             <property name="text">
+              <string>Eazy</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_2">
+             <property name="geometry">
+              <rect>
+               <x>47</x>
+               <y>17</y>
+               <width>81</width>
+               <height>16</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(255, 255, 255);</string>
+             </property>
+             <property name="text">
+              <string>accountant</string>
+             </property>
+            </widget>
            </widget>
           </item>
          </layout>
@@ -209,7 +247,7 @@ QPushButton:hover{
 	border-radius:10px;
 }
 QPushButton:hover{
-	background:rgb(67, 98, 141);
+	background:rgb(125, 108, 202);
 }</string>
          </property>
          <property name="frameShape">
@@ -345,7 +383,7 @@ QPushButton:hover{
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">*{background-color: rgb(24, 34, 50);
+          <string notr="true">*{background-color: rgb(110, 92, 194);
 border-bottom-left-radius:10px;
 }
 
@@ -354,12 +392,12 @@ QPushButton{
 	border:none;
 	border-left: 1px solid transparent;
 	border-radius: 10px;
-	background-color: rgb(24, 34, 50);
+	background-color: rgb(110, 92, 194);
 	color: rgb(255, 255, 255);
 }
 
 QPushButton:hover{
-	background:rgb(42, 61, 89)
+	background:rgb(125, 108, 202);
 }</string>
          </property>
          <property name="frameShape">
@@ -519,7 +557,7 @@ font-size: 12px;</string>
        <item>
         <widget class="QFrame" name="center_main_items">
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(51, 74, 107);</string>
+          <string notr="true">background-color: rgb(243, 243, 243);</string>
          </property>
          <property name="frameShape">
           <enum>QFrame::NoFrame</enum>
@@ -583,7 +621,7 @@ font-size: 12px;</string>
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">color: rgb(255, 255, 255);</string>
+               <string notr="true">color: rgb(127, 127, 127);</string>
               </property>
               <property name="text">
                <string>文件读取路径</string>
@@ -599,11 +637,11 @@ font-size: 12px;</string>
                </rect>
               </property>
               <property name="styleSheet">
-               <string notr="true">*{border-radius:10px;
+               <string notr="true">*{border-radius:5px;
 	font-size:12px;
 	color: rgb(255, 255, 255);
 	
-	background-color: rgb(139, 176, 52);
+	background-color:rgb(81, 66, 147) ;
 }
 
 *:hover{
@@ -626,8 +664,9 @@ font-size: 12px;</string>
               </property>
               <property name="styleSheet">
                <string notr="true">border-radius:10px;
-border:1px solid white;
-color: rgb(255, 255, 255);</string>
+background-color: rgb(255, 255, 255);
+border:1px solid rgb(232, 232, 232);
+color: rgb(121, 121, 121)</string>
               </property>
              </widget>
              <widget class="QPushButton" name="btn_deletFolder">
@@ -640,11 +679,11 @@ color: rgb(255, 255, 255);</string>
                </rect>
               </property>
               <property name="styleSheet">
-               <string notr="true">*{border-radius:10px;
+               <string notr="true">*{border-radius:3px;
 	font-size:12px;
 	color: rgb(255, 255, 255);
 	
-	background-color: rgb(143, 56, 48);
+	background-color: rgb(217, 217, 217);
 }
 
 *:hover{
@@ -672,7 +711,7 @@ color: rgb(255, 255, 255);</string>
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">color: rgb(255, 255, 255);</string>
+               <string notr="true">color: rgb(127, 127, 127);</string>
               </property>
               <property name="text">
                <string>文件检索关键词</string>
@@ -689,8 +728,9 @@ color: rgb(255, 255, 255);</string>
               </property>
               <property name="styleSheet">
                <string notr="true">border-radius:10px;
-border:1px solid white;
-color: rgb(255, 255, 255);</string>
+background-color: rgb(255, 255, 255);
+border:1px solid rgb(232, 232, 232);
+color: rgb(121, 121, 121)</string>
               </property>
              </widget>
              <widget class="QPushButton" name="btn_addKeyword">
@@ -703,11 +743,11 @@ color: rgb(255, 255, 255);</string>
                </rect>
               </property>
               <property name="styleSheet">
-               <string notr="true">*{border-radius:10px;
+               <string notr="true">*{border-radius:5px;
 	font-size:12px;
 	color: rgb(255, 255, 255);
 	
-	background-color: rgb(139, 176, 52);
+	background-color:rgb(81, 66, 147) ;
 }
 
 *:hover{
@@ -730,8 +770,9 @@ color: rgb(255, 255, 255);</string>
               </property>
               <property name="styleSheet">
                <string notr="true">border-radius:10px;
-border:1px solid white;
-color: rgb(255, 255, 255);</string>
+background-color: rgb(255, 255, 255);
+border:1px solid rgb(232, 232, 232);
+color: rgb(121, 121, 121)</string>
               </property>
              </widget>
              <widget class="QPushButton" name="btn_deletKeyword">
@@ -744,11 +785,11 @@ color: rgb(255, 255, 255);</string>
                </rect>
               </property>
               <property name="styleSheet">
-               <string notr="true">*{border-radius:10px;
+               <string notr="true">*{border-radius:3px;
 	font-size:12px;
 	color: rgb(255, 255, 255);
 	
-	background-color: rgb(143, 56, 48);
+	background-color: rgb(217, 217, 217);
 }
 
 *:hover{
@@ -758,19 +799,6 @@ color: rgb(255, 255, 255);</string>
               </property>
               <property name="text">
                <string>删除关键词</string>
-              </property>
-             </widget>
-             <widget class="Line" name="line">
-              <property name="geometry">
-               <rect>
-                <x>7</x>
-                <y>130</y>
-                <width>501</width>
-                <height>20</height>
-               </rect>
-              </property>
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
               </property>
              </widget>
             </widget>
@@ -799,7 +827,7 @@ color: rgb(255, 255, 255);</string>
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(66, 96, 138);
+          <string notr="true">background-color: rgb(227, 227, 235);
 border-bottom-right-radius:10px;</string>
          </property>
          <property name="frameShape">

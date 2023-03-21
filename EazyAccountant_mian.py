@@ -92,7 +92,7 @@ class MainWindow(QMainWindow):
 
         #Menu Button Styling
         #default button style set
-        defaultStyle = self.ui.btn_menu_extract.styleSheet()+("border-left: 1px solid rgb(255,179,54);")
+        defaultStyle = self.ui.btn_menu_extract.styleSheet()+("background-color:rgb(125,108,202);")
         self.ui.btn_menu_extract.setStyleSheet(defaultStyle)
         #button style click event
         for w in self.ui.left_side_menu.findChildren(QPushButton):
@@ -170,10 +170,10 @@ class MainWindow(QMainWindow):
     def applyButtonStyle(self):
         for w in self.ui.left_side_menu.findChildren(QPushButton):
             if w.objectName() != self.sender().objectName():
-                defaultStyle = w.styleSheet().replace("border-left: 1px solid rgb(255,179,54);","")
+                defaultStyle = w.styleSheet().replace("background-color:rgb(125,108,202);","")
                 w.setStyleSheet(defaultStyle)
 
-        newStyle = self.sender().styleSheet()+("border-left: 1px solid rgb(255,179,54);")
+        newStyle = self.sender().styleSheet()+("background-color:rgb(125,108,202);")
         self.sender().setStyleSheet(newStyle)
         return
 

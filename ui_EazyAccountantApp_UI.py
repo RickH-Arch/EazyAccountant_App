@@ -25,7 +25,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(820, 493)
+        MainWindow.resize(857, 514)
         MainWindow.setStyleSheet(u"")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
@@ -38,7 +38,7 @@ class Ui_MainWindow(object):
         self.main_header.setObjectName(u"main_header")
         self.main_header.setMinimumSize(QSize(0, 50))
         self.main_header.setMaximumSize(QSize(16777215, 50))
-        self.main_header.setStyleSheet(u"background-color:rgb(24, 34, 50);\n"
+        self.main_header.setStyleSheet(u"background-color:rgb(81,68,140);\n"
 "border-top-left-radius:10px;\n"
 "border-top-right-radius:10px;")
         self.main_header.setFrameShape(QFrame.NoFrame)
@@ -62,7 +62,7 @@ class Ui_MainWindow(object):
 "	border-radius:10px;\n"
 "}\n"
 "QPushButton:hover{\n"
-"	background:rgb(67, 98, 141);\n"
+"	background:rgb(125, 108, 202);\n"
 "}")
         self.left_menu_toggle.setFrameShape(QFrame.StyledPanel)
         self.left_menu_toggle.setFrameShadow(QFrame.Raised)
@@ -89,6 +89,18 @@ class Ui_MainWindow(object):
         self.title_bar.setObjectName(u"title_bar")
         self.title_bar.setFrameShape(QFrame.StyledPanel)
         self.title_bar.setFrameShadow(QFrame.Raised)
+        self.label = QLabel(self.title_bar)
+        self.label.setObjectName(u"label")
+        self.label.setGeometry(QRect(9, 16, 54, 16))
+        font = QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        self.label.setFont(font)
+        self.label.setStyleSheet(u"color: rgb(255, 255, 255);")
+        self.label_2 = QLabel(self.title_bar)
+        self.label_2.setObjectName(u"label_2")
+        self.label_2.setGeometry(QRect(47, 17, 81, 16))
+        self.label_2.setStyleSheet(u"color: rgb(255, 255, 255);")
 
         self.horizontalLayout_5.addWidget(self.title_bar)
 
@@ -103,7 +115,7 @@ class Ui_MainWindow(object):
 "	border-radius:10px;\n"
 "}\n"
 "QPushButton:hover{\n"
-"	background:rgb(67, 98, 141);\n"
+"	background:rgb(125, 108, 202);\n"
 "}")
         self.top_right_buttons.setFrameShape(QFrame.StyledPanel)
         self.top_right_buttons.setFrameShadow(QFrame.Raised)
@@ -155,7 +167,7 @@ class Ui_MainWindow(object):
         self.left_side_menu.setObjectName(u"left_side_menu")
         self.left_side_menu.setMinimumSize(QSize(50, 0))
         self.left_side_menu.setMaximumSize(QSize(50, 16777215))
-        self.left_side_menu.setStyleSheet(u"*{background-color: rgb(24, 34, 50);\n"
+        self.left_side_menu.setStyleSheet(u"*{background-color: rgb(110, 92, 194);\n"
 "border-bottom-left-radius:10px;\n"
 "}\n"
 "\n"
@@ -164,12 +176,12 @@ class Ui_MainWindow(object):
 "	border:none;\n"
 "	border-left: 1px solid transparent;\n"
 "	border-radius: 10px;\n"
-"	background-color: rgb(24, 34, 50);\n"
+"	background-color: rgb(110, 92, 194);\n"
 "	color: rgb(255, 255, 255);\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
-"	background:rgb(42, 61, 89)\n"
+"	background:rgb(125, 108, 202);\n"
 "}")
         self.left_side_menu.setFrameShape(QFrame.NoFrame)
         self.left_side_menu.setFrameShadow(QFrame.Raised)
@@ -252,7 +264,7 @@ class Ui_MainWindow(object):
 
         self.center_main_items = QFrame(self.main_body)
         self.center_main_items.setObjectName(u"center_main_items")
-        self.center_main_items.setStyleSheet(u"background-color: rgb(51, 74, 107);")
+        self.center_main_items.setStyleSheet(u"background-color: rgb(243, 243, 243);")
         self.center_main_items.setFrameShape(QFrame.NoFrame)
         self.center_main_items.setFrameShadow(QFrame.Raised)
         self.verticalLayout_3 = QVBoxLayout(self.center_main_items)
@@ -279,19 +291,19 @@ class Ui_MainWindow(object):
         self.folderPathLable = QLabel(self.page_extract)
         self.folderPathLable.setObjectName(u"folderPathLable")
         self.folderPathLable.setGeometry(QRect(34, 20, 91, 16))
-        font = QFont()
-        font.setPointSize(10)
-        font.setBold(True)
-        self.folderPathLable.setFont(font)
-        self.folderPathLable.setStyleSheet(u"color: rgb(255, 255, 255);")
+        font1 = QFont()
+        font1.setPointSize(10)
+        font1.setBold(True)
+        self.folderPathLable.setFont(font1)
+        self.folderPathLable.setStyleSheet(u"color: rgb(127, 127, 127);")
         self.btn_browseFolder = QPushButton(self.page_extract)
         self.btn_browseFolder.setObjectName(u"btn_browseFolder")
         self.btn_browseFolder.setGeometry(QRect(350, 40, 91, 41))
-        self.btn_browseFolder.setStyleSheet(u"*{border-radius:10px;\n"
+        self.btn_browseFolder.setStyleSheet(u"*{border-radius:5px;\n"
 "	font-size:12px;\n"
 "	color: rgb(255, 255, 255);\n"
 "	\n"
-"	background-color: rgb(139, 176, 52);\n"
+"	background-color:rgb(81, 66, 147) ;\n"
 "}\n"
 "\n"
 "*:hover{\n"
@@ -302,16 +314,17 @@ class Ui_MainWindow(object):
         self.list_folderPath.setObjectName(u"list_folderPath")
         self.list_folderPath.setGeometry(QRect(30, 40, 311, 81))
         self.list_folderPath.setStyleSheet(u"border-radius:10px;\n"
-"border:1px solid white;\n"
-"color: rgb(255, 255, 255);")
+"background-color: rgb(255, 255, 255);\n"
+"border:1px solid rgb(232, 232, 232);\n"
+"color: rgb(121, 121, 121)")
         self.btn_deletFolder = QPushButton(self.page_extract)
         self.btn_deletFolder.setObjectName(u"btn_deletFolder")
         self.btn_deletFolder.setGeometry(QRect(350, 90, 91, 31))
-        self.btn_deletFolder.setStyleSheet(u"*{border-radius:10px;\n"
+        self.btn_deletFolder.setStyleSheet(u"*{border-radius:3px;\n"
 "	font-size:12px;\n"
 "	color: rgb(255, 255, 255);\n"
 "	\n"
-"	background-color: rgb(143, 56, 48);\n"
+"	background-color: rgb(217, 217, 217);\n"
 "}\n"
 "\n"
 "*:hover{\n"
@@ -321,22 +334,23 @@ class Ui_MainWindow(object):
         self.searchLable = QLabel(self.page_extract)
         self.searchLable.setObjectName(u"searchLable")
         self.searchLable.setGeometry(QRect(30, 150, 91, 16))
-        self.searchLable.setFont(font)
-        self.searchLable.setStyleSheet(u"color: rgb(255, 255, 255);")
+        self.searchLable.setFont(font1)
+        self.searchLable.setStyleSheet(u"color: rgb(127, 127, 127);")
         self.list_keyword = QListWidget(self.page_extract)
         self.list_keyword.setObjectName(u"list_keyword")
         self.list_keyword.setGeometry(QRect(30, 170, 211, 81))
         self.list_keyword.setStyleSheet(u"border-radius:10px;\n"
-"border:1px solid white;\n"
-"color: rgb(255, 255, 255);")
+"background-color: rgb(255, 255, 255);\n"
+"border:1px solid rgb(232, 232, 232);\n"
+"color: rgb(121, 121, 121)")
         self.btn_addKeyword = QPushButton(self.page_extract)
         self.btn_addKeyword.setObjectName(u"btn_addKeyword")
         self.btn_addKeyword.setGeometry(QRect(350, 170, 91, 41))
-        self.btn_addKeyword.setStyleSheet(u"*{border-radius:10px;\n"
+        self.btn_addKeyword.setStyleSheet(u"*{border-radius:5px;\n"
 "	font-size:12px;\n"
 "	color: rgb(255, 255, 255);\n"
 "	\n"
-"	background-color: rgb(139, 176, 52);\n"
+"	background-color:rgb(81, 66, 147) ;\n"
 "}\n"
 "\n"
 "*:hover{\n"
@@ -347,27 +361,23 @@ class Ui_MainWindow(object):
         self.textInput_keyword.setObjectName(u"textInput_keyword")
         self.textInput_keyword.setGeometry(QRect(250, 170, 91, 81))
         self.textInput_keyword.setStyleSheet(u"border-radius:10px;\n"
-"border:1px solid white;\n"
-"color: rgb(255, 255, 255);")
+"background-color: rgb(255, 255, 255);\n"
+"border:1px solid rgb(232, 232, 232);\n"
+"color: rgb(121, 121, 121)")
         self.btn_deletKeyword = QPushButton(self.page_extract)
         self.btn_deletKeyword.setObjectName(u"btn_deletKeyword")
         self.btn_deletKeyword.setGeometry(QRect(350, 220, 91, 31))
-        self.btn_deletKeyword.setStyleSheet(u"*{border-radius:10px;\n"
+        self.btn_deletKeyword.setStyleSheet(u"*{border-radius:3px;\n"
 "	font-size:12px;\n"
 "	color: rgb(255, 255, 255);\n"
 "	\n"
-"	background-color: rgb(143, 56, 48);\n"
+"	background-color: rgb(217, 217, 217);\n"
 "}\n"
 "\n"
 "*:hover{\n"
 "	\n"
 "	background-color: rgb(255, 179, 54);\n"
 "}")
-        self.line = QFrame(self.page_extract)
-        self.line.setObjectName(u"line")
-        self.line.setGeometry(QRect(7, 130, 501, 20))
-        self.line.setFrameShape(QFrame.HLine)
-        self.line.setFrameShadow(QFrame.Sunken)
         self.stackedWidget.addWidget(self.page_extract)
         self.page_settings = QWidget()
         self.page_settings.setObjectName(u"page_settings")
@@ -383,7 +393,7 @@ class Ui_MainWindow(object):
         self.side_assist_window.setObjectName(u"side_assist_window")
         self.side_assist_window.setMinimumSize(QSize(250, 0))
         self.side_assist_window.setMaximumSize(QSize(60, 16777215))
-        self.side_assist_window.setStyleSheet(u"background-color: rgb(66, 96, 138);\n"
+        self.side_assist_window.setStyleSheet(u"background-color: rgb(227, 227, 235);\n"
 "border-bottom-right-radius:10px;")
         self.side_assist_window.setFrameShape(QFrame.NoFrame)
         self.side_assist_window.setFrameShadow(QFrame.Raised)
@@ -430,6 +440,8 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.menuButton.setText("")
+        self.label.setText(QCoreApplication.translate("MainWindow", u"Eazy", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"accountant", None))
         self.minimizeButton.setText("")
         self.closeButton.setText("")
         self.btn_menu_extract.setText(QCoreApplication.translate("MainWindow", u"\u63d0\u53d6", None))
