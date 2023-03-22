@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>857</width>
-    <height>514</height>
+    <width>855</width>
+    <height>505</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -998,7 +998,7 @@ QTabBar::tab:hover{
                <enum>QTabWidget::Rounded</enum>
               </property>
               <property name="currentIndex">
-               <number>1</number>
+               <number>0</number>
               </property>
               <property name="tabsClosable">
                <bool>false</bool>
@@ -1021,61 +1021,47 @@ background-color:white;
                <attribute name="title">
                 <string>月报</string>
                </attribute>
-               <widget class="QTableWidget" name="table_monthlyTag">
-                <property name="geometry">
-                 <rect>
-                  <x>2</x>
-                  <y>2</y>
-                  <width>365</width>
-                  <height>124</height>
-                 </rect>
+               <layout class="QVBoxLayout" name="verticalLayout_5">
+                <property name="spacing">
+                 <number>0</number>
                 </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>365</width>
-                  <height>124</height>
-                 </size>
+                <property name="leftMargin">
+                 <number>2</number>
                 </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>365</width>
-                  <height>124</height>
-                 </size>
+                <property name="topMargin">
+                 <number>2</number>
                 </property>
-                <property name="styleSheet">
-                 <string notr="true">background-color: rgb(255, 255, 255);</string>
+                <property name="rightMargin">
+                 <number>2</number>
                 </property>
-               </widget>
+                <property name="bottomMargin">
+                 <number>2</number>
+                </property>
+                <item>
+                 <widget class="QTableWidget" name="table_monthlyTag">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>365</width>
+                    <height>124</height>
+                   </size>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">background-color: rgb(255, 255, 255);</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
               </widget>
               <widget class="QWidget" name="annualReport">
                <attribute name="title">
                 <string>年报</string>
                </attribute>
-               <widget class="QTableWidget" name="table_annualTag">
-                <property name="geometry">
-                 <rect>
-                  <x>2</x>
-                  <y>2</y>
-                  <width>365</width>
-                  <height>124</height>
-                 </rect>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>365</width>
-                  <height>124</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>365</width>
-                  <height>124</height>
-                 </size>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">background-color: rgb(255, 255, 255);</string>
-                </property>
-               </widget>
               </widget>
              </widget>
              <widget class="QPushButton" name="btn_addTag">
@@ -1262,7 +1248,208 @@ border-bottom-right-radius:10px;</string>
           </property>
           <item>
            <widget class="QStackedWidget" name="stackedWidget_side">
-            <widget class="QWidget" name="sidePage_extract"/>
+            <widget class="QWidget" name="sidePage_extract">
+             <widget class="QListWidget" name="list_programStep">
+              <property name="geometry">
+               <rect>
+                <x>30</x>
+                <y>39</y>
+                <width>191</width>
+                <height>291</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">*{border-radius:10px;
+background-color: rgb(255, 255, 255);
+border:1px solid rgb(232, 232, 232);
+color: rgb(121, 121, 121)}
+
+QScrollBar {              
+            border: none;
+            background:white;
+            width:3px;
+            margin: 0px 0px 0px 0px;
+        }
+        QScrollBar::handle {
+            background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+            stop: 0 rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130), stop:1 rgb(32, 47, 130));
+            min-height: 0px;
+        }
+        QScrollBar::add-line{
+            background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+            stop: 0 rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130),  stop:1 rgb(32, 47, 130));
+            height: 0px;
+            subcontrol-position: bottom;
+            subcontrol-origin: margin;
+        }
+        QScrollBar::sub-line {
+            background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+            stop: 0  rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130),  stop:1 rgb(32, 47, 130));
+            height: 0 px;
+            subcontrol-position: top;
+            subcontrol-origin: margin;
+        }</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="folderPathLable_2">
+              <property name="geometry">
+               <rect>
+                <x>30</x>
+                <y>20</y>
+                <width>91</width>
+                <height>16</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(127, 127, 127);</string>
+              </property>
+              <property name="text">
+               <string>进程</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="btn_ExtractionStart">
+              <property name="geometry">
+               <rect>
+                <x>30</x>
+                <y>390</y>
+                <width>121</width>
+                <height>41</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">*{border-radius:5px;
+	font-size:12px;
+	color: rgb(255, 255, 255);
+	
+	background-color:rgb(81, 66, 147) ;
+}
+
+*:hover{
+	
+	background-color: rgb(255, 179, 54);
+}</string>
+              </property>
+              <property name="text">
+               <string>生成</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="btn_renameTagGroup_2">
+              <property name="geometry">
+               <rect>
+                <x>160</x>
+                <y>390</y>
+                <width>61</width>
+                <height>41</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">*{border-radius:5px;
+	font-size:12px;
+	color: rgb(255, 255, 255);
+	
+	background-color:rgb(217, 217, 217) ;
+}
+
+*:hover{
+	
+	background-color: rgb(255, 179, 54);
+}</string>
+              </property>
+              <property name="text">
+               <string>导出</string>
+              </property>
+             </widget>
+             <widget class="QCheckBox" name="check_asRow">
+              <property name="geometry">
+               <rect>
+                <x>30</x>
+                <y>340</y>
+                <width>81</width>
+                <height>20</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QCheckBox::indicator {
+    
+    background-color: white;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: white;
+}
+QCheckBox::indicator:checked {
+    background-color: rgb(102, 86, 180)
+}
+
+</string>
+              </property>
+              <property name="text">
+               <string>按行排列</string>
+              </property>
+             </widget>
+             <widget class="QCheckBox" name="check_asColumn">
+              <property name="geometry">
+               <rect>
+                <x>110</x>
+                <y>340</y>
+                <width>81</width>
+                <height>20</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QCheckBox::indicator {
+    
+    background-color: white;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: white;
+}
+QCheckBox::indicator:checked {
+    background-color: rgb(102, 86, 180)
+}
+
+</string>
+              </property>
+              <property name="text">
+               <string>按列排列</string>
+              </property>
+             </widget>
+             <widget class="QCheckBox" name="check_autoArrange">
+              <property name="geometry">
+               <rect>
+                <x>31</x>
+                <y>363</y>
+                <width>81</width>
+                <height>20</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QCheckBox::indicator {
+    
+    background-color: white;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: white;
+}
+QCheckBox::indicator:checked {
+    background-color: rgb(102, 86, 180)
+}
+
+</string>
+              </property>
+              <property name="text">
+               <string>自动排序</string>
+              </property>
+             </widget>
+            </widget>
             <widget class="QWidget" name="sidePage_settings"/>
             <widget class="QWidget" name="sidePage_write"/>
             <widget class="QWidget" name="sidePage_check"/>

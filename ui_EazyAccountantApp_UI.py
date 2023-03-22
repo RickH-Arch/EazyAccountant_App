@@ -15,18 +15,18 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QFormLayout, QFrame, QHBoxLayout,
-    QHeaderView, QLabel, QListWidget, QListWidgetItem,
-    QMainWindow, QPlainTextEdit, QPushButton, QSizePolicy,
-    QStackedWidget, QTabWidget, QTableWidget, QTableWidgetItem,
-    QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QCheckBox, QFormLayout, QFrame,
+    QHBoxLayout, QHeaderView, QLabel, QListWidget,
+    QListWidgetItem, QMainWindow, QPlainTextEdit, QPushButton,
+    QSizePolicy, QStackedWidget, QTabWidget, QTableWidget,
+    QTableWidgetItem, QVBoxLayout, QWidget)
 import resource_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(857, 514)
+        MainWindow.resize(855, 505)
         MainWindow.setStyleSheet(u"")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
@@ -509,21 +509,21 @@ class Ui_MainWindow(object):
 "border:none;\n"
 "background-color:white;\n"
 "}")
+        self.verticalLayout_5 = QVBoxLayout(self.monthlyReport)
+        self.verticalLayout_5.setSpacing(0)
+        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
+        self.verticalLayout_5.setContentsMargins(2, 2, 2, 2)
         self.table_monthlyTag = QTableWidget(self.monthlyReport)
         self.table_monthlyTag.setObjectName(u"table_monthlyTag")
-        self.table_monthlyTag.setGeometry(QRect(2, 2, 365, 124))
-        self.table_monthlyTag.setMinimumSize(QSize(365, 124))
+        self.table_monthlyTag.setMinimumSize(QSize(0, 0))
         self.table_monthlyTag.setMaximumSize(QSize(365, 124))
         self.table_monthlyTag.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+
+        self.verticalLayout_5.addWidget(self.table_monthlyTag)
+
         self.tag_group.addTab(self.monthlyReport, "")
         self.annualReport = QWidget()
         self.annualReport.setObjectName(u"annualReport")
-        self.table_annualTag = QTableWidget(self.annualReport)
-        self.table_annualTag.setObjectName(u"table_annualTag")
-        self.table_annualTag.setGeometry(QRect(2, 2, 365, 124))
-        self.table_annualTag.setMinimumSize(QSize(365, 124))
-        self.table_annualTag.setMaximumSize(QSize(365, 124))
-        self.table_annualTag.setStyleSheet(u"background-color: rgb(255, 255, 255);")
         self.tag_group.addTab(self.annualReport, "")
         self.btn_addTag = QPushButton(self.page_extract)
         self.btn_addTag.setObjectName(u"btn_addTag")
@@ -614,6 +614,121 @@ class Ui_MainWindow(object):
         self.stackedWidget_side.setObjectName(u"stackedWidget_side")
         self.sidePage_extract = QWidget()
         self.sidePage_extract.setObjectName(u"sidePage_extract")
+        self.list_programStep = QListWidget(self.sidePage_extract)
+        self.list_programStep.setObjectName(u"list_programStep")
+        self.list_programStep.setGeometry(QRect(30, 39, 191, 291))
+        self.list_programStep.setStyleSheet(u"*{border-radius:10px;\n"
+"background-color: rgb(255, 255, 255);\n"
+"border:1px solid rgb(232, 232, 232);\n"
+"color: rgb(121, 121, 121)}\n"
+"\n"
+"QScrollBar {              \n"
+"            border: none;\n"
+"            background:white;\n"
+"            width:3px;\n"
+"            margin: 0px 0px 0px 0px;\n"
+"        }\n"
+"        QScrollBar::handle {\n"
+"            background: qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
+"            stop: 0 rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130), stop:1 rgb(32, 47, 130));\n"
+"            min-height: 0px;\n"
+"        }\n"
+"        QScrollBar::add-line{\n"
+"            background: qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
+"            stop: 0 rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130),  stop:1 rgb(32, 47, 130));\n"
+"            height: 0px;\n"
+"            subcontrol-position: bottom;\n"
+"            subcontrol-origin: margin;\n"
+"        }\n"
+"        QScrollBar::sub-line {\n"
+"            background: qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
+"            stop: 0  rgb(3"
+                        "2, 47, 130), stop: 0.5 rgb(32, 47, 130),  stop:1 rgb(32, 47, 130));\n"
+"            height: 0 px;\n"
+"            subcontrol-position: top;\n"
+"            subcontrol-origin: margin;\n"
+"        }")
+        self.folderPathLable_2 = QLabel(self.sidePage_extract)
+        self.folderPathLable_2.setObjectName(u"folderPathLable_2")
+        self.folderPathLable_2.setGeometry(QRect(30, 20, 91, 16))
+        self.folderPathLable_2.setFont(font1)
+        self.folderPathLable_2.setStyleSheet(u"color: rgb(127, 127, 127);")
+        self.btn_ExtractionStart = QPushButton(self.sidePage_extract)
+        self.btn_ExtractionStart.setObjectName(u"btn_ExtractionStart")
+        self.btn_ExtractionStart.setGeometry(QRect(30, 390, 121, 41))
+        self.btn_ExtractionStart.setStyleSheet(u"*{border-radius:5px;\n"
+"	font-size:12px;\n"
+"	color: rgb(255, 255, 255);\n"
+"	\n"
+"	background-color:rgb(81, 66, 147) ;\n"
+"}\n"
+"\n"
+"*:hover{\n"
+"	\n"
+"	background-color: rgb(255, 179, 54);\n"
+"}")
+        self.btn_renameTagGroup_2 = QPushButton(self.sidePage_extract)
+        self.btn_renameTagGroup_2.setObjectName(u"btn_renameTagGroup_2")
+        self.btn_renameTagGroup_2.setGeometry(QRect(160, 390, 61, 41))
+        self.btn_renameTagGroup_2.setStyleSheet(u"*{border-radius:5px;\n"
+"	font-size:12px;\n"
+"	color: rgb(255, 255, 255);\n"
+"	\n"
+"	background-color:rgb(217, 217, 217) ;\n"
+"}\n"
+"\n"
+"*:hover{\n"
+"	\n"
+"	background-color: rgb(255, 179, 54);\n"
+"}")
+        self.check_asRow = QCheckBox(self.sidePage_extract)
+        self.check_asRow.setObjectName(u"check_asRow")
+        self.check_asRow.setGeometry(QRect(30, 340, 81, 20))
+        self.check_asRow.setStyleSheet(u"QCheckBox::indicator {\n"
+"    \n"
+"    background-color: white;\n"
+"    border-radius: 5px;\n"
+"    border-style: solid;\n"
+"    border-width: 1px;\n"
+"    border-color: white;\n"
+"}\n"
+"QCheckBox::indicator:checked {\n"
+"    background-color: rgb(102, 86, 180)\n"
+"}\n"
+"\n"
+"")
+        self.check_asColumn = QCheckBox(self.sidePage_extract)
+        self.check_asColumn.setObjectName(u"check_asColumn")
+        self.check_asColumn.setGeometry(QRect(110, 340, 81, 20))
+        self.check_asColumn.setStyleSheet(u"QCheckBox::indicator {\n"
+"    \n"
+"    background-color: white;\n"
+"    border-radius: 5px;\n"
+"    border-style: solid;\n"
+"    border-width: 1px;\n"
+"    border-color: white;\n"
+"}\n"
+"QCheckBox::indicator:checked {\n"
+"    background-color: rgb(102, 86, 180)\n"
+"}\n"
+"\n"
+"")
+        self.check_autoArrange = QCheckBox(self.sidePage_extract)
+        self.check_autoArrange.setObjectName(u"check_autoArrange")
+        self.check_autoArrange.setGeometry(QRect(31, 363, 81, 20))
+        self.check_autoArrange.setStyleSheet(u"QCheckBox::indicator {\n"
+"    \n"
+"    background-color: white;\n"
+"    border-radius: 5px;\n"
+"    border-style: solid;\n"
+"    border-width: 1px;\n"
+"    border-color: white;\n"
+"}\n"
+"QCheckBox::indicator:checked {\n"
+"    background-color: rgb(102, 86, 180)\n"
+"}\n"
+"\n"
+"")
         self.stackedWidget_side.addWidget(self.sidePage_extract)
         self.sidePage_settings = QWidget()
         self.sidePage_settings.setObjectName(u"sidePage_settings")
@@ -641,7 +756,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
 
         self.stackedWidget.setCurrentIndex(3)
-        self.tag_group.setCurrentIndex(1)
+        self.tag_group.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -675,5 +790,11 @@ class Ui_MainWindow(object):
         self.btn_addTag.setText("")
         self.btn_delTag.setText("")
         self.btn_renameTagGroup.setText(QCoreApplication.translate("MainWindow", u"\u91cd\u547d\u540d", None))
+        self.folderPathLable_2.setText(QCoreApplication.translate("MainWindow", u"\u8fdb\u7a0b", None))
+        self.btn_ExtractionStart.setText(QCoreApplication.translate("MainWindow", u"\u751f\u6210", None))
+        self.btn_renameTagGroup_2.setText(QCoreApplication.translate("MainWindow", u"\u5bfc\u51fa", None))
+        self.check_asRow.setText(QCoreApplication.translate("MainWindow", u"\u6309\u884c\u6392\u5217", None))
+        self.check_asColumn.setText(QCoreApplication.translate("MainWindow", u"\u6309\u5217\u6392\u5217", None))
+        self.check_autoArrange.setText(QCoreApplication.translate("MainWindow", u"\u81ea\u52a8\u6392\u5e8f", None))
     # retranslateUi
 

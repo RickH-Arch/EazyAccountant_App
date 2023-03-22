@@ -18,7 +18,12 @@ from PySide6.QtWidgets import *
 
 from ui_EazyAccountantApp_UI import Ui_MainWindow
 
+
+from ExtractFunc.Extract_main import ExtractMain
+
 WINDOW_SIZE = 0
+
+extractMain = ExtractMain()
 
 class MainWindow(QMainWindow):
     def __init__(self, parent = None) :
@@ -28,8 +33,8 @@ class MainWindow(QMainWindow):
         self.OnDrag = False
         self.setAcceptDrops(True)
 
-        self.folderPaths = []
-        self.keywords = []
+        
+        
         self.status = {
             "btn_menu_check":False,
             "btn_menu_extract":False,
@@ -188,20 +193,15 @@ class MainWindow(QMainWindow):
         mainWindow = QMainWindow()
         fileDialog = QFileDialog(mainWindow)
         selectedDir = fileDialog.getExistingDirectory(mainWindow,"选择文件夹")
-        if selectedDir not in self.folderPaths:
+        if extractMain.AddFolderPath(selectedDir):
             self.ui.list_folderPath.addItem(QListWidgetItem(selectedDir))
-            self.folderPaths.append(selectedDir)
+            
         
     
     def DeleteFolderPath(self):
         curItem_row = self.ui.list_folderPath.currentRow()
         item = self.ui.list_folderPath.takeItem(curItem_row)
-        
-        index = 0
-        for path in self.folderPaths:
-            if path == item.text():
-                self.folderPaths.pop(index)
-            index += 1
+        extractMain.DelFolderPath(item.text())
     
         del item
    
@@ -220,11 +220,10 @@ class MainWindow(QMainWindow):
 #-----------------------------keyword------------------------------------------------
     def AddKeyword(self):
         if not self.ui.textInput_keyword.toPlainText() == "" or self.ui.textInput_keyword.toPlainText() is None:
-            if self.ui.textInput_keyword.toPlainText() not in self.keywords:
-                text = self.ui.textInput_keyword.toPlainText()
+            text = self.ui.textInput_keyword.toPlainText()
+            if extractMain.AddKeyword(text):
                 self.ui.list_keyword.addItem(QListWidgetItem(text))
                 self.ui.textInput_keyword.setPlainText(None)
-                self.keywords.append(text)
             else:
                 self.ui.textInput_keyword.setPlainText(None)
 
@@ -232,13 +231,8 @@ class MainWindow(QMainWindow):
         selected_row = self.ui.list_keyword.currentRow()
         item = self.ui.list_keyword.takeItem(selected_row)
 
-        index = 0
-        for w in self.keywords:
-            if w == item.text():
-                self.keywords.pop(index)
-            index += 1
-
-        del item
+        if extractMain.DelKeyword(item.text()):
+            del item
 
     def DoubleClicked_to_edit(self, item):
         item.setFlags(item.flags() | Qt.ItemIsEditable)
