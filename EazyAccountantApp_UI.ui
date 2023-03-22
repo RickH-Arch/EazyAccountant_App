@@ -830,8 +830,7 @@ QScrollBar {
 }</string>
               </property>
               <property name="text">
-               <string>添加
-关键词</string>
+               <string>添加</string>
               </property>
              </widget>
              <widget class="QPlainTextEdit" name="textInput_keyword">
@@ -955,20 +954,20 @@ color: rgb(121, 121, 121)</string>
                <rect>
                 <x>30</x>
                 <y>280</y>
-                <width>371</width>
-                <height>151</height>
+                <width>370</width>
+                <height>150</height>
                </rect>
               </property>
               <property name="minimumSize">
                <size>
-                <width>0</width>
-                <height>0</height>
+                <width>370</width>
+                <height>150</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>16777215</width>
-                <height>16777215</height>
+                <width>370</width>
+                <height>150</height>
                </size>
               </property>
               <property name="styleSheet">
@@ -1368,7 +1367,7 @@ QScrollBar {
              <widget class="QCheckBox" name="check_asRow">
               <property name="geometry">
                <rect>
-                <x>30</x>
+                <x>31</x>
                 <y>340</y>
                 <width>81</width>
                 <height>20</height>
@@ -1396,8 +1395,8 @@ QCheckBox::indicator:checked {
              <widget class="QCheckBox" name="check_asColumn">
               <property name="geometry">
                <rect>
-                <x>110</x>
-                <y>340</y>
+                <x>31</x>
+                <y>362</y>
                 <width>81</width>
                 <height>20</height>
                </rect>
@@ -1424,8 +1423,8 @@ QCheckBox::indicator:checked {
              <widget class="QCheckBox" name="check_autoArrange">
               <property name="geometry">
                <rect>
-                <x>31</x>
-                <y>363</y>
+                <x>150</x>
+                <y>340</y>
                 <width>81</width>
                 <height>20</height>
                </rect>

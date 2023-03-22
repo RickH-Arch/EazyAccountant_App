@@ -473,9 +473,9 @@ class Ui_MainWindow(object):
 "}")
         self.tag_group = QTabWidget(self.page_extract)
         self.tag_group.setObjectName(u"tag_group")
-        self.tag_group.setGeometry(QRect(30, 280, 371, 151))
-        self.tag_group.setMinimumSize(QSize(0, 0))
-        self.tag_group.setMaximumSize(QSize(16777215, 16777215))
+        self.tag_group.setGeometry(QRect(30, 280, 370, 150))
+        self.tag_group.setMinimumSize(QSize(370, 150))
+        self.tag_group.setMaximumSize(QSize(370, 150))
         self.tag_group.setStyleSheet(u"QTabWidget::Pane{\n"
 "background-color: white;\n"
 "border-radius:10px;\n"
@@ -683,7 +683,7 @@ class Ui_MainWindow(object):
 "}")
         self.check_asRow = QCheckBox(self.sidePage_extract)
         self.check_asRow.setObjectName(u"check_asRow")
-        self.check_asRow.setGeometry(QRect(30, 340, 81, 20))
+        self.check_asRow.setGeometry(QRect(31, 340, 81, 20))
         self.check_asRow.setStyleSheet(u"QCheckBox::indicator {\n"
 "    \n"
 "    background-color: white;\n"
@@ -699,7 +699,7 @@ class Ui_MainWindow(object):
 "")
         self.check_asColumn = QCheckBox(self.sidePage_extract)
         self.check_asColumn.setObjectName(u"check_asColumn")
-        self.check_asColumn.setGeometry(QRect(110, 340, 81, 20))
+        self.check_asColumn.setGeometry(QRect(31, 362, 81, 20))
         self.check_asColumn.setStyleSheet(u"QCheckBox::indicator {\n"
 "    \n"
 "    background-color: white;\n"
@@ -715,7 +715,7 @@ class Ui_MainWindow(object):
 "")
         self.check_autoArrange = QCheckBox(self.sidePage_extract)
         self.check_autoArrange.setObjectName(u"check_autoArrange")
-        self.check_autoArrange.setGeometry(QRect(31, 363, 81, 20))
+        self.check_autoArrange.setGeometry(QRect(150, 340, 81, 20))
         self.check_autoArrange.setStyleSheet(u"QCheckBox::indicator {\n"
 "    \n"
 "    background-color: white;\n"
@@ -779,8 +779,7 @@ class Ui_MainWindow(object):
         self.btn_browseFolder.setText(QCoreApplication.translate("MainWindow", u"\u6d4f\u89c8\u6587\u4ef6\u5939", None))
         self.btn_deletFolder.setText(QCoreApplication.translate("MainWindow", u"\u5220\u9664\u6587\u4ef6\u5939", None))
         self.searchLable.setText(QCoreApplication.translate("MainWindow", u"\u6587\u4ef6\u68c0\u7d22\u5173\u952e\u8bcd", None))
-        self.btn_addKeyword.setText(QCoreApplication.translate("MainWindow", u"\u6dfb\u52a0\n"
-"\u5173\u952e\u8bcd", None))
+        self.btn_addKeyword.setText(QCoreApplication.translate("MainWindow", u"\u6dfb\u52a0", None))
         self.btn_deletKeyword.setText(QCoreApplication.translate("MainWindow", u"\u5220\u9664", None))
         self.searchLable_2.setText(QCoreApplication.translate("MainWindow", u"\u6807\u7b7e\u7ec4", None))
         self.btn_addTagGroup.setText(QCoreApplication.translate("MainWindow", u"\u6dfb\u52a0\u6807\u7b7e\u7ec4", None))
