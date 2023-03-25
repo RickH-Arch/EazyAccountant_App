@@ -727,7 +727,7 @@ QScrollBar {
                </rect>
               </property>
               <property name="styleSheet">
-               <string notr="true">*{border-radius:3px;
+               <string notr="true">*{border-radius:5px;
 	font-size:12px;
 	color: rgb(255, 255, 255);
 	
@@ -747,7 +747,7 @@ QScrollBar {
               <property name="geometry">
                <rect>
                 <x>30</x>
-                <y>143</y>
+                <y>140</y>
                 <width>91</width>
                 <height>16</height>
                </rect>
@@ -769,7 +769,7 @@ QScrollBar {
               <property name="geometry">
                <rect>
                 <x>30</x>
-                <y>163</y>
+                <y>160</y>
                 <width>211</width>
                 <height>51</height>
                </rect>
@@ -811,7 +811,7 @@ QScrollBar {
               <property name="geometry">
                <rect>
                 <x>350</x>
-                <y>163</y>
+                <y>160</y>
                 <width>51</width>
                 <height>51</height>
                </rect>
@@ -837,7 +837,7 @@ QScrollBar {
               <property name="geometry">
                <rect>
                 <x>250</x>
-                <y>163</y>
+                <y>160</y>
                 <width>91</width>
                 <height>51</height>
                </rect>
@@ -853,13 +853,13 @@ color: rgb(121, 121, 121)</string>
               <property name="geometry">
                <rect>
                 <x>409</x>
-                <y>163</y>
+                <y>160</y>
                 <width>31</width>
                 <height>50</height>
                </rect>
               </property>
               <property name="styleSheet">
-               <string notr="true">*{border-radius:3px;
+               <string notr="true">*{border-radius:5px;
 	font-size:12px;
 	color: rgb(255, 255, 255);
 	
@@ -900,10 +900,10 @@ color: rgb(121, 121, 121)</string>
              <widget class="QPushButton" name="btn_addTagGroup">
               <property name="geometry">
                <rect>
-                <x>30</x>
-                <y>250</y>
-                <width>121</width>
-                <height>25</height>
+                <x>390</x>
+                <y>270</y>
+                <width>51</width>
+                <height>41</height>
                </rect>
               </property>
               <property name="styleSheet">
@@ -920,16 +920,17 @@ color: rgb(121, 121, 121)</string>
 }</string>
               </property>
               <property name="text">
-               <string>添加标签组</string>
+               <string>添加
+标签组</string>
               </property>
              </widget>
              <widget class="QPushButton" name="btn_delTagGroup">
               <property name="geometry">
                <rect>
-                <x>327</x>
-                <y>250</y>
-                <width>71</width>
-                <height>25</height>
+                <x>390</x>
+                <y>320</y>
+                <width>51</width>
+                <height>37</height>
                </rect>
               </property>
               <property name="styleSheet">
@@ -946,28 +947,29 @@ color: rgb(121, 121, 121)</string>
 }</string>
               </property>
               <property name="text">
-               <string>删除标签组</string>
+               <string>删除
+标签组</string>
               </property>
              </widget>
              <widget class="QTabWidget" name="tag_group">
               <property name="geometry">
                <rect>
                 <x>30</x>
-                <y>280</y>
-                <width>370</width>
-                <height>150</height>
+                <y>250</y>
+                <width>351</width>
+                <height>181</height>
                </rect>
               </property>
               <property name="minimumSize">
                <size>
-                <width>370</width>
-                <height>150</height>
+                <width>0</width>
+                <height>0</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>370</width>
-                <height>150</height>
+                <width>1000</width>
+                <height>1000</height>
                </size>
               </property>
               <property name="styleSheet">
@@ -997,7 +999,7 @@ QTabBar::tab:hover{
                <enum>QTabWidget::Rounded</enum>
               </property>
               <property name="currentIndex">
-               <number>0</number>
+               <number>-1</number>
               </property>
               <property name="tabsClosable">
                <bool>false</bool>
@@ -1008,86 +1010,11 @@ QTabBar::tab:hover{
               <property name="tabBarAutoHide">
                <bool>false</bool>
               </property>
-              <widget class="QWidget" name="monthlyReport">
-               <property name="styleSheet">
-                <string notr="true"/>
-               </property>
-               <attribute name="title">
-                <string>月报</string>
-               </attribute>
-               <layout class="QVBoxLayout" name="verticalLayout_5">
-                <property name="spacing">
-                 <number>0</number>
-                </property>
-                <property name="leftMargin">
-                 <number>2</number>
-                </property>
-                <property name="topMargin">
-                 <number>2</number>
-                </property>
-                <property name="rightMargin">
-                 <number>2</number>
-                </property>
-                <property name="bottomMargin">
-                 <number>2</number>
-                </property>
-                <item>
-                 <widget class="QTableWidget" name="table_monthlyTag">
-                  <property name="minimumSize">
-                   <size>
-                    <width>0</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>365</width>
-                    <height>124</height>
-                   </size>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">background-color: rgb(255, 255, 255);
-border-radius:10px;</string>
-                  </property>
-                  <row>
-                   <property name="text">
-                    <string>1</string>
-                   </property>
-                  </row>
-                  <column>
-                   <property name="text">
-                    <string>name</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>cord</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>units</string>
-                   </property>
-                  </column>
-                  <item row="0" column="0">
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </item>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-              <widget class="QWidget" name="annualReport">
-               <attribute name="title">
-                <string>年报</string>
-               </attribute>
-              </widget>
              </widget>
              <widget class="QPushButton" name="btn_addTag">
               <property name="geometry">
                <rect>
-                <x>416</x>
+                <x>390</x>
                 <y>375</y>
                 <width>25</width>
                 <height>25</height>
@@ -1129,7 +1056,7 @@ border-radius:10px;</string>
              <widget class="QPushButton" name="btn_delTag">
               <property name="geometry">
                <rect>
-                <x>416</x>
+                <x>390</x>
                 <y>405</y>
                 <width>25</width>
                 <height>25</height>
@@ -1166,53 +1093,6 @@ border-radius:10px;</string>
               <property name="icon">
                <iconset resource="resource.qrc">
                 <normaloff>:/icons/icon/减号.ico</normaloff>:/icons/icon/减号.ico</iconset>
-              </property>
-             </widget>
-             <widget class="QPushButton" name="btn_renameTagGroup">
-              <property name="geometry">
-               <rect>
-                <x>238</x>
-                <y>250</y>
-                <width>81</width>
-                <height>25</height>
-               </rect>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">*{border-radius:5px;
-	font-size:12px;
-	color: rgb(255, 255, 255);
-	
-	background-color:rgb(217, 217, 217) ;
-}
-
-*:hover{
-	
-	background-color: rgb(255, 179, 54);
-}</string>
-              </property>
-              <property name="text">
-               <string>重命名</string>
-              </property>
-             </widget>
-             <widget class="QPlainTextEdit" name="textInput_tagGroupName">
-              <property name="geometry">
-               <rect>
-                <x>160</x>
-                <y>248</y>
-                <width>71</width>
-                <height>27</height>
-               </rect>
-              </property>
-              <property name="font">
-               <font>
-                <pointsize>9</pointsize>
-               </font>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">border-radius:10px;
-background-color: rgb(255, 255, 255);
-border:1px solid rgb(232, 232, 232);
-color: rgb(121, 121, 121)</string>
               </property>
              </widget>
             </widget>

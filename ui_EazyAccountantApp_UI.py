@@ -16,10 +16,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QCheckBox, QFormLayout, QFrame,
-    QHBoxLayout, QHeaderView, QLabel, QListWidget,
-    QListWidgetItem, QMainWindow, QPlainTextEdit, QPushButton,
-    QSizePolicy, QStackedWidget, QTabWidget, QTableWidget,
-    QTableWidgetItem, QVBoxLayout, QWidget)
+    QHBoxLayout, QLabel, QListWidget, QListWidgetItem,
+    QMainWindow, QPlainTextEdit, QPushButton, QSizePolicy,
+    QStackedWidget, QTabWidget, QVBoxLayout, QWidget)
 import resource_rc
 
 class Ui_MainWindow(object):
@@ -353,7 +352,7 @@ class Ui_MainWindow(object):
         self.btn_deletFolder = QPushButton(self.page_extract)
         self.btn_deletFolder.setObjectName(u"btn_deletFolder")
         self.btn_deletFolder.setGeometry(QRect(350, 90, 91, 31))
-        self.btn_deletFolder.setStyleSheet(u"*{border-radius:3px;\n"
+        self.btn_deletFolder.setStyleSheet(u"*{border-radius:5px;\n"
 "	font-size:12px;\n"
 "	color: rgb(255, 255, 255);\n"
 "	\n"
@@ -366,12 +365,12 @@ class Ui_MainWindow(object):
 "}")
         self.searchLable = QLabel(self.page_extract)
         self.searchLable.setObjectName(u"searchLable")
-        self.searchLable.setGeometry(QRect(30, 143, 91, 16))
+        self.searchLable.setGeometry(QRect(30, 140, 91, 16))
         self.searchLable.setFont(font1)
         self.searchLable.setStyleSheet(u"color: rgb(127, 127, 127);")
         self.list_keyword = QListWidget(self.page_extract)
         self.list_keyword.setObjectName(u"list_keyword")
-        self.list_keyword.setGeometry(QRect(30, 163, 211, 51))
+        self.list_keyword.setGeometry(QRect(30, 160, 211, 51))
         self.list_keyword.setStyleSheet(u"*{border-radius:10px;\n"
 "background-color: rgb(255, 255, 255);\n"
 "border:1px solid rgb(232, 232, 232);\n"
@@ -405,7 +404,7 @@ class Ui_MainWindow(object):
 "        }")
         self.btn_addKeyword = QPushButton(self.page_extract)
         self.btn_addKeyword.setObjectName(u"btn_addKeyword")
-        self.btn_addKeyword.setGeometry(QRect(350, 163, 51, 51))
+        self.btn_addKeyword.setGeometry(QRect(350, 160, 51, 51))
         self.btn_addKeyword.setStyleSheet(u"*{border-radius:5px;\n"
 "	font-size:12px;\n"
 "	color: rgb(255, 255, 255);\n"
@@ -419,15 +418,15 @@ class Ui_MainWindow(object):
 "}")
         self.textInput_keyword = QPlainTextEdit(self.page_extract)
         self.textInput_keyword.setObjectName(u"textInput_keyword")
-        self.textInput_keyword.setGeometry(QRect(250, 163, 91, 51))
+        self.textInput_keyword.setGeometry(QRect(250, 160, 91, 51))
         self.textInput_keyword.setStyleSheet(u"border-radius:10px;\n"
 "background-color: rgb(255, 255, 255);\n"
 "border:1px solid rgb(232, 232, 232);\n"
 "color: rgb(121, 121, 121)")
         self.btn_deletKeyword = QPushButton(self.page_extract)
         self.btn_deletKeyword.setObjectName(u"btn_deletKeyword")
-        self.btn_deletKeyword.setGeometry(QRect(409, 163, 31, 50))
-        self.btn_deletKeyword.setStyleSheet(u"*{border-radius:3px;\n"
+        self.btn_deletKeyword.setGeometry(QRect(409, 160, 31, 50))
+        self.btn_deletKeyword.setStyleSheet(u"*{border-radius:5px;\n"
 "	font-size:12px;\n"
 "	color: rgb(255, 255, 255);\n"
 "	\n"
@@ -445,7 +444,7 @@ class Ui_MainWindow(object):
         self.searchLable_2.setStyleSheet(u"color: rgb(127, 127, 127);")
         self.btn_addTagGroup = QPushButton(self.page_extract)
         self.btn_addTagGroup.setObjectName(u"btn_addTagGroup")
-        self.btn_addTagGroup.setGeometry(QRect(30, 250, 121, 25))
+        self.btn_addTagGroup.setGeometry(QRect(390, 270, 51, 41))
         self.btn_addTagGroup.setStyleSheet(u"*{border-radius:5px;\n"
 "	font-size:12px;\n"
 "	color: rgb(255, 255, 255);\n"
@@ -459,7 +458,7 @@ class Ui_MainWindow(object):
 "}")
         self.btn_delTagGroup = QPushButton(self.page_extract)
         self.btn_delTagGroup.setObjectName(u"btn_delTagGroup")
-        self.btn_delTagGroup.setGeometry(QRect(327, 250, 71, 25))
+        self.btn_delTagGroup.setGeometry(QRect(390, 320, 51, 37))
         self.btn_delTagGroup.setStyleSheet(u"*{border-radius:5px;\n"
 "	font-size:12px;\n"
 "	color: rgb(255, 255, 255);\n"
@@ -473,9 +472,9 @@ class Ui_MainWindow(object):
 "}")
         self.tag_group = QTabWidget(self.page_extract)
         self.tag_group.setObjectName(u"tag_group")
-        self.tag_group.setGeometry(QRect(30, 280, 370, 150))
-        self.tag_group.setMinimumSize(QSize(370, 150))
-        self.tag_group.setMaximumSize(QSize(370, 150))
+        self.tag_group.setGeometry(QRect(30, 250, 351, 181))
+        self.tag_group.setMinimumSize(QSize(0, 0))
+        self.tag_group.setMaximumSize(QSize(1000, 1000))
         self.tag_group.setStyleSheet(u"QTabWidget::Pane{\n"
 "background-color: white;\n"
 "border-radius:10px;\n"
@@ -501,43 +500,9 @@ class Ui_MainWindow(object):
         self.tag_group.setTabsClosable(False)
         self.tag_group.setMovable(True)
         self.tag_group.setTabBarAutoHide(False)
-        self.monthlyReport = QWidget()
-        self.monthlyReport.setObjectName(u"monthlyReport")
-        self.monthlyReport.setStyleSheet(u"")
-        self.verticalLayout_5 = QVBoxLayout(self.monthlyReport)
-        self.verticalLayout_5.setSpacing(0)
-        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
-        self.verticalLayout_5.setContentsMargins(2, 2, 2, 2)
-        self.table_monthlyTag = QTableWidget(self.monthlyReport)
-        if (self.table_monthlyTag.columnCount() < 3):
-            self.table_monthlyTag.setColumnCount(3)
-        __qtablewidgetitem = QTableWidgetItem()
-        self.table_monthlyTag.setHorizontalHeaderItem(0, __qtablewidgetitem)
-        __qtablewidgetitem1 = QTableWidgetItem()
-        self.table_monthlyTag.setHorizontalHeaderItem(1, __qtablewidgetitem1)
-        __qtablewidgetitem2 = QTableWidgetItem()
-        self.table_monthlyTag.setHorizontalHeaderItem(2, __qtablewidgetitem2)
-        if (self.table_monthlyTag.rowCount() < 1):
-            self.table_monthlyTag.setRowCount(1)
-        __qtablewidgetitem3 = QTableWidgetItem()
-        self.table_monthlyTag.setVerticalHeaderItem(0, __qtablewidgetitem3)
-        __qtablewidgetitem4 = QTableWidgetItem()
-        self.table_monthlyTag.setItem(0, 0, __qtablewidgetitem4)
-        self.table_monthlyTag.setObjectName(u"table_monthlyTag")
-        self.table_monthlyTag.setMinimumSize(QSize(0, 0))
-        self.table_monthlyTag.setMaximumSize(QSize(365, 124))
-        self.table_monthlyTag.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
-"border-radius:10px;")
-
-        self.verticalLayout_5.addWidget(self.table_monthlyTag)
-
-        self.tag_group.addTab(self.monthlyReport, "")
-        self.annualReport = QWidget()
-        self.annualReport.setObjectName(u"annualReport")
-        self.tag_group.addTab(self.annualReport, "")
         self.btn_addTag = QPushButton(self.page_extract)
         self.btn_addTag.setObjectName(u"btn_addTag")
-        self.btn_addTag.setGeometry(QRect(416, 375, 25, 25))
+        self.btn_addTag.setGeometry(QRect(390, 375, 25, 25))
         self.btn_addTag.setMinimumSize(QSize(25, 25))
         self.btn_addTag.setMaximumSize(QSize(25, 25))
         self.btn_addTag.setStyleSheet(u"*{border-radius:5px;\n"
@@ -556,7 +521,7 @@ class Ui_MainWindow(object):
         self.btn_addTag.setIcon(icon3)
         self.btn_delTag = QPushButton(self.page_extract)
         self.btn_delTag.setObjectName(u"btn_delTag")
-        self.btn_delTag.setGeometry(QRect(416, 405, 25, 25))
+        self.btn_delTag.setGeometry(QRect(390, 405, 25, 25))
         self.btn_delTag.setMinimumSize(QSize(25, 25))
         self.btn_delTag.setMaximumSize(QSize(25, 25))
         self.btn_delTag.setStyleSheet(u"*{border-radius:5px;\n"
@@ -573,30 +538,6 @@ class Ui_MainWindow(object):
         icon4 = QIcon()
         icon4.addFile(u":/icons/icon/\u51cf\u53f7.ico", QSize(), QIcon.Normal, QIcon.Off)
         self.btn_delTag.setIcon(icon4)
-        self.btn_renameTagGroup = QPushButton(self.page_extract)
-        self.btn_renameTagGroup.setObjectName(u"btn_renameTagGroup")
-        self.btn_renameTagGroup.setGeometry(QRect(238, 250, 81, 25))
-        self.btn_renameTagGroup.setStyleSheet(u"*{border-radius:5px;\n"
-"	font-size:12px;\n"
-"	color: rgb(255, 255, 255);\n"
-"	\n"
-"	background-color:rgb(217, 217, 217) ;\n"
-"}\n"
-"\n"
-"*:hover{\n"
-"	\n"
-"	background-color: rgb(255, 179, 54);\n"
-"}")
-        self.textInput_tagGroupName = QPlainTextEdit(self.page_extract)
-        self.textInput_tagGroupName.setObjectName(u"textInput_tagGroupName")
-        self.textInput_tagGroupName.setGeometry(QRect(160, 248, 71, 27))
-        font2 = QFont()
-        font2.setPointSize(9)
-        self.textInput_tagGroupName.setFont(font2)
-        self.textInput_tagGroupName.setStyleSheet(u"border-radius:10px;\n"
-"background-color: rgb(255, 255, 255);\n"
-"border:1px solid rgb(232, 232, 232);\n"
-"color: rgb(121, 121, 121)")
         self.stackedWidget.addWidget(self.page_extract)
         self.page_settings = QWidget()
         self.page_settings.setObjectName(u"page_settings")
@@ -780,7 +721,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
 
         self.stackedWidget.setCurrentIndex(3)
-        self.tag_group.setCurrentIndex(0)
+        self.tag_group.setCurrentIndex(-1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -806,26 +747,12 @@ class Ui_MainWindow(object):
         self.btn_addKeyword.setText(QCoreApplication.translate("MainWindow", u"\u6dfb\u52a0", None))
         self.btn_deletKeyword.setText(QCoreApplication.translate("MainWindow", u"\u5220\u9664", None))
         self.searchLable_2.setText(QCoreApplication.translate("MainWindow", u"\u6807\u7b7e\u7ec4", None))
-        self.btn_addTagGroup.setText(QCoreApplication.translate("MainWindow", u"\u6dfb\u52a0\u6807\u7b7e\u7ec4", None))
-        self.btn_delTagGroup.setText(QCoreApplication.translate("MainWindow", u"\u5220\u9664\u6807\u7b7e\u7ec4", None))
-        ___qtablewidgetitem = self.table_monthlyTag.horizontalHeaderItem(0)
-        ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"name", None));
-        ___qtablewidgetitem1 = self.table_monthlyTag.horizontalHeaderItem(1)
-        ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"cord", None));
-        ___qtablewidgetitem2 = self.table_monthlyTag.horizontalHeaderItem(2)
-        ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"units", None));
-        ___qtablewidgetitem3 = self.table_monthlyTag.verticalHeaderItem(0)
-        ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"1", None));
-
-        __sortingEnabled = self.table_monthlyTag.isSortingEnabled()
-        self.table_monthlyTag.setSortingEnabled(False)
-        self.table_monthlyTag.setSortingEnabled(__sortingEnabled)
-
-        self.tag_group.setTabText(self.tag_group.indexOf(self.monthlyReport), QCoreApplication.translate("MainWindow", u"\u6708\u62a5", None))
-        self.tag_group.setTabText(self.tag_group.indexOf(self.annualReport), QCoreApplication.translate("MainWindow", u"\u5e74\u62a5", None))
+        self.btn_addTagGroup.setText(QCoreApplication.translate("MainWindow", u"\u6dfb\u52a0\n"
+"\u6807\u7b7e\u7ec4", None))
+        self.btn_delTagGroup.setText(QCoreApplication.translate("MainWindow", u"\u5220\u9664\n"
+"\u6807\u7b7e\u7ec4", None))
         self.btn_addTag.setText("")
         self.btn_delTag.setText("")
-        self.btn_renameTagGroup.setText(QCoreApplication.translate("MainWindow", u"\u91cd\u547d\u540d", None))
         self.folderPathLable_2.setText(QCoreApplication.translate("MainWindow", u"\u8fdb\u7a0b", None))
         self.btn_ExtractionStart.setText(QCoreApplication.translate("MainWindow", u"\u751f\u6210", None))
         self.btn_ExtractionExport.setText(QCoreApplication.translate("MainWindow", u"\u5bfc\u51fa", None))
