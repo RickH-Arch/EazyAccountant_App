@@ -19,7 +19,8 @@ from PySide6.QtWidgets import *
 from ui_EazyAccountantApp_UI import Ui_MainWindow
 
 
-from ExtractFunc.Extract_main import ExtractMain
+
+from ExtractFunc.Extract_main import *
 
 WINDOW_SIZE = 0
 
@@ -111,7 +112,7 @@ class MainWindow(QMainWindow):
 
         #############Extract page Setting##################
         extractMain.LoadFolderPath(self.ui.list_folderPath)
-        self.ui.btn_browseFolder.clicked.connect(self.ChooseFolderPath)
+        self.ui.btn_browseFolder.clicked.connect(self.AddFolderPath)
         self.ui.btn_deletFolder.clicked.connect(self.DeleteFolderPath)
         extractMain.LoadKeyWord(self.ui.list_keyword)
         self.ui.textInput_keyword.setPlaceholderText("输入添加关键词\n非检索字段\n可用*号代替")
@@ -202,28 +203,21 @@ class MainWindow(QMainWindow):
 #######################################extract page###############################################
 #----------------------------file path------------------------------------------------
     #browse folder
-    def ChooseFolderPath(self):
-        mainWindow = QMainWindow()
-        fileDialog = QFileDialog(mainWindow)
-        selectedDir = fileDialog.getExistingDirectory(mainWindow,"选择文件夹")
-        if extractMain.AddFolderPath(selectedDir):
-            self.ui.list_folderPath.addItem(QListWidgetItem(selectedDir))
+    def AddFolderPath(self):
+        selectDir = extractMain.AddFolderPath()
+        if  selectDir!= "":
+            self.ui.list_folderPath.addItem(QListWidgetItem(selectDir))
             
-        
-    
     def DeleteFolderPath(self):
         curItem_row = self.ui.list_folderPath.currentRow()
         item = self.ui.list_folderPath.takeItem(curItem_row)
-        extractMain.DelFolderPath(item.text())
-    
-        del item
+        if(extractMain.DeleteFolderPath(item.text())):
+            del item
    
    #drag folder path
     def dragEnterEvent(self,event):
         path = event.mimeData().urls()[0].toLocalFile()
-        
-        if path not in self.folderPaths and self.status["btn_menu_extract"]:
-            self.folderPaths.append(path)
+        if extractMain.AddDragFolderPath(path):
             self.ui.list_folderPath.addItem(QListWidgetItem(path))
         event.accept()
 
@@ -232,25 +226,19 @@ class MainWindow(QMainWindow):
 
 #-----------------------------keyword------------------------------------------------
     def AddKeyword(self):
-        if not self.ui.textInput_keyword.toPlainText() == "" or self.ui.textInput_keyword.toPlainText() is None:
-            text = self.ui.textInput_keyword.toPlainText()
-            if extractMain.AddKeyword(text):
-                self.ui.list_keyword.addItem(QListWidgetItem(text))
-                self.ui.textInput_keyword.setPlainText(None)
-            else:
-                self.ui.textInput_keyword.setPlainText(None)
+        text = self.ui.textInput_keyword.toPlainText()
+        if extractMain.AddKeyword(text):
+            self.ui.list_keyword.addItem(QListWidgetItem(text))
+            self.ui.textInput_keyword.setPlainText(None)
+        else:
+            self.ui.textInput_keyword.setPlainText(None)
 
     def DeleteKeyword(self):
         selected_row = self.ui.list_keyword.currentRow()
         item = self.ui.list_keyword.takeItem(selected_row)
-
-        if extractMain.DelKeyword(item.text()):
+        if extractMain.DeleteKeyword(item.text()):
             del item
 
-    def DoubleClicked_to_edit(self, item):
-        item.setFlags(item.flags() | Qt.ItemIsEditable)
-        if not item.isSelected():
-            item.setSelected(True)
 #--------------------------------------------------------------------------------------
 #---------------------------------tags--------------------------------------------------
     def DeleteTagGroup(self):

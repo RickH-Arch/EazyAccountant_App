@@ -11,81 +11,43 @@ from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel,
     QMainWindow, QPushButton, QSizePolicy, QVBoxLayout,
     QWidget,QTextBrowser)
 from PySide6.QtWidgets import *
+from ExtractFunc.Tags import *
+from ExtractFunc.ExtractData import *
 
-class ExtractMain:
-    def __init__(self):
-        #self.folderPaths = []
-        #self.keywords = []
-        self.storeData = {
-            "folderPaths":[],
-            "keywords":[],
-        }
-
-        try:
-            with open("extractData.json","r") as f:
-                indata = json.load(f)
-                self.storeData["folderPaths"] = indata["folderPaths"]
-                self.storeData["keywords"] = indata["keywords"]
-        except FileNotFoundError:
-            pass
-
-
-    
-    def AddFolderPath(self,path):
-        if path == "":
-            return
-        if path not in self.storeData["folderPaths"]:
-            self.storeData["folderPaths"].append(path)
-            self.RefreshJson()
-            return True
-            
-        else:
-            return False
+class ExtractMain():
+    def __init__(self) -> None:
+        self.dataMgr = ExtractDataManager()
         
-    def DelFolderPath(self,pathin):
-        if pathin == "":
-            return
-        index = 0
-        for path in self.storeData["folderPaths"]:
-            if path == pathin:
-                self.storeData["folderPaths"].pop(index)
-                self.RefreshJson()
-            index += 1
 
-    def AddKeyword(self,keyword):
-        if keyword == "":
-            return
-        if keyword not in self.storeData["keywords"]:
-            self.storeData["keywords"].append(keyword)
-            self.RefreshJson()
-            return True
-        else:
-            return False
-        
-    def DelKeyword(self,keyword):
-        if keyword == "":
-            return
-        index = 0
-        for w in self.storeData["keywords"]:
-            if w == keyword:
-                self.storeData["keywords"].pop(index)
-                self.RefreshJson()
-                return True
-            index += 1
-        return False
-    
-    def RefreshJson(self):
-        
-        with open('extractData.json','w') as f:
-            json.dump(self.storeData,f,indent = 4)
-
+    #========Load info to ui=====================
     def LoadFolderPath(self,list):
-        paths = self.storeData["folderPaths"]
+        paths = self.dataMgr.storeData["folderPaths"]
         for p in paths:
             list.addItem(QListWidgetItem(p))
 
     def LoadKeyWord(self,list):
-        keywords = self.storeData["keywords"]
+        keywords = self.dataMgr.storeData["keywords"]
         for w in keywords:
             list.addItem(QListWidgetItem(w))
-            
+    #=============================================
+
+    #==========Data Chage=========================
+    def AddFolderPath(self):
+        mainWindow = QMainWindow()
+        fileDialog = QFileDialog(mainWindow)
+        selectedDir = fileDialog.getExistingDirectory(mainWindow,"选择文件夹")
+        if self.dataMgr.AddFolderPath(selectedDir):
+            return selectedDir
+        else:
+            return ""
+    def AddDragFolderPath(self,path):
+        return self.dataMgr.AddFolderPath(path)
+        
+    def DeleteFolderPath(self,path):
+        return self.dataMgr.DelFolderPath(path)
+    
+    def AddKeyword(self,word):
+        return self.dataMgr.AddKeyword(word)
+    
+    def DeleteKeyword(self,word):
+        return self.dataMgr.DelKeyword(word)

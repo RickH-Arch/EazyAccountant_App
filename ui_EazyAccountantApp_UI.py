@@ -503,21 +503,31 @@ class Ui_MainWindow(object):
         self.tag_group.setTabBarAutoHide(False)
         self.monthlyReport = QWidget()
         self.monthlyReport.setObjectName(u"monthlyReport")
-        self.monthlyReport.setStyleSheet(u"*{}\n"
-"\n"
-"QCheckBox{\n"
-"border:none;\n"
-"background-color:white;\n"
-"}")
+        self.monthlyReport.setStyleSheet(u"")
         self.verticalLayout_5 = QVBoxLayout(self.monthlyReport)
         self.verticalLayout_5.setSpacing(0)
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
         self.verticalLayout_5.setContentsMargins(2, 2, 2, 2)
         self.table_monthlyTag = QTableWidget(self.monthlyReport)
+        if (self.table_monthlyTag.columnCount() < 3):
+            self.table_monthlyTag.setColumnCount(3)
+        __qtablewidgetitem = QTableWidgetItem()
+        self.table_monthlyTag.setHorizontalHeaderItem(0, __qtablewidgetitem)
+        __qtablewidgetitem1 = QTableWidgetItem()
+        self.table_monthlyTag.setHorizontalHeaderItem(1, __qtablewidgetitem1)
+        __qtablewidgetitem2 = QTableWidgetItem()
+        self.table_monthlyTag.setHorizontalHeaderItem(2, __qtablewidgetitem2)
+        if (self.table_monthlyTag.rowCount() < 1):
+            self.table_monthlyTag.setRowCount(1)
+        __qtablewidgetitem3 = QTableWidgetItem()
+        self.table_monthlyTag.setVerticalHeaderItem(0, __qtablewidgetitem3)
+        __qtablewidgetitem4 = QTableWidgetItem()
+        self.table_monthlyTag.setItem(0, 0, __qtablewidgetitem4)
         self.table_monthlyTag.setObjectName(u"table_monthlyTag")
         self.table_monthlyTag.setMinimumSize(QSize(0, 0))
         self.table_monthlyTag.setMaximumSize(QSize(365, 124))
-        self.table_monthlyTag.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        self.table_monthlyTag.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
+"border-radius:10px;")
 
         self.verticalLayout_5.addWidget(self.table_monthlyTag)
 
@@ -655,7 +665,7 @@ class Ui_MainWindow(object):
         self.folderPathLable_2.setStyleSheet(u"color: rgb(127, 127, 127);")
         self.btn_ExtractionStart = QPushButton(self.sidePage_extract)
         self.btn_ExtractionStart.setObjectName(u"btn_ExtractionStart")
-        self.btn_ExtractionStart.setGeometry(QRect(30, 390, 121, 41))
+        self.btn_ExtractionStart.setGeometry(QRect(30, 390, 81, 41))
         self.btn_ExtractionStart.setStyleSheet(u"*{border-radius:5px;\n"
 "	font-size:12px;\n"
 "	color: rgb(255, 255, 255);\n"
@@ -667,10 +677,10 @@ class Ui_MainWindow(object):
 "	\n"
 "	background-color: rgb(255, 179, 54);\n"
 "}")
-        self.btn_renameTagGroup_2 = QPushButton(self.sidePage_extract)
-        self.btn_renameTagGroup_2.setObjectName(u"btn_renameTagGroup_2")
-        self.btn_renameTagGroup_2.setGeometry(QRect(160, 390, 61, 41))
-        self.btn_renameTagGroup_2.setStyleSheet(u"*{border-radius:5px;\n"
+        self.btn_ExtractionExport = QPushButton(self.sidePage_extract)
+        self.btn_ExtractionExport.setObjectName(u"btn_ExtractionExport")
+        self.btn_ExtractionExport.setGeometry(QRect(160, 390, 61, 41))
+        self.btn_ExtractionExport.setStyleSheet(u"*{border-radius:5px;\n"
 "	font-size:12px;\n"
 "	color: rgb(255, 255, 255);\n"
 "	\n"
@@ -729,6 +739,20 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "")
+        self.btn_ExtractionStop = QPushButton(self.sidePage_extract)
+        self.btn_ExtractionStop.setObjectName(u"btn_ExtractionStop")
+        self.btn_ExtractionStop.setGeometry(QRect(116, 390, 39, 41))
+        self.btn_ExtractionStop.setStyleSheet(u"*{border-radius:5px;\n"
+"	font-size:12px;\n"
+"	color: rgb(255, 255, 255);\n"
+"	\n"
+"	background-color:rgb(217, 217, 217) ;\n"
+"}\n"
+"\n"
+"*:hover{\n"
+"	\n"
+"	background-color: rgb(223, 145, 146);\n"
+"}")
         self.stackedWidget_side.addWidget(self.sidePage_extract)
         self.sidePage_settings = QWidget()
         self.sidePage_settings.setObjectName(u"sidePage_settings")
@@ -784,6 +808,19 @@ class Ui_MainWindow(object):
         self.searchLable_2.setText(QCoreApplication.translate("MainWindow", u"\u6807\u7b7e\u7ec4", None))
         self.btn_addTagGroup.setText(QCoreApplication.translate("MainWindow", u"\u6dfb\u52a0\u6807\u7b7e\u7ec4", None))
         self.btn_delTagGroup.setText(QCoreApplication.translate("MainWindow", u"\u5220\u9664\u6807\u7b7e\u7ec4", None))
+        ___qtablewidgetitem = self.table_monthlyTag.horizontalHeaderItem(0)
+        ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"name", None));
+        ___qtablewidgetitem1 = self.table_monthlyTag.horizontalHeaderItem(1)
+        ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"cord", None));
+        ___qtablewidgetitem2 = self.table_monthlyTag.horizontalHeaderItem(2)
+        ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"units", None));
+        ___qtablewidgetitem3 = self.table_monthlyTag.verticalHeaderItem(0)
+        ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"1", None));
+
+        __sortingEnabled = self.table_monthlyTag.isSortingEnabled()
+        self.table_monthlyTag.setSortingEnabled(False)
+        self.table_monthlyTag.setSortingEnabled(__sortingEnabled)
+
         self.tag_group.setTabText(self.tag_group.indexOf(self.monthlyReport), QCoreApplication.translate("MainWindow", u"\u6708\u62a5", None))
         self.tag_group.setTabText(self.tag_group.indexOf(self.annualReport), QCoreApplication.translate("MainWindow", u"\u5e74\u62a5", None))
         self.btn_addTag.setText("")
@@ -791,9 +828,10 @@ class Ui_MainWindow(object):
         self.btn_renameTagGroup.setText(QCoreApplication.translate("MainWindow", u"\u91cd\u547d\u540d", None))
         self.folderPathLable_2.setText(QCoreApplication.translate("MainWindow", u"\u8fdb\u7a0b", None))
         self.btn_ExtractionStart.setText(QCoreApplication.translate("MainWindow", u"\u751f\u6210", None))
-        self.btn_renameTagGroup_2.setText(QCoreApplication.translate("MainWindow", u"\u5bfc\u51fa", None))
+        self.btn_ExtractionExport.setText(QCoreApplication.translate("MainWindow", u"\u5bfc\u51fa", None))
         self.check_asRow.setText(QCoreApplication.translate("MainWindow", u"\u6309\u884c\u6392\u5217", None))
         self.check_asColumn.setText(QCoreApplication.translate("MainWindow", u"\u6309\u5217\u6392\u5217", None))
         self.check_autoArrange.setText(QCoreApplication.translate("MainWindow", u"\u81ea\u52a8\u6392\u5e8f", None))
+        self.btn_ExtractionStop.setText(QCoreApplication.translate("MainWindow", u"\u505c\u6b62", None))
     # retranslateUi
 
