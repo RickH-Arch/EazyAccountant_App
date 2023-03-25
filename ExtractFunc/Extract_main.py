@@ -31,7 +31,7 @@ class ExtractMain():
             list.addItem(QListWidgetItem(w))
     #=============================================
 
-    #==========Data Chage=========================
+    #==========Data Change=========================
     def AddFolderPath(self):
         mainWindow = QMainWindow()
         fileDialog = QFileDialog(mainWindow)
