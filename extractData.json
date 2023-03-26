@@ -1,10 +1,1 @@
-{
-    "folderPaths": [
-        "D:/_EVENTS_/Python"
-    ],
-    "keywords": [
-        "678",
-        "\u5e74**\u62a5\u8868"
-    ],
-    "TagGroups": []
-}
+{"py/object": "ExtractFunc.ExtractData.StoreData", "folderPaths": ["D:/_EVENTS_"], "keywords": ["123", "233"], "tagGroups": [{"py/object": "ExtractFunc.ExtractData.TagGroup", "groupName": "\u6708\u62a5", "tagList": [{"py/object": "ExtractFunc.ExtractData.Tag", "tagInfo": {"\u540d\u79f0": "\u6807\u7b7e1", "\u5750\u6807": "", "\u5173\u952e\u8bcd": "", "\u5355\u4f4d": ""}, "isActive": true}, {"py/object": "ExtractFunc.ExtractData.Tag", "tagInfo": {"\u540d\u79f0": "\u6807\u7b7e2", "\u5750\u6807": "", "\u5173\u952e\u8bcd": "", "\u5355\u4f4d": ""}, "isActive": true}]}, {"py/object": "ExtractFunc.ExtractData.TagGroup", "groupName": "213", "tagList": [{"py/object": "ExtractFunc.ExtractData.Tag", "tagInfo": {"\u540d\u79f0": "\u6807\u7b7e1", "\u5750\u6807": "", "\u5173\u952e\u8bcd": "", "\u5355\u4f4d": ""}, "isActive": true}, {"py/object": "ExtractFunc.ExtractData.Tag", "tagInfo": {"\u540d\u79f0": "\u6807\u7b7e2", "\u5750\u6807": "", "\u5173\u952e\u8bcd": "", "\u5355\u4f4d": ""}, "isActive": true}, {"py/object": "ExtractFunc.ExtractData.Tag", "tagInfo": {"\u540d\u79f0": "\u6807\u7b7e3", "\u5750\u6807": "", "\u5173\u952e\u8bcd": "", "\u5355\u4f4d": ""}, "isActive": true}]}]}

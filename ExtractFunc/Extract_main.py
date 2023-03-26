@@ -21,19 +21,21 @@ class ExtractMain():
 
     #========Load info to ui=====================
     def LoadFolderPath(self,list):
-        paths = self.dataMgr.storeData["folderPaths"]
+        paths = self.dataMgr.data.folderPaths
         for p in paths:
             list.addItem(QListWidgetItem(p))
 
     def LoadKeyWord(self,list):
-        keywords = self.dataMgr.storeData["keywords"]
+        keywords = self.dataMgr.data.keywords
         for w in keywords:
             list.addItem(QListWidgetItem(w))
 
     def LoadTagGroup(self,tab):
-        _tagGroups = self.dataMgr.storeData["TagGroups"]
+        
+        _tagGroups = self.dataMgr.data.tagGroups
         if len(_tagGroups) != 0:
             for _g in _tagGroups:
+                
                 #create new tab(hasnt add to tabWidget yet)
                 newTab = QWidget()
                 newTab.setObjectName(_g.groupName)
@@ -43,17 +45,23 @@ class ExtractMain():
                 
                 #create table
                 table = self.GenerateTable(newTab)
+                table.setObjectName(_g.groupName)
+                #print("==========>",_g.tagList)
                 #add row for each tag
                 for tag in _g.tagList:
+                    
                     rowPos = table.rowCount()
                     table.insertRow(rowPos)
                     #add checkbox
                     checkBox = QTableWidgetItem()
                     checkBox.setFlags(QtCore.Qt.ItemIsUserCheckable|QtCore.Qt.ItemIsEnabled)
-                    checkBox.setCheckState(QtCore.Qt.Checked)
+                    if tag.isActive:
+                        checkBox.setCheckState(QtCore.Qt.Checked)
+                    else:
+                        checkBox.setCheckState(QtCore.Qt.UnChecked)
                     table.setItem(rowPos,0,checkBox)
                     #add tag info
-                    for i,value in enumerate( tag.info.values()):
+                    for i,value in enumerate( tag.tagInfo.values()):
                         table.setItem(rowPos,i+1,QTableWidgetItem(value))
 
                 layout.addWidget(table)
@@ -99,14 +107,17 @@ class ExtractMain():
             self.AddTagGroupFromName(tabs,name)
     
     def AddTagGroupFromName(self,tabs,name):
-        newTab = QWidget()
-        layout = QVBoxLayout(newTab)
-        layout.setSpacing(0)
-        layout.setContentsMargins(2,2,2,2)
-        table = self.GenerateTable(newTab)
-        self.AddTagFromIndex(table,0)
-        layout.addWidget(table)
-        tabs.addTab(newTab,name)
+        if self.dataMgr.AddTagGroup(name):
+            newTab = QWidget()
+            layout = QVBoxLayout(newTab)
+            layout.setSpacing(0)
+            layout.setContentsMargins(2,2,2,2)
+            table = self.GenerateTable(newTab)
+            table.setObjectName(name)
+            #print("================>tablename:",table.objectName())
+            self.AddTagFromRowIndex(table,0)
+            layout.addWidget(table)
+            tabs.addTab(newTab,name)
 
     def RenameTagGroup(self,tabs):
         index = tabs.currentIndex()
@@ -115,30 +126,39 @@ class ExtractMain():
             name = tabs.tabText(index)
             new_name, ok = QInputDialog.getText(tabs, "更换名称", "标签组名称:", text=name)
             if ok:
-                tabs.setTabText(index, new_name)
+                if self.dataMgr.RenameTagGroup(index,new_name):
+                    tabs.setTabText(index, new_name)
 
     def DeleteTagGroup(self,tabs):
-        tabs.removeTab(tabs.currentIndex())
+        name = tabs.tabText(tabs.currentIndex())
+        if self.dataMgr.DelTagGroup(name):
+            tabs.removeTab(tabs.currentIndex())
 
     def AddTag(self,tabs):
         currentTab = tabs.currentWidget()
         table = currentTab.findChild(QTableWidget)
         rowPos = table.rowCount()
-        self.AddTagFromIndex(table,rowPos)
+        self.AddTagFromRowIndex(table,rowPos)
 
-    def AddTagFromIndex(self,table,ind):
-        table.insertRow(ind)
-        checkBox = QTableWidgetItem()
-        checkBox.setFlags(QtCore.Qt.ItemIsUserCheckable|QtCore.Qt.ItemIsEnabled)
-        checkBox.setCheckState(QtCore.Qt.Checked)
-        table.setItem(ind,0,checkBox)
-        table.setItem(ind,1,QTableWidgetItem("标签{}".format(ind)))
+    #add a new Tag to rowIndex
+    def AddTagFromRowIndex(self,table,row):
+        #print("==========>tableName:",table.objectName())
+        if self.dataMgr.AddTag(table.objectName(),"标签{}".format(row+1)):
+            table.insertRow(row)
+            checkBox = QTableWidgetItem()
+            checkBox.setFlags(QtCore.Qt.ItemIsUserCheckable|QtCore.Qt.ItemIsEnabled)
+            checkBox.setCheckState(QtCore.Qt.Checked)
+            table.setItem(row,0,checkBox)
+            table.setItem(row,1,QTableWidgetItem("标签{}".format(row+1)))
 
     def DeleteTag(self,tabs):
+        groupName = tabs.tabText(tabs.currentIndex())
         currentTab = tabs.currentWidget()
         table = currentTab.findChild(QTableWidget)
         curRow = table.currentRow()
-        table.removeRow(curRow)
+        tagName = table.item(curRow,1).text()
+        if self.dataMgr.DelTag(groupName,tagName):
+            table.removeRow(curRow)
 
 
 
