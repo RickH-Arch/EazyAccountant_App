@@ -124,8 +124,11 @@ class MainWindow(QMainWindow):
         self.ui.btn_addTag.clicked.connect(lambda: extractMain.AddTag(self.ui.tag_group))
         self.ui.btn_delTag.clicked.connect(lambda:extractMain.DeleteTag(self.ui.tag_group))
         self.ui.tag_group.tabBarDoubleClicked.connect(lambda:extractMain.RenameTagGroup(self.ui.tag_group))
-        
-
+        extractMain.LoadRowFollow(self.ui.check_asRow,self.ui.check_asColumn)
+        self.ui.check_asRow.clicked.connect(lambda : extractMain.SetRowFollow(self.ui.check_asRow,self.ui.check_asColumn))
+        self.ui.check_asColumn.clicked.connect(lambda : extractMain.SetColumnFollow(self.ui.check_asColumn,self.ui.check_asRow))
+        extractMain.LoadAutoArrange(self.ui.check_autoArrange)
+        self.ui.check_autoArrange.stateChanged.connect(lambda state:extractMain.SetAutoArrange(state))
 
 
         ####################################################
@@ -205,10 +208,6 @@ class MainWindow(QMainWindow):
 #-------------------------------------------------------------------------------------
 
 #######################################extract page###############################################
-#----------------------------file path------------------------------------------------
-    #browse folder
-   
-   #drag folder path
     def dragEnterEvent(self,event):
         path = event.mimeData().urls()[0].toLocalFile()
         if extractMain.AddDragFolderPath(path):
@@ -219,10 +218,6 @@ class MainWindow(QMainWindow):
         if self.click_count>1:
             extractMain.DeleteTagGroup(self.ui.tag_group)
         self.click_count = 0
-
-
-
-#---------------------------------------------------------------------------------------
 
 ##############################################################################################
 #-------------------------------------------------------------------------------------

@@ -61,6 +61,10 @@ class ExtractDataManager:
                 return True
         return False
     
+    def SetAvtiveGroup(self,index):
+        self.data.activeGroup = index
+        self.RefreshJson()
+
     def AddTagGroup(self,groupName):
         if groupName == "":
             return False
@@ -112,8 +116,35 @@ class ExtractDataManager:
                         self.RefreshJson()
                         return True
         return False
+    
+    def ChangeTagActivation(self,groupName,tagName,status):
+        for g in self.data.tagGroups:
+            if g.groupName == groupName:
+                for tag in g.tagList:
+                    if tag.tagInfo["名称"] == tagName:
+                        tag.isActive = status
+                        print("set status:",groupName,"-",tagName,"-",status)
+                        self.RefreshJson()
+                        return True
+        return False
 
-                
+    def ChangeTagInfo(self,groupName,tagIndex,infoName,value):
+        for g in self.data.tagGroups:
+            if g.groupName == groupName:
+                tag = g.tagList[tagIndex] 
+                tag.tagInfo[infoName] = value
+                print("set info:",groupName,"-",tagIndex,"-",infoName,"-",value)
+                self.RefreshJson()
+                return True
+        return False
+    
+    def SetRowFollow(self,status):
+        self.data.followRow = status
+        self.RefreshJson()
+
+    def SetAutoArrange(self,status):
+        self.data.autoAttange = status
+        self.RefreshJson()
     
     
     #==========================================
@@ -131,6 +162,11 @@ class StoreData():
         self.folderPaths = []
         self.keywords = []
         self.tagGroups = []
+        self.activeGroup = 0
+        self.followRow = True
+        self.autoAttange = True
+
+        
 
 class Tag():
     def __init__(self,name) -> None:

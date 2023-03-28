@@ -12,7 +12,7 @@ from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel,
     QWidget,QTextBrowser)
 from PySide6.QtWidgets import *
 
-from ExtractFunc.ExtractData import *
+from ExtractFunc.ExtractDataManager import ExtractDataManager
 
 class ExtractMain():
     def __init__(self) -> None:
@@ -30,9 +30,10 @@ class ExtractMain():
         for w in keywords:
             list.addItem(QListWidgetItem(w))
 
-    def LoadTagGroup(self,tab):
+    def LoadTagGroup(self,tabs):
         
         _tagGroups = self.dataMgr.data.tagGroups
+        
         if len(_tagGroups) != 0:
             for _g in _tagGroups:
                 
@@ -58,18 +59,33 @@ class ExtractMain():
                     if tag.isActive:
                         checkBox.setCheckState(QtCore.Qt.Checked)
                     else:
-                        checkBox.setCheckState(QtCore.Qt.UnChecked)
+                        checkBox.setCheckState(QtCore.Qt.Unchecked)
                     table.setItem(rowPos,0,checkBox)
                     #add tag info
                     for i,value in enumerate( tag.tagInfo.values()):
                         table.setItem(rowPos,i+1,QTableWidgetItem(value))
 
+                table.cellChanged.connect(lambda row,column : self.OnCellChanged(tabs,row,column))
                 layout.addWidget(table)
-                tab.addTab(newTab,_g.groupName)
+                tabs.addTab(newTab,_g.groupName)
+            tabs.setCurrentIndex(self.dataMgr.data.activeGroup)
         else:
-            self.AddTagGroupFromName(tab,"月报")
+            self.AddTagGroupFromName(tabs,"月报")
+        tabs.currentChanged.connect(self.OnTabSelected)
             
-            
+    def LoadRowFollow(self,checkRow,checkCol):
+        if self.dataMgr.data.followRow:
+            checkRow.setChecked(True)
+            checkCol.setChecked(False)
+        else:
+            checkRow.setChecked(False)
+            checkCol.setChecked(True)
+
+    def LoadAutoArrange(self,checkArr):
+        if self.dataMgr.data.autoAttange:
+            checkArr.setChecked(True)
+        else:
+            checkArr.setChecked(False)
 
     #=============================================
 
@@ -160,6 +176,57 @@ class ExtractMain():
         if self.dataMgr.DelTag(groupName,tagName):
             table.removeRow(curRow)
 
+    def OnTabSelected(self,index):
+        self.dataMgr.SetAvtiveGroup(index)
+
+    def OnCellChanged(self,tabs,row,column):
+        #is active check
+        if column == 0:
+            currentTab = tabs.currentWidget()
+            table = currentTab.findChild(QTableWidget)
+            item = table.item(row,column)
+            status = item.checkState() == Qt.Checked
+            groupName = table.objectName()
+            tagName = table.item(row,1).text()
+            self.dataMgr.ChangeTagActivation(groupName,tagName,status)
+        #is info change
+        else:
+            currentTab = tabs.currentWidget()
+            table = currentTab.findChild(QTableWidget)
+            item = table.item(row,column)
+            groupName = table.objectName()
+            tagIndex = row
+            infoName = table.horizontalHeaderItem(column).text()
+            value = item.text()
+            self.dataMgr.ChangeTagInfo(groupName,tagIndex,infoName,value)
+
+    def SetRowFollow(self,checkBoxRow,checkBoxCol):
+        if checkBoxRow.isChecked() and self.dataMgr.data.followRow == True:
+            return
+        elif checkBoxRow.isChecked() and self.dataMgr.data.followRow == False:
+            self.dataMgr.SetRowFollow(True)
+            checkBoxCol.setChecked(False)
+        elif checkBoxRow.isChecked() == False:
+            checkBoxRow.setChecked(True)
+        
+            
+    def SetColumnFollow(self,checkBoxCol,checkBoxRow):
+        if checkBoxCol.isChecked() and self.dataMgr.data.followRow == False:
+            return
+        elif checkBoxCol.isChecked() and self.dataMgr.data.followRow == True:
+            self.dataMgr.SetRowFollow(False)
+            checkBoxRow.setChecked(False)
+        elif checkBoxCol.isChecked() == False:
+            checkBoxCol.setChecked(True)
+
+    def SetAutoArrange(self,status):
+        if status == 2:
+            self.dataMgr.SetAutoArrange(True)
+        elif status == 0:
+            self.dataMgr.SetAutoArrange(False)
+
+
+
 
 
 
@@ -190,6 +257,12 @@ class ExtractMain():
 
 TableStyleSheet = '''*{background-color: rgb(255, 255, 255);\n
 border-radius:10px;}\n
+QTableWidget::item:selected{background-color:#bcb5e3}\n
+QTableWidget::indicator:checked { background-color: #bcb5e3 ;
+border-radius:3px}\n
+QTableWidget::indicator:unchecked { background-color: white;
+border-radius:3px;
+border:1px solid lightgray;}\n
 
 QScrollBar {              \n
             border: none;\n

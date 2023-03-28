@@ -498,7 +498,7 @@ class Ui_MainWindow(object):
 " }")
         self.tag_group.setTabShape(QTabWidget.Rounded)
         self.tag_group.setTabsClosable(False)
-        self.tag_group.setMovable(True)
+        self.tag_group.setMovable(False)
         self.tag_group.setTabBarAutoHide(False)
         self.btn_addTag = QPushButton(self.page_extract)
         self.btn_addTag.setObjectName(u"btn_addTag")

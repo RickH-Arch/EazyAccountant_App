@@ -1,1 +1,0 @@
-{"py/object": "__main__.Person", "name": "John", "age": 30, "address": {"py/object": "__main__.Address", "add": "street"}}
