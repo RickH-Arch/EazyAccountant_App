@@ -115,6 +115,12 @@ class MainWindow(QMainWindow):
         extractMain.LoadFolderPath(self.ui.list_folderPath)
         self.ui.btn_browseFolder.clicked.connect(lambda:extractMain.AddFolderPath(self.ui.list_folderPath))
         self.ui.btn_deletFolder.clicked.connect(lambda:extractMain.DeleteFolderPath(self.ui.list_folderPath))
+        #file keyword
+        extractMain.LoadFileKeyword(self.ui.list_fileKeyword)
+        self.ui.btn_addFileKeyword.clicked.connect(lambda:extractMain.AddKeyword(self.ui.list_fileKeyword))
+        self.ui.btn_deletFileKeyWord.clicked.connect(lambda:extractMain.DeleteKeyword(self.ui.list_fileKeyword))
+        self.ui.list_fileKeyword.itemDoubleClicked.connect(lambda item:extractMain.ListDoubleClickedEdit(item))
+        self.ui.list_fileKeyword.itemChanged.connect(lambda item: extractMain.OnListChange(self.ui.list_fileKeyword,item))
         #sheet keyword
         extractMain.LoadKeyWord(self.ui.list_keyword)
         self.ui.btn_addKeyword.clicked.connect(lambda:extractMain.AddKeyword(self.ui.list_keyword))

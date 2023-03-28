@@ -38,6 +38,28 @@ class ExtractDataManager:
                 self.RefreshJson()
                 return True
         return False
+    
+    def AddFileKeyword(self,keyword):
+        if keyword not in self.data.file_keywords:
+            self.data.file_keywords.append(keyword)
+            self.RefreshJson()
+            return True
+        else:
+            return False
+        
+    def ChangeFileKeyword(self,index,keyword):
+        if keyword == "":
+            return
+        self.data.file_keywords[index] = keyword
+        self.RefreshJson()
+
+    def DelFileKeyword(self,keyword):
+        for i,w in enumerate(self.data.file_keywords):
+            if w == keyword:
+                self.data.file_keywords.pop(i)
+                self.RefreshJson()
+                return True
+        return False
             
 
     def AddKeyword(self,keyword):
@@ -166,6 +188,7 @@ class ExtractDataManager:
 class StoreData():
     def __init__(self) -> None:
         self.folderPaths = []
+        self.file_keywords = []
         self.keywords = []
         self.tagGroups = []
         self.activeGroup = 0

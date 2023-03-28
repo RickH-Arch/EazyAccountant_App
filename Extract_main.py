@@ -34,6 +34,11 @@ class ExtractMain():
         for p in paths:
             list.addItem(QListWidgetItem(p))
 
+    def LoadFileKeyword(self,list):
+        keywords = self.dataMgr.data.file_keywords
+        for w in keywords:
+            list.addItem(QListWidgetItem(w))
+
     def LoadKeyWord(self,list):
         keywords = self.dataMgr.data.keywords
         for w in keywords:
@@ -114,11 +119,15 @@ class ExtractMain():
         item = list.takeItem(curItem_row)
         if self.dataMgr.DelFolderPath(item.text()):
             del item
+
     
     def AddKeyword(self,list):
         word = "新关键词"
         if list.objectName() == "list_keyword":
             if self.dataMgr.AddKeyword(word):
+                list.addItem(QListWidgetItem(word))
+        if list.objectName() == "list_fileKeyword":
+            if self.dataMgr.AddFileKeyword(word):
                 list.addItem(QListWidgetItem(word))
         
     def ListDoubleClickedEdit(self,item):
@@ -133,14 +142,20 @@ class ExtractMain():
             self.sheetKeywordCache = target
             if list.objectName() == "list_keyword":
                 self.dataMgr.ChangeKeyword(index,target)
+            if list.objectName() == "list_fileKeyword":
+                self.dataMgr.ChangeFileKeyword(index,target)
         else:
             item.setText(self.sheetKeywordCache)
 
     
     def DeleteKeyword(self,list):
         item = list.takeItem(list.currentRow())
-        if self.dataMgr.DelKeyword(item.text()):
-            del item
+        if list.objectName() == "list_keyword":
+            if self.dataMgr.DelKeyword(item.text()):
+                del item
+        if list.objectName() == "list_fileKeyword":
+            if self.dataMgr.DelFileKeyword(item.text()):
+                del item
     
     def AddTagGroup(self,tabs):
         name, ok = QInputDialog.getText(None, "输入", "新标签组名称:" )
