@@ -19,7 +19,8 @@ from PySide6.QtWidgets import *
 from ui_EazyAccountantApp_UI import Ui_MainWindow
 
 
-from ExtractFunc.Extract_main import *
+from Extract_main import *
+
 
 WINDOW_SIZE = 0
 
@@ -110,14 +111,17 @@ class MainWindow(QMainWindow):
             w.clicked.connect(self.applyButtonStyle)
 
         #############Extract page Setting##################
+        #folder Path
         extractMain.LoadFolderPath(self.ui.list_folderPath)
         self.ui.btn_browseFolder.clicked.connect(lambda:extractMain.AddFolderPath(self.ui.list_folderPath))
         self.ui.btn_deletFolder.clicked.connect(lambda:extractMain.DeleteFolderPath(self.ui.list_folderPath))
+        #sheet keyword
         extractMain.LoadKeyWord(self.ui.list_keyword)
-        self.ui.textInput_keyword.setPlaceholderText("输入添加关键词\n非检索字段\n可用*号代替")
-        self.ui.btn_addKeyword.clicked.connect(lambda:extractMain.AddKeyword(self.ui.list_keyword,self.ui.textInput_keyword))
+        self.ui.btn_addKeyword.clicked.connect(lambda:extractMain.AddKeyword(self.ui.list_keyword))
         self.ui.btn_deletKeyword.clicked.connect(lambda: extractMain.DeleteKeyword(self.ui.list_keyword))
-        #self.ui.list_keyword.itemDoubleClicked.connect(self.DoubleClicked_to_edit)
+        self.ui.list_keyword.itemDoubleClicked.connect(lambda item: extractMain.ListDoubleClickedEdit(item))
+        self.ui.list_keyword.itemChanged.connect(lambda item: extractMain.OnListChange(self.ui.list_keyword,item))
+        #tag group
         extractMain.LoadTagGroup(self.ui.tag_group)
         self.ui.btn_addTagGroup.clicked.connect(lambda:extractMain.AddTagGroup(self.ui.tag_group))
         self.ui.btn_delTagGroup.clicked.connect(self.checkDoubleClick)
@@ -129,6 +133,8 @@ class MainWindow(QMainWindow):
         self.ui.check_asColumn.clicked.connect(lambda : extractMain.SetColumnFollow(self.ui.check_asColumn,self.ui.check_asRow))
         extractMain.LoadAutoArrange(self.ui.check_autoArrange)
         self.ui.check_autoArrange.stateChanged.connect(lambda state:extractMain.SetAutoArrange(state))
+        #process
+        self.ui.btn_ExtractionStart.clicked.connect(lambda: extractMain.ExtractStart(self.ui.btn_ExtractionStart,self.ui.list_programStep))
 
 
         ####################################################

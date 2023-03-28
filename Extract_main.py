@@ -1,4 +1,5 @@
-import json
+import sys
+
 from PySide6 import QtWidgets,QtCore,QtGui
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QMetaObject, QObject, QPoint, QRect,
@@ -13,10 +14,18 @@ from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel,
 from PySide6.QtWidgets import *
 
 from ExtractFunc.ExtractDataManager import ExtractDataManager
+from ExcelFileFunc.ExcelManager import *
 
 class ExtractMain():
     def __init__(self) -> None:
         self.dataMgr = ExtractDataManager()
+        self.excelMgr = ExcelManager()
+        
+        self._getExcel_ = False
+        self._getSheet_ = False
+        self._getData_ = False
+
+        self.sheetKeywordCache = ""
         
 
     #========Load info to ui=====================
@@ -106,11 +115,27 @@ class ExtractMain():
         if self.dataMgr.DelFolderPath(item.text()):
             del item
     
-    def AddKeyword(self,list,textInput):
-        word = textInput.toPlainText()
-        if self.dataMgr.AddKeyword(word):
-            list.addItem(QListWidgetItem(word))
-        textInput.setPlainText(None)
+    def AddKeyword(self,list):
+        word = "新关键词"
+        if list.objectName() == "list_keyword":
+            if self.dataMgr.AddKeyword(word):
+                list.addItem(QListWidgetItem(word))
+        
+    def ListDoubleClickedEdit(self,item):
+        item.setFlags(item.flags() | Qt.ItemIsEditable)
+        if not item.isSelected():
+            item.setSelected(True)
+
+    def OnListChange(self,list,item):
+        index = list.row(item)
+        target = item.text()
+        if target != "":
+            self.sheetKeywordCache = target
+            if list.objectName() == "list_keyword":
+                self.dataMgr.ChangeKeyword(index,target)
+        else:
+            item.setText(self.sheetKeywordCache)
+
     
     def DeleteKeyword(self,list):
         item = list.takeItem(list.currentRow())
@@ -225,14 +250,16 @@ class ExtractMain():
         elif status == 0:
             self.dataMgr.SetAutoArrange(False)
 
-
-
-
-
-
     #==================================================================
 
-    #=============================Generate=============================
+    #=============================process===============================
+    def ExtractStart(self,button,list):
+        self.excelMgr.GetExcelWorkBook(self.dataMgr.data.folderPaths)
+
+
+    #=========================================================================
+
+    #=============================Helper Method=============================
     def GenerateTable(self,parent):
         table = QTableWidget(parent)
             
@@ -254,6 +281,7 @@ class ExtractMain():
         
 
         return table
+    #===========================================================================
 
 TableStyleSheet = '''*{background-color: rgb(255, 255, 255);\n
 border-radius:10px;}\n
@@ -289,3 +317,27 @@ QScrollBar {              \n
             subcontrol-position: top;\n
           subcontrol-origin: margin;\n
         }\n'''
+
+ButtonDisableStyleSheet = '''
+*{border-radius:5px;
+	font-size:12px;
+	color: rgb(255, 255, 255);
+	background-color:lightgray ;
+}
+
+*:hover{
+	background-color: gray;
+}
+'''
+
+ButtonOnProcessStyleSheet = '''
+*{border-radius:5px;
+	font-size:12px;
+	color: rgb(90,90,90);
+	background-color:rgb(195, 241, 121) ;
+}
+
+*:hover{
+	background-color: rgb(255, 179, 54);
+}
+'''

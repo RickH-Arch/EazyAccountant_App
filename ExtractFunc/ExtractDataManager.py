@@ -50,6 +50,12 @@ class ExtractDataManager:
         else:
             return False
         
+    def ChangeKeyword(self,index,keyword):
+        if keyword == "":
+            return False
+        self.data.keywords[index] = keyword
+        self.RefreshJson()
+        
     def DelKeyword(self,keyword):
         if keyword == "":
             return False
