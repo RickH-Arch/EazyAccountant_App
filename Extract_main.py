@@ -1,5 +1,6 @@
 import sys
 
+
 from PySide6 import QtWidgets,QtCore,QtGui
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QMetaObject, QObject, QPoint, QRect,
@@ -24,8 +25,12 @@ class ExtractMain():
         self._getExcel_ = False
         self._getSheet_ = False
         self._getData_ = False
+        self._exportData_ = False
 
+        #记录读取到的excel文件以及各自用到的sheet,<MyWorkbook>
         self.myWorkbooks = []
+        #记录每个tag读取到的信息,<MyTag>
+        self.myTags = []
 
         self.sheetKeywordCache = ""
         
@@ -98,7 +103,7 @@ class ExtractMain():
             checkCol.setChecked(True)
 
     def LoadAutoArrange(self,checkArr):
-        if self.dataMgr.data.autoAttange:
+        if self.dataMgr.data.autoArrange:
             checkArr.setChecked(True)
         else:
             checkArr.setChecked(False)
@@ -159,7 +164,7 @@ class ExtractMain():
                 del item
         if list.objectName() == "list_fileKeyword":
             if self.dataMgr.DelFileKeyword(item.text()):
-                list.takeItem(list.currentRow)
+                list.takeItem(list.currentRow())
                 del item
     
     def AddTagGroup(self,tabs):
@@ -278,6 +283,8 @@ class ExtractMain():
             button.setStyleSheet(ButtonDisableStyleSheet)
             button.setEnabled(False)
             _workbooks,_workbookNames = self.excelMgr.GetExcelWorkBook(self.dataMgr.data.folderPaths,self.dataMgr.data.file_keywords)
+            if self.dataMgr.data.autoArrange:
+                _workbooks,_workbookNames = self.excelMgr.SortWorkbookByName(_workbooks,_workbookNames)
             list.addItem(QListWidgetItem("==================="))
             item = QListWidgetItem("检索到以下excel文件：")
             item.setForeground(QColor(255,0,0))
@@ -292,14 +299,21 @@ class ExtractMain():
             button.setText("继续")
             self._getExcel_ = True
             return
+        
         if self._getSheet_ == False:
+            list.clear()
             list.addItem(QListWidgetItem("==================="))
             item = QListWidgetItem("检索到以下工作表：")
             item.setForeground(QColor(255,0,0))
             list.addItem(item)
             list.addItem(QListWidgetItem("==================="))
+            tagGroup = self.dataMgr.data.tagGroups[self.dataMgr.data.activeGroup]
+            sheetKeywords = []
+            for tag in tagGroup.tagList:
+                if tag.isActive and tag.IsValid():
+                    sheetKeywords.append(tag.tagInfo["工作表"])
             for i, mwb in enumerate(self.myWorkbooks) :
-                sheets,sheetNames = self.excelMgr.GetSheetsFromWorkbook(mwb.workbook,self.dataMgr.data.keywords)
+                sheets,sheetNames = self.excelMgr.GetSheetsFromWorkbook(mwb.workbook,sheetKeywords)
                 mwb.sheets = sheets
                 mwb.sheetNames = sheetNames
                 item = QListWidgetItem(self.myWorkbooks[i].workbookName)
@@ -311,6 +325,113 @@ class ExtractMain():
                 list.addItem(QListWidgetItem("---------------------------------------"))
                 self._getSheet_ = True
             return
+        
+        if self._getData_ == False:
+            list.clear()
+            list.addItem(QListWidgetItem("==================="))
+            item = QListWidgetItem("检索到以下数据：")
+            item.setForeground(QColor(255,0,0))
+            list.addItem(item)
+            list.addItem(QListWidgetItem("==================="))
+            tagGroup = self.dataMgr.data.tagGroups[self.dataMgr.data.activeGroup]
+            for tag in tagGroup.tagList:
+                if not tag.IsValid():
+                    continue
+                myTag = MyTag(tag.tagInfo["名称"])
+                if tag.tagInfo["单位"] != "":
+                    myTag.tagName = tag.tagInfo["名称"]+"（"+tag.tagInfo["单位"]+"）"
+                for i, mwb in enumerate(self.myWorkbooks) :
+                    for i, s in enumerate(mwb.sheets) :
+                        if self.excelMgr.AnalyzeFileName(s.title,tag.tagInfo["工作表"]):
+                            value = self.excelMgr.GetValueFromSheet(s,tag.tagInfo["坐标"])
+                            myTag.tagValues.append(value)
+                            myTag.workbookNames.append(mwb.workbookName)
+                self.myTags.append(myTag)
+            for mytag in self.myTags:
+                item = QListWidgetItem(mytag.tagName)
+                item.setForeground(QColor(110,92,194))
+                list.addItem(item)
+                for i,wbname in enumerate(mytag.workbookNames):
+                    item = QListWidgetItem(wbname)
+                    item.setForeground(QColor(150,150,150))
+                    list.addItem(item)
+                    output = "-->"+str(mytag.tagValues[i])
+                    list.addItem(QListWidgetItem(output))
+                list.addItem(QListWidgetItem("---------------------------------------"))
+            self._getData_ = True
+            button.setText("导出")
+            return
+        
+        if self._exportData_ == False:
+            #get all tag name
+            tagNames = []
+            workbookNames = []
+            for myTag in self.myTags:
+                tagNames.append(myTag.tagName)
+            for mwb in self.myWorkbooks:
+                workbookNames.append(mwb.workbookShortName)
+
+            
+            if not self.dataMgr.data.followRow:
+                #工作簿名称按照行进行排列
+                self.wb = self.excelMgr.CreateExcel(tagNames,workbookNames)
+                ws = self.wb.worksheets[0]
+                #遍历工作簿名称
+                rowCur = 2
+                hasWbName = True
+                while hasWbName:
+                    if ws.cell(rowCur+1,1).value == None:
+                        hasWbName = False
+                    workbookNameNow = ws.cell(rowCur,1).value
+
+                    colCur = 2
+                    hasTagName = True
+                    while hasTagName:
+                        if ws.cell(1,colCur+1).value == None:
+                            hasTagName = False
+                        tagNameNow = ws.cell(1,colCur).value
+                        value = self.GetValueFromMyTag(tagNameNow,workbookNameNow)
+                        ws.cell(rowCur,colCur,value)
+                        colCur+=1
+                    rowCur+=1
+            else:
+                self.wb = self.excelMgr.CreateExcel(workbookNames,tagNames)
+                ws = self.wb.worksheets[0]
+                #遍历工作簿名称
+                rowCur = 2
+                hasTagName = True
+                while hasTagName:
+                    if ws.cell(rowCur+1,1).value == None:
+                        hasTagName = False
+                    tagNameNow = ws.cell(rowCur,1).value
+
+                    colCur = 2
+                    hasWbName = True
+                    while hasWbName:
+                        w = ws.cell(1,colCur+1).value
+                        if ws.cell(1,colCur+1).value == None:
+                            hasWbName = False
+                        workbookNameNow = ws.cell(1,colCur).value
+                        value = self.GetValueFromMyTag(tagNameNow,workbookNameNow)
+                        ws.cell(rowCur,colCur,value)
+                        colCur+=1
+                    rowCur+=1
+
+            mainWindow = QMainWindow()
+            fileDialog = QFileDialog(mainWindow)
+            selectedDir = fileDialog.getSaveFileName(mainWindow,"导出","","Excel Files(*.xlsx)")
+            #print(selectedDir)
+            self.wb.save(selectedDir[0])
+            
+        
+                        
+    def GetValueFromMyTag(self,tagName,workbookName):
+        for myTag in self.myTags:
+            if myTag.tagName == tagName:
+                for i , wbName in enumerate(myTag.workbookNames):
+                    if wbName.split(".")[0] == workbookName:
+                        return myTag.tagValues[i]
+        return "N/A"
 
     
     def DeleteOnProcess(self,list):
@@ -336,6 +457,7 @@ class ExtractMain():
                 if list.item(panRow).text()[:3] != "-->":
                     getParent = True
                     parentName = list.item(panRow).text()
+                panRow -= 1
 
             for mwb in self.myWorkbooks:
                 if mwb.workbookName == parentName:
@@ -344,6 +466,19 @@ class ExtractMain():
                             mwb.sheets.pop(i)
                             mwb.sheetNames.pop(i)
                             list.takeItem(curRow)
+                            return
+        
+    def ResetProcess(self,list,button):
+        self._getExcel_ = False
+        self._getSheet_ = False
+        self._getData_ = False
+        self._exportData_ = False
+        self.myTags = []
+        self.myWorkbooks = []
+        self.wb = []
+        list.clear()
+        button.setStyleSheet(ButtonOnStartStyleSheet)
+        button.setText("开始生成")
 
 
 
@@ -356,7 +491,7 @@ class ExtractMain():
             
         #tagIns = _g.tagList[0]
         table.setColumnCount(5)
-        table.setHorizontalHeaderLabels([""]+["名称","坐标","关键词","单位"])
+        table.setHorizontalHeaderLabels([""]+["名称","工作表","坐标","单位"])
             
         table.setStyleSheet(TableStyleSheet)
         #table.setMinimumSize(QSize(364,123))
@@ -364,10 +499,10 @@ class ExtractMain():
         table.horizontalHeader().setSectionResizeMode(QHeaderView.Fixed)
         table.setColumnWidth(0,25)
         w = 75
-        table.setColumnWidth(1,w)
-        table.setColumnWidth(2,w)
-        table.setColumnWidth(3,w)
-        table.setColumnWidth(4,w)
+        table.setColumnWidth(1,w+20)
+        table.setColumnWidth(2,w+50)
+        table.setColumnWidth(3,w-30)
+        table.setColumnWidth(4,w-40)
         table.verticalHeader().setDefaultSectionSize(15)
         
 
@@ -377,8 +512,16 @@ class MyWorkBook:
     def __init__(self,workbook,workbookName) -> None:
         self.workbook = workbook
         self.workbookName = workbookName
+        self.workbookShortName = workbookName.split(".")[0]
         self.sheets = []
         self.sheetNames = []
+class MyTag:
+    def __init__(self,name) -> None:
+        self.tagName = name
+        self.tagValues = []
+        self.workbookNames = []
+
+
 
 TableStyleSheet = '''*{background-color: rgb(255, 255, 255);\n
 border-radius:10px;}\n
@@ -432,6 +575,18 @@ ButtonOnProcessStyleSheet = '''
 	font-size:12px;
 	color: rgb(90,90,90);
 	background-color:rgb(195, 241, 121) ;
+}
+
+*:hover{
+	background-color: rgb(255, 179, 54);
+}
+'''
+
+ButtonOnStartStyleSheet = '''
+*{border-radius:5px;
+	font-size:12px;
+	color: rgb(255,255,255);
+	background-color:rgb(81, 66, 147) ;
 }
 
 *:hover{

@@ -122,11 +122,11 @@ class MainWindow(QMainWindow):
         self.ui.list_fileKeyword.itemDoubleClicked.connect(lambda item:extractMain.ListDoubleClickedEdit(item))
         self.ui.list_fileKeyword.itemChanged.connect(lambda item: extractMain.OnListChange(self.ui.list_fileKeyword,item))
         #sheet keyword
-        extractMain.LoadKeyWord(self.ui.list_keyword)
-        self.ui.btn_addKeyword.clicked.connect(lambda:extractMain.AddKeyword(self.ui.list_keyword))
-        self.ui.btn_deletKeyword.clicked.connect(lambda: extractMain.DeleteKeyword(self.ui.list_keyword))
-        self.ui.list_keyword.itemDoubleClicked.connect(lambda item: extractMain.ListDoubleClickedEdit(item))
-        self.ui.list_keyword.itemChanged.connect(lambda item: extractMain.OnListChange(self.ui.list_keyword,item))
+        #extractMain.LoadKeyWord(self.ui.list_keyword)
+        #self.ui.btn_addKeyword.clicked.connect(lambda:extractMain.AddKeyword(self.ui.list_keyword))
+        #self.ui.btn_deletKeyword.clicked.connect(lambda: extractMain.DeleteKeyword(self.ui.list_keyword))
+        #self.ui.list_keyword.itemDoubleClicked.connect(lambda item: extractMain.ListDoubleClickedEdit(item))
+        #self.ui.list_keyword.itemChanged.connect(lambda item: extractMain.OnListChange(self.ui.list_keyword,item))
         #tag group
         extractMain.LoadTagGroup(self.ui.tag_group)
         self.ui.btn_addTagGroup.clicked.connect(lambda:extractMain.AddTagGroup(self.ui.tag_group))
@@ -142,7 +142,7 @@ class MainWindow(QMainWindow):
         #process
         self.ui.btn_ExtractionStart.clicked.connect(lambda: extractMain.ExtractStart(self.ui.btn_ExtractionStart,self.ui.list_programStep))
         self.ui.btn_processDelete.clicked.connect(lambda: extractMain.DeleteOnProcess(self.ui.list_programStep))
-
+        self.ui.btn_ExtractionReset.clicked.connect(lambda:extractMain.ResetProcess(self.ui.list_programStep,self.ui.btn_ExtractionStart))
         ####################################################
 
 

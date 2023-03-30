@@ -363,45 +363,6 @@ class Ui_MainWindow(object):
 "	\n"
 "	background-color: rgb(223, 145, 146);\n"
 "}")
-        self.searchLable = QLabel(self.page_extract)
-        self.searchLable.setObjectName(u"searchLable")
-        self.searchLable.setGeometry(QRect(230, 140, 111, 16))
-        self.searchLable.setFont(font1)
-        self.searchLable.setStyleSheet(u"color: rgb(127, 127, 127);")
-        self.list_keyword = QListWidget(self.page_extract)
-        self.list_keyword.setObjectName(u"list_keyword")
-        self.list_keyword.setGeometry(QRect(230, 160, 151, 55))
-        self.list_keyword.setStyleSheet(u"*{border-radius:10px;\n"
-"background-color: rgb(255, 255, 255);\n"
-"border:1px solid rgb(232, 232, 232);\n"
-"color: rgb(121, 121, 121)}\n"
-"\n"
-"QScrollBar {              \n"
-"            border: none;\n"
-"            background:white;\n"
-"            width:3px;\n"
-"            margin: 0px 0px 0px 0px;\n"
-"        }\n"
-"        QScrollBar::handle {\n"
-"            background: qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
-"            stop: 0 rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130), stop:1 rgb(32, 47, 130));\n"
-"            min-height: 0px;\n"
-"        }\n"
-"        QScrollBar::add-line{\n"
-"            background: qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
-"            stop: 0 rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130),  stop:1 rgb(32, 47, 130));\n"
-"            height: 0px;\n"
-"            subcontrol-position: bottom;\n"
-"            subcontrol-origin: margin;\n"
-"        }\n"
-"        QScrollBar::sub-line {\n"
-"            background: qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
-"            stop: 0  rgb(3"
-                        "2, 47, 130), stop: 0.5 rgb(32, 47, 130),  stop:1 rgb(32, 47, 130));\n"
-"            height: 0 px;\n"
-"            subcontrol-position: top;\n"
-"            subcontrol-origin: margin;\n"
-"        }")
         self.searchLable_2 = QLabel(self.page_extract)
         self.searchLable_2.setObjectName(u"searchLable_2")
         self.searchLable_2.setGeometry(QRect(30, 230, 91, 16))
@@ -503,43 +464,9 @@ class Ui_MainWindow(object):
         icon4 = QIcon()
         icon4.addFile(u":/icons/icon/\u51cf\u53f7.ico", QSize(), QIcon.Normal, QIcon.Off)
         self.btn_delTag.setIcon(icon4)
-        self.btn_addKeyword = QPushButton(self.page_extract)
-        self.btn_addKeyword.setObjectName(u"btn_addKeyword")
-        self.btn_addKeyword.setGeometry(QRect(390, 160, 25, 25))
-        self.btn_addKeyword.setMinimumSize(QSize(25, 25))
-        self.btn_addKeyword.setMaximumSize(QSize(25, 25))
-        self.btn_addKeyword.setStyleSheet(u"*{border-radius:5px;\n"
-"	font-size:12px;\n"
-"	color: rgb(255, 255, 255);\n"
-"	\n"
-"	background-color:rgb(81, 66, 147) ;\n"
-"}\n"
-"\n"
-"*:hover{\n"
-"	\n"
-"	background-color: rgb(255, 179, 54);\n"
-"}")
-        self.btn_addKeyword.setIcon(icon3)
-        self.btn_deletKeyword = QPushButton(self.page_extract)
-        self.btn_deletKeyword.setObjectName(u"btn_deletKeyword")
-        self.btn_deletKeyword.setGeometry(QRect(390, 190, 25, 25))
-        self.btn_deletKeyword.setMinimumSize(QSize(25, 25))
-        self.btn_deletKeyword.setMaximumSize(QSize(25, 25))
-        self.btn_deletKeyword.setStyleSheet(u"*{border-radius:5px;\n"
-"	font-size:12px;\n"
-"	color: rgb(255, 255, 255);\n"
-"	\n"
-"	background-color:rgb(217, 217, 217) ;\n"
-"}\n"
-"\n"
-"*:hover{\n"
-"	\n"
-"	background-color: rgb(223, 145, 146);\n"
-"}")
-        self.btn_deletKeyword.setIcon(icon4)
         self.list_fileKeyword = QListWidget(self.page_extract)
         self.list_fileKeyword.setObjectName(u"list_fileKeyword")
-        self.list_fileKeyword.setGeometry(QRect(30, 160, 151, 55))
+        self.list_fileKeyword.setGeometry(QRect(30, 160, 311, 55))
         self.list_fileKeyword.setStyleSheet(u"*{border-radius:10px;\n"
 "background-color: rgb(255, 255, 255);\n"
 "border:1px solid rgb(232, 232, 232);\n"
@@ -573,7 +500,7 @@ class Ui_MainWindow(object):
 "        }")
         self.btn_addFileKeyword = QPushButton(self.page_extract)
         self.btn_addFileKeyword.setObjectName(u"btn_addFileKeyword")
-        self.btn_addFileKeyword.setGeometry(QRect(190, 160, 25, 25))
+        self.btn_addFileKeyword.setGeometry(QRect(350, 160, 25, 25))
         self.btn_addFileKeyword.setMinimumSize(QSize(25, 25))
         self.btn_addFileKeyword.setMaximumSize(QSize(25, 25))
         self.btn_addFileKeyword.setStyleSheet(u"*{border-radius:5px;\n"
@@ -590,7 +517,7 @@ class Ui_MainWindow(object):
         self.btn_addFileKeyword.setIcon(icon3)
         self.btn_deletFileKeyWord = QPushButton(self.page_extract)
         self.btn_deletFileKeyWord.setObjectName(u"btn_deletFileKeyWord")
-        self.btn_deletFileKeyWord.setGeometry(QRect(190, 190, 25, 25))
+        self.btn_deletFileKeyWord.setGeometry(QRect(350, 190, 25, 25))
         self.btn_deletFileKeyWord.setMinimumSize(QSize(25, 25))
         self.btn_deletFileKeyWord.setMaximumSize(QSize(25, 25))
         self.btn_deletFileKeyWord.setStyleSheet(u"*{border-radius:5px;\n"
@@ -836,7 +763,7 @@ class Ui_MainWindow(object):
         self.menuButton.setText("")
         self.label.setText(QCoreApplication.translate("MainWindow", u"Eazy", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"accountant", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"V1.0", None))
+        self.label_3.setText(QCoreApplication.translate("MainWindow", u"V0.1", None))
         self.minimizeButton.setText("")
         self.closeButton.setText("")
         self.btn_menu_extract.setText(QCoreApplication.translate("MainWindow", u"\u63d0\u53d6", None))
@@ -847,7 +774,6 @@ class Ui_MainWindow(object):
         self.folderPathLable.setText(QCoreApplication.translate("MainWindow", u"\u6587\u4ef6\u8bfb\u53d6\u8def\u5f84", None))
         self.btn_browseFolder.setText(QCoreApplication.translate("MainWindow", u"\u6d4f\u89c8\u6587\u4ef6\u5939", None))
         self.btn_deletFolder.setText(QCoreApplication.translate("MainWindow", u"\u5220\u9664\u6587\u4ef6\u5939", None))
-        self.searchLable.setText(QCoreApplication.translate("MainWindow", u"\u5de5\u4f5c\u8868\u68c0\u7d22\u5173\u952e\u8bcd", None))
         self.searchLable_2.setText(QCoreApplication.translate("MainWindow", u"\u6807\u7b7e\u7ec4", None))
         self.btn_addTagGroup.setText(QCoreApplication.translate("MainWindow", u"\u6dfb\u52a0\n"
 "\u6807\u7b7e\u7ec4", None))
@@ -855,8 +781,6 @@ class Ui_MainWindow(object):
 "\u6807\u7b7e\u7ec4", None))
         self.btn_addTag.setText("")
         self.btn_delTag.setText("")
-        self.btn_addKeyword.setText("")
-        self.btn_deletKeyword.setText("")
         self.btn_addFileKeyword.setText("")
         self.btn_deletFileKeyWord.setText("")
         self.searchLable_3.setText(QCoreApplication.translate("MainWindow", u"\u6587\u4ef6\u68c0\u7d22\u5173\u952e\u8bcd", None))

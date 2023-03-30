@@ -151,7 +151,7 @@ class ExtractDataManager:
                 for tag in g.tagList:
                     if tag.tagInfo["名称"] == tagName:
                         tag.isActive = status
-                        print("set status:",groupName,"-",tagName,"-",status)
+                        #print("set status:",groupName,"-",tagName,"-",status)
                         self.RefreshJson()
                         return True
         return False
@@ -171,7 +171,7 @@ class ExtractDataManager:
         self.RefreshJson()
 
     def SetAutoArrange(self,status):
-        self.data.autoAttange = status
+        self.data.autoArrange = status
         self.RefreshJson()
     
     
@@ -180,7 +180,7 @@ class ExtractDataManager:
 
     #Json refresh
     def RefreshJson(self):
-        data = jsonpickle.encode(self.data,unpicklable = True)
+        data = jsonpickle.encode(self.data,unpicklable = True,indent = 4)
         #jsonData = json.dumps(data,indent = 4)
         with open('extractData.json','w') as f:
             f.write(data)
@@ -193,7 +193,7 @@ class StoreData():
         self.tagGroups = []
         self.activeGroup = 0
         self.followRow = True
-        self.autoAttange = True
+        self.autoArrange = True
 
         
 
@@ -201,8 +201,8 @@ class Tag():
     def __init__(self,name) -> None:
         self.tagInfo = {
             "名称":name,
+            "工作表":"",
             "坐标":"",
-            "关键词":"",
             "单位":"",
         }
         self.isActive = True
@@ -220,6 +220,9 @@ class Tag():
     def SetTagUnits(self,unit):
         if type(unit) == str:
             self.tagInfo["单位"] = unit
+
+    def IsValid(self):
+        return self.tagInfo["名称"]!="" and self.tagInfo["工作表"]!="" and self.tagInfo["坐标"]!= ""
 
 class TagGroup():
     def __init__(self,groupName) -> None:
