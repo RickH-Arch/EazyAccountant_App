@@ -335,7 +335,7 @@ class ExtractMain():
             list.addItem(QListWidgetItem("==================="))
             tagGroup = self.dataMgr.data.tagGroups[self.dataMgr.data.activeGroup]
             for tag in tagGroup.tagList:
-                if not tag.IsValid():
+                if not tag.IsValid() or not tag.isActive:
                     continue
                 myTag = MyTag(tag.tagInfo["名称"])
                 if tag.tagInfo["单位"] != "":

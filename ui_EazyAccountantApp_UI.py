@@ -603,7 +603,7 @@ class Ui_MainWindow(object):
 "QScrollBar:horizontal{\n"
 " border: 1px solid #999999;\n"
 "	background:white;\n"
-"	height:5px;\n"
+"	height:6px;\n"
 "	margin: 0px 0px 0px 0px;\n"
 "}\n"
 "\n"
