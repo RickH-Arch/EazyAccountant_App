@@ -141,7 +141,7 @@ class MainWindow(QMainWindow):
         self.ui.check_autoArrange.stateChanged.connect(lambda state:extractMain.SetAutoArrange(state))
         #process
         self.ui.btn_ExtractionStart.clicked.connect(lambda: extractMain.ExtractStart(self.ui.btn_ExtractionStart,self.ui.list_programStep))
-
+        self.ui.btn_processDelete.clicked.connect(lambda: extractMain.DeleteOnProcess(self.ui.list_programStep))
 
         ####################################################
 

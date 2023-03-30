@@ -643,34 +643,63 @@ class Ui_MainWindow(object):
         self.list_programStep.setStyleSheet(u"*{border-radius:10px;\n"
 "background-color: rgb(255, 255, 255);\n"
 "border:1px solid rgb(232, 232, 232);\n"
-"color: rgb(121, 121, 121)}\n"
+"color: rgb(121, 121, 121);\n"
+"font-size:11px;}\n"
 "\n"
-"QScrollBar {              \n"
-"            border: none;\n"
-"            background:white;\n"
-"            width:3px;\n"
-"            margin: 0px 0px 0px 0px;\n"
-"        }\n"
-"        QScrollBar::handle {\n"
-"            background: qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
-"            stop: 0 rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130), stop:1 rgb(32, 47, 130));\n"
-"            min-height: 0px;\n"
-"        }\n"
-"        QScrollBar::add-line{\n"
-"            background: qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
-"            stop: 0 rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130),  stop:1 rgb(32, 47, 130));\n"
-"            height: 0px;\n"
-"            subcontrol-position: bottom;\n"
-"            subcontrol-origin: margin;\n"
-"        }\n"
-"        QScrollBar::sub-line {\n"
-"            background: qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
-"            stop: 0  rgb(3"
-                        "2, 47, 130), stop: 0.5 rgb(32, 47, 130),  stop:1 rgb(32, 47, 130));\n"
-"            height: 0 px;\n"
-"            subcontrol-position: top;\n"
-"            subcontrol-origin: margin;\n"
-"        }")
+"QScrollBar:vertical {              \n"
+"        border: 1px solid #999999;\n"
+"        background:white;\n"
+"        width:4px;    \n"
+"        margin: 0px 0px 0px 0px;\n"
+"    }\n"
+"    QScrollBar::handle:vertical {\n"
+"      background: qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
+"        stop: 0 rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130), stop:1 rgb(32, 47, 130));\n"
+"        min-height: 0px;\n"
+"    }\n"
+"    QScrollBar::add-line:vertical {\n"
+"       background: qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
+"        stop: 0 rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130),  stop:1 rgb(32, 47, 130));\n"
+"        height: 0px;\n"
+"        subcontrol-position: bottom;\n"
+"       subcontrol-origin: margin;\n"
+"    }\n"
+"    QScrollBar::sub-line:vertical {\n"
+"       background: qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
+"        stop: 0  rgb(32, 47, 130"
+                        "), stop: 0.5 rgb(32, 47, 130),  stop:1 rgb(32, 47, 130));\n"
+"        height: 0 px;\n"
+"        subcontrol-position: top;\n"
+"        subcontrol-origin: margin;\n"
+"    }\n"
+"\n"
+"QScrollBar:horizontal{\n"
+" border: 1px solid #999999;\n"
+"	background:white;\n"
+"	height:5px;\n"
+"	margin: 0px 0px 0px 0px;\n"
+"}\n"
+"\n"
+" QScrollBar::handle:horizonta {\n"
+"      background: qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
+"        stop: 0 rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130), stop:1 rgb(32, 47, 130));\n"
+"        min-height: 0px;\n"
+"    }\n"
+"    QScrollBar::add-line:horizonta {\n"
+"       background: qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
+"        stop: 0 rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130),  stop:1 rgb(32, 47, 130));\n"
+"        height: 0px;\n"
+"        subcontrol-position: bottom;\n"
+"       subcontrol-origin: margin;\n"
+"    }\n"
+"    QScrollBar::sub-line:horizonta {\n"
+"       background: qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
+"        stop: 0  rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130)"
+                        ",  stop:1 rgb(32, 47, 130));\n"
+"        height: 0 px;\n"
+"        subcontrol-position: top;\n"
+"        subcontrol-origin: margin;\n"
+"    }")
         self.folderPathLable_2 = QLabel(self.sidePage_extract)
         self.folderPathLable_2.setObjectName(u"folderPathLable_2")
         self.folderPathLable_2.setGeometry(QRect(30, 20, 91, 16))
@@ -752,6 +781,23 @@ class Ui_MainWindow(object):
 "	\n"
 "	background-color: rgb(223, 145, 146);\n"
 "}")
+        self.btn_processDelete = QPushButton(self.sidePage_extract)
+        self.btn_processDelete.setObjectName(u"btn_processDelete")
+        self.btn_processDelete.setGeometry(QRect(189, 303, 25, 20))
+        self.btn_processDelete.setMinimumSize(QSize(0, 0))
+        self.btn_processDelete.setMaximumSize(QSize(25, 25))
+        self.btn_processDelete.setStyleSheet(u"*{border-radius:5px;\n"
+"	font-size:12px;\n"
+"	color: rgb(255, 255, 255);\n"
+"	\n"
+"	background-color:rgb(217, 217, 217) ;\n"
+"}\n"
+"\n"
+"*:hover{\n"
+"	\n"
+"	background-color: rgb(223, 145, 146);\n"
+"}")
+        self.btn_processDelete.setIcon(icon4)
         self.stackedWidget_side.addWidget(self.sidePage_extract)
         self.sidePage_settings = QWidget()
         self.sidePage_settings.setObjectName(u"sidePage_settings")
@@ -820,5 +866,6 @@ class Ui_MainWindow(object):
         self.check_asColumn.setText(QCoreApplication.translate("MainWindow", u"\u6309\u5217\u6392\u5217", None))
         self.check_autoArrange.setText(QCoreApplication.translate("MainWindow", u"\u81ea\u52a8\u6392\u5e8f", None))
         self.btn_ExtractionReset.setText(QCoreApplication.translate("MainWindow", u"\u91cd\u7f6e", None))
+        self.btn_processDelete.setText("")
     # retranslateUi
 

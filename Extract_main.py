@@ -25,6 +25,8 @@ class ExtractMain():
         self._getSheet_ = False
         self._getData_ = False
 
+        self.myWorkbooks = []
+
         self.sheetKeywordCache = ""
         
 
@@ -116,8 +118,9 @@ class ExtractMain():
         
     def DeleteFolderPath(self,list):
         curItem_row = list.currentRow()
-        item = list.takeItem(curItem_row)
+        item = list.item(curItem_row)
         if self.dataMgr.DelFolderPath(item.text()):
+            list.takeItem(curItem_row)
             del item
 
     
@@ -149,12 +152,14 @@ class ExtractMain():
 
     
     def DeleteKeyword(self,list):
-        item = list.takeItem(list.currentRow())
+        item = list.item(list.currentRow())
         if list.objectName() == "list_keyword":
             if self.dataMgr.DelKeyword(item.text()):
+                list.takeItem(list.currentRow())
                 del item
         if list.objectName() == "list_fileKeyword":
             if self.dataMgr.DelFileKeyword(item.text()):
+                list.takeItem(list.currentRow)
                 del item
     
     def AddTagGroup(self,tabs):
@@ -269,7 +274,78 @@ class ExtractMain():
 
     #=============================process===============================
     def ExtractStart(self,button,list):
-        self.excelMgr.GetExcelWorkBook(self.dataMgr.data.folderPaths)
+        if self._getExcel_ == False:
+            button.setStyleSheet(ButtonDisableStyleSheet)
+            button.setEnabled(False)
+            _workbooks,_workbookNames = self.excelMgr.GetExcelWorkBook(self.dataMgr.data.folderPaths,self.dataMgr.data.file_keywords)
+            list.addItem(QListWidgetItem("==================="))
+            item = QListWidgetItem("检索到以下excel文件：")
+            item.setForeground(QColor(255,0,0))
+            list.addItem(item)
+            list.addItem(QListWidgetItem("==================="))
+            for i, n in enumerate(_workbookNames):
+                list.addItem(QListWidgetItem(n))
+                self.myWorkbooks.append(MyWorkBook(_workbooks[i],n))
+            
+            button.setStyleSheet(ButtonOnProcessStyleSheet)
+            button.setEnabled(True)
+            button.setText("继续")
+            self._getExcel_ = True
+            return
+        if self._getSheet_ == False:
+            list.addItem(QListWidgetItem("==================="))
+            item = QListWidgetItem("检索到以下工作表：")
+            item.setForeground(QColor(255,0,0))
+            list.addItem(item)
+            list.addItem(QListWidgetItem("==================="))
+            for i, mwb in enumerate(self.myWorkbooks) :
+                sheets,sheetNames = self.excelMgr.GetSheetsFromWorkbook(mwb.workbook,self.dataMgr.data.keywords)
+                mwb.sheets = sheets
+                mwb.sheetNames = sheetNames
+                item = QListWidgetItem(self.myWorkbooks[i].workbookName)
+                item.setForeground(QColor(200,200,200))
+                list.addItem(item)
+                for sn in sheetNames:
+                    output = "-->"+sn
+                    list.addItem(QListWidgetItem(output))
+                list.addItem(QListWidgetItem("---------------------------------------"))
+                self._getSheet_ = True
+            return
+
+    
+    def DeleteOnProcess(self,list):
+        if self._getExcel_ == True and self._getSheet_ == False:
+            item = list.item(list.currentRow())
+            n = item.text()
+            for i, mwb in enumerate(self.myWorkbooks) :
+                if mwb.workbookName == item.text():
+                    self.myWorkbooks.pop(i)
+                    list.takeItem(list.currentRow())
+                    del item
+                    return
+            
+        if self._getSheet_ == True and self._getData_ == False:
+            curRow = list.currentRow()
+            item = list.item(curRow)
+            curText = item.text()[3:]
+            #get parent workbook name
+            getParent = False
+            parentName = ""
+            panRow = curRow-1
+            while not getParent:
+                if list.item(panRow).text()[:3] != "-->":
+                    getParent = True
+                    parentName = list.item(panRow).text()
+
+            for mwb in self.myWorkbooks:
+                if mwb.workbookName == parentName:
+                    for i, sn in enumerate(mwb.sheetNames):
+                        if sn == curText:
+                            mwb.sheets.pop(i)
+                            mwb.sheetNames.pop(i)
+                            list.takeItem(curRow)
+
+
 
 
     #=========================================================================
@@ -297,6 +373,12 @@ class ExtractMain():
 
         return table
     #===========================================================================
+class MyWorkBook:
+    def __init__(self,workbook,workbookName) -> None:
+        self.workbook = workbook
+        self.workbookName = workbookName
+        self.sheets = []
+        self.sheetNames = []
 
 TableStyleSheet = '''*{background-color: rgb(255, 255, 255);\n
 border-radius:10px;}\n
