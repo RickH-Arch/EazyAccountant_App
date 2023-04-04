@@ -16,7 +16,7 @@ from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel,
     QWidget,QTextBrowser)
 from PySide6.QtWidgets import *
 
-from ui_EazyAccountantApp_UI import Ui_MainWindow
+from ui_EasyAccountantApp_UI import Ui_MainWindow
 
 
 from Extract_main import *
