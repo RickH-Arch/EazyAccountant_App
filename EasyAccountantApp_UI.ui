@@ -6,9 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>855</width>
-    <height>505</height>
+    <width>820</width>
+    <height>500</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>820</width>
+    <height>500</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>820</width>
+    <height>500</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
@@ -242,7 +254,7 @@ QPushButton:hover{
               <string notr="true">color: rgb(255, 255, 255);</string>
              </property>
              <property name="text">
-              <string>V0.1</string>
+              <string>V0.2</string>
              </property>
             </widget>
            </widget>
@@ -606,12 +618,689 @@ font-size: 12px;</string>
           <item>
            <widget class="QStackedWidget" name="stackedWidget">
             <property name="currentIndex">
-             <number>3</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="page_write">
              <property name="styleSheet">
               <string notr="true"/>
              </property>
+             <widget class="QFrame" name="write_frame">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>7</y>
+                <width>521</width>
+                <height>430</height>
+               </rect>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_6">
+               <item>
+                <widget class="QFrame" name="writer_search">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true"/>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_6">
+                  <property name="spacing">
+                   <number>3</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>3</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>3</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>3</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>3</number>
+                  </property>
+                  <item alignment="Qt::AlignHCenter">
+                   <widget class="QLabel" name="filter_label">
+                    <property name="font">
+                     <font>
+                      <bold>true</bold>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(112, 112, 112);</string>
+                    </property>
+                    <property name="text">
+                     <string>过滤器</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QTextEdit" name="filter_input">
+                    <property name="maximumSize">
+                     <size>
+                      <width>435</width>
+                      <height>28</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color: rgb(255, 255, 255);
+border-radius:10px;
+border:1px solid rgb(232, 232, 232);
+</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="writer_ctrlMenu">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>29</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>30</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(243, 243, 243);</string>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_7">
+                  <property name="leftMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>0</number>
+                  </property>
+                  <item>
+                   <spacer name="horizontalSpacer">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                     <enum>QSizePolicy::Maximum</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>10</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item alignment="Qt::AlignVCenter">
+                   <widget class="QPushButton" name="btn_addWriter">
+                    <property name="minimumSize">
+                     <size>
+                      <width>25</width>
+                      <height>25</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>25</width>
+                      <height>25</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">*{border-radius:5px;
+	font-size:12px;
+	color: rgb(255, 255, 255);
+	
+	background-color:rgb(81, 66, 147) ;
+}
+
+*:hover{
+	
+	background-color: rgb(255, 179, 54);
+}</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="resource.qrc">
+                      <normaloff>:/icons/icon/加减组件加号.ico</normaloff>:/icons/icon/加减组件加号.ico</iconset>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="btn_copyWriter">
+                    <property name="minimumSize">
+                     <size>
+                      <width>25</width>
+                      <height>25</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>25</width>
+                      <height>25</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">*{border-radius:5px;
+	font-size:12px;
+	color: rgb(255, 255, 255);
+	
+	background-color:rgb(81, 66, 147) ;
+}
+
+*:hover{
+	
+	background-color: rgb(255, 179, 54);
+}</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="resource.qrc">
+                      <normaloff>:/icons/icon/复制.ico</normaloff>:/icons/icon/复制.ico</iconset>
+                    </property>
+                   </widget>
+                  </item>
+                  <item alignment="Qt::AlignRight">
+                   <widget class="QPushButton" name="btn_deleteWriter">
+                    <property name="minimumSize">
+                     <size>
+                      <width>25</width>
+                      <height>25</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>25</width>
+                      <height>25</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">*{border-radius:5px;
+	font-size:12px;
+	color: rgb(255, 255, 255);
+	
+	background-color:rgb(217, 217, 217) ;
+}
+
+*:hover{
+	
+	background-color: rgb(223, 145, 146);
+}</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="resource.qrc">
+                      <normaloff>:/icons/icon/减号.ico</normaloff>:/icons/icon/减号.ico</iconset>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="horizontalSpacer_2">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QScrollArea" name="scrollArea">
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>350</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">*{
+background-color: rgb(255, 255, 255);
+border:1px solid rgb(232, 232, 232);
+color: rgb(121, 121, 121);
+font-size:11px;}
+
+QScrollBar:vertical {              
+        border:none;
+        background:white;
+
+        width:10px;    
+        margin: 0px 0px 0px 0px;
+		color:rgb(110, 92, 194)
+    }
+    QScrollBar::handle:vertical {
+      background-color:rgb(232, 232, 232);
+        min-height: 30px;
+border-radius:5px;
+    }
+QScrollBar::handle:vertical:hover {
+      background-color:rgb(227, 227, 235);
+        
+    }
+
+QScrollBar::handle:vertical:pressed {
+      background-color:rgb(110, 92, 194);
+        
+    }
+    QScrollBar::add-line:vertical {
+       background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+        stop: 0 rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130),  stop:1 rgb(32, 47, 130));
+        height: 0px;
+        subcontrol-position: bottom;
+       subcontrol-origin: margin;
+    }
+    QScrollBar::sub-line:vertical {
+       background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+        stop: 0  rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130),  stop:1 rgb(32, 47, 130));
+        height: 0 px;
+        subcontrol-position: top;
+        subcontrol-origin: margin;
+    }
+
+QScrollBar:horizontal{
+ border: none;
+	background:white;
+	height:10px;
+	margin: 0px 0px 0px 0px;
+}
+
+ QScrollBar::handle:horizontal {
+      background-color:rgb(232, 232, 232);
+        min-height: 30px;
+border-radius:5px;
+    }
+QScrollBar::handle:horizontal:hover {
+      background-color:rgb(227, 227, 235);
+        
+    }
+
+QScrollBar::handle:horizontal:pressed {
+      background-color:rgb(110, 92, 194);
+        
+    }
+
+    QScrollBar::add-line:horizontal {
+       background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+        stop: 0 rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130),  stop:1 rgb(32, 47, 130));
+        height: 0px;
+        subcontrol-position: bottom;
+       subcontrol-origin: margin;
+    }
+    QScrollBar::sub-line:horizontal {
+       background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+        stop: 0  rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130),  stop:1 rgb(32, 47, 130));
+        height: 0 px;
+        subcontrol-position: top;
+        subcontrol-origin: margin;
+    }</string>
+                 </property>
+                 <property name="widgetResizable">
+                  <bool>true</bool>
+                 </property>
+                 <widget class="QWidget" name="scrollAreaWidgetContents">
+                  <property name="geometry">
+                   <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>489</width>
+                    <height>476</height>
+                   </rect>
+                  </property>
+                  <layout class="QGridLayout" name="gridLayout">
+                   <item row="0" column="3">
+                    <widget class="QWidget" name="widget_2" native="true">
+                     <property name="minimumSize">
+                      <size>
+                       <width>110</width>
+                       <height>110</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>110</width>
+                       <height>110</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(255, 255, 255);</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="2">
+                    <widget class="QWidget" name="widget_3" native="true">
+                     <property name="minimumSize">
+                      <size>
+                       <width>110</width>
+                       <height>110</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>110</width>
+                       <height>110</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(255, 255, 255);</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="0">
+                    <widget class="QWidget" name="widget" native="true">
+                     <property name="minimumSize">
+                      <size>
+                       <width>110</width>
+                       <height>110</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>110</width>
+                       <height>110</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(255, 255, 255);</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="1">
+                    <widget class="QWidget" name="widget_4" native="true">
+                     <property name="minimumSize">
+                      <size>
+                       <width>110</width>
+                       <height>110</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>110</width>
+                       <height>110</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(255, 255, 255);</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="0">
+                    <widget class="QWidget" name="widget_6" native="true">
+                     <property name="minimumSize">
+                      <size>
+                       <width>110</width>
+                       <height>110</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>110</width>
+                       <height>110</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(255, 255, 255);</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="1">
+                    <widget class="QWidget" name="widget_7" native="true">
+                     <property name="minimumSize">
+                      <size>
+                       <width>110</width>
+                       <height>110</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>110</width>
+                       <height>110</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(255, 255, 255);</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="2">
+                    <widget class="QWidget" name="widget_5" native="true">
+                     <property name="minimumSize">
+                      <size>
+                       <width>110</width>
+                       <height>110</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>110</width>
+                       <height>110</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(255, 255, 255);</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="3">
+                    <widget class="QWidget" name="widget_8" native="true">
+                     <property name="minimumSize">
+                      <size>
+                       <width>110</width>
+                       <height>110</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>110</width>
+                       <height>110</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(255, 255, 255);</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="0">
+                    <widget class="QWidget" name="widget_12" native="true">
+                     <property name="minimumSize">
+                      <size>
+                       <width>110</width>
+                       <height>110</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>110</width>
+                       <height>110</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(255, 255, 255);</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="1">
+                    <widget class="QWidget" name="widget_11" native="true">
+                     <property name="minimumSize">
+                      <size>
+                       <width>110</width>
+                       <height>110</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>110</width>
+                       <height>110</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(255, 255, 255);</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="2">
+                    <widget class="QWidget" name="widget_9" native="true">
+                     <property name="minimumSize">
+                      <size>
+                       <width>110</width>
+                       <height>110</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>110</width>
+                       <height>110</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(255, 255, 255);</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="3">
+                    <widget class="QWidget" name="widget_10" native="true">
+                     <property name="minimumSize">
+                      <size>
+                       <width>110</width>
+                       <height>110</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>110</width>
+                       <height>110</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(255, 255, 255);</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="3" column="0">
+                    <widget class="QWidget" name="widget_16" native="true">
+                     <property name="minimumSize">
+                      <size>
+                       <width>110</width>
+                       <height>110</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>110</width>
+                       <height>110</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(255, 255, 255);</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="3" column="1">
+                    <widget class="QWidget" name="widget_14" native="true">
+                     <property name="minimumSize">
+                      <size>
+                       <width>110</width>
+                       <height>110</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>110</width>
+                       <height>110</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(255, 255, 255);</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="3" column="2">
+                    <widget class="QWidget" name="widget_15" native="true">
+                     <property name="minimumSize">
+                      <size>
+                       <width>110</width>
+                       <height>110</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>110</width>
+                       <height>110</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(255, 255, 255);</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="3" column="3">
+                    <widget class="QWidget" name="widget_13" native="true">
+                     <property name="minimumSize">
+                      <size>
+                       <width>110</width>
+                       <height>110</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>110</width>
+                       <height>110</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(255, 255, 255);</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </widget>
+               </item>
+              </layout>
+             </widget>
             </widget>
             <widget class="QWidget" name="page_check">
              <property name="styleSheet">
@@ -1164,6 +1853,9 @@ border-bottom-right-radius:10px;</string>
           </property>
           <item>
            <widget class="QStackedWidget" name="stackedWidget_side">
+            <property name="currentIndex">
+             <number>2</number>
+            </property>
             <widget class="QWidget" name="sidePage_extract">
              <widget class="QListWidget" name="list_programStep">
               <property name="geometry">
@@ -1437,7 +2129,100 @@ QCheckBox::indicator:checked {
              </widget>
             </widget>
             <widget class="QWidget" name="sidePage_settings"/>
-            <widget class="QWidget" name="sidePage_write"/>
+            <widget class="QWidget" name="sidePage_write">
+             <widget class="QListWidget" name="list_programStep_2">
+              <property name="geometry">
+               <rect>
+                <x>30</x>
+                <y>30</y>
+                <width>191</width>
+                <height>395</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">*{border-radius:10px;
+background-color: rgb(255, 255, 255);
+border:1px solid rgb(232, 232, 232);
+color: rgb(121, 121, 121);
+font-size:11px;}
+
+QScrollBar:vertical {              
+        border: 1px solid #999999;
+        background:white;
+        width:4px;    
+        margin: 0px 0px 0px 0px;
+    }
+    QScrollBar::handle:vertical {
+      background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+        stop: 0 rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130), stop:1 rgb(32, 47, 130));
+        min-height: 0px;
+    }
+    QScrollBar::add-line:vertical {
+       background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+        stop: 0 rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130),  stop:1 rgb(32, 47, 130));
+        height: 0px;
+        subcontrol-position: bottom;
+       subcontrol-origin: margin;
+    }
+    QScrollBar::sub-line:vertical {
+       background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+        stop: 0  rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130),  stop:1 rgb(32, 47, 130));
+        height: 0 px;
+        subcontrol-position: top;
+        subcontrol-origin: margin;
+    }
+
+QScrollBar:horizontal{
+ border: 1px solid #999999;
+	background:white;
+	height:6px;
+	margin: 0px 0px 0px 0px;
+}
+
+ QScrollBar::handle:horizontal {
+      background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+        stop: 0 rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130), stop:1 rgb(32, 47, 130));
+        min-height: 0px;
+    }
+    QScrollBar::add-line:horizontal {
+       background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+        stop: 0 rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130),  stop:1 rgb(32, 47, 130));
+        height: 0px;
+        subcontrol-position: bottom;
+       subcontrol-origin: margin;
+    }
+    QScrollBar::sub-line:horizontal {
+       background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+        stop: 0  rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130),  stop:1 rgb(32, 47, 130));
+        height: 0 px;
+        subcontrol-position: top;
+        subcontrol-origin: margin;
+    }</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="folderPathLable_3">
+              <property name="geometry">
+               <rect>
+                <x>30</x>
+                <y>11</y>
+                <width>91</width>
+                <height>16</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(127, 127, 127);</string>
+              </property>
+              <property name="text">
+               <string>进程</string>
+              </property>
+             </widget>
+            </widget>
             <widget class="QWidget" name="sidePage_check"/>
             <widget class="QWidget" name="sidePage_transfer"/>
            </widget>

@@ -16,16 +16,19 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QCheckBox, QFormLayout, QFrame,
-    QHBoxLayout, QLabel, QListWidget, QListWidgetItem,
-    QMainWindow, QPushButton, QSizePolicy, QStackedWidget,
-    QTabWidget, QVBoxLayout, QWidget)
+    QGridLayout, QHBoxLayout, QLabel, QListWidget,
+    QListWidgetItem, QMainWindow, QPushButton, QScrollArea,
+    QSizePolicy, QSpacerItem, QStackedWidget, QTabWidget,
+    QTextEdit, QVBoxLayout, QWidget)
 import resource_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(855, 505)
+        MainWindow.resize(820, 500)
+        MainWindow.setMinimumSize(QSize(820, 500))
+        MainWindow.setMaximumSize(QSize(820, 500))
         MainWindow.setStyleSheet(u"")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
@@ -281,6 +284,352 @@ class Ui_MainWindow(object):
         self.page_write = QWidget()
         self.page_write.setObjectName(u"page_write")
         self.page_write.setStyleSheet(u"")
+        self.write_frame = QFrame(self.page_write)
+        self.write_frame.setObjectName(u"write_frame")
+        self.write_frame.setGeometry(QRect(0, 7, 521, 430))
+        self.write_frame.setFrameShape(QFrame.StyledPanel)
+        self.write_frame.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_6 = QVBoxLayout(self.write_frame)
+        self.verticalLayout_6.setObjectName(u"verticalLayout_6")
+        self.writer_search = QFrame(self.write_frame)
+        self.writer_search.setObjectName(u"writer_search")
+        self.writer_search.setMinimumSize(QSize(0, 40))
+        self.writer_search.setMaximumSize(QSize(16777215, 40))
+        self.writer_search.setStyleSheet(u"")
+        self.writer_search.setFrameShape(QFrame.StyledPanel)
+        self.writer_search.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_6 = QHBoxLayout(self.writer_search)
+        self.horizontalLayout_6.setSpacing(3)
+        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
+        self.horizontalLayout_6.setContentsMargins(3, 3, 3, 3)
+        self.filter_label = QLabel(self.writer_search)
+        self.filter_label.setObjectName(u"filter_label")
+        font1 = QFont()
+        font1.setBold(True)
+        self.filter_label.setFont(font1)
+        self.filter_label.setStyleSheet(u"color: rgb(112, 112, 112);")
+
+        self.horizontalLayout_6.addWidget(self.filter_label, 0, Qt.AlignHCenter)
+
+        self.filter_input = QTextEdit(self.writer_search)
+        self.filter_input.setObjectName(u"filter_input")
+        self.filter_input.setMaximumSize(QSize(435, 28))
+        self.filter_input.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
+"border-radius:10px;\n"
+"border:1px solid rgb(232, 232, 232);\n"
+"")
+
+        self.horizontalLayout_6.addWidget(self.filter_input)
+
+
+        self.verticalLayout_6.addWidget(self.writer_search)
+
+        self.writer_ctrlMenu = QFrame(self.write_frame)
+        self.writer_ctrlMenu.setObjectName(u"writer_ctrlMenu")
+        self.writer_ctrlMenu.setMinimumSize(QSize(0, 29))
+        self.writer_ctrlMenu.setMaximumSize(QSize(16777215, 30))
+        self.writer_ctrlMenu.setStyleSheet(u"background-color: rgb(243, 243, 243);")
+        self.writer_ctrlMenu.setFrameShape(QFrame.StyledPanel)
+        self.writer_ctrlMenu.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_7 = QHBoxLayout(self.writer_ctrlMenu)
+        self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
+        self.horizontalLayout_7.setContentsMargins(0, 0, 0, 0)
+        self.horizontalSpacer = QSpacerItem(10, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
+
+        self.horizontalLayout_7.addItem(self.horizontalSpacer)
+
+        self.btn_addWriter = QPushButton(self.writer_ctrlMenu)
+        self.btn_addWriter.setObjectName(u"btn_addWriter")
+        self.btn_addWriter.setMinimumSize(QSize(25, 25))
+        self.btn_addWriter.setMaximumSize(QSize(25, 25))
+        self.btn_addWriter.setStyleSheet(u"*{border-radius:5px;\n"
+"	font-size:12px;\n"
+"	color: rgb(255, 255, 255);\n"
+"	\n"
+"	background-color:rgb(81, 66, 147) ;\n"
+"}\n"
+"\n"
+"*:hover{\n"
+"	\n"
+"	background-color: rgb(255, 179, 54);\n"
+"}")
+        icon3 = QIcon()
+        icon3.addFile(u":/icons/icon/\u52a0\u51cf\u7ec4\u4ef6\u52a0\u53f7.ico", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_addWriter.setIcon(icon3)
+
+        self.horizontalLayout_7.addWidget(self.btn_addWriter, 0, Qt.AlignVCenter)
+
+        self.btn_copyWriter = QPushButton(self.writer_ctrlMenu)
+        self.btn_copyWriter.setObjectName(u"btn_copyWriter")
+        self.btn_copyWriter.setMinimumSize(QSize(25, 25))
+        self.btn_copyWriter.setMaximumSize(QSize(25, 25))
+        self.btn_copyWriter.setStyleSheet(u"*{border-radius:5px;\n"
+"	font-size:12px;\n"
+"	color: rgb(255, 255, 255);\n"
+"	\n"
+"	background-color:rgb(81, 66, 147) ;\n"
+"}\n"
+"\n"
+"*:hover{\n"
+"	\n"
+"	background-color: rgb(255, 179, 54);\n"
+"}")
+        icon4 = QIcon()
+        icon4.addFile(u":/icons/icon/\u590d\u5236.ico", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_copyWriter.setIcon(icon4)
+
+        self.horizontalLayout_7.addWidget(self.btn_copyWriter)
+
+        self.btn_deleteWriter = QPushButton(self.writer_ctrlMenu)
+        self.btn_deleteWriter.setObjectName(u"btn_deleteWriter")
+        self.btn_deleteWriter.setMinimumSize(QSize(25, 25))
+        self.btn_deleteWriter.setMaximumSize(QSize(25, 25))
+        self.btn_deleteWriter.setStyleSheet(u"*{border-radius:5px;\n"
+"	font-size:12px;\n"
+"	color: rgb(255, 255, 255);\n"
+"	\n"
+"	background-color:rgb(217, 217, 217) ;\n"
+"}\n"
+"\n"
+"*:hover{\n"
+"	\n"
+"	background-color: rgb(223, 145, 146);\n"
+"}")
+        icon5 = QIcon()
+        icon5.addFile(u":/icons/icon/\u51cf\u53f7.ico", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_deleteWriter.setIcon(icon5)
+
+        self.horizontalLayout_7.addWidget(self.btn_deleteWriter, 0, Qt.AlignRight)
+
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_7.addItem(self.horizontalSpacer_2)
+
+
+        self.verticalLayout_6.addWidget(self.writer_ctrlMenu)
+
+        self.scrollArea = QScrollArea(self.write_frame)
+        self.scrollArea.setObjectName(u"scrollArea")
+        self.scrollArea.setMaximumSize(QSize(16777215, 350))
+        self.scrollArea.setStyleSheet(u"*{\n"
+"background-color: rgb(255, 255, 255);\n"
+"border:1px solid rgb(232, 232, 232);\n"
+"color: rgb(121, 121, 121);\n"
+"font-size:11px;}\n"
+"\n"
+"QScrollBar:vertical {              \n"
+"        border:none;\n"
+"        background:white;\n"
+"\n"
+"        width:10px;    \n"
+"        margin: 0px 0px 0px 0px;\n"
+"		color:rgb(110, 92, 194)\n"
+"    }\n"
+"    QScrollBar::handle:vertical {\n"
+"      background-color:rgb(232, 232, 232);\n"
+"        min-height: 30px;\n"
+"border-radius:5px;\n"
+"    }\n"
+"QScrollBar::handle:vertical:hover {\n"
+"      background-color:rgb(227, 227, 235);\n"
+"        \n"
+"    }\n"
+"\n"
+"QScrollBar::handle:vertical:pressed {\n"
+"      background-color:rgb(110, 92, 194);\n"
+"        \n"
+"    }\n"
+"    QScrollBar::add-line:vertical {\n"
+"       background: qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
+"        stop: 0 rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130),  stop:1 rgb(32, 47, 130));\n"
+"        height: 0px;\n"
+"        subcontrol-position: bottom;\n"
+"       subcontrol-origin: margin;\n"
+""
+                        "    }\n"
+"    QScrollBar::sub-line:vertical {\n"
+"       background: qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
+"        stop: 0  rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130),  stop:1 rgb(32, 47, 130));\n"
+"        height: 0 px;\n"
+"        subcontrol-position: top;\n"
+"        subcontrol-origin: margin;\n"
+"    }\n"
+"\n"
+"QScrollBar:horizontal{\n"
+" border: none;\n"
+"	background:white;\n"
+"	height:10px;\n"
+"	margin: 0px 0px 0px 0px;\n"
+"}\n"
+"\n"
+" QScrollBar::handle:horizontal {\n"
+"      background-color:rgb(232, 232, 232);\n"
+"        min-height: 30px;\n"
+"border-radius:5px;\n"
+"    }\n"
+"QScrollBar::handle:horizontal:hover {\n"
+"      background-color:rgb(227, 227, 235);\n"
+"        \n"
+"    }\n"
+"\n"
+"QScrollBar::handle:horizontal:pressed {\n"
+"      background-color:rgb(110, 92, 194);\n"
+"        \n"
+"    }\n"
+"\n"
+"    QScrollBar::add-line:horizontal {\n"
+"       background: qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
+"        stop: 0 rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130),  stop:1 rgb(32, 47, 130"
+                        "));\n"
+"        height: 0px;\n"
+"        subcontrol-position: bottom;\n"
+"       subcontrol-origin: margin;\n"
+"    }\n"
+"    QScrollBar::sub-line:horizontal {\n"
+"       background: qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
+"        stop: 0  rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130),  stop:1 rgb(32, 47, 130));\n"
+"        height: 0 px;\n"
+"        subcontrol-position: top;\n"
+"        subcontrol-origin: margin;\n"
+"    }")
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollAreaWidgetContents = QWidget()
+        self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 489, 476))
+        self.gridLayout = QGridLayout(self.scrollAreaWidgetContents)
+        self.gridLayout.setObjectName(u"gridLayout")
+        self.widget_2 = QWidget(self.scrollAreaWidgetContents)
+        self.widget_2.setObjectName(u"widget_2")
+        self.widget_2.setMinimumSize(QSize(110, 110))
+        self.widget_2.setMaximumSize(QSize(110, 110))
+        self.widget_2.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+
+        self.gridLayout.addWidget(self.widget_2, 0, 3, 1, 1)
+
+        self.widget_3 = QWidget(self.scrollAreaWidgetContents)
+        self.widget_3.setObjectName(u"widget_3")
+        self.widget_3.setMinimumSize(QSize(110, 110))
+        self.widget_3.setMaximumSize(QSize(110, 110))
+        self.widget_3.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+
+        self.gridLayout.addWidget(self.widget_3, 0, 2, 1, 1)
+
+        self.widget = QWidget(self.scrollAreaWidgetContents)
+        self.widget.setObjectName(u"widget")
+        self.widget.setMinimumSize(QSize(110, 110))
+        self.widget.setMaximumSize(QSize(110, 110))
+        self.widget.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+
+        self.gridLayout.addWidget(self.widget, 0, 0, 1, 1)
+
+        self.widget_4 = QWidget(self.scrollAreaWidgetContents)
+        self.widget_4.setObjectName(u"widget_4")
+        self.widget_4.setMinimumSize(QSize(110, 110))
+        self.widget_4.setMaximumSize(QSize(110, 110))
+        self.widget_4.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+
+        self.gridLayout.addWidget(self.widget_4, 0, 1, 1, 1)
+
+        self.widget_6 = QWidget(self.scrollAreaWidgetContents)
+        self.widget_6.setObjectName(u"widget_6")
+        self.widget_6.setMinimumSize(QSize(110, 110))
+        self.widget_6.setMaximumSize(QSize(110, 110))
+        self.widget_6.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+
+        self.gridLayout.addWidget(self.widget_6, 1, 0, 1, 1)
+
+        self.widget_7 = QWidget(self.scrollAreaWidgetContents)
+        self.widget_7.setObjectName(u"widget_7")
+        self.widget_7.setMinimumSize(QSize(110, 110))
+        self.widget_7.setMaximumSize(QSize(110, 110))
+        self.widget_7.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+
+        self.gridLayout.addWidget(self.widget_7, 1, 1, 1, 1)
+
+        self.widget_5 = QWidget(self.scrollAreaWidgetContents)
+        self.widget_5.setObjectName(u"widget_5")
+        self.widget_5.setMinimumSize(QSize(110, 110))
+        self.widget_5.setMaximumSize(QSize(110, 110))
+        self.widget_5.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+
+        self.gridLayout.addWidget(self.widget_5, 1, 2, 1, 1)
+
+        self.widget_8 = QWidget(self.scrollAreaWidgetContents)
+        self.widget_8.setObjectName(u"widget_8")
+        self.widget_8.setMinimumSize(QSize(110, 110))
+        self.widget_8.setMaximumSize(QSize(110, 110))
+        self.widget_8.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+
+        self.gridLayout.addWidget(self.widget_8, 1, 3, 1, 1)
+
+        self.widget_12 = QWidget(self.scrollAreaWidgetContents)
+        self.widget_12.setObjectName(u"widget_12")
+        self.widget_12.setMinimumSize(QSize(110, 110))
+        self.widget_12.setMaximumSize(QSize(110, 110))
+        self.widget_12.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+
+        self.gridLayout.addWidget(self.widget_12, 2, 0, 1, 1)
+
+        self.widget_11 = QWidget(self.scrollAreaWidgetContents)
+        self.widget_11.setObjectName(u"widget_11")
+        self.widget_11.setMinimumSize(QSize(110, 110))
+        self.widget_11.setMaximumSize(QSize(110, 110))
+        self.widget_11.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+
+        self.gridLayout.addWidget(self.widget_11, 2, 1, 1, 1)
+
+        self.widget_9 = QWidget(self.scrollAreaWidgetContents)
+        self.widget_9.setObjectName(u"widget_9")
+        self.widget_9.setMinimumSize(QSize(110, 110))
+        self.widget_9.setMaximumSize(QSize(110, 110))
+        self.widget_9.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+
+        self.gridLayout.addWidget(self.widget_9, 2, 2, 1, 1)
+
+        self.widget_10 = QWidget(self.scrollAreaWidgetContents)
+        self.widget_10.setObjectName(u"widget_10")
+        self.widget_10.setMinimumSize(QSize(110, 110))
+        self.widget_10.setMaximumSize(QSize(110, 110))
+        self.widget_10.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+
+        self.gridLayout.addWidget(self.widget_10, 2, 3, 1, 1)
+
+        self.widget_16 = QWidget(self.scrollAreaWidgetContents)
+        self.widget_16.setObjectName(u"widget_16")
+        self.widget_16.setMinimumSize(QSize(110, 110))
+        self.widget_16.setMaximumSize(QSize(110, 110))
+        self.widget_16.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+
+        self.gridLayout.addWidget(self.widget_16, 3, 0, 1, 1)
+
+        self.widget_14 = QWidget(self.scrollAreaWidgetContents)
+        self.widget_14.setObjectName(u"widget_14")
+        self.widget_14.setMinimumSize(QSize(110, 110))
+        self.widget_14.setMaximumSize(QSize(110, 110))
+        self.widget_14.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+
+        self.gridLayout.addWidget(self.widget_14, 3, 1, 1, 1)
+
+        self.widget_15 = QWidget(self.scrollAreaWidgetContents)
+        self.widget_15.setObjectName(u"widget_15")
+        self.widget_15.setMinimumSize(QSize(110, 110))
+        self.widget_15.setMaximumSize(QSize(110, 110))
+        self.widget_15.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+
+        self.gridLayout.addWidget(self.widget_15, 3, 2, 1, 1)
+
+        self.widget_13 = QWidget(self.scrollAreaWidgetContents)
+        self.widget_13.setObjectName(u"widget_13")
+        self.widget_13.setMinimumSize(QSize(110, 110))
+        self.widget_13.setMaximumSize(QSize(110, 110))
+        self.widget_13.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+
+        self.gridLayout.addWidget(self.widget_13, 3, 3, 1, 1)
+
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
+
+        self.verticalLayout_6.addWidget(self.scrollArea)
+
         self.stackedWidget.addWidget(self.page_write)
         self.page_check = QWidget()
         self.page_check.setObjectName(u"page_check")
@@ -296,10 +645,10 @@ class Ui_MainWindow(object):
         self.folderPathLable = QLabel(self.page_extract)
         self.folderPathLable.setObjectName(u"folderPathLable")
         self.folderPathLable.setGeometry(QRect(30, 20, 91, 16))
-        font1 = QFont()
-        font1.setPointSize(10)
-        font1.setBold(True)
-        self.folderPathLable.setFont(font1)
+        font2 = QFont()
+        font2.setPointSize(10)
+        font2.setBold(True)
+        self.folderPathLable.setFont(font2)
         self.folderPathLable.setStyleSheet(u"color: rgb(127, 127, 127);")
         self.btn_browseFolder = QPushButton(self.page_extract)
         self.btn_browseFolder.setObjectName(u"btn_browseFolder")
@@ -366,7 +715,7 @@ class Ui_MainWindow(object):
         self.searchLable_2 = QLabel(self.page_extract)
         self.searchLable_2.setObjectName(u"searchLable_2")
         self.searchLable_2.setGeometry(QRect(30, 230, 91, 16))
-        self.searchLable_2.setFont(font1)
+        self.searchLable_2.setFont(font2)
         self.searchLable_2.setStyleSheet(u"color: rgb(127, 127, 127);")
         self.btn_addTagGroup = QPushButton(self.page_extract)
         self.btn_addTagGroup.setObjectName(u"btn_addTagGroup")
@@ -442,8 +791,6 @@ class Ui_MainWindow(object):
 "	\n"
 "	background-color: rgb(255, 179, 54);\n"
 "}")
-        icon3 = QIcon()
-        icon3.addFile(u":/icons/icon/\u52a0\u51cf\u7ec4\u4ef6\u52a0\u53f7.ico", QSize(), QIcon.Normal, QIcon.Off)
         self.btn_addTag.setIcon(icon3)
         self.btn_delTag = QPushButton(self.page_extract)
         self.btn_delTag.setObjectName(u"btn_delTag")
@@ -461,9 +808,7 @@ class Ui_MainWindow(object):
 "	\n"
 "	background-color: rgb(223, 145, 146);\n"
 "}")
-        icon4 = QIcon()
-        icon4.addFile(u":/icons/icon/\u51cf\u53f7.ico", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_delTag.setIcon(icon4)
+        self.btn_delTag.setIcon(icon5)
         self.list_fileKeyword = QListWidget(self.page_extract)
         self.list_fileKeyword.setObjectName(u"list_fileKeyword")
         self.list_fileKeyword.setGeometry(QRect(30, 160, 311, 55))
@@ -531,11 +876,11 @@ class Ui_MainWindow(object):
 "	\n"
 "	background-color: rgb(223, 145, 146);\n"
 "}")
-        self.btn_deletFileKeyWord.setIcon(icon4)
+        self.btn_deletFileKeyWord.setIcon(icon5)
         self.searchLable_3 = QLabel(self.page_extract)
         self.searchLable_3.setObjectName(u"searchLable_3")
         self.searchLable_3.setGeometry(QRect(30, 140, 111, 16))
-        self.searchLable_3.setFont(font1)
+        self.searchLable_3.setFont(font2)
         self.searchLable_3.setStyleSheet(u"color: rgb(127, 127, 127);")
         self.stackedWidget.addWidget(self.page_extract)
         self.page_settings = QWidget()
@@ -630,7 +975,7 @@ class Ui_MainWindow(object):
         self.folderPathLable_2 = QLabel(self.sidePage_extract)
         self.folderPathLable_2.setObjectName(u"folderPathLable_2")
         self.folderPathLable_2.setGeometry(QRect(30, 20, 91, 16))
-        self.folderPathLable_2.setFont(font1)
+        self.folderPathLable_2.setFont(font2)
         self.folderPathLable_2.setStyleSheet(u"color: rgb(127, 127, 127);")
         self.btn_ExtractionStart = QPushButton(self.sidePage_extract)
         self.btn_ExtractionStart.setObjectName(u"btn_ExtractionStart")
@@ -724,13 +1069,81 @@ class Ui_MainWindow(object):
 "	\n"
 "	background-color: rgb(223, 145, 146);\n"
 "}")
-        self.btn_processDelete.setIcon(icon4)
+        self.btn_processDelete.setIcon(icon5)
         self.stackedWidget_side.addWidget(self.sidePage_extract)
         self.sidePage_settings = QWidget()
         self.sidePage_settings.setObjectName(u"sidePage_settings")
         self.stackedWidget_side.addWidget(self.sidePage_settings)
         self.sidePage_write = QWidget()
         self.sidePage_write.setObjectName(u"sidePage_write")
+        self.list_programStep_2 = QListWidget(self.sidePage_write)
+        self.list_programStep_2.setObjectName(u"list_programStep_2")
+        self.list_programStep_2.setGeometry(QRect(30, 30, 191, 395))
+        self.list_programStep_2.setStyleSheet(u"*{border-radius:10px;\n"
+"background-color: rgb(255, 255, 255);\n"
+"border:1px solid rgb(232, 232, 232);\n"
+"color: rgb(121, 121, 121);\n"
+"font-size:11px;}\n"
+"\n"
+"QScrollBar:vertical {              \n"
+"        border: 1px solid #999999;\n"
+"        background:white;\n"
+"        width:4px;    \n"
+"        margin: 0px 0px 0px 0px;\n"
+"    }\n"
+"    QScrollBar::handle:vertical {\n"
+"      background: qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
+"        stop: 0 rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130), stop:1 rgb(32, 47, 130));\n"
+"        min-height: 0px;\n"
+"    }\n"
+"    QScrollBar::add-line:vertical {\n"
+"       background: qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
+"        stop: 0 rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130),  stop:1 rgb(32, 47, 130));\n"
+"        height: 0px;\n"
+"        subcontrol-position: bottom;\n"
+"       subcontrol-origin: margin;\n"
+"    }\n"
+"    QScrollBar::sub-line:vertical {\n"
+"       background: qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
+"        stop: 0  rgb(32, 47, 130"
+                        "), stop: 0.5 rgb(32, 47, 130),  stop:1 rgb(32, 47, 130));\n"
+"        height: 0 px;\n"
+"        subcontrol-position: top;\n"
+"        subcontrol-origin: margin;\n"
+"    }\n"
+"\n"
+"QScrollBar:horizontal{\n"
+" border: 1px solid #999999;\n"
+"	background:white;\n"
+"	height:6px;\n"
+"	margin: 0px 0px 0px 0px;\n"
+"}\n"
+"\n"
+" QScrollBar::handle:horizontal {\n"
+"      background: qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
+"        stop: 0 rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130), stop:1 rgb(32, 47, 130));\n"
+"        min-height: 0px;\n"
+"    }\n"
+"    QScrollBar::add-line:horizontal {\n"
+"       background: qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
+"        stop: 0 rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130),  stop:1 rgb(32, 47, 130));\n"
+"        height: 0px;\n"
+"        subcontrol-position: bottom;\n"
+"       subcontrol-origin: margin;\n"
+"    }\n"
+"    QScrollBar::sub-line:horizontal {\n"
+"       background: qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
+"        stop: 0  rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 1"
+                        "30),  stop:1 rgb(32, 47, 130));\n"
+"        height: 0 px;\n"
+"        subcontrol-position: top;\n"
+"        subcontrol-origin: margin;\n"
+"    }")
+        self.folderPathLable_3 = QLabel(self.sidePage_write)
+        self.folderPathLable_3.setObjectName(u"folderPathLable_3")
+        self.folderPathLable_3.setGeometry(QRect(30, 11, 91, 16))
+        self.folderPathLable_3.setFont(font2)
+        self.folderPathLable_3.setStyleSheet(u"color: rgb(127, 127, 127);")
         self.stackedWidget_side.addWidget(self.sidePage_write)
         self.sidePage_check = QWidget()
         self.sidePage_check.setObjectName(u"sidePage_check")
@@ -751,8 +1164,9 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(3)
+        self.stackedWidget.setCurrentIndex(0)
         self.tag_group.setCurrentIndex(-1)
+        self.stackedWidget_side.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -763,7 +1177,7 @@ class Ui_MainWindow(object):
         self.menuButton.setText("")
         self.label.setText(QCoreApplication.translate("MainWindow", u"Eazy", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"accountant", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"V0.1", None))
+        self.label_3.setText(QCoreApplication.translate("MainWindow", u"V0.2", None))
         self.minimizeButton.setText("")
         self.closeButton.setText("")
         self.btn_menu_extract.setText(QCoreApplication.translate("MainWindow", u"\u63d0\u53d6", None))
@@ -771,6 +1185,10 @@ class Ui_MainWindow(object):
         self.btn_menu_transfer.setText(QCoreApplication.translate("MainWindow", u"\u8f6c\u6362", None))
         self.btn_menu_check.setText(QCoreApplication.translate("MainWindow", u"\u6838\u5bf9", None))
         self.btn_menu_setting.setText(QCoreApplication.translate("MainWindow", u"\u8bbe\u7f6e", None))
+        self.filter_label.setText(QCoreApplication.translate("MainWindow", u"\u8fc7\u6ee4\u5668", None))
+        self.btn_addWriter.setText("")
+        self.btn_copyWriter.setText("")
+        self.btn_deleteWriter.setText("")
         self.folderPathLable.setText(QCoreApplication.translate("MainWindow", u"\u6587\u4ef6\u8bfb\u53d6\u8def\u5f84", None))
         self.btn_browseFolder.setText(QCoreApplication.translate("MainWindow", u"\u6d4f\u89c8\u6587\u4ef6\u5939", None))
         self.btn_deletFolder.setText(QCoreApplication.translate("MainWindow", u"\u5220\u9664\u6587\u4ef6\u5939", None))
@@ -791,5 +1209,6 @@ class Ui_MainWindow(object):
         self.check_autoArrange.setText(QCoreApplication.translate("MainWindow", u"\u81ea\u52a8\u6392\u5e8f", None))
         self.btn_ExtractionReset.setText(QCoreApplication.translate("MainWindow", u"\u91cd\u7f6e", None))
         self.btn_processDelete.setText("")
+        self.folderPathLable_3.setText(QCoreApplication.translate("MainWindow", u"\u8fdb\u7a0b", None))
     # retranslateUi
 

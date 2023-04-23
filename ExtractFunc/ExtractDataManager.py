@@ -8,7 +8,7 @@ class ExtractDataManager:
         self.data = StoreData()
 
         try:
-            with open("extractData.json","r") as f:
+            with open("cache\\extractData.json","r") as f:
                 
                 self.data = jsonpickle.decode(f.read())
                 
@@ -182,7 +182,7 @@ class ExtractDataManager:
     def RefreshJson(self):
         data = jsonpickle.encode(self.data,unpicklable = True,indent = 4)
         #jsonData = json.dumps(data,indent = 4)
-        with open('extractData.json','w') as f:
+        with open('cache\\extractData.json','w') as f:
             f.write(data)
 
 class StoreData():

@@ -16,10 +16,10 @@ from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel,
     QWidget,QTextBrowser)
 from PySide6.QtWidgets import *
 
-from ui_EasyAccountantApp_UI import Ui_MainWindow
+from EasyAccountantApp_UI_ui import Ui_MainWindow
 
 
-from Extract_main import *
+from ExtractFunc.Extract_main import *
 
 
 WINDOW_SIZE = 0
@@ -198,6 +198,8 @@ class MainWindow(QMainWindow):
 
     def resizeAssistWindow(self):
         if(self.sender().objectName() == "btn_menu_extract"):
+            self.ui.side_assist_window.setMinimumWidth(250)
+        elif(self.sender().objectName() == "btn_menu_write"):
             self.ui.side_assist_window.setMinimumWidth(250)
         else:
             self.ui.side_assist_window.setMinimumWidth(100) 
