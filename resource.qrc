@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="icons">
+    <file>icon/添加.ico</file>
     <file>icon/加减组件加号.ico</file>
     <file>icon/复制.ico</file>
     <file>icon/减号.ico</file>
@@ -14,6 +15,7 @@
     <file>icon/menu.ico</file>
   </qresource>
   <qresource prefix="png">
+    <file>icon/png/xiala.png</file>
     <file>icon/png/合同7 (2).png</file>
     <file>icon/png/核对.png</file>
     <file>icon/png/获取信息.png</file>
