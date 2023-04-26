@@ -67,6 +67,22 @@
                     "isActive": false
                 }
             ]
+        },
+        {
+            "py/object": "ExtractFunc.ExtractDataManager.TagGroup",
+            "groupName": "123",
+            "tagList": [
+                {
+                    "py/object": "ExtractFunc.ExtractDataManager.Tag",
+                    "tagInfo": {
+                        "\u540d\u79f0": "\u6807\u7b7e1",
+                        "\u5de5\u4f5c\u8868": "",
+                        "\u5750\u6807": "",
+                        "\u5355\u4f4d": ""
+                    },
+                    "isActive": true
+                }
+            ]
         }
     ],
     "activeGroup": 0,
