@@ -586,9 +586,15 @@ class Ui_MainWindow(object):
         self.horizontalLayout_7 = QHBoxLayout(self.writer_ctrlMenu)
         self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
         self.horizontalLayout_7.setContentsMargins(0, 0, 0, 0)
+        self.label_5 = QLabel(self.writer_ctrlMenu)
+        self.label_5.setObjectName(u"label_5")
+        self.label_5.setStyleSheet(u"color: rgb(127, 127, 127);")
+
+        self.horizontalLayout_7.addWidget(self.label_5)
+
         self.filter_input = QTextEdit(self.writer_ctrlMenu)
         self.filter_input.setObjectName(u"filter_input")
-        self.filter_input.setMinimumSize(QSize(147, 0))
+        self.filter_input.setMinimumSize(QSize(264, 0))
         self.filter_input.setMaximumSize(QSize(100, 26))
         self.filter_input.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
 "border-radius:10px;\n"
@@ -597,29 +603,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_7.addWidget(self.filter_input)
 
-        self.btn_searchWriter = QPushButton(self.writer_ctrlMenu)
-        self.btn_searchWriter.setObjectName(u"btn_searchWriter")
-        self.btn_searchWriter.setMinimumSize(QSize(40, 26))
-        self.btn_searchWriter.setMaximumSize(QSize(40, 25))
-        self.btn_searchWriter.setStyleSheet(u"*{border-radius:5px;\n"
-"	font-size:12px;\n"
-"	color: rgb(255, 255, 255);\n"
-"	\n"
-"	background-color:rgb(81, 66, 147) ;\n"
-"}\n"
-"\n"
-"*:hover{\n"
-"	\n"
-"	background-color: rgb(255, 179, 54);\n"
-"}\n"
-"QPushButton:pressed{\n"
-"	\n"
-"	background-color: rgb(235, 159, 34);\n"
-"}")
-
-        self.horizontalLayout_7.addWidget(self.btn_searchWriter)
-
-        self.horizontalSpacer = QSpacerItem(410, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
+        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout_7.addItem(self.horizontalSpacer)
 
@@ -1580,7 +1564,7 @@ class Ui_MainWindow(object):
         self.btn_renameWriterGroup.setText(QCoreApplication.translate("MainWindow", u"\u91cd\u547d\u540d", None))
         self.btn_addWriterGroup.setText(QCoreApplication.translate("MainWindow", u"\u6dfb\u52a0\u5199\u5165\u7ec4", None))
         self.btn_deleteWriterGroup.setText(QCoreApplication.translate("MainWindow", u"\u5220\u9664", None))
-        self.btn_searchWriter.setText(QCoreApplication.translate("MainWindow", u"\u641c\u7d22", None))
+        self.label_5.setText(QCoreApplication.translate("MainWindow", u"\u8fc7\u6ee4\u5668", None))
         self.btn_writer_edit.setText(QCoreApplication.translate("MainWindow", u"\u7f16\u8f91", None))
         self.btn_writer_copy.setText("")
         self.btn_writer_delete.setText("")

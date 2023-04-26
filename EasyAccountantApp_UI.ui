@@ -1218,10 +1218,20 @@ QPushButton:pressed{
                    <number>0</number>
                   </property>
                   <item>
+                   <widget class="QLabel" name="label_5">
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(127, 127, 127);</string>
+                    </property>
+                    <property name="text">
+                     <string>过滤器</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
                    <widget class="QTextEdit" name="filter_input">
                     <property name="minimumSize">
                      <size>
-                      <width>147</width>
+                      <width>264</width>
                       <height>0</height>
                      </size>
                     </property>
@@ -1240,52 +1250,13 @@ border:1px solid rgb(232, 232, 232);
                    </widget>
                   </item>
                   <item>
-                   <widget class="QPushButton" name="btn_searchWriter">
-                    <property name="minimumSize">
-                     <size>
-                      <width>40</width>
-                      <height>26</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>40</width>
-                      <height>25</height>
-                     </size>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">*{border-radius:5px;
-	font-size:12px;
-	color: rgb(255, 255, 255);
-	
-	background-color:rgb(81, 66, 147) ;
-}
-
-*:hover{
-	
-	background-color: rgb(255, 179, 54);
-}
-QPushButton:pressed{
-	
-	background-color: rgb(235, 159, 34);
-}</string>
-                    </property>
-                    <property name="text">
-                     <string>搜索</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
                    <spacer name="horizontalSpacer">
                     <property name="orientation">
                      <enum>Qt::Horizontal</enum>
                     </property>
-                    <property name="sizeType">
-                     <enum>QSizePolicy::Maximum</enum>
-                    </property>
                     <property name="sizeHint" stdset="0">
                      <size>
-                      <width>410</width>
+                      <width>40</width>
                       <height>20</height>
                      </size>
                     </property>
