@@ -287,7 +287,7 @@ class Ui_MainWindow(object):
         self.write_frame = QFrame(self.page_write)
         self.write_frame.setObjectName(u"write_frame")
         self.write_frame.setGeometry(QRect(0, 7, 510, 430))
-        self.write_frame.setMinimumSize(QSize(510, 430))
+        self.write_frame.setMinimumSize(QSize(0, 0))
         self.write_frame.setMaximumSize(QSize(510, 430))
         self.write_frame.setFrameShape(QFrame.StyledPanel)
         self.write_frame.setFrameShadow(QFrame.Raised)
@@ -296,17 +296,37 @@ class Ui_MainWindow(object):
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
         self.frame = QFrame(self.write_frame)
         self.frame.setObjectName(u"frame")
-        self.frame.setMinimumSize(QSize(0, 66))
+        self.frame.setMinimumSize(QSize(0, 86))
         self.frame.setFrameShape(QFrame.StyledPanel)
         self.frame.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_8 = QHBoxLayout(self.frame)
-        self.horizontalLayout_8.setSpacing(0)
+        self.horizontalLayout_8.setSpacing(5)
         self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
         self.horizontalLayout_8.setContentsMargins(0, 0, 0, 0)
-        self.list_write_folderPath = QListWidget(self.frame)
+        self.frame_5 = QFrame(self.frame)
+        self.frame_5.setObjectName(u"frame_5")
+        self.frame_5.setMinimumSize(QSize(34, 0))
+        self.frame_5.setFrameShape(QFrame.StyledPanel)
+        self.frame_5.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_9 = QVBoxLayout(self.frame_5)
+        self.verticalLayout_9.setSpacing(0)
+        self.verticalLayout_9.setObjectName(u"verticalLayout_9")
+        self.verticalLayout_9.setContentsMargins(0, 0, 0, 0)
+        self.label_4 = QLabel(self.frame_5)
+        self.label_4.setObjectName(u"label_4")
+        self.label_4.setMaximumSize(QSize(16777215, 13))
+        font1 = QFont()
+        font1.setPointSize(10)
+        font1.setBold(True)
+        self.label_4.setFont(font1)
+        self.label_4.setStyleSheet(u"color: rgb(127, 127, 127);")
+
+        self.verticalLayout_9.addWidget(self.label_4)
+
+        self.list_write_folderPath = QListWidget(self.frame_5)
         self.list_write_folderPath.setObjectName(u"list_write_folderPath")
-        self.list_write_folderPath.setMinimumSize(QSize(400, 60))
-        self.list_write_folderPath.setMaximumSize(QSize(339, 50))
+        self.list_write_folderPath.setMinimumSize(QSize(0, 54))
+        self.list_write_folderPath.setMaximumSize(QSize(290, 44))
         self.list_write_folderPath.setStyleSheet(u"*{border-radius:10px;\n"
 "background-color: rgb(255, 255, 255);\n"
 "border:1px solid rgb(232, 232, 232);\n"
@@ -339,16 +359,24 @@ class Ui_MainWindow(object):
 "            subcontrol-origin: margin;\n"
 "        }")
 
-        self.horizontalLayout_8.addWidget(self.list_write_folderPath, 0, Qt.AlignVCenter)
+        self.verticalLayout_9.addWidget(self.list_write_folderPath)
+
+
+        self.horizontalLayout_8.addWidget(self.frame_5)
 
         self.frame_2 = QFrame(self.frame)
         self.frame_2.setObjectName(u"frame_2")
+        self.frame_2.setMaximumSize(QSize(100, 16777215))
         self.frame_2.setFrameShape(QFrame.StyledPanel)
         self.frame_2.setFrameShadow(QFrame.Raised)
         self.verticalLayout_5 = QVBoxLayout(self.frame_2)
         self.verticalLayout_5.setSpacing(3)
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
         self.verticalLayout_5.setContentsMargins(0, 0, 0, 0)
+        self.verticalSpacer = QSpacerItem(20, 23, QSizePolicy.Minimum, QSizePolicy.Maximum)
+
+        self.verticalLayout_5.addItem(self.verticalSpacer)
+
         self.btn_write_readFolder = QPushButton(self.frame_2)
         self.btn_write_readFolder.setObjectName(u"btn_write_readFolder")
         self.btn_write_readFolder.setMinimumSize(QSize(80, 30))
@@ -369,11 +397,11 @@ class Ui_MainWindow(object):
 "	background-color: rgb(235, 159, 34);\n"
 "}")
 
-        self.verticalLayout_5.addWidget(self.btn_write_readFolder, 0, Qt.AlignRight)
+        self.verticalLayout_5.addWidget(self.btn_write_readFolder, 0, Qt.AlignBottom)
 
         self.btn_write_deleteFolder = QPushButton(self.frame_2)
         self.btn_write_deleteFolder.setObjectName(u"btn_write_deleteFolder")
-        self.btn_write_deleteFolder.setMinimumSize(QSize(80, 23))
+        self.btn_write_deleteFolder.setMinimumSize(QSize(80, 20))
         self.btn_write_deleteFolder.setMaximumSize(QSize(80, 16777215))
         self.btn_write_deleteFolder.setStyleSheet(u"*{border-radius:5px;\n"
 "	font-size:12px;\n"
@@ -391,19 +419,29 @@ class Ui_MainWindow(object):
 "	background-color: rgb(203, 125, 126);\n"
 "}")
 
-        self.verticalLayout_5.addWidget(self.btn_write_deleteFolder, 0, Qt.AlignRight)
+        self.verticalLayout_5.addWidget(self.btn_write_deleteFolder)
 
 
         self.horizontalLayout_8.addWidget(self.frame_2)
+
+        self.horizontalSpacer_3 = QSpacerItem(106, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_8.addItem(self.horizontalSpacer_3)
 
 
         self.verticalLayout_6.addWidget(self.frame)
 
         self.line = QFrame(self.write_frame)
         self.line.setObjectName(u"line")
-        self.line.setStyleSheet(u"color: rgb(0, 255, 0);")
+        self.line.setMaximumSize(QSize(500, 2))
+        font2 = QFont()
+        font2.setBold(False)
+        self.line.setFont(font2)
+        self.line.setStyleSheet(u"color:rgb(220, 220, 220)")
+        self.line.setFrameShadow(QFrame.Plain)
+        self.line.setLineWidth(1)
+        self.line.setMidLineWidth(0)
         self.line.setFrameShape(QFrame.HLine)
-        self.line.setFrameShadow(QFrame.Sunken)
 
         self.verticalLayout_6.addWidget(self.line)
 
@@ -439,9 +477,7 @@ class Ui_MainWindow(object):
         self.comboBox_selectWriterGroup.setObjectName(u"comboBox_selectWriterGroup")
         self.comboBox_selectWriterGroup.setMinimumSize(QSize(180, 0))
         self.comboBox_selectWriterGroup.setMaximumSize(QSize(100, 32))
-        font1 = QFont()
-        font1.setBold(False)
-        self.comboBox_selectWriterGroup.setFont(font1)
+        self.comboBox_selectWriterGroup.setFont(font2)
         self.comboBox_selectWriterGroup.setStyleSheet(u"QComboBox{\n"
 "border: 1px solid rgb(232, 232, 232);\n"
 "    \n"
@@ -681,7 +717,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 490, 264))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 490, 245))
         self.gridLayout = QGridLayout(self.scrollAreaWidgetContents)
         self.gridLayout.setObjectName(u"gridLayout")
         self.widget_5 = QWidget(self.scrollAreaWidgetContents)
@@ -808,9 +844,9 @@ class Ui_MainWindow(object):
         self.btn_writer_name = QPushButton(self.writer0)
         self.btn_writer_name.setObjectName(u"btn_writer_name")
         self.btn_writer_name.setMinimumSize(QSize(0, 39))
-        font2 = QFont()
-        font2.setBold(True)
-        self.btn_writer_name.setFont(font2)
+        font3 = QFont()
+        font3.setBold(True)
+        self.btn_writer_name.setFont(font3)
         self.btn_writer_name.setStyleSheet(u"color:rgb(72, 72, 72);\n"
 "background-color:rgb(249, 246, 255);\n"
 "border:none;")
@@ -923,10 +959,7 @@ class Ui_MainWindow(object):
         self.folderPathLable = QLabel(self.page_extract)
         self.folderPathLable.setObjectName(u"folderPathLable")
         self.folderPathLable.setGeometry(QRect(30, 20, 91, 16))
-        font3 = QFont()
-        font3.setPointSize(10)
-        font3.setBold(True)
-        self.folderPathLable.setFont(font3)
+        self.folderPathLable.setFont(font1)
         self.folderPathLable.setStyleSheet(u"color: rgb(127, 127, 127);")
         self.btn_browseFolder = QPushButton(self.page_extract)
         self.btn_browseFolder.setObjectName(u"btn_browseFolder")
@@ -1003,7 +1036,7 @@ class Ui_MainWindow(object):
         self.searchLable_2 = QLabel(self.page_extract)
         self.searchLable_2.setObjectName(u"searchLable_2")
         self.searchLable_2.setGeometry(QRect(30, 230, 91, 16))
-        self.searchLable_2.setFont(font3)
+        self.searchLable_2.setFont(font1)
         self.searchLable_2.setStyleSheet(u"color: rgb(127, 127, 127);")
         self.btn_addTagGroup = QPushButton(self.page_extract)
         self.btn_addTagGroup.setObjectName(u"btn_addTagGroup")
@@ -1199,7 +1232,7 @@ class Ui_MainWindow(object):
         self.searchLable_3 = QLabel(self.page_extract)
         self.searchLable_3.setObjectName(u"searchLable_3")
         self.searchLable_3.setGeometry(QRect(30, 140, 111, 16))
-        self.searchLable_3.setFont(font3)
+        self.searchLable_3.setFont(font1)
         self.searchLable_3.setStyleSheet(u"color: rgb(127, 127, 127);")
         self.stackedWidget.addWidget(self.page_extract)
         self.page_settings = QWidget()
@@ -1294,7 +1327,7 @@ class Ui_MainWindow(object):
         self.folderPathLable_2 = QLabel(self.sidePage_extract)
         self.folderPathLable_2.setObjectName(u"folderPathLable_2")
         self.folderPathLable_2.setGeometry(QRect(30, 20, 91, 16))
-        self.folderPathLable_2.setFont(font3)
+        self.folderPathLable_2.setFont(font1)
         self.folderPathLable_2.setStyleSheet(u"color: rgb(127, 127, 127);")
         self.btn_ExtractionStart = QPushButton(self.sidePage_extract)
         self.btn_ExtractionStart.setObjectName(u"btn_ExtractionStart")
@@ -1476,11 +1509,11 @@ class Ui_MainWindow(object):
         self.folderPathLable_3 = QLabel(self.sidePage_write)
         self.folderPathLable_3.setObjectName(u"folderPathLable_3")
         self.folderPathLable_3.setGeometry(QRect(30, 11, 91, 16))
-        self.folderPathLable_3.setFont(font3)
+        self.folderPathLable_3.setFont(font1)
         self.folderPathLable_3.setStyleSheet(u"color: rgb(127, 127, 127);")
         self.btn_writer_processClear = QPushButton(self.sidePage_write)
         self.btn_writer_processClear.setObjectName(u"btn_writer_processClear")
-        self.btn_writer_processClear.setGeometry(QRect(174, 380, 39, 41))
+        self.btn_writer_processClear.setGeometry(QRect(174, 381, 39, 39))
         self.btn_writer_processClear.setStyleSheet(u"*{border-radius:5px;\n"
 "	font-size:12px;\n"
 "	color: rgb(255, 255, 255);\n"
@@ -1538,6 +1571,7 @@ class Ui_MainWindow(object):
         self.btn_menu_transfer.setText(QCoreApplication.translate("MainWindow", u"\u8f6c\u6362", None))
         self.btn_menu_check.setText(QCoreApplication.translate("MainWindow", u"\u6838\u5bf9", None))
         self.btn_menu_setting.setText(QCoreApplication.translate("MainWindow", u"\u8bbe\u7f6e", None))
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"\u6587\u4ef6\u8bfb\u53d6\u8def\u5f84", None))
         self.btn_write_readFolder.setText(QCoreApplication.translate("MainWindow", u"\u6d4f\u89c8\u6587\u4ef6\u5939", None))
         self.btn_write_deleteFolder.setText(QCoreApplication.translate("MainWindow", u"\u5220\u9664\u6587\u4ef6\u5939", None))
         self.comboBox_selectWriterGroup.setItemText(0, QCoreApplication.translate("MainWindow", u"\u5168\u90e8\u5199\u5165\u7ec4", None))

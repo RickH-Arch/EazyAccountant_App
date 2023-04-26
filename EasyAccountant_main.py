@@ -184,6 +184,25 @@ class MainWindow(QMainWindow):
         self.animation.setEndValue(newWidth)
         self.animation.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
         self.animation.start()
+
+        #write page
+        width2 = self.ui.write_frame.width()
+        if width2 == 510:
+            newWidth2 = 450
+        else:
+            newWidth2 = 510
+
+        self.animation2 = QPropertyAnimation(self.ui.write_frame,b"size")
+        self.animation2.setDuration(250)
+        self.animation2.setStartValue(QSize(width2,430))
+        self.animation2.setEndValue(QSize(newWidth2,430))
+        self.animation2.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+        self.animation2.start()
+
+        
+
+        
+        
 #------------------------------------------------------------------------------------
 
 #----------------------------menu button trigger-------------------------------------
