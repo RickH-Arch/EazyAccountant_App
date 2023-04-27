@@ -22,6 +22,7 @@ from EasyAccountantApp_UI_ui import Ui_MainWindow
 from ExtractFunc.Extract_main import *
 from WriteFunc.Write_main import *
 from utils.DoubleClickChecker import DoubleClickChecker
+from utils.DataManager import DataMgr
 
 
 WINDOW_SIZE = 0
@@ -36,6 +37,10 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
         self.OnDrag = False
         self.setAcceptDrops(True)
+        self.globalDataPath = "Cache\\globalData.json"
+        self.glbData = DataMgr.LoadData(self.globalDataPath)
+        if self.glbData is None:
+            self.glbData = GlobalData()
 
         self.status = {
             "btn_menu_check":False,
@@ -82,17 +87,25 @@ class MainWindow(QMainWindow):
         self.ui.side_assist_window.setMinimumWidth(250)
         self.status["btn_menu_extract"] = True
         #stacked pages navigation
-        self.ui.btn_menu_check.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_check))
-        self.ui.btn_menu_check.clicked.connect(lambda: self.ui.stackedWidget_side.setCurrentWidget(self.ui.sidePage_check))
+        self.ui.btn_menu_check.clicked.connect(lambda: (self.ui.stackedWidget.setCurrentWidget(self.ui.page_check),
+                                                self.ui.stackedWidget_side.setCurrentWidget(self.ui.sidePage_check),
+                                               self.glbData.selectPage(3),
+                                                self.MenuButtonClickedFinished()))
         self.ui.btn_menu_check.clicked.connect(self.SetStatus)
-        self.ui.btn_menu_extract.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_extract))
-        self.ui.btn_menu_extract.clicked.connect(lambda: self.ui.stackedWidget_side.setCurrentWidget(self.ui.sidePage_extract))
+        self.ui.btn_menu_extract.clicked.connect(lambda: (self.ui.stackedWidget.setCurrentWidget(self.ui.page_extract),
+                                                        self.ui.stackedWidget_side.setCurrentWidget(self.ui.sidePage_extract),
+                                                        self.glbData.selectPage(0),
+                                                        self.MenuButtonClickedFinished()))
         self.ui.btn_menu_extract.clicked.connect(self.SetStatus)
-        self.ui.btn_menu_transfer.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_transfer))
-        self.ui.btn_menu_transfer.clicked.connect(lambda: self.ui.stackedWidget_side.setCurrentWidget(self.ui.sidePage_transfer))
+        self.ui.btn_menu_transfer.clicked.connect(lambda: (self.ui.stackedWidget.setCurrentWidget(self.ui.page_transfer),
+                                                            self.ui.stackedWidget_side.setCurrentWidget(self.ui.sidePage_transfer),
+                                                            self.glbData.selectPage(2),
+                                                            self.MenuButtonClickedFinished()))
         self.ui.btn_menu_transfer.clicked.connect(self.SetStatus)
-        self.ui.btn_menu_write.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_write))
-        self.ui.btn_menu_write.clicked.connect(lambda: self.ui.stackedWidget_side.setCurrentWidget(self.ui.sidePage_write))
+        self.ui.btn_menu_write.clicked.connect(lambda: (self.ui.stackedWidget.setCurrentWidget(self.ui.page_write),
+                                                        self.ui.stackedWidget_side.setCurrentWidget(self.ui.sidePage_write),
+                                                        self.glbData.selectPage(1),
+                                                        self.MenuButtonClickedFinished()))
         self.ui.btn_menu_write.clicked.connect(self.SetStatus)
         self.ui.btn_menu_setting.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_settings))
         self.ui.btn_menu_setting.clicked.connect(lambda: self.ui.stackedWidget_side.setCurrentWidget(self.ui.sidePage_settings))
@@ -149,6 +162,15 @@ class MainWindow(QMainWindow):
         self.ui.btn_write_readFolder.clicked.connect(lambda:writeMain.AddFolderPath(self.ui.list_write_folderPath))
         self.ui.btn_write_deleteFolder.clicked.connect(lambda:writeMain.DeleteFolderPath(self.ui.list_write_folderPath))
         ####################################################
+
+        if self.glbData.pageNow == 0:
+            self.ui.btn_menu_extract.click()
+        elif self.glbData.pageNow == 1:
+            self.ui.btn_menu_write.click()
+        elif self.glbData.pageNow == 2:
+            self.ui.btn_menu_transfer.click()
+        elif self.glbData.pageNow == 3:
+            self.ui.btn_menu_check.click()
 
 
 #####################################################################################
@@ -211,6 +233,10 @@ class MainWindow(QMainWindow):
 #------------------------------------------------------------------------------------
 
 #----------------------------menu button trigger-------------------------------------
+    def MenuButtonClickedFinished(self):
+        
+        DataMgr.WriteData(self.glbData,self.globalDataPath)
+    
     def SetStatus(self):
         for key in self.status:
             if key == self.sender().objectName():
@@ -219,6 +245,7 @@ class MainWindow(QMainWindow):
                 self.status[key] = False
         #print(self.status)
         self.resizeAssistWindow()
+        
 
     def resizeAssistWindow(self):
         if(self.sender().objectName() == "btn_menu_extract"):
@@ -266,6 +293,16 @@ class MainWindow(QMainWindow):
         else:
             WINDOW_SIZE = 0
             self.showNormal()
+
+class GlobalData:
+    def __init__(self) -> None:
+        self.pageNow = 0
+        
+
+    def selectPage(self,idx):
+        self.pageNow = idx
+        
+        
 
     
 
