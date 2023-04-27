@@ -15,7 +15,7 @@ from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel,
 from PySide6.QtWidgets import *
 
 from ExtractFunc.ExtractDataManager import ExtractDataManager
-from ExcelFileFunc.ExcelManager import *
+from utils.ExcelManager import *
 
 class ExtractMain():
     def __init__(self) -> None:

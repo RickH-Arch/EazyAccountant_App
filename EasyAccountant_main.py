@@ -20,6 +20,7 @@ from EasyAccountantApp_UI_ui import Ui_MainWindow
 
 
 from ExtractFunc.Extract_main import *
+from utils.DoubleClickChecker import DoubleClickChecker
 
 
 WINDOW_SIZE = 0
@@ -130,7 +131,8 @@ class MainWindow(QMainWindow):
         #tag group
         extractMain.LoadTagGroup(self.ui.tag_group)
         self.ui.btn_addTagGroup.clicked.connect(lambda:extractMain.AddTagGroup(self.ui.tag_group))
-        self.ui.btn_delTagGroup.clicked.connect(self.checkDoubleClick)
+        self.doubleChecker1 = DoubleClickChecker(lambda:extractMain.DeleteTagGroup(self.ui.tag_group))
+        self.ui.btn_delTagGroup.clicked.connect(lambda : self.doubleChecker1.DoubleClick())
         self.ui.btn_addTag.clicked.connect(lambda: extractMain.AddTag(self.ui.tag_group))
         self.ui.btn_delTag.clicked.connect(lambda:extractMain.DeleteTag(self.ui.tag_group))
         self.ui.tag_group.tabBarDoubleClicked.connect(lambda:extractMain.RenameTagGroup(self.ui.tag_group))
