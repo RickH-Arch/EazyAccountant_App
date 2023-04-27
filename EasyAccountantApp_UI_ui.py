@@ -325,7 +325,7 @@ class Ui_MainWindow(object):
 
         self.list_write_folderPath = QListWidget(self.frame_5)
         self.list_write_folderPath.setObjectName(u"list_write_folderPath")
-        self.list_write_folderPath.setMinimumSize(QSize(0, 54))
+        self.list_write_folderPath.setMinimumSize(QSize(324, 54))
         self.list_write_folderPath.setMaximumSize(QSize(290, 44))
         self.list_write_folderPath.setStyleSheet(u"*{border-radius:10px;\n"
 "background-color: rgb(255, 255, 255);\n"
@@ -424,7 +424,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_8.addWidget(self.frame_2)
 
-        self.horizontalSpacer_3 = QSpacerItem(106, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_3 = QSpacerItem(0, 20, QSizePolicy.MinimumExpanding, QSizePolicy.Minimum)
 
         self.horizontalLayout_8.addItem(self.horizontalSpacer_3)
 
@@ -701,7 +701,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 490, 245))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 490, 244))
         self.gridLayout = QGridLayout(self.scrollAreaWidgetContents)
         self.gridLayout.setObjectName(u"gridLayout")
         self.widget_5 = QWidget(self.scrollAreaWidgetContents)
@@ -1233,7 +1233,7 @@ class Ui_MainWindow(object):
         self.side_assist_window.setObjectName(u"side_assist_window")
         self.side_assist_window.setMinimumSize(QSize(250, 0))
         self.side_assist_window.setMaximumSize(QSize(60, 16777215))
-        self.side_assist_window.setStyleSheet(u"background-color: rgb(244, 241, 250);\n"
+        self.side_assist_window.setStyleSheet(u"background-color: rgb(241, 238, 247);\n"
 "border-bottom-right-radius:10px;")
         self.side_assist_window.setFrameShape(QFrame.NoFrame)
         self.side_assist_window.setFrameShadow(QFrame.Raised)
@@ -1429,7 +1429,7 @@ class Ui_MainWindow(object):
         self.sidePage_write.setObjectName(u"sidePage_write")
         self.list_programStep_2 = QListWidget(self.sidePage_write)
         self.list_programStep_2.setObjectName(u"list_programStep_2")
-        self.list_programStep_2.setGeometry(QRect(30, 30, 191, 399))
+        self.list_programStep_2.setGeometry(QRect(30, 40, 191, 387))
         self.list_programStep_2.setStyleSheet(u"*{border-radius:10px;\n"
 "background-color: rgb(255, 255, 255);\n"
 "border:1px solid rgb(232, 232, 232);\n"
@@ -1492,7 +1492,7 @@ class Ui_MainWindow(object):
 "    }")
         self.folderPathLable_3 = QLabel(self.sidePage_write)
         self.folderPathLable_3.setObjectName(u"folderPathLable_3")
-        self.folderPathLable_3.setGeometry(QRect(30, 11, 91, 16))
+        self.folderPathLable_3.setGeometry(QRect(30, 20, 91, 16))
         self.folderPathLable_3.setFont(font1)
         self.folderPathLable_3.setStyleSheet(u"color: rgb(127, 127, 127);")
         self.btn_writer_processClear = QPushButton(self.sidePage_write)

@@ -4,7 +4,7 @@ class FolderPathMgr:
     def __init__(self) -> None:
         pass
 
-    def AddFolderPath(list) -> str:
+    def AddFolderPath() -> str:
         mainWindow = QMainWindow()
         fileDialog = QFileDialog(mainWindow)
         selectedDir = fileDialog.getExistingDirectory(mainWindow,"选择文件夹")

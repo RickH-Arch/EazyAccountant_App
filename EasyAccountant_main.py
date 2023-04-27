@@ -20,12 +20,14 @@ from EasyAccountantApp_UI_ui import Ui_MainWindow
 
 
 from ExtractFunc.Extract_main import *
+from WriteFunc.Write_main import *
 from utils.DoubleClickChecker import DoubleClickChecker
 
 
 WINDOW_SIZE = 0
 
 extractMain = ExtractMain()
+writeMain = WriteMain()
 
 class MainWindow(QMainWindow):
     def __init__(self, parent = None) :
@@ -35,8 +37,6 @@ class MainWindow(QMainWindow):
         self.OnDrag = False
         self.setAcceptDrops(True)
 
-        
-        
         self.status = {
             "btn_menu_check":False,
             "btn_menu_extract":False,
@@ -145,6 +145,9 @@ class MainWindow(QMainWindow):
 
         #################write page setting#################
         #folderPath
+        writeMain.LoadFolderPath(self.ui.list_write_folderPath)
+        self.ui.btn_write_readFolder.clicked.connect(lambda:writeMain.AddFolderPath(self.ui.list_write_folderPath))
+        self.ui.btn_write_deleteFolder.clicked.connect(lambda:writeMain.DeleteFolderPath(self.ui.list_write_folderPath))
         ####################################################
 
 

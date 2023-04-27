@@ -112,7 +112,7 @@ class ExtractMain():
 
     #==========Data Change=========================
     def AddFolderPath(self,list):
-        selectedDir = FolderPathMgr.AddFolderPath(list)
+        selectedDir = FolderPathMgr.AddFolderPath()
         if self.dataMgr.AddFolderPath(selectedDir):
             list.addItem(QListWidgetItem(selectedDir))
         

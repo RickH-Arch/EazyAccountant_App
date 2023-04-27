@@ -1,19 +1,12 @@
-import json
-import jsonpickle
-from json import JSONEncoder
+from utils.DataManager import DataMgr
 
 class ExtractDataManager:
     def __init__(self):
+        self.dataPath = "cache\\extractData.json"
         
-        self.data = StoreData()
-
-        try:
-            with open("cache\\extractData.json","r") as f:
-                
-                self.data = jsonpickle.decode(f.read())
-                
-        except FileNotFoundError:
-            pass
+        self.data = DataMgr.LoadData(self.dataPath)
+        if self.data is None:
+            self.data = StoreData()
 
 
     #=================Data Change==============
@@ -180,10 +173,7 @@ class ExtractDataManager:
 
     #Json refresh
     def RefreshJson(self):
-        data = jsonpickle.encode(self.data,unpicklable = True,indent = 4)
-        #jsonData = json.dumps(data,indent = 4)
-        with open('cache\\extractData.json','w') as f:
-            f.write(data)
+        DataMgr.WriteData(self.data,self.dataPath)
 
 class StoreData():
     def __init__(self) -> None:

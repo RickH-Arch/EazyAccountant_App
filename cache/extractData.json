@@ -1,21 +1,18 @@
 {
     "py/object": "ExtractFunc.ExtractDataManager.StoreData",
     "folderPaths": [
-        "D:/_EVENTS_/_Clair_/app\u6d4b\u8bd5-2",
-        "D:/_EVENTS_/_Clair_/app\u6d4b\u8bd5",
+        "D:/_EVENTS_/_Clair_/EasyAccountant_App/cache",
         "D:/_EVENTS_/_Clair_/EasyAccountant_App/utils"
     ],
     "file_keywords": [
-        "\u660e\u53f0\u7535\u529b",
-        "\u5475\u5475\u7535\u529b",
-        "\u660e\u53f0**\u6709\u9650",
-        "\u65b0\u5173\u952e\u8bcd"
+        "sacac",
+        "vdfzvzfdv"
     ],
     "keywords": [],
     "tagGroups": [
         {
             "py/object": "ExtractFunc.ExtractDataManager.TagGroup",
-            "groupName": "123",
+            "groupName": "\u6708\u62a5",
             "tagList": [
                 {
                     "py/object": "ExtractFunc.ExtractDataManager.Tag",
@@ -46,12 +43,22 @@
                         "\u5355\u4f4d": ""
                     },
                     "isActive": true
+                },
+                {
+                    "py/object": "ExtractFunc.ExtractDataManager.Tag",
+                    "tagInfo": {
+                        "\u540d\u79f0": "\u6807\u7b7e4",
+                        "\u5de5\u4f5c\u8868": "",
+                        "\u5750\u6807": "",
+                        "\u5355\u4f4d": ""
+                    },
+                    "isActive": true
                 }
             ]
         },
         {
             "py/object": "ExtractFunc.ExtractDataManager.TagGroup",
-            "groupName": "vsdfc",
+            "groupName": "daxd",
             "tagList": [
                 {
                     "py/object": "ExtractFunc.ExtractDataManager.Tag",
@@ -66,7 +73,7 @@
             ]
         }
     ],
-    "activeGroup": 1,
+    "activeGroup": 0,
     "followRow": true,
     "autoArrange": true
 }
