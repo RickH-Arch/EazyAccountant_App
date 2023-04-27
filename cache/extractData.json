@@ -2,7 +2,8 @@
     "py/object": "ExtractFunc.ExtractDataManager.StoreData",
     "folderPaths": [
         "D:/_EVENTS_/_Clair_/app\u6d4b\u8bd5-2",
-        "D:/_EVENTS_/_Clair_/app\u6d4b\u8bd5"
+        "D:/_EVENTS_/_Clair_/app\u6d4b\u8bd5",
+        "D:/_EVENTS_/_Clair_/EasyAccountant_App/utils"
     ],
     "file_keywords": [
         "\u660e\u53f0\u7535\u529b",
@@ -50,7 +51,7 @@
         },
         {
             "py/object": "ExtractFunc.ExtractDataManager.TagGroup",
-            "groupName": "njk",
+            "groupName": "vsdfc",
             "tagList": [
                 {
                     "py/object": "ExtractFunc.ExtractDataManager.Tag",
@@ -65,7 +66,7 @@
             ]
         }
     ],
-    "activeGroup": 0,
+    "activeGroup": 1,
     "followRow": true,
     "autoArrange": true
 }

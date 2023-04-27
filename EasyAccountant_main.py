@@ -34,10 +34,6 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
         self.OnDrag = False
         self.setAcceptDrops(True)
-        self.click_timer = QTimer()
-        self.click_timer.setSingleShot(True)
-        self.click_timer.timeout.connect(self.DeleteTagGroup)
-        self.click_count = 0
 
         
         
@@ -131,8 +127,8 @@ class MainWindow(QMainWindow):
         #tag group
         extractMain.LoadTagGroup(self.ui.tag_group)
         self.ui.btn_addTagGroup.clicked.connect(lambda:extractMain.AddTagGroup(self.ui.tag_group))
-        self.doubleChecker1 = DoubleClickChecker(lambda:extractMain.DeleteTagGroup(self.ui.tag_group))
-        self.ui.btn_delTagGroup.clicked.connect(lambda : self.doubleChecker1.DoubleClick())
+        self.doubleChecker_delTagGrp = DoubleClickChecker(lambda:extractMain.DeleteTagGroup(self.ui.tag_group))
+        self.ui.btn_delTagGroup.clicked.connect(lambda : self.doubleChecker_delTagGrp.DoubleClick())
         self.ui.btn_addTag.clicked.connect(lambda: extractMain.AddTag(self.ui.tag_group))
         self.ui.btn_delTag.clicked.connect(lambda:extractMain.DeleteTag(self.ui.tag_group))
         self.ui.tag_group.tabBarDoubleClicked.connect(lambda:extractMain.RenameTagGroup(self.ui.tag_group))
@@ -145,6 +141,10 @@ class MainWindow(QMainWindow):
         self.ui.btn_ExtractionStart.clicked.connect(lambda: extractMain.ExtractStart(self.ui.btn_ExtractionStart,self.ui.list_programStep))
         self.ui.btn_processDelete.clicked.connect(lambda: extractMain.DeleteOnProcess(self.ui.list_programStep))
         self.ui.btn_ExtractionReset.clicked.connect(lambda:extractMain.ResetProcess(self.ui.list_programStep,self.ui.btn_ExtractionStart))
+        ####################################################
+
+        #################write page setting#################
+        #folderPath
         ####################################################
 
 
@@ -249,10 +249,7 @@ class MainWindow(QMainWindow):
             self.ui.list_folderPath.addItem(QListWidgetItem(path))
         event.accept()
 
-    def DeleteTagGroup(self):
-        if self.click_count>1:
-            extractMain.DeleteTagGroup(self.ui.tag_group)
-        self.click_count = 0
+   
 
 ##############################################################################################
 #-------------------------------------------------------------------------------------
@@ -267,10 +264,7 @@ class MainWindow(QMainWindow):
             WINDOW_SIZE = 0
             self.showNormal()
 
-    def checkDoubleClick(self):
-        self.click_count += 1
-        if not self.click_timer.isActive():
-            self.click_timer.start(250)
+    
 
     
         

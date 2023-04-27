@@ -9,13 +9,12 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel,
-    QMainWindow, QPushButton, QSizePolicy, QVBoxLayout,
-    QWidget,QTextBrowser)
+
 from PySide6.QtWidgets import *
 
 from ExtractFunc.ExtractDataManager import ExtractDataManager
 from utils.ExcelManager import *
+from utils.FolderPathManager import FolderPathMgr
 
 class ExtractMain():
     def __init__(self) -> None:
@@ -33,6 +32,7 @@ class ExtractMain():
         self.myTags = []
 
         self.sheetKeywordCache = ""
+        
         
 
     #========Load info to ui=====================
@@ -112,9 +112,7 @@ class ExtractMain():
 
     #==========Data Change=========================
     def AddFolderPath(self,list):
-        mainWindow = QMainWindow()
-        fileDialog = QFileDialog(mainWindow)
-        selectedDir = fileDialog.getExistingDirectory(mainWindow,"选择文件夹")
+        selectedDir = FolderPathMgr.AddFolderPath(list)
         if self.dataMgr.AddFolderPath(selectedDir):
             list.addItem(QListWidgetItem(selectedDir))
         
@@ -417,9 +415,7 @@ class ExtractMain():
                         colCur+=1
                     rowCur+=1
 
-            mainWindow = QMainWindow()
-            fileDialog = QFileDialog(mainWindow)
-            selectedDir = fileDialog.getSaveFileName(mainWindow,"导出","","Excel Files(*.xlsx)")
+            selectedDir = FolderPathMgr.SelectExportFilePath()
             #print(selectedDir)
             self.wb.save(selectedDir[0])
             
