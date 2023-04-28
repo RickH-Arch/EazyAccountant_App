@@ -1536,7 +1536,7 @@ class Ui_MainWindow(object):
 
         self.stackedWidget.setCurrentIndex(0)
         self.tag_group.setCurrentIndex(-1)
-        self.stackedWidget_side.setCurrentIndex(2)
+        self.stackedWidget_side.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)

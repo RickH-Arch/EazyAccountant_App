@@ -2444,7 +2444,7 @@ border-bottom-right-radius:10px;</string>
           <item>
            <widget class="QStackedWidget" name="stackedWidget_side">
             <property name="currentIndex">
-             <number>2</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="sidePage_extract">
              <widget class="QListWidget" name="list_programStep">
