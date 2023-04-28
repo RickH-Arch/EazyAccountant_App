@@ -35,9 +35,11 @@ class WriteDataManager:
 class StoreData:
     def __init__(self) -> None:
         self.folderPaths = []
+
         self.writerGroups = []
-        self.writerGroupNow = None
-        self.writerGroups = []
+        self.writerGroupNow = "全部写入组"
+        
+
         
 class WriterGroup:
     def __init__(self,groupName) -> None:
@@ -48,5 +50,17 @@ class Writer:
     def __init__(self,name) -> None:
         self.name = name
         self.chosen = False
+        self.isRowProcess = True
+        self.workbookNames = []
+        self.sheetNames = []
+        self.keyNames = []
+        self.valueNames = []
+        self.processes = []
+
+class Process:
+    def __init__(self,name) -> None:
+        self.name = name
+        self.reWrite = True
+        self.processStr = ""
 
         

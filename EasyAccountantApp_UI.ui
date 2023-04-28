@@ -1278,7 +1278,8 @@ border:1px solid rgb(232, 232, 232);
 background-color: rgb(255, 255, 255);
 border:1px solid rgb(232, 232, 232);
 color: rgb(121, 121, 121);
-font-size:11px;}
+font-size:11px;
+border-radius:10px;}
 
 QScrollBar:vertical {              
         border:none;
