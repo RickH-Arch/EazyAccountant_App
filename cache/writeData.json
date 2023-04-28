@@ -1,8 +1,17 @@
 {
     "py/object": "WriteFunc.WriteDataManager.StoreData",
-    "folderPaths": [
-        "D:/_EVENTS_/_Clair_/EasyAccountant_App/test"
+    "folderPaths": [],
+    "writerGroups": [
+        {
+            "py/object": "WriteFunc.WriteDataManager.WriterGroup",
+            "groupName": "\u5168\u90e8\u5199\u5165\u7ec4",
+            "writer": []
+        },
+        {
+            "py/object": "WriteFunc.WriteDataManager.WriterGroup",
+            "groupName": "\u65b0\u5199\u5165\u7ec4",
+            "writer": []
+        }
     ],
-    "writerGroups": [],
-    "writerGroupNow": null
+    "writerGroupNow": "\u65b0\u5199\u5165\u7ec4"
 }

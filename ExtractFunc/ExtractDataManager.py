@@ -7,6 +7,7 @@ class ExtractDataManager:
         self.data = DataMgr.LoadData(self.dataPath)
         if self.data is None:
             self.data = StoreData()
+            self.RefreshJson()
 
 
     #=================Data Change==============

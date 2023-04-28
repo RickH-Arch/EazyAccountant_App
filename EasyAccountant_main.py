@@ -17,7 +17,7 @@ from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel,
 from PySide6.QtWidgets import *
 
 from EasyAccountantApp_UI_ui import Ui_MainWindow
-
+from WriterEditor_ui import Ui_Form as WriterEditor
 
 from ExtractFunc.Extract_main import *
 from WriteFunc.Write_main import *
@@ -120,6 +120,7 @@ class MainWindow(QMainWindow):
         for w in self.ui.left_side_menu.findChildren(QPushButton):
             w.clicked.connect(self.applyButtonStyle)
 
+#--------------------------------------------------------------------------------------
         #############Extract page Setting##################
         #folder Path
         extractMain.LoadFolderPath(self.ui.list_folderPath)
@@ -155,12 +156,18 @@ class MainWindow(QMainWindow):
         self.ui.btn_processDelete.clicked.connect(lambda: extractMain.DeleteOnProcess(self.ui.list_programStep))
         self.ui.btn_ExtractionReset.clicked.connect(lambda:extractMain.ResetProcess(self.ui.list_programStep,self.ui.btn_ExtractionStart))
         ####################################################
-
+#--------------------------------------------------------------------------------------------------------------
         #################write page setting#################
         #folderPath
         writeMain.LoadFolderPath(self.ui.list_write_folderPath)
         self.ui.btn_write_readFolder.clicked.connect(lambda:writeMain.AddFolderPath(self.ui.list_write_folderPath))
         self.ui.btn_write_deleteFolder.clicked.connect(lambda:writeMain.DeleteFolderPath(self.ui.list_write_folderPath))
+
+        #writer group checkbox
+        writeMain.LoadWriterGroup(self.ui.comboBox_selectWriterGroup,self.ui.btn_renameWriterGroup)
+        self.ui.comboBox_selectWriterGroup.currentIndexChanged.connect(lambda:writeMain.SwitchWriterGroup(self.ui.comboBox_selectWriterGroup,self.ui.btn_renameWriterGroup))
+
+
         ####################################################
 
         if self.glbData.pageNow == 0:

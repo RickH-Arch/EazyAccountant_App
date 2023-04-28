@@ -472,8 +472,6 @@ class Ui_MainWindow(object):
         self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
         self.horizontalLayout_6.setContentsMargins(0, 0, 0, 0)
         self.comboBox_selectWriterGroup = QComboBox(self.writer_editGroup)
-        self.comboBox_selectWriterGroup.addItem("")
-        self.comboBox_selectWriterGroup.addItem("")
         self.comboBox_selectWriterGroup.setObjectName(u"comboBox_selectWriterGroup")
         self.comboBox_selectWriterGroup.setMinimumSize(QSize(180, 0))
         self.comboBox_selectWriterGroup.setMaximumSize(QSize(100, 32))
@@ -1559,9 +1557,6 @@ class Ui_MainWindow(object):
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"\u6587\u4ef6\u8bfb\u53d6\u8def\u5f84", None))
         self.btn_write_readFolder.setText(QCoreApplication.translate("MainWindow", u"\u6d4f\u89c8\u6587\u4ef6\u5939", None))
         self.btn_write_deleteFolder.setText(QCoreApplication.translate("MainWindow", u"\u5220\u9664\u6587\u4ef6\u5939", None))
-        self.comboBox_selectWriterGroup.setItemText(0, QCoreApplication.translate("MainWindow", u"\u5168\u90e8\u5199\u5165\u7ec4", None))
-        self.comboBox_selectWriterGroup.setItemText(1, QCoreApplication.translate("MainWindow", u"\u65b0\u5199\u5165\u7ec4", None))
-
         self.btn_renameWriterGroup.setText(QCoreApplication.translate("MainWindow", u"\u91cd\u547d\u540d", None))
         self.btn_addWriterGroup.setText(QCoreApplication.translate("MainWindow", u"\u6dfb\u52a0\u5199\u5165\u7ec4", None))
         self.btn_deleteWriterGroup.setText(QCoreApplication.translate("MainWindow", u"\u5220\u9664", None))

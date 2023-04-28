@@ -5,6 +5,7 @@ class WriteDataManager:
         self.data = DataMgr.LoadData(self.dataPath)
         if self.data is None:
             self.data = StoreData()
+            self.RefreshJson()
 
     #=======================data change=============
     def AddFolderPath(self,path):
@@ -26,6 +27,15 @@ class WriteDataManager:
                 self.RefreshJson()
                 return True
         return False
+    
+    def SwitchWriterGroup(self,curText):
+        for i,g in enumerate(self.data.writerGroups):
+            if g.groupName == curText:
+                self.data.writerGroupNow = curText
+                self.RefreshJson()
+                return True
+        return False
+
         
 
     def RefreshJson(self):
@@ -37,7 +47,12 @@ class StoreData:
         self.folderPaths = []
 
         self.writerGroups = []
+        self.InitWriterGroup()
         self.writerGroupNow = "全部写入组"
+
+    def InitWriterGroup(self):
+        self.writerGroups.append(WriterGroup("全部写入组"))
+        self.writerGroups.append(WriterGroup("新写入组"))
         
 
         

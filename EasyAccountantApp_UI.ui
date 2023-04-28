@@ -1080,16 +1080,6 @@ QComboBox QAbstractItemView::item:selected{
                       <height>16</height>
                      </size>
                     </property>
-                    <item>
-                     <property name="text">
-                      <string>全部写入组</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>新写入组</string>
-                     </property>
-                    </item>
                    </widget>
                   </item>
                   <item>

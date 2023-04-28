@@ -15,6 +15,7 @@ from PySide6.QtWidgets import *
 from ExtractFunc.ExtractDataManager import ExtractDataManager
 from utils.ExcelManager import *
 from utils.FolderPathManager import FolderPathMgr
+import utils.styleSheets as styles
 
 class ExtractMain():
     def __init__(self) -> None:
@@ -278,7 +279,7 @@ class ExtractMain():
     #=============================process===============================
     def ExtractStart(self,button,list):
         if self._getExcel_ == False:
-            button.setStyleSheet(ButtonDisableStyleSheet)
+            button.setStyleSheet(styles.buttonDisable)
             button.setEnabled(False)
             _workbooks,_workbookNames = self.excelMgr.GetExcelWorkBook(self.dataMgr.data.folderPaths,self.dataMgr.data.file_keywords)
             if self.dataMgr.data.autoArrange:
@@ -292,7 +293,7 @@ class ExtractMain():
                 list.addItem(QListWidgetItem(n))
                 self.myWorkbooks.append(MyWorkBook(_workbooks[i],n))
             
-            button.setStyleSheet(ButtonOnProcessStyleSheet)
+            button.setStyleSheet(styles.buttonOnProcess)
             button.setEnabled(True)
             button.setText("继续")
             self._getExcel_ = True
@@ -473,7 +474,7 @@ class ExtractMain():
         self.myWorkbooks = []
         self.wb = []
         list.clear()
-        button.setStyleSheet(ButtonOnStartStyleSheet)
+        button.setStyleSheet(styles.buttonOnStart)
         button.setText("开始生成")
 
 
@@ -489,7 +490,7 @@ class ExtractMain():
         table.setColumnCount(5)
         table.setHorizontalHeaderLabels([""]+["名称","工作表","坐标","单位"])
             
-        table.setStyleSheet(TableStyleSheet)
+        table.setStyleSheet(styles.TableStyleSheet)
         #table.setMinimumSize(QSize(364,123))
         #table.setMaximumSize(QSize(365,124))
         table.horizontalHeader().setSectionResizeMode(QHeaderView.Fixed)
@@ -519,73 +520,3 @@ class MyTag:
 
 
 
-TableStyleSheet = '''*{background-color: rgb(255, 255, 255);\n
-border-radius:10px;}\n
-QTableWidget::item:selected{background-color:#bcb5e3}\n
-QTableWidget::indicator:checked { background-color: #bcb5e3 ;
-border-radius:3px}\n
-QTableWidget::indicator:unchecked { background-color: white;
-border-radius:3px;
-border:1px solid lightgray;}\n
-
-QScrollBar {              \n
-            border: none;\n
-            background:white;\n
-            width:3px;\n
-            margin: 0px 0px 0px 0px;\n
-        }\n
-        QScrollBar::handle {\n
-            background: qlineargradient(x1:0, y1:0, x2:1, y2:0,\n
-            stop: 0 rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130), stop:1 rgb(32, 47, 130));\n
-            min-height: 0px;\n
-        }\n
-        QScrollBar::add-line{\n
-            background: qlineargradient(x1:0, y1:0, x2:1, y2:0,\n
-            stop: 0 rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130),  stop:1 rgb(32, 47, 130));\n
-            height: 0px;\n
-            subcontrol-position: bottom;\n
-            subcontrol-origin: margin;\n
-        }\n
-        QScrollBar::sub-line {\n
-            background: qlineargradient(x1:0, y1:0, x2:1, y2:0,\n
-         stop: 0  rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130),  stop:1 rgb(32, 47, 130));\n
-           height: 0 px;\n
-            subcontrol-position: top;\n
-          subcontrol-origin: margin;\n
-        }\n'''
-
-ButtonDisableStyleSheet = '''
-*{border-radius:5px;
-	font-size:12px;
-	color: rgb(255, 255, 255);
-	background-color:lightgray ;
-}
-
-*:hover{
-	background-color: gray;
-}
-'''
-
-ButtonOnProcessStyleSheet = '''
-*{border-radius:5px;
-	font-size:12px;
-	color: rgb(90,90,90);
-	background-color:rgb(195, 241, 121) ;
-}
-
-*:hover{
-	background-color: rgb(255, 179, 54);
-}
-'''
-
-ButtonOnStartStyleSheet = '''
-*{border-radius:5px;
-	font-size:12px;
-	color: rgb(255,255,255);
-	background-color:rgb(81, 66, 147) ;
-}
-
-*:hover{
-	background-color: rgb(255, 179, 54);
-}
-'''
