@@ -170,6 +170,8 @@ class MainWindow(QMainWindow):
         self.ui.btn_addWriterGroup.clicked.connect(lambda:writerMain.AddWriterGroup(self.ui.comboBox_selectWriterGroup,self.ui.writerGridLayout))
         self.doubleChecker_delWriterGroup = DoubleClickChecker(lambda:writerMain.DeleteWriterGroup(self.ui.comboBox_selectWriterGroup,self.ui.writerGridLayout))
         self.ui.btn_deleteWriterGroup.clicked.connect(lambda:self.doubleChecker_delWriterGroup.DoubleClick())
+        self.ui.btn_writer_forward.clicked.connect(lambda:writerMain.RearrangeWriter(self.ui.comboBox_selectWriterGroup,self.ui.writerGridLayout,forward = True))
+        self.ui.btn_writer_backward.clicked.connect(lambda:writerMain.RearrangeWriter(self.ui.comboBox_selectWriterGroup,self.ui.writerGridLayout,forward = False))
         ####################################################
 
         if self.glbData.pageNow == 0:

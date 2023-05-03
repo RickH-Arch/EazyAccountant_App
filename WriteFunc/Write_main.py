@@ -171,6 +171,18 @@ class WriteMain:
         if self.dataMgr.CopyWriter(curGroup,name):
             self.RefreshGrid(cBox,grid)
 
+    def RearrangeWriter(self,cBox,grid,forward = True):
+        curGroup = cBox.currentText()
+        if curGroup == "全部写入组":
+            return
+        if forward == True:
+            if self.dataMgr.WriterMoveForward(curGroup):
+                self.RefreshGrid(cBox,grid)
+        else:
+            if self.dataMgr.WriterMoveBackward(curGroup):
+                self.RefreshGrid(cBox,grid)
+
+
     def EditWriter(self,name):
         print("edit writer:",name)
         #TODO:finish edit function

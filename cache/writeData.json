@@ -63,7 +63,7 @@
                 {
                     "py/object": "WriteFunc.WriteDataManager.Writer",
                     "name": "\u65b0\u5199\u5165_\u62f7\u8d1d",
-                    "selected": false,
+                    "selected": true,
                     "parent": "12e",
                     "isRowProcess": true,
                     "workbookNames": [],
@@ -129,7 +129,7 @@
                 {
                     "py/object": "WriteFunc.WriteDataManager.Writer",
                     "name": "\u65b0\u5199\u5165",
-                    "selected": true,
+                    "selected": false,
                     "parent": "test",
                     "isRowProcess": true,
                     "workbookNames": [],
@@ -153,5 +153,5 @@
             ]
         }
     ],
-    "writerGroupNow": "test"
+    "writerGroupNow": "12e"
 }

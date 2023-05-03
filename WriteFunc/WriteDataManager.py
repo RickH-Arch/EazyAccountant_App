@@ -142,7 +142,29 @@ class WriteDataManager:
                     w.selected = False
         self.RefreshJson()
         
-                
+    def WriterMoveForward(self,groupName):
+        for g in self.data.writerGroups:
+            if g.groupName == groupName:
+                for i,w in enumerate(g.writers):
+                    if w.selected == True:
+                        if i ==0:
+                            return False
+                        g.writers.insert(i-1,g.writers.pop(i))
+                        self.RefreshJson()
+                        return True
+        return False
+    
+    def WriterMoveBackward(self,groupName):
+        for g in self.data.writerGroups:
+            if g.groupName == groupName:
+                for i,w in enumerate(g.writers):
+                    if w.selected == True:
+                        if i ==len(g.writers):
+                            return False
+                        g.writers.insert(i+1,g.writers.pop(i))
+                        self.RefreshJson()
+                        return True
+        return False
 
         
 
