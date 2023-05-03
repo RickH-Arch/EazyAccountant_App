@@ -30,14 +30,16 @@ class WriteMain:
             list.addItem(QListWidgetItem(p))
 
     def LoadWriterGroup(self,cBox,grid,btn):
+        cBox.addItem("全部写入组")
         for g in self.dataMgr.data.writerGroups:
             cBox.addItem(g.groupName)
         cBox.setCurrentText(self.dataMgr.data.writerGroupNow)
         if self.dataMgr.data.writerGroupNow == "全部写入组":
             btn.setStyleSheet(styles.btn_Disable)
             btn.setCheckable(False)
-        
-        self.RefreshGrid(cBox,grid)
+            self.GridShowAll(cBox,grid)
+        else:
+            self.RefreshGrid(cBox,grid)
 
 
 #-----------------------------------------------------
@@ -58,14 +60,15 @@ class WriteMain:
 
     def SwitchWriterGroup(self,cBox,renameBtn,grid):
         curText = cBox.currentText()
+        if curText == "全部写入组":
+            renameBtn.setStyleSheet(styles.btn_Disable)
+            self.GridShowAll(cBox,grid)
+        else:
+            renameBtn.setStyleSheet(styles.btn_Enable)
+            renameBtn.setCheckable(True)
         if self.dataMgr.SwitchWriterGroup(curText):
-            if curText == "全部写入组":
-                renameBtn.setStyleSheet(styles.btn_Disable)
-                self.GridShowAll(cBox,grid)
-            else:
-                renameBtn.setStyleSheet(styles.btn_Enable)
-                renameBtn.setCheckable(True)
-                self.RefreshGrid(cBox,grid)
+            
+            self.RefreshGrid(cBox,grid)
 
     def AddWriterGroup(self,cBox,grid):
         name, ok = QInputDialog.getText(cBox, "添加写入组", "新写入组名称:")
@@ -80,6 +83,15 @@ class WriteMain:
             return
         
         self.RefreshGrid(cBox,grid)
+
+    def DeleteWriterGroup(self,cBox,grid):
+        curGroup = cBox.currentText()
+        if self.dataMgr.DeleteWriterGroup(curGroup):
+            index = cBox.findText(curGroup)
+            if index >= 0:
+                cBox.removeItem(index)
+            cBox.setCurrentText(self.dataMgr.data.writerGroupNow)
+            self.RefreshGrid(cBox,grid)
         
 
     def RefreshGrid(self,cBox,grid):
@@ -93,10 +105,10 @@ class WriteMain:
         addW,btns = self.GenerateAddWriterBox(grid.parent(),cBox,grid)
         cord = divmod(len(g.writers),writerRepoColNum)
         grid.addWidget(addW,cord[0],cord[1],1,1)
-        if len(g.writers)+1<=4:
+        if len(g.writers)+1<=writerRepoColNum:
             vSpacer = QSpacerItem(20,40,QSizePolicy.Minimum,QSizePolicy.Expanding)
             grid.addItem(vSpacer,1,1,1,1)
-        if len(g.writers)+1<4:
+        if len(g.writers)+1<writerRepoColNum:
             hSpacer = QSpacerItem(40,20,QSizePolicy.Expanding, QSizePolicy.Minimum)
             grid.addItem(hSpacer,0,len(g.writers)+1,1,1)
 
@@ -109,12 +121,12 @@ class WriteMain:
                 w,btns = self.GenerateWriterBox(w.name,grid.parent(),cBox,grid)
                 grid.addWidget(w,cord[0],cord[1],1,1)
                 num+=1
-        if num+1<=4:
+        if num<=writerRepoColNum:
             vSpacer = QSpacerItem(20,40,QSizePolicy.Minimum,QSizePolicy.Expanding)
             grid.addItem(vSpacer,1,1,1,1)
-        if num+1<4:
+        if num<writerRepoColNum:
             hSpacer = QSpacerItem(40,20,QSizePolicy.Expanding, QSizePolicy.Minimum)
-            grid.addItem(hSpacer,0,len(g.writers)+1,1,1)
+            grid.addItem(hSpacer,0,num+1,1,1)
 
 
 

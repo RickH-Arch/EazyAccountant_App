@@ -41,8 +41,10 @@ class WriteDataManager:
         for i,g in enumerate(self.data.writerGroups):
             if g.groupName == oldName:
                 g.groupName = newName
+                for w in g.writers:
+                    w.parent = newName
                 self.data.writerGroupNow = newName
-                #self.RefreshJson()
+                self.RefreshJson()
                 return True
         return False
     
@@ -52,7 +54,7 @@ class WriteDataManager:
                 return False
             
         newGroup = WriterGroup(name)
-        newGroup.writers.append(Writer("新写入"))
+        newGroup.writers.append(Writer("新写入",name))
         self.data.writerGroups.append(newGroup)
         
         self.data.writerGroupNow = name
@@ -65,6 +67,23 @@ class WriteDataManager:
             if g.groupName == name:
                 return g
         return None
+    
+    def DeleteWriterGroup(self,name):
+        groupNum = len(self.data.writerGroups)
+        if groupNum<2:
+            return
+        if name == "全部写入组":
+            return
+        for i,g in enumerate(self.data.writerGroups):
+            if g.groupName == name:
+                self.data.writerGroups.pop(i)
+                groupNum-=1
+                ind = (groupNum + i-1)%groupNum
+                self.data.writerGroupNow = self.data.writerGroups[ind]
+                return True
+        return False
+
+            
     
     def AddWriter(self,groupName,name = "新写入"):
         for g in self.data.writerGroups:
@@ -84,7 +103,7 @@ class WriteDataManager:
                     name = name+str(num)
                 
                     
-                newWriter = Writer(name)
+                newWriter = Writer(name,groupName)
                 g.writers.append(newWriter)
                 self.RefreshJson()
                 return len(g.writers),name+str(num)
@@ -131,13 +150,11 @@ class WriteDataManager:
 class StoreData:
     def __init__(self) -> None:
         self.folderPaths = []
-
         self.writerGroups = []
         self.InitWriterGroup()
-        self.writerGroupNow = "全部写入组"
+        self.writerGroupNow = "新写入组"
 
     def InitWriterGroup(self):
-        self.writerGroups.append(WriterGroup("全部写入组"))
         self.writerGroups.append(WriterGroup("新写入组"))
         
 
@@ -148,9 +165,10 @@ class WriterGroup:
         self.writers = []
 
 class Writer:
-    def __init__(self,name) -> None:
+    def __init__(self,name,parent) -> None:
         self.name = name
         self.selected = False
+        self.parent = parent
         self.isRowProcess = True
         self.workbookNames = []
         self.sheetNames = []
