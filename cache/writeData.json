@@ -14,7 +14,29 @@
                 {
                     "py/object": "WriteFunc.WriteDataManager.Writer",
                     "name": "\u65b0\u5199\u5165",
-                    "chosen": false,
+                    "selected": false,
+                    "isRowProcess": true,
+                    "workbookNames": [],
+                    "sheetNames": [],
+                    "keyNames": [],
+                    "valueNames": [],
+                    "processes": []
+                },
+                {
+                    "py/object": "WriteFunc.WriteDataManager.Writer",
+                    "name": "\u65b0\u5199\u51651",
+                    "selected": false,
+                    "isRowProcess": true,
+                    "workbookNames": [],
+                    "sheetNames": [],
+                    "keyNames": [],
+                    "valueNames": [],
+                    "processes": []
+                },
+                {
+                    "py/object": "WriteFunc.WriteDataManager.Writer",
+                    "name": "\u65b0\u5199\u51652",
+                    "selected": false,
                     "isRowProcess": true,
                     "workbookNames": [],
                     "sheetNames": [],
@@ -31,7 +53,7 @@
                 {
                     "py/object": "WriteFunc.WriteDataManager.Writer",
                     "name": "\u65b0\u5199\u5165",
-                    "chosen": false,
+                    "selected": false,
                     "isRowProcess": true,
                     "workbookNames": [],
                     "sheetNames": [],
@@ -41,8 +63,8 @@
                 },
                 {
                     "py/object": "WriteFunc.WriteDataManager.Writer",
-                    "name": "\u65b0\u5199\u51653",
-                    "chosen": false,
+                    "name": "\u65b0\u5199\u51651",
+                    "selected": false,
                     "isRowProcess": true,
                     "workbookNames": [],
                     "sheetNames": [],
@@ -52,52 +74,8 @@
                 },
                 {
                     "py/object": "WriteFunc.WriteDataManager.Writer",
-                    "name": "\u65b0\u5199\u51654",
-                    "chosen": false,
-                    "isRowProcess": true,
-                    "workbookNames": [],
-                    "sheetNames": [],
-                    "keyNames": [],
-                    "valueNames": [],
-                    "processes": []
-                },
-                {
-                    "py/object": "WriteFunc.WriteDataManager.Writer",
-                    "name": "\u65b0\u5199\u51654_\u62f7\u8d1d",
-                    "chosen": false,
-                    "isRowProcess": true,
-                    "workbookNames": [],
-                    "sheetNames": [],
-                    "keyNames": [],
-                    "valueNames": [],
-                    "processes": []
-                },
-                {
-                    "py/object": "WriteFunc.WriteDataManager.Writer",
-                    "name": "\u65b0\u5199\u51655",
-                    "chosen": false,
-                    "isRowProcess": true,
-                    "workbookNames": [],
-                    "sheetNames": [],
-                    "keyNames": [],
-                    "valueNames": [],
-                    "processes": []
-                },
-                {
-                    "py/object": "WriteFunc.WriteDataManager.Writer",
-                    "name": "\u65b0\u5199\u51656",
-                    "chosen": false,
-                    "isRowProcess": true,
-                    "workbookNames": [],
-                    "sheetNames": [],
-                    "keyNames": [],
-                    "valueNames": [],
-                    "processes": []
-                },
-                {
-                    "py/object": "WriteFunc.WriteDataManager.Writer",
-                    "name": "\u65b0\u5199\u51657",
-                    "chosen": false,
+                    "name": "\u65b0\u5199\u51651_\u62f7\u8d1d",
+                    "selected": false,
                     "isRowProcess": true,
                     "workbookNames": [],
                     "sheetNames": [],
@@ -108,5 +86,5 @@
             ]
         }
     ],
-    "writerGroupNow": "testGroup"
+    "writerGroupNow": "\u5168\u90e8\u5199\u5165\u7ec4"
 }

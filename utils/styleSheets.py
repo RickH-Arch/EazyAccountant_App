@@ -110,6 +110,29 @@ QPushButton:pressed{
 }
 '''
 
+write_writerBox_selected = '''
+*{
+background-color: rgb(249, 246, 255);
+border:2px solid rgb(212, 189, 248);
+border-radius:10px;
+}
+
+QPushButton{
+	background-color: rgb(227, 216, 255);
+border-radius:10px;
+	color: rgb(255, 255, 255);
+}
+
+QPushButton:hover{
+	
+	background-color: rgb(255, 179, 54);
+}
+QPushButton:pressed{
+	
+	background-color: rgb(235, 159, 34);
+}
+'''
+
 write_btn_editWriter = '''
 *{background-color:rgb(230, 230, 230);
 }

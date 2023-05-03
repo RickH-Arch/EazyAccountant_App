@@ -110,6 +110,16 @@ class WriteDataManager:
                         self.RefreshJson()
                         return True
         return False
+    
+    def SelectWriter(self,groupName,name):
+        for g in self.data.writerGroups:
+            for w in g.writers:
+                if w.name == name and g.groupName == groupName:
+                    w.selected = True
+                else:
+                    w.selected = False
+        self.RefreshJson()
+        
                 
 
         
@@ -140,7 +150,7 @@ class WriterGroup:
 class Writer:
     def __init__(self,name) -> None:
         self.name = name
-        self.chosen = False
+        self.selected = False
         self.isRowProcess = True
         self.workbookNames = []
         self.sheetNames = []

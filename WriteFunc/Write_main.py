@@ -88,7 +88,7 @@ class WriteMain:
         g = self.dataMgr.GetWriterGroup(groupNow)
         for i,w in enumerate(g.writers) :
             cord = divmod(i,writerRepoColNum)
-            w,btns = self.GenerateWriterBox(w.name,grid.parent(),cBox,grid)
+            w,btns = self.GenerateWriterBox(w.name,grid.parent(),cBox,grid,w.selected)
             grid.addWidget(w,cord[0],cord[1],1,1)
         addW,btns = self.GenerateAddWriterBox(grid.parent(),cBox,grid)
         cord = divmod(len(g.writers),writerRepoColNum)
@@ -158,6 +158,13 @@ class WriteMain:
     def EditWriter(self,name):
         print("edit writer:",name)
         #TODO:finish edit function
+    
+    def SelectWriter(self,cBox,name,grid):
+        #print(name," selected")
+        curGroup = cBox.currentText()
+        self.dataMgr.SelectWriter(curGroup,name)
+        self.RefreshGrid(cBox,grid)
+        
 
     
             
@@ -206,12 +213,15 @@ class WriteMain:
         return frame_addWriter,btn_writer_add
             
 
-    def GenerateWriterBox(self,writerName,uiParent,cBox,grid):
+    def GenerateWriterBox(self,writerName,uiParent,cBox,grid,selected = False):
         w = QWidget(uiParent)
         w.setObjectName(writerName)
         w.setMinimumSize(QSize(110, 110))
         w.setMaximumSize(QSize(110, 110))
-        w.setStyleSheet(styles.write_writerBox)
+        if selected == False:
+            w.setStyleSheet(styles.write_writerBox)
+        else:
+            w.setStyleSheet(styles.write_writerBox_selected)
 
         vLayout = QVBoxLayout(w)
         vLayout.setSpacing(3)
@@ -273,6 +283,7 @@ class WriteMain:
         btn_writer_name.setFont(font3)
         btn_writer_name.setText(writerName)
         btn_writer_name.setStyleSheet(styles.write_btn_writerName)
+        btn_writer_name.clicked.connect(lambda:self.SelectWriter(cBox,btn_writer_delete.parent().parent().objectName(),grid))
 
         vLayout.addWidget(btn_writer_name)
 
