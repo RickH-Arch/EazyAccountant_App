@@ -610,7 +610,8 @@ class Ui_MainWindow(object):
 
         self.scrollArea = QScrollArea(self.write_frame)
         self.scrollArea.setObjectName(u"scrollArea")
-        self.scrollArea.setMaximumSize(QSize(16777215, 350))
+        self.scrollArea.setMinimumSize(QSize(0, 244))
+        self.scrollArea.setMaximumSize(QSize(16777215, 244))
         self.scrollArea.setStyleSheet(u"*{\n"
 "background-color: rgb(255, 255, 255);\n"
 "border:1px solid rgb(232, 232, 232);\n"
@@ -698,36 +699,12 @@ class Ui_MainWindow(object):
 " border:none;\n"
 "}")
         self.scrollArea.setWidgetResizable(True)
-        self.scrollAreaWidgetContents = QWidget()
-        self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 490, 244))
-        self.gridLayout = QGridLayout(self.scrollAreaWidgetContents)
-        self.gridLayout.setObjectName(u"gridLayout")
-        self.widget_5 = QWidget(self.scrollAreaWidgetContents)
-        self.widget_5.setObjectName(u"widget_5")
-        self.widget_5.setMinimumSize(QSize(110, 110))
-        self.widget_5.setMaximumSize(QSize(110, 110))
-        self.widget_5.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-
-        self.gridLayout.addWidget(self.widget_5, 1, 2, 1, 1)
-
-        self.widget_6 = QWidget(self.scrollAreaWidgetContents)
-        self.widget_6.setObjectName(u"widget_6")
-        self.widget_6.setMinimumSize(QSize(110, 110))
-        self.widget_6.setMaximumSize(QSize(110, 110))
-        self.widget_6.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-
-        self.gridLayout.addWidget(self.widget_6, 1, 0, 1, 1)
-
-        self.widget_7 = QWidget(self.scrollAreaWidgetContents)
-        self.widget_7.setObjectName(u"widget_7")
-        self.widget_7.setMinimumSize(QSize(110, 110))
-        self.widget_7.setMaximumSize(QSize(110, 110))
-        self.widget_7.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-
-        self.gridLayout.addWidget(self.widget_7, 1, 1, 1, 1)
-
-        self.writer0 = QWidget(self.scrollAreaWidgetContents)
+        self.writerRepo = QWidget()
+        self.writerRepo.setObjectName(u"writerRepo")
+        self.writerRepo.setGeometry(QRect(0, 0, 490, 244))
+        self.writerGridLayout = QGridLayout(self.writerRepo)
+        self.writerGridLayout.setObjectName(u"writerGridLayout")
+        self.writer0 = QWidget(self.writerRepo)
         self.writer0.setObjectName(u"writer0")
         self.writer0.setMinimumSize(QSize(110, 110))
         self.writer0.setMaximumSize(QSize(110, 110))
@@ -864,25 +841,19 @@ class Ui_MainWindow(object):
         self.verticalLayout_7.addWidget(self.frame_3)
 
 
-        self.gridLayout.addWidget(self.writer0, 0, 0, 1, 1)
+        self.writerGridLayout.addWidget(self.writer0, 0, 0, 1, 1)
 
-        self.widget_8 = QWidget(self.scrollAreaWidgetContents)
-        self.widget_8.setObjectName(u"widget_8")
-        self.widget_8.setMinimumSize(QSize(110, 110))
-        self.widget_8.setMaximumSize(QSize(110, 110))
-        self.widget_8.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        self.test_widget_1 = QFrame(self.writerRepo)
+        self.test_widget_1.setObjectName(u"test_widget_1")
+        self.test_widget_1.setMinimumSize(QSize(110, 110))
+        self.test_widget_1.setMaximumSize(QSize(110, 110))
+        self.test_widget_1.setStyleSheet(u"background-color: rgb(85, 255, 255);")
+        self.test_widget_1.setFrameShape(QFrame.StyledPanel)
+        self.test_widget_1.setFrameShadow(QFrame.Raised)
 
-        self.gridLayout.addWidget(self.widget_8, 1, 3, 1, 1)
+        self.writerGridLayout.addWidget(self.test_widget_1, 0, 2, 1, 1)
 
-        self.widget_2 = QWidget(self.scrollAreaWidgetContents)
-        self.widget_2.setObjectName(u"widget_2")
-        self.widget_2.setMinimumSize(QSize(110, 110))
-        self.widget_2.setMaximumSize(QSize(110, 110))
-        self.widget_2.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-
-        self.gridLayout.addWidget(self.widget_2, 0, 3, 1, 1)
-
-        self.frame_addWriter = QWidget(self.scrollAreaWidgetContents)
+        self.frame_addWriter = QWidget(self.writerRepo)
         self.frame_addWriter.setObjectName(u"frame_addWriter")
         self.frame_addWriter.setMinimumSize(QSize(110, 110))
         self.frame_addWriter.setMaximumSize(QSize(110, 110))
@@ -913,17 +884,25 @@ class Ui_MainWindow(object):
         self.verticalLayout_8.addWidget(self.btn_writer_add)
 
 
-        self.gridLayout.addWidget(self.frame_addWriter, 0, 1, 1, 1)
+        self.writerGridLayout.addWidget(self.frame_addWriter, 0, 1, 1, 1)
 
-        self.widget_3 = QWidget(self.scrollAreaWidgetContents)
-        self.widget_3.setObjectName(u"widget_3")
-        self.widget_3.setMinimumSize(QSize(110, 110))
-        self.widget_3.setMaximumSize(QSize(110, 110))
-        self.widget_3.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        self.ttttt = QWidget(self.writerRepo)
+        self.ttttt.setObjectName(u"ttttt")
+        self.ttttt.setStyleSheet(u"background-color: rgb(85, 255, 255);")
 
-        self.gridLayout.addWidget(self.widget_3, 0, 2, 1, 1)
+        self.writerGridLayout.addWidget(self.ttttt, 1, 0, 1, 1)
 
-        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
+        self.tttt = QFrame(self.writerRepo)
+        self.tttt.setObjectName(u"tttt")
+        self.tttt.setMinimumSize(QSize(110, 110))
+        self.tttt.setMaximumSize(QSize(110, 110))
+        self.tttt.setStyleSheet(u"background-color: rgb(85, 255, 127);")
+        self.tttt.setFrameShape(QFrame.StyledPanel)
+        self.tttt.setFrameShadow(QFrame.Raised)
+
+        self.writerGridLayout.addWidget(self.tttt, 0, 3, 1, 1)
+
+        self.scrollArea.setWidget(self.writerRepo)
 
         self.verticalLayout_6.addWidget(self.scrollArea)
 

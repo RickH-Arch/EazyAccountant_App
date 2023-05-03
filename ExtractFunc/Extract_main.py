@@ -279,7 +279,7 @@ class ExtractMain():
     #=============================process===============================
     def ExtractStart(self,button,list):
         if self._getExcel_ == False:
-            button.setStyleSheet(styles.buttonDisable)
+            button.setStyleSheet(styles.btn_Disable)
             button.setEnabled(False)
             _workbooks,_workbookNames = self.excelMgr.GetExcelWorkBook(self.dataMgr.data.folderPaths,self.dataMgr.data.file_keywords)
             if self.dataMgr.data.autoArrange:
@@ -293,7 +293,7 @@ class ExtractMain():
                 list.addItem(QListWidgetItem(n))
                 self.myWorkbooks.append(MyWorkBook(_workbooks[i],n))
             
-            button.setStyleSheet(styles.buttonOnProcess)
+            button.setStyleSheet(styles.btn_OnProcess)
             button.setEnabled(True)
             button.setText("继续")
             self._getExcel_ = True
@@ -474,7 +474,7 @@ class ExtractMain():
         self.myWorkbooks = []
         self.wb = []
         list.clear()
-        button.setStyleSheet(styles.buttonOnStart)
+        button.setStyleSheet(styles.btn_OnStart)
         button.setText("开始生成")
 
 
@@ -490,7 +490,7 @@ class ExtractMain():
         table.setColumnCount(5)
         table.setHorizontalHeaderLabels([""]+["名称","工作表","坐标","单位"])
             
-        table.setStyleSheet(styles.TableStyleSheet)
+        table.setStyleSheet(styles.extract_Table)
         #table.setMinimumSize(QSize(364,123))
         #table.setMaximumSize(QSize(365,124))
         table.horizontalHeader().setSectionResizeMode(QHeaderView.Fixed)

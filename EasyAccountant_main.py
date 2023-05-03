@@ -28,7 +28,7 @@ from utils.DataManager import DataMgr
 WINDOW_SIZE = 0
 
 extractMain = ExtractMain()
-writeMain = WriteMain()
+writerMain = WriteMain()
 
 class MainWindow(QMainWindow):
     def __init__(self, parent = None) :
@@ -159,14 +159,15 @@ class MainWindow(QMainWindow):
 #--------------------------------------------------------------------------------------------------------------
         #################write page setting#################
         #folderPath
-        writeMain.LoadFolderPath(self.ui.list_write_folderPath)
-        self.ui.btn_write_readFolder.clicked.connect(lambda:writeMain.AddFolderPath(self.ui.list_write_folderPath))
-        self.ui.btn_write_deleteFolder.clicked.connect(lambda:writeMain.DeleteFolderPath(self.ui.list_write_folderPath))
+        writerMain.LoadFolderPath(self.ui.list_write_folderPath)
+        self.ui.btn_write_readFolder.clicked.connect(lambda:writerMain.AddFolderPath(self.ui.list_write_folderPath))
+        self.ui.btn_write_deleteFolder.clicked.connect(lambda:writerMain.DeleteFolderPath(self.ui.list_write_folderPath))
 
         #writer group checkbox
-        writeMain.LoadWriterGroup(self.ui.comboBox_selectWriterGroup,self.ui.btn_renameWriterGroup)
-        self.ui.comboBox_selectWriterGroup.currentIndexChanged.connect(lambda:writeMain.SwitchWriterGroup(self.ui.comboBox_selectWriterGroup,self.ui.btn_renameWriterGroup))
-
+        writerMain.LoadWriterGroup(self.ui.comboBox_selectWriterGroup,self.ui.writerGridLayout,self.ui.btn_renameWriterGroup)
+        self.ui.comboBox_selectWriterGroup.currentIndexChanged.connect(lambda:writerMain.SwitchWriterGroup(self.ui.comboBox_selectWriterGroup,self.ui.btn_renameWriterGroup))
+        self.ui.btn_renameWriterGroup.clicked.connect(lambda:writerMain.RenameWriterGroup(self.ui.comboBox_selectWriterGroup))
+        self.ui.btn_addWriterGroup.clicked.connect(lambda:writerMain.AddWriterGroup(self.ui.comboBox_selectWriterGroup,self.ui.writerGridLayout))
 
         ####################################################
 
@@ -320,5 +321,5 @@ if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
     win = MainWindow()
     win.show()
-    app.exit(app.exec_())
+    app.exit(app.exec())
 

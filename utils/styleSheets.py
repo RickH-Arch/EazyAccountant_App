@@ -1,4 +1,4 @@
-TableStyleSheet = '''*{background-color: rgb(255, 255, 255);\n
+extract_Table = '''*{background-color: rgb(255, 255, 255);\n
 border-radius:10px;}\n
 QTableWidget::item:selected{background-color:#bcb5e3}\n
 QTableWidget::indicator:checked { background-color: #bcb5e3 ;
@@ -33,7 +33,7 @@ QScrollBar {              \n
           subcontrol-origin: margin;\n
         }\n'''
 
-buttonEnable = '''
+btn_Enable = '''
 *{border-radius:5px;
 	font-size:12px;
 	color: rgb(255, 255, 255);
@@ -51,7 +51,7 @@ QPushButton:pressed{
 }
 '''
 
-buttonDisable = '''
+btn_Disable = '''
 *{border-radius:5px;
 	font-size:12px;
 	color: rgb(255, 255, 255);
@@ -61,7 +61,7 @@ buttonDisable = '''
 
 '''
 
-buttonOnProcess = '''
+btn_OnProcess = '''
 *{border-radius:5px;
 	font-size:12px;
 	color: rgb(90,90,90);
@@ -73,7 +73,7 @@ buttonOnProcess = '''
 }
 '''
 
-buttonOnStart = '''
+btn_OnStart = '''
 *{border-radius:5px;
 	font-size:12px;
 	color: rgb(255,255,255);
@@ -83,4 +83,61 @@ buttonOnStart = '''
 *:hover{
 	background-color: rgb(255, 179, 54);
 }
+'''
+
+
+
+write_writerBox = '''
+*{
+background-color: rgb(249, 246, 255);
+border:1px solid rgb(239, 239, 248);
+border-radius:10px;
+}
+
+QPushButton{
+	background-color: rgb(227, 216, 255);
+border-radius:10px;
+	color: rgb(255, 255, 255);
+}
+
+QPushButton:hover{
+	
+	background-color: rgb(255, 179, 54);
+}
+QPushButton:pressed{
+	
+	background-color: rgb(235, 159, 34);
+}
+'''
+
+write_btn_editWriter = '''
+*{background-color:rgb(230, 230, 230);
+}
+QPushButton:hover{
+	
+	background-color: rgb(255, 179, 54);
+}
+
+QPushButton:pressed{
+	
+	background-color: rgb(235, 159, 34);
+}
+'''
+
+write_btn_deleteWriter = '''
+*{background-color:rgb(243, 165, 166);}
+*:hover{
+	
+	background-color: rgb(223, 145, 146);
+}
+
+*:pressed{
+background-color: rgb(203, 125, 126);
+}
+'''
+
+write_btn_writerName = '''
+color:rgb(72, 72, 72);
+background-color:rgb(249, 246, 255);
+border:none;
 '''

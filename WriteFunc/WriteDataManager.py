@@ -35,6 +35,52 @@ class WriteDataManager:
                 self.RefreshJson()
                 return True
         return False
+    
+    def RenameWriterGroup(self,oldName,newName):
+        for i,g in enumerate(self.data.writerGroups):
+            if g.groupName == oldName:
+                g.groupName = newName
+                self.data.writerGroupNow = newName
+                #self.RefreshJson()
+                return True
+        return False
+    
+    def AddWriterGroup(self,name):
+        for g in self.data.writerGroups:
+            if g.groupName == name:
+                return False
+            
+        newGroup = WriterGroup(name)
+        newGroup.writers.append(Writer("新写入"))
+        self.data.writerGroups.append(newGroup)
+        
+        self.data.writerGroupNow = name
+
+        self.RefreshJson()
+        return True
+    
+    def GetWriterGroup(self,name):
+        for g in self.data.writerGroups:
+            if g.groupName == name:
+                return g
+        return None
+    
+    def AddWriter(self,groupName,name = "新写入"):
+        for g in self.data.writerGroups:
+            if g.groupName == groupName:
+                num = 0
+                for w in g.writers:
+                    if w.name == name:
+                        num+=1
+                if num >0:
+                    newWriter = Writer(name+str(num))
+                else:
+                    newWriter = Writer(name)
+                g.writers.append(newWriter)
+                #self.RefreshJson()
+                return len(g.writers),name+str(num)
+        return 0,""
+                
 
         
 
@@ -59,7 +105,7 @@ class StoreData:
 class WriterGroup:
     def __init__(self,groupName) -> None:
         self.groupName = groupName
-        self.writer = []
+        self.writers = []
 
 class Writer:
     def __init__(self,name) -> None:

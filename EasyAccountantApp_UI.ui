@@ -1257,10 +1257,16 @@ border:1px solid rgb(232, 232, 232);
                </item>
                <item>
                 <widget class="QScrollArea" name="scrollArea">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>244</height>
+                  </size>
+                 </property>
                  <property name="maximumSize">
                   <size>
                    <width>16777215</width>
-                   <height>350</height>
+                   <height>244</height>
                   </size>
                  </property>
                  <property name="styleSheet">
@@ -1352,7 +1358,7 @@ QWidget{
                  <property name="widgetResizable">
                   <bool>true</bool>
                  </property>
-                 <widget class="QWidget" name="scrollAreaWidgetContents">
+                 <widget class="QWidget" name="writerRepo">
                   <property name="geometry">
                    <rect>
                     <x>0</x>
@@ -1361,64 +1367,7 @@ QWidget{
                     <height>244</height>
                    </rect>
                   </property>
-                  <layout class="QGridLayout" name="gridLayout">
-                   <item row="1" column="2">
-                    <widget class="QWidget" name="widget_5" native="true">
-                     <property name="minimumSize">
-                      <size>
-                       <width>110</width>
-                       <height>110</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>110</width>
-                       <height>110</height>
-                      </size>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">background-color: rgb(255, 255, 255);</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="1" column="0">
-                    <widget class="QWidget" name="widget_6" native="true">
-                     <property name="minimumSize">
-                      <size>
-                       <width>110</width>
-                       <height>110</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>110</width>
-                       <height>110</height>
-                      </size>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">background-color: rgb(255, 255, 255);</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="1" column="1">
-                    <widget class="QWidget" name="widget_7" native="true">
-                     <property name="minimumSize">
-                      <size>
-                       <width>110</width>
-                       <height>110</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>110</width>
-                       <height>110</height>
-                      </size>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">background-color: rgb(255, 255, 255);</string>
-                     </property>
-                    </widget>
-                   </item>
+                  <layout class="QGridLayout" name="writerGridLayout">
                    <item row="0" column="0">
                     <widget class="QWidget" name="writer0" native="true">
                      <property name="minimumSize">
@@ -1710,8 +1659,8 @@ border:none;</string>
                      </layout>
                     </widget>
                    </item>
-                   <item row="1" column="3">
-                    <widget class="QWidget" name="widget_8" native="true">
+                   <item row="0" column="2">
+                    <widget class="QFrame" name="test_widget_1">
                      <property name="minimumSize">
                       <size>
                        <width>110</width>
@@ -1725,26 +1674,13 @@ border:none;</string>
                       </size>
                      </property>
                      <property name="styleSheet">
-                      <string notr="true">background-color: rgb(255, 255, 255);</string>
+                      <string notr="true">background-color: rgb(85, 255, 255);</string>
                      </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="3">
-                    <widget class="QWidget" name="widget_2" native="true">
-                     <property name="minimumSize">
-                      <size>
-                       <width>110</width>
-                       <height>110</height>
-                      </size>
+                     <property name="frameShape">
+                      <enum>QFrame::StyledPanel</enum>
                      </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>110</width>
-                       <height>110</height>
-                      </size>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">background-color: rgb(255, 255, 255);</string>
+                     <property name="frameShadow">
+                      <enum>QFrame::Raised</enum>
                      </property>
                     </widget>
                    </item>
@@ -1820,8 +1756,15 @@ border-radius:10px;
                      </layout>
                     </widget>
                    </item>
-                   <item row="0" column="2">
-                    <widget class="QWidget" name="widget_3" native="true">
+                   <item row="1" column="0">
+                    <widget class="QWidget" name="ttttt" native="true">
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(85, 255, 255);</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="3">
+                    <widget class="QFrame" name="tttt">
                      <property name="minimumSize">
                       <size>
                        <width>110</width>
@@ -1835,7 +1778,13 @@ border-radius:10px;
                       </size>
                      </property>
                      <property name="styleSheet">
-                      <string notr="true">background-color: rgb(255, 255, 255);</string>
+                      <string notr="true">background-color: rgb(85, 255, 127);</string>
+                     </property>
+                     <property name="frameShape">
+                      <enum>QFrame::StyledPanel</enum>
+                     </property>
+                     <property name="frameShadow">
+                      <enum>QFrame::Raised</enum>
                      </property>
                     </widget>
                    </item>
