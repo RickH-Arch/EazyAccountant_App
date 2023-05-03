@@ -165,7 +165,7 @@ class MainWindow(QMainWindow):
 
         #writer group checkbox
         writerMain.LoadWriterGroup(self.ui.comboBox_selectWriterGroup,self.ui.writerGridLayout,self.ui.btn_renameWriterGroup)
-        self.ui.comboBox_selectWriterGroup.currentIndexChanged.connect(lambda:writerMain.SwitchWriterGroup(self.ui.comboBox_selectWriterGroup,self.ui.btn_renameWriterGroup))
+        self.ui.comboBox_selectWriterGroup.currentIndexChanged.connect(lambda:writerMain.SwitchWriterGroup(self.ui.comboBox_selectWriterGroup,self.ui.btn_renameWriterGroup,self.ui.writerGridLayout))
         self.ui.btn_renameWriterGroup.clicked.connect(lambda:writerMain.RenameWriterGroup(self.ui.comboBox_selectWriterGroup))
         self.ui.btn_addWriterGroup.clicked.connect(lambda:writerMain.AddWriterGroup(self.ui.comboBox_selectWriterGroup,self.ui.writerGridLayout))
 

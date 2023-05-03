@@ -54,14 +54,16 @@ class WriteMain:
             del item
 
 
-    def SwitchWriterGroup(self,cBox,renameBtn):
+    def SwitchWriterGroup(self,cBox,renameBtn,grid):
         curText = cBox.currentText()
         if self.dataMgr.SwitchWriterGroup(curText):
             if curText == "全部写入组":
                 renameBtn.setStyleSheet(styles.btn_Disable)
+                self.GridShowAll(cBox,grid)
             else:
                 renameBtn.setStyleSheet(styles.btn_Enable)
                 renameBtn.setCheckable(True)
+                self.RefreshGrid(cBox,grid)
 
     def AddWriterGroup(self,cBox,grid):
         name, ok = QInputDialog.getText(cBox, "添加写入组", "新写入组名称:")
@@ -95,6 +97,23 @@ class WriteMain:
         if len(g.writers)+1<4:
             hSpacer = QSpacerItem(40,20,QSizePolicy.Expanding, QSizePolicy.Minimum)
             grid.addItem(hSpacer,0,len(g.writers)+1,1,1)
+
+    def GridShowAll(self,cBox,grid):
+        self.clearLayout(grid)
+        num = 0
+        for g in self.dataMgr.data.writerGroups:
+            for w in g.writers:
+                cord = divmod(num,writerRepoColNum)
+                w,btns = self.GenerateWriterBox(w.name,grid.parent(),cBox,grid)
+                grid.addWidget(w,cord[0],cord[1],1,1)
+                num+=1
+        if num+1<=4:
+            vSpacer = QSpacerItem(20,40,QSizePolicy.Minimum,QSizePolicy.Expanding)
+            grid.addItem(vSpacer,1,1,1,1)
+        if num+1<4:
+            hSpacer = QSpacerItem(40,20,QSizePolicy.Expanding, QSizePolicy.Minimum)
+            grid.addItem(hSpacer,0,len(g.writers)+1,1,1)
+
 
 
 
