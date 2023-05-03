@@ -70,14 +70,14 @@ class WriteDataManager:
             if g.groupName == groupName:
                 num = 0
                 for w in g.writers:
-                    if w.name == name:
+                    if w.name[:len(name)] == name:
                         num+=1
                 if num >0:
                     newWriter = Writer(name+str(num))
                 else:
                     newWriter = Writer(name)
                 g.writers.append(newWriter)
-                #self.RefreshJson()
+                self.RefreshJson()
                 return len(g.writers),name+str(num)
         return 0,""
                 

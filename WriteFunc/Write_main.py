@@ -36,7 +36,7 @@ class WriteMain:
         if self.dataMgr.data.writerGroupNow == "全部写入组":
             btn.setStyleSheet(styles.btn_Disable)
             btn.setCheckable(False)
-        self.clearLayout(grid)
+        
         self.RefreshGrid(cBox,grid)
 
 
@@ -54,7 +54,7 @@ class WriteMain:
             del item
 
 
-    def SwitchWriterGroup(self,cBox,renameBtn,):
+    def SwitchWriterGroup(self,cBox,renameBtn):
         curText = cBox.currentText()
         if self.dataMgr.SwitchWriterGroup(curText):
             if curText == "全部写入组":
@@ -74,11 +74,12 @@ class WriteMain:
                 return
         else:
             return
-        self.clearLayout(grid)
+        
         self.RefreshGrid(cBox,grid)
         
 
     def RefreshGrid(self,cBox,grid):
+        self.clearLayout(grid)
         groupNow = cBox.currentText()
         g = self.dataMgr.GetWriterGroup(groupNow)
         for i,w in enumerate(g.writers) :
@@ -108,17 +109,18 @@ class WriteMain:
                 cBox.removeItem(idx)
                 cBox.insertItem(idx,new_name)
                 cBox.setCurrentText(new_name)
+        elif new_name != "":
+                QMessageBox.warning(self, "警告", "写入组名称已存在")
+                return
 
     def AddWriter(self,cBox,repoGrid):
-        print("add writer in:",cBox.currentText())
-        #TODO:finish add writer function
-        return
+        
         groupNow = cBox.currentText()
         if groupNow == "全部写入组":
             return
         numNow,name = self.dataMgr.AddWriter(groupNow,"新写入")
-        if numNow>0:
-            w,btns = self.GenerateWriterBox(name,repoGrid.parent())
+        self.RefreshGrid(cBox,repoGrid)
+        
             
 
 

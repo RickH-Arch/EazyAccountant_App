@@ -14,7 +14,7 @@
         },
         {
             "py/object": "WriteFunc.WriteDataManager.WriterGroup",
-            "groupName": "xsax",
+            "groupName": "testGroup",
             "writers": [
                 {
                     "py/object": "WriteFunc.WriteDataManager.Writer",
@@ -26,16 +26,43 @@
                     "keyNames": [],
                     "valueNames": [],
                     "processes": []
-                }
-            ]
-        },
-        {
-            "py/object": "WriteFunc.WriteDataManager.WriterGroup",
-            "groupName": "sfsf",
-            "writers": [
+                },
                 {
                     "py/object": "WriteFunc.WriteDataManager.Writer",
-                    "name": "\u65b0\u5199\u5165",
+                    "name": "\u65b0\u5199\u51651",
+                    "chosen": false,
+                    "isRowProcess": true,
+                    "workbookNames": [],
+                    "sheetNames": [],
+                    "keyNames": [],
+                    "valueNames": [],
+                    "processes": []
+                },
+                {
+                    "py/object": "WriteFunc.WriteDataManager.Writer",
+                    "name": "\u65b0\u5199\u51652",
+                    "chosen": false,
+                    "isRowProcess": true,
+                    "workbookNames": [],
+                    "sheetNames": [],
+                    "keyNames": [],
+                    "valueNames": [],
+                    "processes": []
+                },
+                {
+                    "py/object": "WriteFunc.WriteDataManager.Writer",
+                    "name": "\u65b0\u5199\u51653",
+                    "chosen": false,
+                    "isRowProcess": true,
+                    "workbookNames": [],
+                    "sheetNames": [],
+                    "keyNames": [],
+                    "valueNames": [],
+                    "processes": []
+                },
+                {
+                    "py/object": "WriteFunc.WriteDataManager.Writer",
+                    "name": "\u65b0\u5199\u51654",
                     "chosen": false,
                     "isRowProcess": true,
                     "workbookNames": [],
@@ -47,5 +74,5 @@
             ]
         }
     ],
-    "writerGroupNow": "sfsf"
+    "writerGroupNow": "testGroup"
 }
