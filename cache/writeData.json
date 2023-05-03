@@ -62,6 +62,18 @@
                 },
                 {
                     "py/object": "WriteFunc.WriteDataManager.Writer",
+                    "name": "\u65b0\u5199\u5165_\u62f7\u8d1d",
+                    "selected": false,
+                    "parent": "12e",
+                    "isRowProcess": true,
+                    "workbookNames": [],
+                    "sheetNames": [],
+                    "keyNames": [],
+                    "valueNames": [],
+                    "processes": []
+                },
+                {
+                    "py/object": "WriteFunc.WriteDataManager.Writer",
                     "name": "\u65b0\u5199\u51651",
                     "selected": false,
                     "parent": "12e",
@@ -95,9 +107,51 @@
                     "keyNames": [],
                     "valueNames": [],
                     "processes": []
+                },
+                {
+                    "py/object": "WriteFunc.WriteDataManager.Writer",
+                    "name": "\u65b0\u5199\u51655",
+                    "selected": false,
+                    "parent": "12e",
+                    "isRowProcess": true,
+                    "workbookNames": [],
+                    "sheetNames": [],
+                    "keyNames": [],
+                    "valueNames": [],
+                    "processes": []
+                }
+            ]
+        },
+        {
+            "py/object": "WriteFunc.WriteDataManager.WriterGroup",
+            "groupName": "test",
+            "writers": [
+                {
+                    "py/object": "WriteFunc.WriteDataManager.Writer",
+                    "name": "\u65b0\u5199\u5165",
+                    "selected": true,
+                    "parent": "test",
+                    "isRowProcess": true,
+                    "workbookNames": [],
+                    "sheetNames": [],
+                    "keyNames": [],
+                    "valueNames": [],
+                    "processes": []
+                },
+                {
+                    "py/object": "WriteFunc.WriteDataManager.Writer",
+                    "name": "\u65b0\u5199\u51651",
+                    "selected": false,
+                    "parent": "test",
+                    "isRowProcess": true,
+                    "workbookNames": [],
+                    "sheetNames": [],
+                    "keyNames": [],
+                    "valueNames": [],
+                    "processes": []
                 }
             ]
         }
     ],
-    "writerGroupNow": "12e"
+    "writerGroupNow": "test"
 }

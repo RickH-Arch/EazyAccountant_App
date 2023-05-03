@@ -93,7 +93,10 @@ class WriteDataManager:
                 for w in g.writers:
                     if w.name[:len(name)] == name:
                         if len(w.name)>len(name):
-                            curInd = int(w.name[len(name):])
+                            try:
+                                curInd = int(w.name[len(name)])
+                            except:
+                                curInd = 0
                             if curInd>ind:
                                 ind = curInd
                         num+=1

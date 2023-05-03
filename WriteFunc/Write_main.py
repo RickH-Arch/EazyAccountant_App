@@ -77,7 +77,7 @@ class WriteMain:
                 cBox.addItem(name)
                 cBox.setCurrentText(name)
             else:
-                QMessageBox.warning(self, "警告", "写入组名称已存在")
+                QMessageBox.warning(cBox, "警告", "写入组名称已存在")
                 return
         else:
             return
@@ -118,7 +118,7 @@ class WriteMain:
         for g in self.dataMgr.data.writerGroups:
             for w in g.writers:
                 cord = divmod(num,writerRepoColNum)
-                w,btns = self.GenerateWriterBox(w.name,grid.parent(),cBox,grid)
+                w,btns = self.GenerateWriterBox(w.name,grid.parent(),cBox,grid,parentName=w.parent)
                 grid.addWidget(w,cord[0],cord[1],1,1)
                 num+=1
         if num<=writerRepoColNum:
@@ -143,7 +143,7 @@ class WriteMain:
                 cBox.insertItem(idx,new_name)
                 cBox.setCurrentText(new_name)
         elif new_name != "":
-                QMessageBox.warning(self, "警告", "写入组名称已存在")
+                QMessageBox.warning(cBox, "警告", "写入组名称已存在")
                 return
 
     def AddWriter(self,cBox,repoGrid):
@@ -159,11 +159,15 @@ class WriteMain:
 
     def DeleteWriter(self,cBox,name,grid):
         curGroup = cBox.currentText()
+        if curGroup == "全部写入组":
+            QMessageBox.warning(cBox, "警告", "请勿在全部写入组视图中进行删除操作")
         if self.dataMgr.DeleteWriter(curGroup,name):
             self.RefreshGrid(cBox,grid)
 
     def CopyWriter(self,cBox,name,grid):
         curGroup = cBox.currentText()
+        if curGroup == "全部写入组":
+            QMessageBox.warning(cBox, "警告", "请勿在全部写入组视图中进行复制操作")
         if self.dataMgr.CopyWriter(curGroup,name):
             self.RefreshGrid(cBox,grid)
 
@@ -174,6 +178,8 @@ class WriteMain:
     def SelectWriter(self,cBox,name,grid):
         #print(name," selected")
         curGroup = cBox.currentText()
+        if curGroup == "全部写入组":
+            return
         self.dataMgr.SelectWriter(curGroup,name)
         self.RefreshGrid(cBox,grid)
         
@@ -225,7 +231,7 @@ class WriteMain:
         return frame_addWriter,btn_writer_add
             
 
-    def GenerateWriterBox(self,writerName,uiParent,cBox,grid,selected = False):
+    def GenerateWriterBox(self,writerName,uiParent,cBox,grid,selected = False,parentName = None):
         w = QWidget(uiParent)
         w.setObjectName(writerName)
         w.setMinimumSize(QSize(110, 110))
@@ -293,7 +299,10 @@ class WriteMain:
         font3 = QFont()
         font3.setBold(True)
         btn_writer_name.setFont(font3)
-        btn_writer_name.setText(writerName)
+        if parentName is not None:
+            btn_writer_name.setText(parentName+"/"+writerName)
+        else:
+            btn_writer_name.setText(writerName)
         btn_writer_name.setStyleSheet(styles.write_btn_writerName)
         btn_writer_name.clicked.connect(lambda:self.SelectWriter(cBox,btn_writer_delete.parent().parent().objectName(),grid))
 
