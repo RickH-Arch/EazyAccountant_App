@@ -5,10 +5,8 @@ from PySide6 import QtWidgets,QtCore,QtGui
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QMetaObject, QObject, QPoint, QRect,
     QSize, QTime, QUrl, Qt,QPropertyAnimation)
-from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
-    QFont, QFontDatabase, QGradient, QIcon,
-    QImage, QKeySequence, QLinearGradient, QPainter,
-    QPalette, QPixmap, QRadialGradient, QTransform)
+from PySide6.QtGui import *
+    
 from PySide6.QtWidgets import *
 
 from utils.FolderPathManager import FolderPathMgr
@@ -58,17 +56,24 @@ class WriteMain:
             del item
 
 
-    def SwitchWriterGroup(self,cBox,renameBtn,grid):
+    def SwitchWriterGroup(self,cBox,renameBtn,grid,textEdit):
         curText = cBox.currentText()
+        msg = textEdit.toPlainText()
         if curText == "全部写入组":
             renameBtn.setStyleSheet(styles.btn_Disable)
-            self.GridShowAll(cBox,grid)
+            if msg != "":
+                self.GridShowAllFilted(cBox,grid,msg)
+            else:
+                self.GridShowAll(cBox,grid)
+            return
         else:
             renameBtn.setStyleSheet(styles.btn_Enable)
             renameBtn.setCheckable(True)
         if self.dataMgr.SwitchWriterGroup(curText):
-            
-            self.RefreshGrid(cBox,grid)
+            if msg != "":
+                self.GridShowFilted(cBox,grid,msg)
+            else:
+                self.RefreshGrid(cBox,grid)
 
     def AddWriterGroup(self,cBox,grid):
         name, ok = QInputDialog.getText(cBox, "添加写入组", "新写入组名称:")
@@ -92,7 +97,26 @@ class WriteMain:
                 cBox.removeItem(index)
             cBox.setCurrentText(self.dataMgr.data.writerGroupNow)
             self.RefreshGrid(cBox,grid)
+    
+    def GridShowFilted(self,cBox,grid,name):
+        self.clearLayout(grid)
+        groupNow = cBox.currentText()
+        g = self.dataMgr.GetWriterGroup(groupNow)
+        num = 0
+        for i,w in enumerate(g.writers) :
+            if name not in w.name:
+                continue
+            cord = divmod(num,writerRepoColNum)
+            w,btns = self.GenerateWriterBox(w.name,grid.parent(),cBox,grid,w.selected)
+            grid.addWidget(w,cord[0],cord[1],1,1)
+            num+=1
         
+        if num<=writerRepoColNum:
+            vSpacer = QSpacerItem(20,40,QSizePolicy.Minimum,QSizePolicy.Expanding)
+            grid.addItem(vSpacer,1,1,1,1)
+        if num<writerRepoColNum:
+            hSpacer = QSpacerItem(40,20,QSizePolicy.Expanding, QSizePolicy.Minimum)
+            grid.addItem(hSpacer,0,len(g.writers)+1,1,1)
 
     def RefreshGrid(self,cBox,grid):
         self.clearLayout(grid)
@@ -117,6 +141,24 @@ class WriteMain:
         num = 0
         for g in self.dataMgr.data.writerGroups:
             for w in g.writers:
+                cord = divmod(num,writerRepoColNum)
+                w,btns = self.GenerateWriterBox(w.name,grid.parent(),cBox,grid,parentName=w.parent)
+                grid.addWidget(w,cord[0],cord[1],1,1)
+                num+=1
+        if num<=writerRepoColNum:
+            vSpacer = QSpacerItem(20,40,QSizePolicy.Minimum,QSizePolicy.Expanding)
+            grid.addItem(vSpacer,1,1,1,1)
+        if num<writerRepoColNum:
+            hSpacer = QSpacerItem(40,20,QSizePolicy.Expanding, QSizePolicy.Minimum)
+            grid.addItem(hSpacer,0,num+1,1,1)
+
+    def GridShowAllFilted(self,cBox,grid,name):
+        self.clearLayout(grid)
+        num = 0
+        for g in self.dataMgr.data.writerGroups:
+            for w in g.writers:
+                if name not in w.name:
+                    continue
                 cord = divmod(num,writerRepoColNum)
                 w,btns = self.GenerateWriterBox(w.name,grid.parent(),cBox,grid,parentName=w.parent)
                 grid.addWidget(w,cord[0],cord[1],1,1)
@@ -181,6 +223,28 @@ class WriteMain:
         else:
             if self.dataMgr.WriterMoveBackward(curGroup):
                 self.RefreshGrid(cBox,grid)
+            
+    def FilterTextChange(self,textEdit,cBox,grid):
+        msg = textEdit.toPlainText()
+        
+        if "\n" in msg:
+            msg = msg.replace('\n','')
+            textEdit.setText(msg)
+            cs = textEdit.textCursor()
+            cs.movePosition(QTextCursor.End)
+            textEdit.setTextCursor(cs)
+        curGroup = cBox.currentText()
+        if curGroup != "全部写入组":   
+            if msg == "":
+                self.RefreshGrid(cBox,grid)
+            else:
+                self.GridShowFilted(cBox,grid,msg)
+        else:
+            if msg == "":
+                self.GridShowAll(cBox,grid)
+            else:
+                self.GridShowAllFilted(cBox,grid,msg)
+        
 
 
     def EditWriter(self,name):

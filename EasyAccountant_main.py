@@ -165,13 +165,14 @@ class MainWindow(QMainWindow):
 
         #writer group checkbox
         writerMain.LoadWriterGroup(self.ui.comboBox_selectWriterGroup,self.ui.writerGridLayout,self.ui.btn_renameWriterGroup)
-        self.ui.comboBox_selectWriterGroup.currentIndexChanged.connect(lambda:writerMain.SwitchWriterGroup(self.ui.comboBox_selectWriterGroup,self.ui.btn_renameWriterGroup,self.ui.writerGridLayout))
+        self.ui.comboBox_selectWriterGroup.currentIndexChanged.connect(lambda:writerMain.SwitchWriterGroup(self.ui.comboBox_selectWriterGroup,self.ui.btn_renameWriterGroup,self.ui.writerGridLayout,self.ui.filter_input))
         self.ui.btn_renameWriterGroup.clicked.connect(lambda:writerMain.RenameWriterGroup(self.ui.comboBox_selectWriterGroup))
         self.ui.btn_addWriterGroup.clicked.connect(lambda:writerMain.AddWriterGroup(self.ui.comboBox_selectWriterGroup,self.ui.writerGridLayout))
         self.doubleChecker_delWriterGroup = DoubleClickChecker(lambda:writerMain.DeleteWriterGroup(self.ui.comboBox_selectWriterGroup,self.ui.writerGridLayout))
         self.ui.btn_deleteWriterGroup.clicked.connect(lambda:self.doubleChecker_delWriterGroup.DoubleClick())
         self.ui.btn_writer_forward.clicked.connect(lambda:writerMain.RearrangeWriter(self.ui.comboBox_selectWriterGroup,self.ui.writerGridLayout,forward = True))
         self.ui.btn_writer_backward.clicked.connect(lambda:writerMain.RearrangeWriter(self.ui.comboBox_selectWriterGroup,self.ui.writerGridLayout,forward = False))
+        self.ui.filter_input.textChanged.connect(lambda:writerMain.FilterTextChange(self.ui.filter_input,self.ui.comboBox_selectWriterGroup,self.ui.writerGridLayout))
         ####################################################
 
         if self.glbData.pageNow == 0:
@@ -283,6 +284,13 @@ class MainWindow(QMainWindow):
 
 #-------------------------------------------------------------------------------------
 
+    def keyPressEvent(self, event) -> None:
+        if event.key() == Qt.Key_Return or event.key() == Qt.Key_Enter:
+            QMainWindow.keyPressEvent(self, event)
+            self.ui.filter_input.clearFocus()
+        else:
+            QMainWindow.keyPressEvent(self, event)
+        
 #######################################extract page###############################################
     def dragEnterEvent(self,event):
         path = event.mimeData().urls()[0].toLocalFile()

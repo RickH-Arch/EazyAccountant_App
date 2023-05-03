@@ -171,6 +171,9 @@ class WriteDataManager:
     def RefreshJson(self):
         DataMgr.WriteData(self.data,self.dataPath)
 
+    
+
+
 
 class StoreData:
     def __init__(self) -> None:
@@ -193,6 +196,7 @@ class Writer:
     def __init__(self,name,parent) -> None:
         self.name = name
         self.selected = False
+        
         self.parent = parent
         self.isRowProcess = True
         self.workbookNames = []
