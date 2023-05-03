@@ -49,6 +49,8 @@ class WriteMain:
     def DeleteFolderPath(self,list):
         curItem_row = list.currentRow()
         item = list.item(curItem_row)
+        if item is None:
+            return
         if self.dataMgr.DeleteFolderPath(item.text()):
             list.takeItem(curItem_row)
             del item
@@ -143,13 +145,15 @@ class WriteMain:
             
 
 
-    def DeleteWriter(self,name):
-        print("delete writer:",name)
-        #TODO:finish delete function
+    def DeleteWriter(self,cBox,name,grid):
+        curGroup = cBox.currentText()
+        if self.dataMgr.DeleteWriter(curGroup,name):
+            self.RefreshGrid(cBox,grid)
 
-    def CopyWriter(self,name):
-        print("copy writer:",name)
-        #TODO:finish copy function
+    def CopyWriter(self,cBox,name,grid):
+        curGroup = cBox.currentText()
+        if self.dataMgr.CopyWriter(curGroup,name):
+            self.RefreshGrid(cBox,grid)
 
     def EditWriter(self,name):
         print("edit writer:",name)
@@ -243,6 +247,7 @@ class WriteMain:
         copyIcon = QIcon()
         copyIcon.addFile(u":/icons/icon/\u590d\u5236.ico", QSize(), QIcon.Normal, QIcon.Off)
         btn_writer_copy.setIcon(copyIcon)
+        btn_writer_copy.clicked.connect(lambda:self.CopyWriter(cBox,btn_writer_delete.parent().parent().objectName(),grid))
 
         hLayout1.addWidget(btn_writer_copy)
 
@@ -254,7 +259,7 @@ class WriteMain:
         deleteIcon = QIcon()
         deleteIcon.addFile(u":/icons/icon/\u5173\u95ed.ico", QSize(), QIcon.Normal, QIcon.Off)
         btn_writer_delete.setIcon(deleteIcon)
-        btn_writer_delete.clicked.connect(lambda:self.DeleteWriter(btn_writer_delete.parent().parent().objectName()))
+        btn_writer_delete.clicked.connect(lambda:self.DeleteWriter(cBox,btn_writer_delete.parent().parent().objectName(),grid))
 
         hLayout1.addWidget(btn_writer_delete, 0, Qt.AlignRight)
 

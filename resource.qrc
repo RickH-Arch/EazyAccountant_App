@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="icons">
+    <file>icon/后退.ico</file>
+    <file>icon/前进.ico</file>
     <file>icon/添加.ico</file>
     <file>icon/加减组件加号.ico</file>
     <file>icon/复制.ico</file>

@@ -605,6 +605,56 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_7.addItem(self.horizontalSpacer)
 
+        self.btn_writer_forward = QPushButton(self.writer_ctrlMenu)
+        self.btn_writer_forward.setObjectName(u"btn_writer_forward")
+        self.btn_writer_forward.setMinimumSize(QSize(25, 25))
+        self.btn_writer_forward.setMaximumSize(QSize(25, 25))
+        self.btn_writer_forward.setStyleSheet(u"*{border-radius:5px;\n"
+"	font-size:12px;\n"
+"	color: rgb(255, 255, 255);\n"
+"	\n"
+"	background-color:rgb(243, 243, 243) ;\n"
+"}\n"
+"\n"
+"*:hover{\n"
+"	\n"
+"	background-color: rgb(255, 179, 54);\n"
+"}\n"
+"QPushButton:pressed{\n"
+"	\n"
+"	background-color: rgb(235, 159, 34);\n"
+"}")
+        icon3 = QIcon()
+        icon3.addFile(u":/icons/icon/\u540e\u9000.ico", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_writer_forward.setIcon(icon3)
+
+        self.horizontalLayout_7.addWidget(self.btn_writer_forward)
+
+        self.btn_writer_backward = QPushButton(self.writer_ctrlMenu)
+        self.btn_writer_backward.setObjectName(u"btn_writer_backward")
+        self.btn_writer_backward.setMinimumSize(QSize(25, 25))
+        self.btn_writer_backward.setMaximumSize(QSize(25, 25))
+        self.btn_writer_backward.setStyleSheet(u"*{border-radius:5px;\n"
+"	font-size:12px;\n"
+"	color: rgb(255, 255, 255);\n"
+"	\n"
+"	background-color:rgb(243, 243, 243) ;\n"
+"}\n"
+"\n"
+"*:hover{\n"
+"	\n"
+"	background-color: rgb(255, 179, 54);\n"
+"}\n"
+"QPushButton:pressed{\n"
+"	\n"
+"	background-color: rgb(235, 159, 34);\n"
+"}")
+        icon4 = QIcon()
+        icon4.addFile(u":/icons/icon/\u524d\u8fdb.ico", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_writer_backward.setIcon(icon4)
+
+        self.horizontalLayout_7.addWidget(self.btn_writer_backward)
+
 
         self.verticalLayout_6.addWidget(self.writer_ctrlMenu)
 
@@ -775,9 +825,9 @@ class Ui_MainWindow(object):
 "	\n"
 "	background-color: rgb(235, 159, 34);\n"
 "}")
-        icon3 = QIcon()
-        icon3.addFile(u":/icons/icon/\u590d\u5236.ico", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_writer_copy.setIcon(icon3)
+        icon5 = QIcon()
+        icon5.addFile(u":/icons/icon/\u590d\u5236.ico", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_writer_copy.setIcon(icon5)
 
         self.horizontalLayout_10.addWidget(self.btn_writer_copy)
 
@@ -876,9 +926,9 @@ class Ui_MainWindow(object):
 "*{\n"
 "border-radius:10px;\n"
 "}")
-        icon4 = QIcon()
-        icon4.addFile(u":/icons/icon/\u6dfb\u52a0.ico", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_writer_add.setIcon(icon4)
+        icon6 = QIcon()
+        icon6.addFile(u":/icons/icon/\u6dfb\u52a0.ico", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_writer_add.setIcon(icon6)
         self.btn_writer_add.setIconSize(QSize(40, 40))
 
         self.verticalLayout_8.addWidget(self.btn_writer_add)
@@ -1087,9 +1137,9 @@ class Ui_MainWindow(object):
 "	\n"
 "	background-color: rgb(235, 159, 34);\n"
 "}")
-        icon5 = QIcon()
-        icon5.addFile(u":/icons/icon/\u52a0\u51cf\u7ec4\u4ef6\u52a0\u53f7.ico", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_addTag.setIcon(icon5)
+        icon7 = QIcon()
+        icon7.addFile(u":/icons/icon/\u52a0\u51cf\u7ec4\u4ef6\u52a0\u53f7.ico", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_addTag.setIcon(icon7)
         self.btn_delTag = QPushButton(self.page_extract)
         self.btn_delTag.setObjectName(u"btn_delTag")
         self.btn_delTag.setGeometry(QRect(390, 405, 25, 25))
@@ -1111,9 +1161,9 @@ class Ui_MainWindow(object):
 "	\n"
 "	background-color: rgb(203, 125, 126);\n"
 "}")
-        icon6 = QIcon()
-        icon6.addFile(u":/icons/icon/\u51cf\u53f7.ico", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_delTag.setIcon(icon6)
+        icon8 = QIcon()
+        icon8.addFile(u":/icons/icon/\u51cf\u53f7.ico", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_delTag.setIcon(icon8)
         self.list_fileKeyword = QListWidget(self.page_extract)
         self.list_fileKeyword.setObjectName(u"list_fileKeyword")
         self.list_fileKeyword.setGeometry(QRect(30, 160, 311, 55))
@@ -1168,7 +1218,7 @@ class Ui_MainWindow(object):
 "	\n"
 "	background-color: rgb(235, 159, 34);\n"
 "}")
-        self.btn_addFileKeyword.setIcon(icon5)
+        self.btn_addFileKeyword.setIcon(icon7)
         self.btn_deletFileKeyWord = QPushButton(self.page_extract)
         self.btn_deletFileKeyWord.setObjectName(u"btn_deletFileKeyWord")
         self.btn_deletFileKeyWord.setGeometry(QRect(350, 190, 25, 25))
@@ -1190,7 +1240,7 @@ class Ui_MainWindow(object):
 "	\n"
 "	background-color: rgb(203, 125, 126);\n"
 "}")
-        self.btn_deletFileKeyWord.setIcon(icon6)
+        self.btn_deletFileKeyWord.setIcon(icon8)
         self.searchLable_3 = QLabel(self.page_extract)
         self.searchLable_3.setObjectName(u"searchLable_3")
         self.searchLable_3.setGeometry(QRect(30, 140, 111, 16))
@@ -1398,7 +1448,7 @@ class Ui_MainWindow(object):
 "	\n"
 "	background-color: rgb(203, 125, 126);\n"
 "}")
-        self.btn_processDelete.setIcon(icon6)
+        self.btn_processDelete.setIcon(icon8)
         self.stackedWidget_side.addWidget(self.sidePage_extract)
         self.sidePage_settings = QWidget()
         self.sidePage_settings.setObjectName(u"sidePage_settings")
@@ -1540,6 +1590,8 @@ class Ui_MainWindow(object):
         self.btn_addWriterGroup.setText(QCoreApplication.translate("MainWindow", u"\u6dfb\u52a0\u5199\u5165\u7ec4", None))
         self.btn_deleteWriterGroup.setText(QCoreApplication.translate("MainWindow", u"\u5220\u9664", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"\u8fc7\u6ee4\u5668", None))
+        self.btn_writer_forward.setText("")
+        self.btn_writer_backward.setText("")
         self.btn_writer_edit.setText(QCoreApplication.translate("MainWindow", u"\u7f16\u8f91", None))
         self.btn_writer_copy.setText("")
         self.btn_writer_delete.setText("")

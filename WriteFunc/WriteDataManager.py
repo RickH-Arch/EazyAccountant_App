@@ -1,4 +1,5 @@
 from utils.DataManager import DataMgr
+import copy
 class WriteDataManager:
     def __init__(self) -> None:
         self.dataPath = "cache\\writeData.json"
@@ -69,17 +70,46 @@ class WriteDataManager:
         for g in self.data.writerGroups:
             if g.groupName == groupName:
                 num = 0
+                ind = 0
                 for w in g.writers:
                     if w.name[:len(name)] == name:
+                        if len(w.name)>len(name):
+                            curInd = int(w.name[len(name):])
+                            if curInd>ind:
+                                ind = curInd
                         num+=1
-                if num >0:
-                    newWriter = Writer(name+str(num))
-                else:
-                    newWriter = Writer(name)
+                if num >0 and num<ind+1:
+                    name = name + str(ind+1)
+                elif num>0:
+                    name = name+str(num)
+                
+                    
+                newWriter = Writer(name)
                 g.writers.append(newWriter)
                 self.RefreshJson()
                 return len(g.writers),name+str(num)
         return 0,""
+    
+    def DeleteWriter(self,groupName,name):
+        for g in self.data.writerGroups:
+            if g.groupName == groupName:
+                for i,w in enumerate(g.writers):
+                    if w.name == name:
+                        g.writers.pop(i)
+                        self.RefreshJson()
+                        return True
+        return False
+    
+    def CopyWriter(self,groupName,name):
+        for g in self.data.writerGroups:
+            if g.groupName == groupName:
+                for i,w in enumerate(g.writers):
+                    if w.name == name:
+                        g.writers.insert(i+1,copy.deepcopy(w))
+                        g.writers[i+1].name = g.writers[i+1].name+"_拷贝"
+                        self.RefreshJson()
+                        return True
+        return False
                 
 
         

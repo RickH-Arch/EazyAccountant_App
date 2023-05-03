@@ -1252,6 +1252,86 @@ border:1px solid rgb(232, 232, 232);
                     </property>
                    </spacer>
                   </item>
+                  <item>
+                   <widget class="QPushButton" name="btn_writer_forward">
+                    <property name="minimumSize">
+                     <size>
+                      <width>25</width>
+                      <height>25</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>25</width>
+                      <height>25</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">*{border-radius:5px;
+	font-size:12px;
+	color: rgb(255, 255, 255);
+	
+	background-color:rgb(243, 243, 243) ;
+}
+
+*:hover{
+	
+	background-color: rgb(255, 179, 54);
+}
+QPushButton:pressed{
+	
+	background-color: rgb(235, 159, 34);
+}</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="resource.qrc">
+                      <normaloff>:/icons/icon/后退.ico</normaloff>:/icons/icon/后退.ico</iconset>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="btn_writer_backward">
+                    <property name="minimumSize">
+                     <size>
+                      <width>25</width>
+                      <height>25</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>25</width>
+                      <height>25</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">*{border-radius:5px;
+	font-size:12px;
+	color: rgb(255, 255, 255);
+	
+	background-color:rgb(243, 243, 243) ;
+}
+
+*:hover{
+	
+	background-color: rgb(255, 179, 54);
+}
+QPushButton:pressed{
+	
+	background-color: rgb(235, 159, 34);
+}</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="resource.qrc">
+                      <normaloff>:/icons/icon/前进.ico</normaloff>:/icons/icon/前进.ico</iconset>
+                    </property>
+                   </widget>
+                  </item>
                  </layout>
                 </widget>
                </item>
