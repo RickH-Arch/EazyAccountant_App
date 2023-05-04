@@ -8,6 +8,7 @@ from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
 from PySide6.QtGui import *
     
 from PySide6.QtWidgets import *
+from .WriterEditor import WriterEditor
 
 from utils.FolderPathManager import FolderPathMgr
 from .WriteDataManager import WriteDataManager
@@ -19,6 +20,7 @@ writerRepoColNum = 4
 class WriteMain:
     def __init__(self) -> None:
         self.dataMgr = WriteDataManager()
+        
 
 #-----------------------load function------------------------------
 
@@ -248,8 +250,10 @@ class WriteMain:
 
 
     def EditWriter(self,name):
-        print("edit writer:",name)
-        #TODO:finish edit function
+        self.app = QApplication.instance()
+        self.writerEditor = WriterEditor()
+        self.writerEditor.show()
+        
     
     def SelectWriter(self,cBox,name,grid):
         #print(name," selected")
@@ -340,6 +344,7 @@ class WriteMain:
         btn_writer_edit.setMaximumSize(QSize(20, 20))
         btn_writer_edit.setStyleSheet(styles.write_btn_editWriter)
         btn_writer_edit.setText("编辑")
+        btn_writer_edit.clicked.connect(lambda:self.EditWriter(btn_writer_delete.parent().parent().objectName()))
 
         hLayout1.addWidget(btn_writer_edit, 0, Qt.AlignLeft)
 

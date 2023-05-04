@@ -21,12 +21,12 @@ from PySide6.QtWidgets import (QApplication, QCheckBox, QFrame, QHBoxLayout,
     QVBoxLayout, QWidget)
 import resource_rc
 
-class Ui_Form(object):
-    def setupUi(self, Form):
-        if not Form.objectName():
-            Form.setObjectName(u"Form")
-        Form.resize(690, 925)
-        self.writerEditor_mainWindow = QWidget(Form)
+class Ui_WriterEditor(object):
+    def setupUi(self, WriterEditor):
+        if not WriterEditor.objectName():
+            WriterEditor.setObjectName(u"WriterEditor")
+        WriterEditor.resize(690, 925)
+        self.writerEditor_mainWindow = QWidget(WriterEditor)
         self.writerEditor_mainWindow.setObjectName(u"writerEditor_mainWindow")
         self.writerEditor_mainWindow.setGeometry(QRect(80, 10, 500, 850))
         self.writerEditor_mainWindow.setMinimumSize(QSize(500, 850))
@@ -1136,16 +1136,16 @@ class Ui_Form(object):
         self.verticalLayout.addWidget(self.mainContext)
 
 
-        self.retranslateUi(Form)
+        self.retranslateUi(WriterEditor)
 
-        QMetaObject.connectSlotsByName(Form)
+        QMetaObject.connectSlotsByName(WriterEditor)
     # setupUi
 
-    def retranslateUi(self, Form):
-        Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
+    def retranslateUi(self, WriterEditor):
+        WriterEditor.setWindowTitle(QCoreApplication.translate("WriterEditor", u"Form", None))
         self.btn_close.setText("")
-        self.label.setText(QCoreApplication.translate("Form", u"Writer Editor", None))
-        self.WriterName.setHtml(QCoreApplication.translate("Form", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.label.setText(QCoreApplication.translate("WriterEditor", u"Writer Editor", None))
+        self.WriterName.setHtml(QCoreApplication.translate("WriterEditor", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "hr { height: 1px; border-width: 0; }\n"
@@ -1153,20 +1153,20 @@ class Ui_Form(object):
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Microsoft YaHei UI'; font-size:15px; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:700;\">\u8fdb\u5ea6\u786e\u8ba4</span></p></body></html>", None))
-        self.checkBox_writerAsRow.setText(QCoreApplication.translate("Form", u"\u884c\u5199\u5165", None))
-        self.checkBox__writerAsColumn.setText(QCoreApplication.translate("Form", u"\u5217\u5199\u5165", None))
-        self.label_2.setText(QCoreApplication.translate("Form", u"\u4f5c\u7528\u4e8e\u5de5\u4f5c\u7c3f\u540d\u79f0", None))
-        self.label_3.setText(QCoreApplication.translate("Form", u"\u4f5c\u7528\u4e8e\u5de5\u4f5c\u8868\u540d\u79f0\uff08\u9009\u586b\uff09", None))
+        self.checkBox_writerAsRow.setText(QCoreApplication.translate("WriterEditor", u"\u884c\u5199\u5165", None))
+        self.checkBox__writerAsColumn.setText(QCoreApplication.translate("WriterEditor", u"\u5217\u5199\u5165", None))
+        self.label_2.setText(QCoreApplication.translate("WriterEditor", u"\u4f5c\u7528\u4e8e\u5de5\u4f5c\u7c3f\u540d\u79f0", None))
+        self.label_3.setText(QCoreApplication.translate("WriterEditor", u"\u4f5c\u7528\u4e8e\u5de5\u4f5c\u8868\u540d\u79f0\uff08\u9009\u586b\uff09", None))
         self.btn_writer_addWbName.setText("")
         self.btn_Writer_deleteWbName.setText("")
 #if QT_CONFIG(whatsthis)
-        self.btn_writer_addSheetName.setWhatsThis(QCoreApplication.translate("Form", u"<html><head/><body><p><br/></p></body></html>", None))
+        self.btn_writer_addSheetName.setWhatsThis(QCoreApplication.translate("WriterEditor", u"<html><head/><body><p><br/></p></body></html>", None))
 #endif // QT_CONFIG(whatsthis)
         self.btn_writer_addSheetName.setText("")
         self.btn_writer_deleteSheetName.setText("")
-        self.label_4.setText(QCoreApplication.translate("Form", u"\u68c0\u7d22\u53d8\u91cf\u540d\u79f0", None))
+        self.label_4.setText(QCoreApplication.translate("WriterEditor", u"\u68c0\u7d22\u53d8\u91cf\u540d\u79f0", None))
         self.btn_writer_deleteKey.setText("")
-        self.text_keyName.setHtml(QCoreApplication.translate("Form", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.text_keyName.setHtml(QCoreApplication.translate("WriterEditor", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "hr { height: 1px; border-width: 0; }\n"
@@ -1174,11 +1174,11 @@ class Ui_Form(object):
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Microsoft YaHei UI'; font-size:11px; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; font-weight:700;\">\u5408\u540c\u53f7</span></p></body></html>", None))
-        self.btn_writer_key_and.setText(QCoreApplication.translate("Form", u"\u4e0e", None))
-        self.btn_writer_key_or.setText(QCoreApplication.translate("Form", u"\u6216", None))
-        self.label_5.setText(QCoreApplication.translate("Form", u"\u5199\u5165\u53d8\u91cf\u540d\u79f0", None))
+        self.btn_writer_key_and.setText(QCoreApplication.translate("WriterEditor", u"\u4e0e", None))
+        self.btn_writer_key_or.setText(QCoreApplication.translate("WriterEditor", u"\u6216", None))
+        self.label_5.setText(QCoreApplication.translate("WriterEditor", u"\u5199\u5165\u53d8\u91cf\u540d\u79f0", None))
         self.btn_writer_deleteValue.setText("")
-        self.text_ValueName.setHtml(QCoreApplication.translate("Form", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.text_ValueName.setHtml(QCoreApplication.translate("WriterEditor", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "hr { height: 1px; border-width: 0; }\n"
@@ -1186,9 +1186,9 @@ class Ui_Form(object):
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Microsoft YaHei UI'; font-size:11px; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; font-weight:700;\">\u5229\u6da6</span></p></body></html>", None))
-        self.label_6.setText(QCoreApplication.translate("Form", u"\u64cd\u4f5c", None))
+        self.label_6.setText(QCoreApplication.translate("WriterEditor", u"\u64cd\u4f5c", None))
         self.btn_writer_deleteProcess.setText("")
-        self.text_processName.setHtml(QCoreApplication.translate("Form", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.text_processName.setHtml(QCoreApplication.translate("WriterEditor", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "hr { height: 1px; border-width: 0; }\n"
@@ -1196,6 +1196,6 @@ class Ui_Form(object):
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Microsoft YaHei UI'; font-size:11px; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; font-weight:700;\">\u8fdb\u5ea6\u786e\u8ba4</span></p></body></html>", None))
-        self.checkBox_writer_rewrite.setText(QCoreApplication.translate("Form", u"\u8986\u76d6", None))
+        self.checkBox_writer_rewrite.setText(QCoreApplication.translate("WriterEditor", u"\u8986\u76d6", None))
     # retranslateUi
 

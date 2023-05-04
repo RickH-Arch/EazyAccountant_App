@@ -17,12 +17,14 @@ from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel,
 from PySide6.QtWidgets import *
 
 from EasyAccountantApp_UI_ui import Ui_MainWindow
-from WriterEditor_ui import Ui_Form as WriterEditor
+
 
 from ExtractFunc.Extract_main import *
 from WriteFunc.Write_main import *
 from utils.DoubleClickChecker import DoubleClickChecker
 from utils.DataManager import DataMgr
+
+from WriteFunc.WriterEditor import WriterEditor
 
 
 WINDOW_SIZE = 0
@@ -41,6 +43,8 @@ class MainWindow(QMainWindow):
         self.glbData = DataMgr.LoadData(self.globalDataPath)
         if self.glbData is None:
             self.glbData = GlobalData()
+
+        self.writerEditor = None
 
         self.status = {
             "btn_menu_check":False,
@@ -193,7 +197,7 @@ class MainWindow(QMainWindow):
         if event.button() == Qt.LeftButton:
             self.mouse_start_pt = event.globalPosition().toPoint()
             self.window_pos = self.frameGeometry().topLeft()
-            if(event.pos().y()<50 and event.pos().x()>100):
+            if(event.position().y()<50 and event.position().x()>100):
                 self.OnDrag = True
     def mouseMoveEvent(self, event: QtGui.QMouseEvent) -> None:
         if self.OnDrag:
@@ -313,6 +317,11 @@ class MainWindow(QMainWindow):
             WINDOW_SIZE = 0
             self.showNormal()
 
+    def ShowWriterEditor(self):
+        if self.writerEditor is None:
+            self.writerEditor = WriterEditor()
+        self.writerEditor.show()
+
 class GlobalData:
     def __init__(self) -> None:
         self.pageNow = 0
@@ -321,10 +330,6 @@ class GlobalData:
     def selectPage(self,idx):
         self.pageNow = idx
         
-        
-
-    
-
     
         
 

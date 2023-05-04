@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
+ <class>WriterEditor</class>
+ <widget class="QWidget" name="WriterEditor">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -125,7 +125,7 @@ QPushButton:pressed{
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="resource.qrc">
+        <iconset resource="../resource.qrc">
          <normaloff>:/icons/icon/关闭.ico</normaloff>:/icons/icon/关闭.ico</iconset>
        </property>
       </widget>
@@ -596,7 +596,7 @@ QPushButton:pressed{
                       <string/>
                      </property>
                      <property name="icon">
-                      <iconset resource="resource.qrc">
+                      <iconset resource="../resource.qrc">
                        <normaloff>:/icons/icon/加减组件加号.ico</normaloff>:/icons/icon/加减组件加号.ico</iconset>
                      </property>
                     </widget>
@@ -636,7 +636,7 @@ QPushButton:pressed{
                       <string/>
                      </property>
                      <property name="icon">
-                      <iconset resource="resource.qrc">
+                      <iconset resource="../resource.qrc">
                        <normaloff>:/icons/icon/减号.ico</normaloff>:/icons/icon/减号.ico</iconset>
                      </property>
                     </widget>
@@ -748,7 +748,7 @@ QPushButton:pressed{
                       <string/>
                      </property>
                      <property name="icon">
-                      <iconset resource="resource.qrc">
+                      <iconset resource="../resource.qrc">
                        <normaloff>:/icons/icon/加减组件加号.ico</normaloff>:/icons/icon/加减组件加号.ico</iconset>
                      </property>
                     </widget>
@@ -788,7 +788,7 @@ QPushButton:pressed{
                       <string/>
                      </property>
                      <property name="icon">
-                      <iconset resource="resource.qrc">
+                      <iconset resource="../resource.qrc">
                        <normaloff>:/icons/icon/减号.ico</normaloff>:/icons/icon/减号.ico</iconset>
                      </property>
                     </widget>
@@ -1060,7 +1060,7 @@ background-color: rgb(203, 125, 126);
                      <string/>
                     </property>
                     <property name="icon">
-                     <iconset resource="resource.qrc">
+                     <iconset resource="../resource.qrc">
                       <normaloff>:/icons/icon/关闭.ico</normaloff>:/icons/icon/关闭.ico</iconset>
                     </property>
                    </widget>
@@ -1155,7 +1155,7 @@ border-radius:10px;
 }</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="resource.qrc">
+                    <iconset resource="../resource.qrc">
                      <normaloff>:/icons/icon/添加.ico</normaloff>:/icons/icon/添加.ico</iconset>
                    </property>
                    <property name="iconSize">
@@ -1540,7 +1540,7 @@ background-color: rgb(203, 125, 126);
                      <string/>
                     </property>
                     <property name="icon">
-                     <iconset resource="resource.qrc">
+                     <iconset resource="../resource.qrc">
                       <normaloff>:/icons/icon/关闭.ico</normaloff>:/icons/icon/关闭.ico</iconset>
                     </property>
                    </widget>
@@ -1635,7 +1635,7 @@ border-radius:10px;
 }</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="resource.qrc">
+                    <iconset resource="../resource.qrc">
                      <normaloff>:/icons/icon/添加.ico</normaloff>:/icons/icon/添加.ico</iconset>
                    </property>
                    <property name="iconSize">
@@ -1939,7 +1939,7 @@ background-color: rgb(203, 125, 126);
                      <string/>
                     </property>
                     <property name="icon">
-                     <iconset resource="resource.qrc">
+                     <iconset resource="../resource.qrc">
                       <normaloff>:/icons/icon/关闭.ico</normaloff>:/icons/icon/关闭.ico</iconset>
                     </property>
                    </widget>
@@ -2085,7 +2085,7 @@ border-radius:10px;
 }</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="resource.qrc">
+                    <iconset resource="../resource.qrc">
                      <normaloff>:/icons/icon/添加.ico</normaloff>:/icons/icon/添加.ico</iconset>
                    </property>
                    <property name="iconSize">
@@ -2126,7 +2126,7 @@ border-radius:10px;
   </widget>
  </widget>
  <resources>
-  <include location="resource.qrc"/>
+  <include location="../resource.qrc"/>
  </resources>
  <connections/>
 </ui>
