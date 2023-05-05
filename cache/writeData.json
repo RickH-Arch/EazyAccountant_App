@@ -70,7 +70,7 @@
                     "selected": true,
                     "parent": "aef",
                     "isRowProcess": false,
-                    "key_and_mode": true,
+                    "key_and_mode": false,
                     "workbookNames": [],
                     "sheetNames": [],
                     "keyNames": [],

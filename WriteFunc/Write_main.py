@@ -229,6 +229,9 @@ class WriteMain(QWidget):
         else:
             ui.checkbox_key_or.setChecked(True)
 
+        ui.checkbox_key_and.clicked.connect(lambda:self.SwitchAndOrKey(ui.checkbox_key_and,ui.checkbox_key_or,True))
+        ui.checkbox_key_or.clicked.connect(lambda:self.SwitchAndOrKey(ui.checkbox_key_and,ui.checkbox_key_or,False))
+
         for name in writer.workbookNames:
             ui.list_Writer_wbName.addItem(QListWidgetItem(name))
 
@@ -280,8 +283,14 @@ class WriteMain(QWidget):
             rowCheck.setChecked(False)
             colCheck.setChecked(True)
 
-
-
+    def SwitchAndOrKey(self,andCheck,orCheck,state):
+        self.dataMgr.SwitchValueRowCol(self.cBox_cache.currentText(),self.writer_cache.name,state)
+        if state == True:
+            andCheck.setChecked(True)
+            orCheck.setChecked(False)
+        else:
+            andCheck.setChecked(False)
+            orCheck.setChecked(True)
 
 
         
