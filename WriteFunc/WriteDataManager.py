@@ -173,6 +173,18 @@ class WriteDataManager:
                         self.RefreshJson()
                         return True
         return False
+    
+    def RenameWriter(self,groupName,oldName,newName):
+        g = self.GetWriterGroup(groupName)
+        for w in g.writers:
+            if w.name == newName:
+                return False
+        w = self.GetWriter(groupName,oldName)
+        if w is None:
+            return False
+        w.name = newName
+        self.RefreshJson()
+        return True
 
         
 

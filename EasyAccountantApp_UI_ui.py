@@ -17,9 +17,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QFormLayout,
     QFrame, QGridLayout, QHBoxLayout, QLabel,
-    QListWidget, QListWidgetItem, QMainWindow, QPushButton,
-    QScrollArea, QSizePolicy, QSpacerItem, QStackedWidget,
-    QTabWidget, QTextEdit, QVBoxLayout, QWidget)
+    QLineEdit, QListWidget, QListWidgetItem, QMainWindow,
+    QPushButton, QScrollArea, QSizePolicy, QSpacerItem,
+    QStackedWidget, QTabWidget, QVBoxLayout, QWidget)
 import resource_rc
 
 class Ui_MainWindow(object):
@@ -590,14 +590,12 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_7.addWidget(self.label_5)
 
-        self.filter_input = QTextEdit(self.writer_ctrlMenu)
+        self.filter_input = QLineEdit(self.writer_ctrlMenu)
         self.filter_input.setObjectName(u"filter_input")
-        self.filter_input.setMinimumSize(QSize(264, 0))
-        self.filter_input.setMaximumSize(QSize(100, 26))
+        self.filter_input.setMinimumSize(QSize(264, 24))
         self.filter_input.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
 "border-radius:10px;\n"
-"border:1px solid rgb(232, 232, 232);\n"
-"")
+"border:1px solid rgb(232, 232, 232);")
 
         self.horizontalLayout_7.addWidget(self.filter_input)
 

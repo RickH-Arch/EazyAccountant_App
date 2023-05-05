@@ -30,6 +30,7 @@ from WriteFunc.WriterEditor import WriterEditor
 WINDOW_SIZE = 0
 
 extractMain = ExtractMain()
+app = QtWidgets.QApplication(sys.argv)
 writerMain = WriteMain()
 
 class MainWindow(QMainWindow):
@@ -334,7 +335,7 @@ class GlobalData:
         
 
 if __name__ == '__main__':
-    app = QtWidgets.QApplication(sys.argv)
+    app = QApplication.instance()
     win = MainWindow()
     win.show()
     app.exit(app.exec())

@@ -4,7 +4,7 @@ import time
 from PySide6 import QtWidgets,QtCore,QtGui
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QMetaObject, QObject, QPoint, QRect,
-    QSize, QTime, QUrl, Qt,QPropertyAnimation)
+    QSize, QTime, QUrl, Qt,QPropertyAnimation,QEvent)
 from PySide6.QtGui import *
     
 from PySide6.QtWidgets import *
@@ -19,10 +19,15 @@ import utils.styleSheets as styles
 writerRepoColNum = 4
 
 
-class WriteMain:
+
+
+class WriteMain(QWidget):
     def __init__(self) -> None:
+        super().__init__()
         self.dataMgr = WriteDataManager()
-        
+        self.cBox_cache = None
+        self.grid_cache = None
+        self.filter_cache = None
 
 #-----------------------load function------------------------------
 
@@ -32,6 +37,9 @@ class WriteMain:
             list.addItem(QListWidgetItem(p))
 
     def LoadWriterGroup(self,cBox,grid,btn):
+        self.cBox_cache = cBox
+        self.grid_cache = grid
+        
         cBox.addItem("全部写入组")
         for g in self.dataMgr.data.writerGroups:
             cBox.addItem(g.groupName)
@@ -39,9 +47,8 @@ class WriteMain:
         if self.dataMgr.data.writerGroupNow == "全部写入组":
             btn.setStyleSheet(styles.btn_Disable)
             btn.setCheckable(False)
-            self.GridShowAll(cBox,grid)
-        else:
-            self.RefreshGrid(cBox,grid)
+            
+        self.RefreshGrid(cBox,grid)
 
 
 #-----------------------------------------------------
@@ -63,17 +70,14 @@ class WriteMain:
     def SwitchWriterGroup(self,cBox,renameBtn,grid,textEdit):
         curText = cBox.currentText()
         msg = textEdit.toPlainText()
-        if curText == "全部写入组":
-            renameBtn.setStyleSheet(styles.btn_Disable)
-            if msg != "":
-                self.GridShowAllFilted(cBox,grid,msg)
-            else:
-                self.GridShowAll(cBox,grid)
-            return
-        else:
-            renameBtn.setStyleSheet(styles.btn_Enable)
-            renameBtn.setCheckable(True)
+        
         if self.dataMgr.SwitchWriterGroup(curText):
+            if curText == "全部写入组":
+                renameBtn.setStyleSheet(styles.btn_Disable)
+            
+            else:
+                renameBtn.setStyleSheet(styles.btn_Enable)
+                renameBtn.setCheckable(True)
             if msg != "":
                 self.GridShowFilted(cBox,grid,msg)
             else:
@@ -158,7 +162,10 @@ class WriteMain:
                 self.RefreshGrid(cBox,grid)
             
     def FilterTextChange(self,textEdit,cBox,grid):
-        msg = textEdit.toPlainText()
+        if self.filter_cache is None:
+            self.filter_cache = textEdit
+        
+        msg = textEdit.text()
         
         if "\n" in msg:
             msg = msg.replace('\n','')
@@ -167,16 +174,12 @@ class WriteMain:
             cs.movePosition(QTextCursor.End)
             textEdit.setTextCursor(cs)
         curGroup = cBox.currentText()
-        if curGroup != "全部写入组":   
-            if msg == "":
-                self.RefreshGrid(cBox,grid)
-            else:
-                self.GridShowFilted(cBox,grid,msg)
+          
+        if msg == "":
+            self.RefreshGrid(cBox,grid)
         else:
-            if msg == "":
-                self.GridShowAll(cBox,grid)
-            else:
-                self.GridShowAllFilted(cBox,grid,msg)
+            self.GridShowFilted(cBox,grid,msg)
+        
     
     def SelectWriter(self,cBox,name,grid):
         #print(name," selected")
@@ -189,20 +192,29 @@ class WriteMain:
 
 
     def EditWriter(self,cBox,name):
+        
         self.app = QApplication.instance()
+        
         self.we = WriterEditor()
         curGroup = cBox.currentText()
         w = self.dataMgr.GetWriter(curGroup,name)
+        self.writer_cache = w
         if w is None:
             return
         self.InitWriterEditor(w)
         
         self.we.show()
+        
 
     def InitWriterEditor(self,writer):
         ui = self.we.ui
         ui.label_writerParent.setText(writer.parent)
         ui.line_writerName.setText(writer.name)
+        ui.line_writerName.setObjectName(writer.name)
+        self.we.ui.line_writerName.installEventFilter(self)
+        
+
+        ui.line_writerName.editingFinished.connect(lambda:self.RenameWriter(writer.parent,writer.name,ui.line_writerName.text()))
         
         if writer.isRowProcess == True:
             ui.checkBox_writerAsRow.setChecked(True)
@@ -223,8 +235,38 @@ class WriteMain:
         self.RefreshValueGrid(writer.valueNames,ui.label_writerParent.text(),ui.line_writerName.text(),ui.valueGrid)
         self.RefreshProcessGrid(writer.processes,ui.label_writerParent.text(),ui.line_writerName.text(),ui.processGrid)
 
+
+    def eventFilter(self,obj,event):
+        if event.type() == QEvent.KeyPress:
+            if event.key() == Qt.Key_Return:
+                self.we.ui.line_writerName.clearFocus()
+                return True
+        return super().eventFilter(obj,event)
         
         
+    def RenameWriter(self,groupName,oldWriterName,newWriterName):
+        if self.dataMgr.RenameWriter(groupName,oldWriterName,newWriterName):
+            writer = self.dataMgr.GetWriter(groupName,newWriterName)
+            ui = self.we.ui
+            self.RefreshKeyGrid(writer.keyNames,ui.label_writerParent.text(),ui.line_writerName.text(),ui.keyGrid)
+            self.RefreshValueGrid(writer.valueNames,ui.label_writerParent.text(),ui.line_writerName.text(),ui.valueGrid)
+            self.RefreshProcessGrid(writer.processes,ui.label_writerParent.text(),ui.line_writerName.text(),ui.processGrid)
+
+            
+            try:
+                filterStr = self.filter_cache.text()
+            except:
+                filterStr = ""
+            if filterStr is None:
+                self.RefreshGrid(self.cBox_cache,self.grid_cache)
+            else:
+                self.GridShowFilted(self.cBox_cache,self.grid_cache,filterStr)
+        else:
+            QMessageBox.warning(self, "警告", "请勿在全部写入组视图中进行复制操作")
+
+
+
+
         
     def RefreshKeyGrid(self,names,groupName,writerName,hGrid):
         self.clearLayout(hGrid)
@@ -276,79 +318,85 @@ class WriteMain:
 
     def GridShowFilted(self,cBox,grid,name):
         self.clearLayout(grid)
-        groupNow = cBox.currentText()
-        g = self.dataMgr.GetWriterGroup(groupNow)
-        num = 0
-        for i,w in enumerate(g.writers) :
-            if name not in w.name:
-                continue
-            cord = divmod(num,writerRepoColNum)
-            box,btns = self.GenerateWriterBox(w.name,grid.parent(),cBox,grid,w.selected)
+
+        if cBox.currentText() == "全部写入组" or cBox.currentIndex() == 0:
             
-            grid.addWidget(box,cord[0],cord[1],1,1)
-            num+=1
-        
-        if num<=writerRepoColNum:
-            vSpacer = QSpacerItem(20,40,QSizePolicy.Minimum,QSizePolicy.Expanding)
-            grid.addItem(vSpacer,1,1,1,1)
-        if num<writerRepoColNum:
-            hSpacer = QSpacerItem(40,20,QSizePolicy.Expanding, QSizePolicy.Minimum)
-            grid.addItem(hSpacer,0,len(g.writers)+1,1,1)
-
-    def RefreshGrid(self,cBox,grid):
-        self.clearLayout(grid)
-        groupNow = cBox.currentText()
-        g = self.dataMgr.GetWriterGroup(groupNow)
-        for i,w in enumerate(g.writers) :
-            cord = divmod(i,writerRepoColNum)
-            box,btns = self.GenerateWriterBox(w.name,grid.parent(),cBox,grid,w.selected)
-            
-            grid.addWidget(box,cord[0],cord[1],1,1)
-        addW,btns = self.GenerateAddWriterBox(grid.parent(),cBox,grid)
-        cord = divmod(len(g.writers),writerRepoColNum)
-        grid.addWidget(addW,cord[0],cord[1],1,1)
-        if len(g.writers)+1<=writerRepoColNum:
-            vSpacer = QSpacerItem(20,40,QSizePolicy.Minimum,QSizePolicy.Expanding)
-            grid.addItem(vSpacer,1,1,1,1)
-        if len(g.writers)+1<writerRepoColNum:
-            hSpacer = QSpacerItem(40,20,QSizePolicy.Expanding, QSizePolicy.Minimum)
-            grid.addItem(hSpacer,0,len(g.writers)+1,1,1)
-
-    def GridShowAll(self,cBox,grid):
-        self.clearLayout(grid)
-        num = 0
-        for g in self.dataMgr.data.writerGroups:
-            for w in g.writers:
-                cord = divmod(num,writerRepoColNum)
-                w,btns = self.GenerateWriterBox(w.name,grid.parent(),cBox,grid,parentName=w.parent)
-                
-                grid.addWidget(w,cord[0],cord[1],1,1)
-                num+=1
-        if num<=writerRepoColNum:
-            vSpacer = QSpacerItem(20,40,QSizePolicy.Minimum,QSizePolicy.Expanding)
-            grid.addItem(vSpacer,1,1,1,1)
-        if num<writerRepoColNum:
-            hSpacer = QSpacerItem(40,20,QSizePolicy.Expanding, QSizePolicy.Minimum)
-            grid.addItem(hSpacer,0,num+1,1,1)
-
-    def GridShowAllFilted(self,cBox,grid,name):
-        self.clearLayout(grid)
-        num = 0
-        for g in self.dataMgr.data.writerGroups:
-            for w in g.writers:
+            num = 0
+            for g in self.dataMgr.data.writerGroups:
+                for w in g.writers:
+                    if name not in w.name:
+                        continue
+                    cord = divmod(num,writerRepoColNum)
+                    w,btns = self.GenerateWriterBox(w.name,grid.parent(),cBox,grid,parentName=w.parent)
+                    
+                    grid.addWidget(w,cord[0],cord[1],1,1)
+                    num+=1
+            if num<=writerRepoColNum:
+                vSpacer = QSpacerItem(20,40,QSizePolicy.Minimum,QSizePolicy.Expanding)
+                grid.addItem(vSpacer,1,1,1,1)
+            if num<writerRepoColNum:
+                hSpacer = QSpacerItem(40,20,QSizePolicy.Expanding, QSizePolicy.Minimum)
+                grid.addItem(hSpacer,0,num+1,1,1)
+        else:
+            groupNow = cBox.currentText()
+            g = self.dataMgr.GetWriterGroup(groupNow)
+            num = 0
+            for i,w in enumerate(g.writers) :
                 if name not in w.name:
                     continue
                 cord = divmod(num,writerRepoColNum)
-                w,btns = self.GenerateWriterBox(w.name,grid.parent(),cBox,grid,parentName=w.parent)
+                box,btns = self.GenerateWriterBox(w.name,grid.parent(),cBox,grid,w.selected)
                 
-                grid.addWidget(w,cord[0],cord[1],1,1)
+                grid.addWidget(box,cord[0],cord[1],1,1)
                 num+=1
-        if num<=writerRepoColNum:
-            vSpacer = QSpacerItem(20,40,QSizePolicy.Minimum,QSizePolicy.Expanding)
-            grid.addItem(vSpacer,1,1,1,1)
-        if num<writerRepoColNum:
-            hSpacer = QSpacerItem(40,20,QSizePolicy.Expanding, QSizePolicy.Minimum)
-            grid.addItem(hSpacer,0,num+1,1,1)
+            
+            if num<=writerRepoColNum:
+                vSpacer = QSpacerItem(20,40,QSizePolicy.Minimum,QSizePolicy.Expanding)
+                grid.addItem(vSpacer,1,1,1,1)
+            if num<writerRepoColNum:
+                hSpacer = QSpacerItem(40,20,QSizePolicy.Expanding, QSizePolicy.Minimum)
+                grid.addItem(hSpacer,0,len(g.writers)+1,1,1)
+
+    def RefreshGrid(self,cBox,grid):
+        if self.cBox_cache is None:
+            self.cBox_cache = cBox
+        if self.grid_cache is None:
+            self.grid_cache = grid
+        self.clearLayout(grid)
+
+        if cBox.currentText() == "全部写入组" or cBox.currentIndex() == 0:
+            
+            num = 0
+            for g in self.dataMgr.data.writerGroups:
+                for w in g.writers:
+                    cord = divmod(num,writerRepoColNum)
+                    w,btns = self.GenerateWriterBox(w.name,grid.parent(),cBox,grid,parentName=w.parent)
+                    
+                    grid.addWidget(w,cord[0],cord[1],1,1)
+                    num+=1
+            if num<=writerRepoColNum:
+                vSpacer = QSpacerItem(20,40,QSizePolicy.Minimum,QSizePolicy.Expanding)
+                grid.addItem(vSpacer,1,1,1,1)
+            if num<writerRepoColNum:
+                hSpacer = QSpacerItem(40,20,QSizePolicy.Expanding, QSizePolicy.Minimum)
+                grid.addItem(hSpacer,0,num+1,1,1)
+        else:
+            groupNow = cBox.currentText()
+            g = self.dataMgr.GetWriterGroup(groupNow)
+            for i,w in enumerate(g.writers) :
+                cord = divmod(i,writerRepoColNum)
+                box,btns = self.GenerateWriterBox(w.name,grid.parent(),cBox,grid,w.selected)
+                
+                grid.addWidget(box,cord[0],cord[1],1,1)
+            addW,btns = self.GenerateAddWriterBox(grid.parent(),cBox,grid)
+            cord = divmod(len(g.writers),writerRepoColNum)
+            grid.addWidget(addW,cord[0],cord[1],1,1)
+            if len(g.writers)+1<=writerRepoColNum:
+                vSpacer = QSpacerItem(20,40,QSizePolicy.Minimum,QSizePolicy.Expanding)
+                grid.addItem(vSpacer,1,1,1,1)
+            if len(g.writers)+1<writerRepoColNum:
+                hSpacer = QSpacerItem(40,20,QSizePolicy.Expanding, QSizePolicy.Minimum)
+                grid.addItem(hSpacer,0,len(g.writers)+1,1,1)
 
 
     def GenerateAddWriterBox(self,uiParent,cBox,grid):
@@ -411,6 +459,19 @@ class WriteMain:
         hLayout1.setSpacing(0)
         hLayout1.setObjectName(u"horizontalLayout")
         hLayout1.setContentsMargins(4, 0, 4, 0)
+
+        btn_writer_name = QPushButton(w)
+        btn_writer_name.setObjectName(u"btn_writer_name")
+        btn_writer_name.setMinimumSize(QSize(0, 39))
+        font3 = QFont()
+        font3.setBold(True)
+        btn_writer_name.setFont(font3)
+        if parentName is not None:
+            btn_writer_name.setText("/"+parentName+"/"+"\n"+writerName)
+        else:
+            btn_writer_name.setText(writerName)
+        btn_writer_name.setStyleSheet(styles.write_btn_writerName)
+        btn_writer_name.clicked.connect(lambda:self.SelectWriter(cBox,btn_writer_delete.parent().parent().objectName(),grid))
         
         btn_writer_edit = QPushButton(frame1)
         btn_writer_edit.setObjectName(u"btn_writer_edit")
@@ -418,7 +479,7 @@ class WriteMain:
         btn_writer_edit.setMaximumSize(QSize(20, 20))
         btn_writer_edit.setStyleSheet(styles.write_btn_editWriter)
         btn_writer_edit.setText("编辑")
-        btn_writer_edit.clicked.connect(lambda:self.EditWriter(cBox,btn_writer_delete.parent().parent().objectName()))
+        btn_writer_edit.clicked.connect(lambda:(self.EditWriter(cBox,btn_writer_delete.parent().parent().objectName()),btn_writer_name.click()))
 
         hLayout1.addWidget(btn_writer_edit, 0, Qt.AlignLeft)
 
@@ -430,7 +491,8 @@ class WriteMain:
         copyIcon = QIcon()
         copyIcon.addFile(u":/icons/icon/\u590d\u5236.ico", QSize(), QIcon.Normal, QIcon.Off)
         btn_writer_copy.setIcon(copyIcon)
-        btn_writer_copy.clicked.connect(lambda:self.CopyWriter(cBox,btn_writer_delete.parent().parent().objectName(),grid))
+        btn_writer_copy.clicked.connect(lambda:(self.CopyWriter(cBox,btn_writer_delete.parent().parent().objectName(),grid),
+                                                btn_writer_name.click()))
 
         hLayout1.addWidget(btn_writer_copy)
 
@@ -448,18 +510,7 @@ class WriteMain:
 
         vLayout.addWidget(frame1)
 
-        btn_writer_name = QPushButton(w)
-        btn_writer_name.setObjectName(u"btn_writer_name")
-        btn_writer_name.setMinimumSize(QSize(0, 39))
-        font3 = QFont()
-        font3.setBold(True)
-        btn_writer_name.setFont(font3)
-        if parentName is not None:
-            btn_writer_name.setText(parentName+"/"+writerName)
-        else:
-            btn_writer_name.setText(writerName)
-        btn_writer_name.setStyleSheet(styles.write_btn_writerName)
-        btn_writer_name.clicked.connect(lambda:self.SelectWriter(cBox,btn_writer_delete.parent().parent().objectName(),grid))
+        
 
         vLayout.addWidget(btn_writer_name)
 
