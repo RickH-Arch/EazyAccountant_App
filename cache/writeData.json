@@ -12,6 +12,7 @@
                     "selected": false,
                     "parent": "\u65b0\u5199\u5165\u7ec4",
                     "isRowProcess": true,
+                    "key_and_mode": true,
                     "workbookNames": [],
                     "sheetNames": [],
                     "keyNames": [],
@@ -24,84 +25,7 @@
                     "selected": false,
                     "parent": "\u65b0\u5199\u5165\u7ec4",
                     "isRowProcess": true,
-                    "workbookNames": [],
-                    "sheetNames": [],
-                    "keyNames": [],
-                    "valueNames": [],
-                    "processes": []
-                },
-                {
-                    "py/object": "WriteFunc.WriteDataManager.Writer",
-                    "name": "\u65b0\u5199\u51652",
-                    "selected": false,
-                    "parent": "\u65b0\u5199\u5165\u7ec4",
-                    "isRowProcess": true,
-                    "workbookNames": [],
-                    "sheetNames": [],
-                    "keyNames": [],
-                    "valueNames": [],
-                    "processes": []
-                }
-            ]
-        },
-        {
-            "py/object": "WriteFunc.WriteDataManager.WriterGroup",
-            "groupName": "dw",
-            "writers": [
-                {
-                    "py/object": "WriteFunc.WriteDataManager.Writer",
-                    "name": "\u65b0\u5199\u5165",
-                    "selected": false,
-                    "parent": "dw",
-                    "isRowProcess": true,
-                    "workbookNames": [],
-                    "sheetNames": [],
-                    "keyNames": [],
-                    "valueNames": [],
-                    "processes": []
-                },
-                {
-                    "py/object": "WriteFunc.WriteDataManager.Writer",
-                    "name": "\u65b0\u5199\u51651",
-                    "selected": false,
-                    "parent": "dw",
-                    "isRowProcess": true,
-                    "workbookNames": [],
-                    "sheetNames": [],
-                    "keyNames": [],
-                    "valueNames": [],
-                    "processes": []
-                },
-                {
-                    "py/object": "WriteFunc.WriteDataManager.Writer",
-                    "name": "\u65b0\u5199\u51651_\u62f7\u8d1d",
-                    "selected": true,
-                    "parent": "dw",
-                    "isRowProcess": true,
-                    "workbookNames": [],
-                    "sheetNames": [],
-                    "keyNames": [],
-                    "valueNames": [],
-                    "processes": []
-                },
-                {
-                    "py/object": "WriteFunc.WriteDataManager.Writer",
-                    "name": "\u65b0\u5199\u51653",
-                    "selected": false,
-                    "parent": "dw",
-                    "isRowProcess": true,
-                    "workbookNames": [],
-                    "sheetNames": [],
-                    "keyNames": [],
-                    "valueNames": [],
-                    "processes": []
-                },
-                {
-                    "py/object": "WriteFunc.WriteDataManager.Writer",
-                    "name": "\u65b0\u5199\u51654",
-                    "selected": false,
-                    "parent": "dw",
-                    "isRowProcess": true,
+                    "key_and_mode": true,
                     "workbookNames": [],
                     "sheetNames": [],
                     "keyNames": [],
@@ -111,5 +35,5 @@
             ]
         }
     ],
-    "writerGroupNow": "dw"
+    "writerGroupNow": "\u65b0\u5199\u5165\u7ec4"
 }

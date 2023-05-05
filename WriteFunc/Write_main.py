@@ -1,5 +1,5 @@
 import sys
-
+import time
 
 from PySide6 import QtWidgets,QtCore,QtGui
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
@@ -13,6 +13,8 @@ from .WriterEditor import WriterEditor
 from utils.FolderPathManager import FolderPathMgr
 from .WriteDataManager import WriteDataManager
 import utils.styleSheets as styles
+
+
 
 writerRepoColNum = 4
 
@@ -100,78 +102,7 @@ class WriteMain:
             cBox.setCurrentText(self.dataMgr.data.writerGroupNow)
             self.RefreshGrid(cBox,grid)
     
-    def GridShowFilted(self,cBox,grid,name):
-        self.clearLayout(grid)
-        groupNow = cBox.currentText()
-        g = self.dataMgr.GetWriterGroup(groupNow)
-        num = 0
-        for i,w in enumerate(g.writers) :
-            if name not in w.name:
-                continue
-            cord = divmod(num,writerRepoColNum)
-            w,btns = self.GenerateWriterBox(w.name,grid.parent(),cBox,grid,w.selected)
-            grid.addWidget(w,cord[0],cord[1],1,1)
-            num+=1
-        
-        if num<=writerRepoColNum:
-            vSpacer = QSpacerItem(20,40,QSizePolicy.Minimum,QSizePolicy.Expanding)
-            grid.addItem(vSpacer,1,1,1,1)
-        if num<writerRepoColNum:
-            hSpacer = QSpacerItem(40,20,QSizePolicy.Expanding, QSizePolicy.Minimum)
-            grid.addItem(hSpacer,0,len(g.writers)+1,1,1)
-
-    def RefreshGrid(self,cBox,grid):
-        self.clearLayout(grid)
-        groupNow = cBox.currentText()
-        g = self.dataMgr.GetWriterGroup(groupNow)
-        for i,w in enumerate(g.writers) :
-            cord = divmod(i,writerRepoColNum)
-            w,btns = self.GenerateWriterBox(w.name,grid.parent(),cBox,grid,w.selected)
-            grid.addWidget(w,cord[0],cord[1],1,1)
-        addW,btns = self.GenerateAddWriterBox(grid.parent(),cBox,grid)
-        cord = divmod(len(g.writers),writerRepoColNum)
-        grid.addWidget(addW,cord[0],cord[1],1,1)
-        if len(g.writers)+1<=writerRepoColNum:
-            vSpacer = QSpacerItem(20,40,QSizePolicy.Minimum,QSizePolicy.Expanding)
-            grid.addItem(vSpacer,1,1,1,1)
-        if len(g.writers)+1<writerRepoColNum:
-            hSpacer = QSpacerItem(40,20,QSizePolicy.Expanding, QSizePolicy.Minimum)
-            grid.addItem(hSpacer,0,len(g.writers)+1,1,1)
-
-    def GridShowAll(self,cBox,grid):
-        self.clearLayout(grid)
-        num = 0
-        for g in self.dataMgr.data.writerGroups:
-            for w in g.writers:
-                cord = divmod(num,writerRepoColNum)
-                w,btns = self.GenerateWriterBox(w.name,grid.parent(),cBox,grid,parentName=w.parent)
-                grid.addWidget(w,cord[0],cord[1],1,1)
-                num+=1
-        if num<=writerRepoColNum:
-            vSpacer = QSpacerItem(20,40,QSizePolicy.Minimum,QSizePolicy.Expanding)
-            grid.addItem(vSpacer,1,1,1,1)
-        if num<writerRepoColNum:
-            hSpacer = QSpacerItem(40,20,QSizePolicy.Expanding, QSizePolicy.Minimum)
-            grid.addItem(hSpacer,0,num+1,1,1)
-
-    def GridShowAllFilted(self,cBox,grid,name):
-        self.clearLayout(grid)
-        num = 0
-        for g in self.dataMgr.data.writerGroups:
-            for w in g.writers:
-                if name not in w.name:
-                    continue
-                cord = divmod(num,writerRepoColNum)
-                w,btns = self.GenerateWriterBox(w.name,grid.parent(),cBox,grid,parentName=w.parent)
-                grid.addWidget(w,cord[0],cord[1],1,1)
-                num+=1
-        if num<=writerRepoColNum:
-            vSpacer = QSpacerItem(20,40,QSizePolicy.Minimum,QSizePolicy.Expanding)
-            grid.addItem(vSpacer,1,1,1,1)
-        if num<writerRepoColNum:
-            hSpacer = QSpacerItem(40,20,QSizePolicy.Expanding, QSizePolicy.Minimum)
-            grid.addItem(hSpacer,0,num+1,1,1)
-
+   
 
 
 
@@ -246,14 +177,6 @@ class WriteMain:
                 self.GridShowAll(cBox,grid)
             else:
                 self.GridShowAllFilted(cBox,grid,msg)
-        
-
-
-    def EditWriter(self,name):
-        self.app = QApplication.instance()
-        self.writerEditor = WriterEditor()
-        self.writerEditor.show()
-        
     
     def SelectWriter(self,cBox,name,grid):
         #print(name," selected")
@@ -264,8 +187,82 @@ class WriteMain:
         self.RefreshGrid(cBox,grid)
         
 
-    
-            
+
+    def EditWriter(self,cBox,name):
+        self.app = QApplication.instance()
+        self.we = WriterEditor()
+        curGroup = cBox.currentText()
+        w = self.dataMgr.GetWriter(curGroup,name)
+        if w is None:
+            return
+        self.InitWriterEditor(w)
+        
+        self.we.show()
+
+    def InitWriterEditor(self,writer):
+        ui = self.we.ui
+        ui.label_writerParent.setText(writer.parent)
+        ui.line_writerName.setText(writer.name)
+        
+        if writer.isRowProcess == True:
+            ui.checkBox_writerAsRow.setChecked(True)
+        else:
+            ui.checkBox_writerAsColumn.setChecked(True)
+        if writer.key_and_mode == True:
+            ui.checkbox_key_and.setChecked(True)
+        else:
+            ui.checkbox_key_or.setChecked(True)
+
+        for name in writer.workbookNames:
+            ui.list_Writer_wbName.addItem(QListWidgetItem(name))
+
+        for name in writer.sheetNames:
+            ui.list_writer_sheetName.addItem(QListWidgetItem(name))
+
+        self.RefreshKeyGrid(writer.keyNames,ui.label_writerParent.text(),ui.line_writerName.text(),ui.keyGrid)
+        self.RefreshValueGrid(writer.valueNames,ui.label_writerParent.text(),ui.line_writerName.text(),ui.valueGrid)
+        self.RefreshProcessGrid(writer.processes,ui.label_writerParent.text(),ui.line_writerName.text(),ui.processGrid)
+
+        
+        
+        
+    def RefreshKeyGrid(self,names,groupName,writerName,hGrid):
+        self.clearLayout(hGrid)
+        for name in names:
+            box = self.GenerateKeyBox(name,groupName,writerName,hGrid)
+            hGrid.addWidget(box)
+        addBox = self.GenerateAddKeyBox(groupName,writerName,hGrid)
+        hGrid.addWidget(addBox)
+        if len(names)+1<5:
+            hSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+            hGrid.addItem(hSpacer)
+
+    def RefreshValueGrid(self,names,groupName,writerName,hGrid):
+        self.clearLayout(hGrid)
+        for name in names:
+            box = self.GenerateValueBox(name,groupName,writerName,hGrid)
+            hGrid.addWidget(box)
+        addBox = self.GenerateAddValueBox(groupName,writerName,hGrid)
+        hGrid.addWidget(addBox)
+        if len(names)+1<5:
+            hSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+            hGrid.addItem(hSpacer)
+
+    def RefreshProcessGrid(self,processes,groupName,writerName,hGrid):
+        self.clearLayout(hGrid)
+        for process in processes:
+            box = self.GenerateProcessBox(process,groupName,writerName,hGrid)
+            hGrid.addWidget(box)
+        addBox = self.GenerateAddProcessBox(groupName,writerName,hGrid)
+        hGrid.addWidget(addBox)
+        if len(processes)+1<5:
+            hSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+            hGrid.addItem(hSpacer)
+
+        
+
+        
+        
 
     def clearLayout(self, layout):
         if layout is not None:
@@ -276,6 +273,83 @@ class WriteMain:
                     widget.deleteLater()
                 else:
                     self.clearLayout(item.layout())
+
+    def GridShowFilted(self,cBox,grid,name):
+        self.clearLayout(grid)
+        groupNow = cBox.currentText()
+        g = self.dataMgr.GetWriterGroup(groupNow)
+        num = 0
+        for i,w in enumerate(g.writers) :
+            if name not in w.name:
+                continue
+            cord = divmod(num,writerRepoColNum)
+            box,btns = self.GenerateWriterBox(w.name,grid.parent(),cBox,grid,w.selected)
+            
+            grid.addWidget(box,cord[0],cord[1],1,1)
+            num+=1
+        
+        if num<=writerRepoColNum:
+            vSpacer = QSpacerItem(20,40,QSizePolicy.Minimum,QSizePolicy.Expanding)
+            grid.addItem(vSpacer,1,1,1,1)
+        if num<writerRepoColNum:
+            hSpacer = QSpacerItem(40,20,QSizePolicy.Expanding, QSizePolicy.Minimum)
+            grid.addItem(hSpacer,0,len(g.writers)+1,1,1)
+
+    def RefreshGrid(self,cBox,grid):
+        self.clearLayout(grid)
+        groupNow = cBox.currentText()
+        g = self.dataMgr.GetWriterGroup(groupNow)
+        for i,w in enumerate(g.writers) :
+            cord = divmod(i,writerRepoColNum)
+            box,btns = self.GenerateWriterBox(w.name,grid.parent(),cBox,grid,w.selected)
+            
+            grid.addWidget(box,cord[0],cord[1],1,1)
+        addW,btns = self.GenerateAddWriterBox(grid.parent(),cBox,grid)
+        cord = divmod(len(g.writers),writerRepoColNum)
+        grid.addWidget(addW,cord[0],cord[1],1,1)
+        if len(g.writers)+1<=writerRepoColNum:
+            vSpacer = QSpacerItem(20,40,QSizePolicy.Minimum,QSizePolicy.Expanding)
+            grid.addItem(vSpacer,1,1,1,1)
+        if len(g.writers)+1<writerRepoColNum:
+            hSpacer = QSpacerItem(40,20,QSizePolicy.Expanding, QSizePolicy.Minimum)
+            grid.addItem(hSpacer,0,len(g.writers)+1,1,1)
+
+    def GridShowAll(self,cBox,grid):
+        self.clearLayout(grid)
+        num = 0
+        for g in self.dataMgr.data.writerGroups:
+            for w in g.writers:
+                cord = divmod(num,writerRepoColNum)
+                w,btns = self.GenerateWriterBox(w.name,grid.parent(),cBox,grid,parentName=w.parent)
+                
+                grid.addWidget(w,cord[0],cord[1],1,1)
+                num+=1
+        if num<=writerRepoColNum:
+            vSpacer = QSpacerItem(20,40,QSizePolicy.Minimum,QSizePolicy.Expanding)
+            grid.addItem(vSpacer,1,1,1,1)
+        if num<writerRepoColNum:
+            hSpacer = QSpacerItem(40,20,QSizePolicy.Expanding, QSizePolicy.Minimum)
+            grid.addItem(hSpacer,0,num+1,1,1)
+
+    def GridShowAllFilted(self,cBox,grid,name):
+        self.clearLayout(grid)
+        num = 0
+        for g in self.dataMgr.data.writerGroups:
+            for w in g.writers:
+                if name not in w.name:
+                    continue
+                cord = divmod(num,writerRepoColNum)
+                w,btns = self.GenerateWriterBox(w.name,grid.parent(),cBox,grid,parentName=w.parent)
+                
+                grid.addWidget(w,cord[0],cord[1],1,1)
+                num+=1
+        if num<=writerRepoColNum:
+            vSpacer = QSpacerItem(20,40,QSizePolicy.Minimum,QSizePolicy.Expanding)
+            grid.addItem(vSpacer,1,1,1,1)
+        if num<writerRepoColNum:
+            hSpacer = QSpacerItem(40,20,QSizePolicy.Expanding, QSizePolicy.Minimum)
+            grid.addItem(hSpacer,0,num+1,1,1)
+
 
     def GenerateAddWriterBox(self,uiParent,cBox,grid):
         frame_addWriter = QWidget(uiParent)
@@ -344,7 +418,7 @@ class WriteMain:
         btn_writer_edit.setMaximumSize(QSize(20, 20))
         btn_writer_edit.setStyleSheet(styles.write_btn_editWriter)
         btn_writer_edit.setText("编辑")
-        btn_writer_edit.clicked.connect(lambda:self.EditWriter(btn_writer_delete.parent().parent().objectName()))
+        btn_writer_edit.clicked.connect(lambda:self.EditWriter(cBox,btn_writer_delete.parent().parent().objectName()))
 
         hLayout1.addWidget(btn_writer_edit, 0, Qt.AlignLeft)
 
@@ -422,12 +496,332 @@ class WriteMain:
         return w,[btn_writer_name,btn_writer_edit,btn_writer_copy,btn_writer_delete,btn_writer_batchOpr,btn_writer_opr]
     
 
+    def GenerateKeyBox(self,name,groupName,writerName,hGrid):
+        keyBox = QWidget(hGrid.parent())
+        keyBox.setObjectName(name)
+        keyBox.setMinimumSize(QSize(90, 90))
+        keyBox.setMaximumSize(QSize(75, 75))
+        keyBox.setStyleSheet(u"*{\n"
+"background-color: rgb(237, 234, 255);\n"
+"border:1px solid rgb(239, 239, 248);\n"
+"border-radius:10px;\n"
+"}\n"
+"")
+        vLayout = QVBoxLayout(keyBox)
+        vLayout.setObjectName(u"verticalLayout_8")
+        vLayout.setContentsMargins(0, 0, 0, 0)
 
+        frame = QFrame(keyBox)
+        frame.setObjectName(u"frame_9")
+        frame.setStyleSheet(u"border:none")
+        frame.setFrameShape(QFrame.StyledPanel)
+        frame.setFrameShadow(QFrame.Raised)
 
+        btn_writer_deleteKey = QPushButton(keyBox)
+        btn_writer_deleteKey.setObjectName(u"btn_writer_deleteKey")
+        btn_writer_deleteKey.setGeometry(QRect(64, 4, 20, 20))
+        btn_writer_deleteKey.setMinimumSize(QSize(20, 20))
+        btn_writer_deleteKey.setMaximumSize(QSize(20, 20))
+        btn_writer_deleteKey.setStyleSheet(u"*{background-color:rgb(231, 210, 255);}\n"
+"*:hover{\n"
+"	\n"
+"	background-color: rgb(223, 145, 146);\n"
+"}\n"
+"\n"
+"*:pressed{\n"
+"background-color: rgb(203, 125, 126);\n"
+"}")
+        icon = QIcon()
+        icon.addFile(u":/icons/icon/\u5173\u95ed.ico", QSize(), QIcon.Normal, QIcon.Off)
+        btn_writer_deleteKey.setIcon(icon)
 
+        vLayout.addWidget(frame)
+
+        line_keyName = QLineEdit(keyBox)
+        line_keyName.setObjectName(name)
+        line_keyName.setMinimumSize(QSize(0, 55))
+        font2 = QFont()
+        font2.setFamilies([u"Microsoft YaHei UI"])
+        font2.setPointSize(10)
+        font2.setBold(True)
+        font2.setItalic(False)
+        line_keyName.setFont(font2)
+        line_keyName.setStyleSheet(u"border:None;\n"
+"font: 700 10pt \"Microsoft YaHei UI\";")
+        line_keyName.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
+        line_keyName.setText(name)
+
+        vLayout.addWidget(line_keyName)
+
+        return keyBox
 
     
+    def GenerateAddKeyBox(self,groupName,writerName,hGrid):
+        addKeyBox = QWidget(hGrid.parent())
+        addKeyBox.setObjectName(u"writer_add_key")
+        addKeyBox.setMinimumSize(QSize(90, 90))
+        addKeyBox.setMaximumSize(QSize(75, 75))
+        addKeyBox.setStyleSheet(u"*{\n"
+"background-color: rgb(255, 255, 255);\n"
+"border:1px solid rgb(239, 239, 248);\n"
+"border-radius:10px;\n"
+"}\n"
+"")
+        horizontalLayout_7 = QHBoxLayout(addKeyBox)
+        horizontalLayout_7.setObjectName(u"horizontalLayout_7")
+        horizontalLayout_7.setContentsMargins(0, 0, 0, 0)
+        btn_writer_addKey = QPushButton(addKeyBox)
+        btn_writer_addKey.setObjectName(u"btn_writer_addKey")
+        btn_writer_addKey.setMinimumSize(QSize(90, 90))
+        btn_writer_addKey.setMaximumSize(QSize(90, 90))
+        btn_writer_addKey.setStyleSheet(u"*:hover{\n"
+"	background-color: rgb(245, 245, 245);\n"
+"}\n"
+"\n"
+"*:pressed{\n"
+"background-color: rgb(240, 240, 240);\n"
+"}\n"
+"\n"
+"*{\n"
+"border-radius:10px;\n"
+"}")
+        icon3 = QIcon()
+        icon3.addFile(u":/icons/icon/\u6dfb\u52a0.ico", QSize(), QIcon.Normal, QIcon.Off)
+        btn_writer_addKey.setIcon(icon3)
+        btn_writer_addKey.setIconSize(QSize(30, 30))
+
+        return addKeyBox
+
+
+    def GenerateValueBox(self,name,groupName,writerName,hGrid):
+        valueBox = QWidget(hGrid.parent())
+        valueBox.setObjectName(name)
+        valueBox.setMinimumSize(QSize(90, 90))
+        valueBox.setMaximumSize(QSize(75, 75))
+        valueBox.setStyleSheet(u"*{\n"
+"background-color: rgb(221, 194, 255);\n"
+"border:1px solid rgb(239, 239, 248);\n"
+"border-radius:10px;\n"
+"}\n"
+"")
+        vLayout = QVBoxLayout(valueBox)
+        vLayout.setObjectName(u"verticalLayout_9")
+        vLayout.setContentsMargins(0, 0, 0, 0)
+
+        frame = QFrame(valueBox)
+        frame.setObjectName(u"frame_9")
+        frame.setStyleSheet(u"border:none")
+        frame.setFrameShape(QFrame.StyledPanel)
+        frame.setFrameShadow(QFrame.Raised)
+
+        btn_writer_deleteValue = QPushButton(valueBox)
+        btn_writer_deleteValue.setObjectName(u"btn_writer_deleteKey")
+        btn_writer_deleteValue.setGeometry(QRect(64, 4, 20, 20))
+        btn_writer_deleteValue.setMinimumSize(QSize(20, 20))
+        btn_writer_deleteValue.setMaximumSize(QSize(20, 20))
+        btn_writer_deleteValue.setStyleSheet(u"*{background-color:rgb(248, 248, 248);}\n"
+"*:hover{\n"
+"	\n"
+"	background-color: rgb(223, 145, 146);\n"
+"}\n"
+"\n"
+"*:pressed{\n"
+"background-color: rgb(203, 125, 126);\n"
+"}")
+        icon = QIcon()
+        icon.addFile(u":/icons/icon/\u5173\u95ed.ico", QSize(), QIcon.Normal, QIcon.Off)
+        btn_writer_deleteValue.setIcon(icon)
+
+        vLayout.addWidget(frame)
+
+        line_valueName = QLineEdit(valueBox)
+        line_valueName.setObjectName(name)
+        line_valueName.setMinimumSize(QSize(0, 55))
+        font2 = QFont()
+        font2.setFamilies([u"Microsoft YaHei UI"])
+        font2.setPointSize(10)
+        font2.setBold(True)
+        font2.setItalic(False)
+        line_valueName.setFont(font2)
+        line_valueName.setStyleSheet(u"border:None;\n"
+"font: 700 10pt \"Microsoft YaHei UI\";")
+        line_valueName.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
+        line_valueName.setText(name)
+
+        vLayout.addWidget(line_valueName)
+
+        return valueBox
+
+
+    def GenerateAddValueBox(self,groupName,writerName,hGrid):
+        addValueBox = QWidget(hGrid.parent())
+        addValueBox.setObjectName(u"writer_add_key")
+        addValueBox.setMinimumSize(QSize(90, 90))
+        addValueBox.setMaximumSize(QSize(75, 75))
+        addValueBox.setStyleSheet(u"*{\n"
+"background-color: rgb(255, 255, 255);\n"
+"border:1px solid rgb(239, 239, 248);\n"
+"border-radius:10px;\n"
+"}\n"
+"")
+        horizontalLayout_7 = QHBoxLayout(addValueBox)
+        horizontalLayout_7.setObjectName(u"horizontalLayout_7")
+        horizontalLayout_7.setContentsMargins(0, 0, 0, 0)
+        btn_writer_addValue = QPushButton(addValueBox)
+        btn_writer_addValue.setObjectName(u"btn_writer_addKey")
+        btn_writer_addValue.setMinimumSize(QSize(90, 90))
+        btn_writer_addValue.setMaximumSize(QSize(90, 90))
+        btn_writer_addValue.setStyleSheet(u"*:hover{\n"
+"	background-color: rgb(245, 245, 245);\n"
+"}\n"
+"\n"
+"*:pressed{\n"
+"background-color: rgb(240, 240, 240);\n"
+"}\n"
+"\n"
+"*{\n"
+"border-radius:10px;\n"
+"}")
+        icon3 = QIcon()
+        icon3.addFile(u":/icons/icon/\u6dfb\u52a0.ico", QSize(), QIcon.Normal, QIcon.Off)
+        btn_writer_addValue.setIcon(icon3)
+        btn_writer_addValue.setIconSize(QSize(30, 30))
+
+        return addValueBox
+
+    
+    def GenerateProcessBox(self,process,groupName,writerName,hGrid):
+        processBox = QWidget(hGrid.parent())
+        processBox.setObjectName(u"processBox")
+        processBox.setMinimumSize(QSize(150, 210))
+        processBox.setMaximumSize(QSize(110, 210))
+        processBox.setStyleSheet(u"*{\n"
+"background-color:rgb(110, 92, 194);\n"
+"border:1px solid rgb(239, 239, 248);\n"
+"border-radius:10px;\n"
+"}\n"
+"")
+        vLayout = QVBoxLayout(processBox)
+        vLayout.setSpacing(0)
+        vLayout.setObjectName(u"verticalLayout_11")
+        vLayout.setContentsMargins(5, 0, 5, 0)
+
+        frame = QFrame(processBox)
+        frame.setObjectName(u"frame_11")
+        frame.setMinimumSize(QSize(0, 30))
+        frame.setMaximumSize(QSize(16777215, 30))
+        frame.setStyleSheet(u"border:none")
+        frame.setFrameShape(QFrame.StyledPanel)
+        frame.setFrameShadow(QFrame.Raised)
+        horizontalLayout_5 = QHBoxLayout(frame)
+        horizontalLayout_5.setSpacing(0)
+        horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        horizontalLayout_5.setContentsMargins(0, 0, 0, 0)
+        btn_writer_deleteProcess = QPushButton(frame)
+        btn_writer_deleteProcess.setObjectName(u"btn_writer_deleteProcess")
+        btn_writer_deleteProcess.setMinimumSize(QSize(20, 20))
+        btn_writer_deleteProcess.setMaximumSize(QSize(20, 20))
+        btn_writer_deleteProcess.setStyleSheet(u"*{background-color:rgb(158, 132, 235);}\n"
+"*:hover{\n"
+"	\n"
+"	background-color: rgb(223, 145, 146);\n"
+"}\n"
+"\n"
+"*:pressed{\n"
+"background-color: rgb(203, 125, 126);\n"
+"}")
+        icon = QIcon()
+        icon.addFile(u":/icons/icon/\u5173\u95ed.ico", QSize(), QIcon.Normal, QIcon.Off)
+        btn_writer_deleteProcess.setIcon(icon)
+    
+        horizontalLayout_5.addWidget(btn_writer_deleteProcess, 0, Qt.AlignRight)
+        
+        vLayout.addWidget(frame)
+
+        line_processName = QLineEdit(processBox)
+        line_processName.setObjectName(u"line_processName")
+        line_processName.setMinimumSize(QSize(0, 31))
+        line_processName.setStyleSheet(u"color:rgb(255, 255, 255);\n"
+"border-radius:10px;\n"
+"font: 700 10pt \"Microsoft YaHei UI\";")
+        line_processName.setAlignment(Qt.AlignCenter)
+        line_processName.setText(process.name)
+
+        vLayout.addWidget(line_processName)
+
+        checkBox_writer_rewrite = QCheckBox(processBox)
+        checkBox_writer_rewrite.setObjectName(u"checkBox_writer_rewrite")
+        checkBox_writer_rewrite.setMinimumSize(QSize(0, 24))
+        checkBox_writer_rewrite.setStyleSheet(u"QCheckBox{\n"
+"border:none;\n"
+"color:rgb(255, 255, 255);\n"
+"}\n"
+"QCheckBox::indicator {\n"
+"    \n"
+"    background-color: white;\n"
+"    border-radius: 5px;\n"
+"    border-style: solid;\n"
+"    border-width: 1px;\n"
+"    border-color: white;\n"
+"}\n"
+"QCheckBox::indicator:checked {\n"
+"    background-color: rgb(102, 86, 180)\n"
+"}\n"
+"\n"
+"")
+        checkBox_writer_rewrite.setChecked(process.reWrite)
+        checkBox_writer_rewrite.setText("覆盖")
+
+        vLayout.addWidget(checkBox_writer_rewrite,0,Qt.AlignHCenter)
+        text_writer_process = QTextEdit(processBox)
+        text_writer_process.setObjectName(u"text_writer_process")
+        text_writer_process.setMinimumSize(QSize(0, 110))
+        text_writer_process.setMaximumSize(QSize(16777215, 112))
+        text_writer_process.setStyleSheet(u"background-color:rgb(255, 255, 255);\n"
+"font: 9pt \"Microsoft YaHei UI\";")
+        text_writer_process.setText(process.processStr)
+
+        vLayout.addWidget(text_writer_process)
+
+        return processBox
     
 
-        
-        
+    def GenerateAddProcessBox(self,groupName,writerName,hGrid):
+        addProcessBox = QWidget(hGrid.parent())
+        addProcessBox.setObjectName(u"writer_addProcess")
+        addProcessBox.setMinimumSize(QSize(150, 210))
+        addProcessBox.setMaximumSize(QSize(150, 210))
+        addProcessBox.setStyleSheet(u"*{\n"
+"background-color: rgb(255, 255, 255);\n"
+"border:1px solid rgb(239, 239, 248);\n"
+"border-radius:10px;\n"
+"}\n"
+"")
+        hLayout = QHBoxLayout(addProcessBox)
+        hLayout.setObjectName(u"horizontalLayout_11")
+        hLayout.setContentsMargins(0, 0, 0, 0)
+        btn_writer_addProcess = QPushButton(addProcessBox)
+        btn_writer_addProcess.setObjectName(u"btn_writer_addProcess")
+        btn_writer_addProcess.setMinimumSize(QSize(150, 210))
+        btn_writer_addProcess.setMaximumSize(QSize(150, 210))
+        btn_writer_addProcess.setStyleSheet(u"*:hover{\n"
+"	background-color: rgb(245, 245, 245);\n"
+"}\n"
+"\n"
+"*:pressed{\n"
+"background-color: rgb(240, 240, 240);\n"
+"}\n"
+"\n"
+"*{\n"
+"border-radius:10px;\n"
+"}")
+        icon3 = QIcon()
+        icon3.addFile(u":/icons/icon/\u6dfb\u52a0.ico", QSize(), QIcon.Normal, QIcon.Off)
+        btn_writer_addProcess.setIcon(icon3)
+        btn_writer_addProcess.setIconSize(QSize(30, 30))
+
+        hLayout.addWidget(btn_writer_addProcess)
+
+        return addProcessBox
+
+

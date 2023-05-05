@@ -68,6 +68,14 @@ class WriteDataManager:
                 return g
         return None
     
+    def GetWriter(self,groupName,name):
+        for g in self.data.writerGroups:
+            if g.groupName == groupName:
+                for w in g.writers:
+                    if w.name == name:
+                        return w
+        return None
+    
     def DeleteWriterGroup(self,name):
         groupNum = len(self.data.writerGroups)
         if groupNum<2:
@@ -199,6 +207,7 @@ class Writer:
         
         self.parent = parent
         self.isRowProcess = True
+        self.key_and_mode = True
         self.workbookNames = []
         self.sheetNames = []
         self.keyNames = []

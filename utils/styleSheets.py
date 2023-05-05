@@ -164,3 +164,25 @@ color:rgb(72, 72, 72);
 background-color:rgb(249, 246, 255);
 border:none;
 '''
+def EditorName(name):
+    return u'''
+    <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: "\2610"; }
+li.checked::marker { content: "\2612"; }
+</style></head><body style=" font-family:'Microsoft YaHei UI'; font-size:15px; font-weight:400; font-style:normal;">
+<p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-size:14pt; font-weight:700;">'''+name+u'''</span></p></body></html>
+    '''
+    
+
+def KeyName(name):
+    return '''<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n
+<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n
+p, li { white-space: pre-wrap; }\n
+hr { height: 1px; border-width: 0; }\n
+li.unchecked::marker { content: \"\\2610\"; }\n
+li.checked::marker { content: \"\\2612\"; }\n
+</style></head><body style=\" font-family:'Microsoft YaHei UI'; font-size:11px; font-weight:400; font-style:normal;\">\n
+<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; font-weight:700;\">'''+name+"</span></p></body></html>"

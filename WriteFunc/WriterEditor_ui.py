@@ -16,16 +16,16 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QCheckBox, QFrame, QHBoxLayout,
-    QLabel, QListWidget, QListWidgetItem, QPushButton,
-    QScrollArea, QSizePolicy, QSpacerItem, QTextEdit,
-    QVBoxLayout, QWidget)
+    QLabel, QLineEdit, QListWidget, QListWidgetItem,
+    QPushButton, QScrollArea, QSizePolicy, QSpacerItem,
+    QTextEdit, QVBoxLayout, QWidget)
 import resource_rc
 
 class Ui_WriterEditor(object):
     def setupUi(self, WriterEditor):
         if not WriterEditor.objectName():
             WriterEditor.setObjectName(u"WriterEditor")
-        WriterEditor.resize(690, 925)
+        WriterEditor.resize(688, 916)
         self.writerEditor_mainWindow = QWidget(WriterEditor)
         self.writerEditor_mainWindow.setObjectName(u"writerEditor_mainWindow")
         self.writerEditor_mainWindow.setGeometry(QRect(80, 10, 500, 850))
@@ -64,11 +64,11 @@ class Ui_WriterEditor(object):
 "\n"
 "*:hover{\n"
 "	\n"
-"	background-color: rgb(249, 246, 255);\n"
+"	background-color: rgb(94, 80, 168);\n"
 "}\n"
 "QPushButton:pressed{\n"
 "	\n"
-"	background-color:rgb(228, 226, 234);\n"
+"	background-color:rgb(84, 71, 148);\n"
 "}")
         icon = QIcon()
         icon.addFile(u":/icons/icon/\u5173\u95ed.ico", QSize(), QIcon.Normal, QIcon.Off)
@@ -111,15 +111,14 @@ class Ui_WriterEditor(object):
         self.horizontalLayout = QHBoxLayout(self.frame)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
-        self.WriterName = QTextEdit(self.frame)
-        self.WriterName.setObjectName(u"WriterName")
+        self.line_writerName = QLineEdit(self.frame)
+        self.line_writerName.setObjectName(u"line_writerName")
         font1 = QFont()
-        font1.setBold(False)
-        font1.setItalic(False)
-        self.WriterName.setFont(font1)
-        self.WriterName.setStyleSheet(u"font:15px")
+        font1.setPointSize(20)
+        font1.setBold(True)
+        self.line_writerName.setFont(font1)
 
-        self.horizontalLayout.addWidget(self.WriterName)
+        self.horizontalLayout.addWidget(self.line_writerName)
 
 
         self.verticalLayout_3.addWidget(self.frame)
@@ -131,8 +130,16 @@ class Ui_WriterEditor(object):
         self.frame_2.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_2 = QHBoxLayout(self.frame_2)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalLayout_2.setContentsMargins(5, 0, 0, 0)
+        self.label_writerParent = QLabel(self.frame_2)
+        self.label_writerParent.setObjectName(u"label_writerParent")
+        self.label_writerParent.setFocusPolicy(Qt.ClickFocus)
+        self.label_writerParent.setStyleSheet(u"color: rgb(156, 156, 156);")
+        self.label_writerParent.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
+
+        self.horizontalLayout_2.addWidget(self.label_writerParent)
+
+        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Preferred, QSizePolicy.Minimum)
 
         self.horizontalLayout_2.addItem(self.horizontalSpacer)
 
@@ -155,10 +162,10 @@ class Ui_WriterEditor(object):
 
         self.horizontalLayout_2.addWidget(self.checkBox_writerAsRow)
 
-        self.checkBox__writerAsColumn = QCheckBox(self.frame_2)
-        self.checkBox__writerAsColumn.setObjectName(u"checkBox__writerAsColumn")
-        self.checkBox__writerAsColumn.setMaximumSize(QSize(60, 16777215))
-        self.checkBox__writerAsColumn.setStyleSheet(u"QCheckBox::indicator {\n"
+        self.checkBox_writerAsColumn = QCheckBox(self.frame_2)
+        self.checkBox_writerAsColumn.setObjectName(u"checkBox_writerAsColumn")
+        self.checkBox_writerAsColumn.setMaximumSize(QSize(60, 16777215))
+        self.checkBox_writerAsColumn.setStyleSheet(u"QCheckBox::indicator {\n"
 "    \n"
 "    background-color: white;\n"
 "    border-radius: 5px;\n"
@@ -172,11 +179,7 @@ class Ui_WriterEditor(object):
 "\n"
 "")
 
-        self.horizontalLayout_2.addWidget(self.checkBox__writerAsColumn)
-
-        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_2.addItem(self.horizontalSpacer_2)
+        self.horizontalLayout_2.addWidget(self.checkBox_writerAsColumn)
 
 
         self.verticalLayout_3.addWidget(self.frame_2)
@@ -201,6 +204,7 @@ class Ui_WriterEditor(object):
         self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.label_2 = QLabel(self.frame_5)
         self.label_2.setObjectName(u"label_2")
+        self.label_2.setMinimumSize(QSize(240, 0))
         self.label_2.setMaximumSize(QSize(16777215, 14))
         self.label_2.setStyleSheet(u"color: rgb(127, 127, 127);")
 
@@ -221,7 +225,7 @@ class Ui_WriterEditor(object):
         self.frame_4.setFrameShape(QFrame.StyledPanel)
         self.frame_4.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_4 = QHBoxLayout(self.frame_4)
-        self.horizontalLayout_4.setSpacing(5)
+        self.horizontalLayout_4.setSpacing(10)
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.horizontalLayout_4.setContentsMargins(0, 3, 0, 0)
         self.list_Writer_wbName = QListWidget(self.frame_4)
@@ -262,7 +266,7 @@ class Ui_WriterEditor(object):
 
         self.frame_6 = QFrame(self.frame_4)
         self.frame_6.setObjectName(u"frame_6")
-        self.frame_6.setMinimumSize(QSize(37, 0))
+        self.frame_6.setMinimumSize(QSize(25, 0))
         self.frame_6.setFrameShape(QFrame.StyledPanel)
         self.frame_6.setFrameShadow(QFrame.Raised)
         self.verticalLayout_5 = QVBoxLayout(self.frame_6)
@@ -324,6 +328,7 @@ class Ui_WriterEditor(object):
 
         self.list_writer_sheetName = QListWidget(self.frame_4)
         self.list_writer_sheetName.setObjectName(u"list_writer_sheetName")
+        self.list_writer_sheetName.setMinimumSize(QSize(0, 0))
         self.list_writer_sheetName.setStyleSheet(u"*{border-radius:10px;\n"
 "background-color: rgb(255, 255, 255);\n"
 "border:1px solid rgb(232, 232, 232);\n"
@@ -360,7 +365,7 @@ class Ui_WriterEditor(object):
 
         self.frame_7 = QFrame(self.frame_4)
         self.frame_7.setObjectName(u"frame_7")
-        self.frame_7.setMinimumSize(QSize(37, 0))
+        self.frame_7.setMinimumSize(QSize(25, 0))
         self.frame_7.setFrameShape(QFrame.StyledPanel)
         self.frame_7.setFrameShadow(QFrame.Raised)
         self.verticalLayout_6 = QVBoxLayout(self.frame_7)
@@ -388,7 +393,7 @@ class Ui_WriterEditor(object):
 "}")
         self.btn_writer_addSheetName.setIcon(icon1)
 
-        self.verticalLayout_6.addWidget(self.btn_writer_addSheetName)
+        self.verticalLayout_6.addWidget(self.btn_writer_addSheetName, 0, Qt.AlignRight)
 
         self.btn_writer_deleteSheetName = QPushButton(self.frame_7)
         self.btn_writer_deleteSheetName.setObjectName(u"btn_writer_deleteSheetName")
@@ -411,7 +416,7 @@ class Ui_WriterEditor(object):
 "}")
         self.btn_writer_deleteSheetName.setIcon(icon2)
 
-        self.verticalLayout_6.addWidget(self.btn_writer_deleteSheetName)
+        self.verticalLayout_6.addWidget(self.btn_writer_deleteSheetName, 0, Qt.AlignRight)
 
 
         self.horizontalLayout_4.addWidget(self.frame_7)
@@ -445,6 +450,7 @@ class Ui_WriterEditor(object):
         self.scrollArea_writerKey.setMinimumSize(QSize(0, 120))
         self.scrollArea_writerKey.setMaximumSize(QSize(16777215, 120))
         self.scrollArea_writerKey.setStyleSheet(u"*{\n"
+"border-radius:10px;\n"
 "background-color: rgb(255, 255, 255);\n"
 "border:1px solid lightgray;\n"
 "color: rgb(121, 121, 121);\n"
@@ -477,10 +483,10 @@ class Ui_WriterEditor(object):
 "        stop: 0 rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130),  stop:1 rgb(32, 47, 130));\n"
 "        height: 0px;\n"
 "        subcontrol-position: bottom;\n"
-"       subcontrol-origin: margin;\n"
+"       subcontrol-orig"
+                        "in: margin;\n"
 "    }\n"
-""
-                        "    QScrollBar::sub-line:vertical {\n"
+"    QScrollBar::sub-line:vertical {\n"
 "       background: qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
 "        stop: 0  rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130),  stop:1 rgb(32, 47, 130));\n"
 "        height: 0 px;\n"
@@ -512,9 +518,9 @@ class Ui_WriterEditor(object):
 "\n"
 "    QScrollBar::add-line:horizontal {\n"
 "       background: qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
-"        stop: 0 rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130),  stop:1 rgb(32, 47, 130));\n"
-"  "
-                        "      height: 0px;\n"
+"        stop: 0 rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130),  stop:1"
+                        " rgb(32, 47, 130));\n"
+"        height: 0px;\n"
 "        subcontrol-position: bottom;\n"
 "       subcontrol-origin: margin;\n"
 "    }\n"
@@ -530,15 +536,16 @@ class Ui_WriterEditor(object):
 " border:none;\n"
 "}")
         self.scrollArea_writerKey.setWidgetResizable(True)
-        self.scrollAreaWidgetContents = QWidget()
-        self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 470, 106))
-        self.scrollAreaWidgetContents.setMaximumSize(QSize(16777215, 106))
-        self.horizontalLayout_5 = QHBoxLayout(self.scrollAreaWidgetContents)
-        self.horizontalLayout_5.setSpacing(10)
-        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
-        self.horizontalLayout_5.setContentsMargins(10, 0, 10, 0)
-        self.keyName1 = QWidget(self.scrollAreaWidgetContents)
+        self.keyRepo = QWidget()
+        self.keyRepo.setObjectName(u"keyRepo")
+        self.keyRepo.setGeometry(QRect(0, 0, 470, 106))
+        self.keyRepo.setMaximumSize(QSize(16777215, 106))
+        self.keyRepo.setStyleSheet(u"border-radius:10px")
+        self.keyGrid = QHBoxLayout(self.keyRepo)
+        self.keyGrid.setSpacing(10)
+        self.keyGrid.setObjectName(u"keyGrid")
+        self.keyGrid.setContentsMargins(10, 0, 10, 0)
+        self.keyName1 = QWidget(self.keyRepo)
         self.keyName1.setObjectName(u"keyName1")
         self.keyName1.setMinimumSize(QSize(90, 90))
         self.keyName1.setMaximumSize(QSize(75, 75))
@@ -561,7 +568,7 @@ class Ui_WriterEditor(object):
         self.btn_writer_deleteKey.setGeometry(QRect(64, 4, 20, 20))
         self.btn_writer_deleteKey.setMinimumSize(QSize(20, 20))
         self.btn_writer_deleteKey.setMaximumSize(QSize(20, 20))
-        self.btn_writer_deleteKey.setStyleSheet(u"*{background-color:rgb(246, 237, 255);}\n"
+        self.btn_writer_deleteKey.setStyleSheet(u"*{background-color:rgb(231, 210, 255);}\n"
 "*:hover{\n"
 "	\n"
 "	background-color: rgb(223, 145, 146);\n"
@@ -574,17 +581,25 @@ class Ui_WriterEditor(object):
 
         self.verticalLayout_8.addWidget(self.frame_9)
 
-        self.text_keyName = QTextEdit(self.keyName1)
-        self.text_keyName.setObjectName(u"text_keyName")
-        self.text_keyName.setMaximumSize(QSize(16777215, 54))
-        self.text_keyName.setStyleSheet(u"border:none;")
+        self.line_keyName = QLineEdit(self.keyName1)
+        self.line_keyName.setObjectName(u"line_keyName")
+        self.line_keyName.setMinimumSize(QSize(0, 55))
+        font2 = QFont()
+        font2.setFamilies([u"Microsoft YaHei UI"])
+        font2.setPointSize(10)
+        font2.setBold(True)
+        font2.setItalic(False)
+        self.line_keyName.setFont(font2)
+        self.line_keyName.setStyleSheet(u"border:None;\n"
+"font: 700 10pt \"Microsoft YaHei UI\";")
+        self.line_keyName.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
 
-        self.verticalLayout_8.addWidget(self.text_keyName)
+        self.verticalLayout_8.addWidget(self.line_keyName)
 
 
-        self.horizontalLayout_5.addWidget(self.keyName1)
+        self.keyGrid.addWidget(self.keyName1)
 
-        self.writer_add_key = QWidget(self.scrollAreaWidgetContents)
+        self.writer_add_key = QWidget(self.keyRepo)
         self.writer_add_key.setObjectName(u"writer_add_key")
         self.writer_add_key.setMinimumSize(QSize(90, 90))
         self.writer_add_key.setMaximumSize(QSize(75, 75))
@@ -620,13 +635,13 @@ class Ui_WriterEditor(object):
         self.horizontalLayout_7.addWidget(self.btn_writer_addKey)
 
 
-        self.horizontalLayout_5.addWidget(self.writer_add_key)
+        self.keyGrid.addWidget(self.writer_add_key)
 
         self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.horizontalLayout_5.addItem(self.horizontalSpacer_3)
+        self.keyGrid.addItem(self.horizontalSpacer_3)
 
-        self.scrollArea_writerKey.setWidget(self.scrollAreaWidgetContents)
+        self.scrollArea_writerKey.setWidget(self.keyRepo)
 
         self.verticalLayout_7.addWidget(self.scrollArea_writerKey)
 
@@ -637,9 +652,9 @@ class Ui_WriterEditor(object):
         self.horizontalLayout_6 = QHBoxLayout(self.frame_8)
         self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
         self.horizontalLayout_6.setContentsMargins(9, 0, -1, 0)
-        self.btn_writer_key_and = QCheckBox(self.frame_8)
-        self.btn_writer_key_and.setObjectName(u"btn_writer_key_and")
-        self.btn_writer_key_and.setStyleSheet(u"QCheckBox::indicator {\n"
+        self.checkbox_key_and = QCheckBox(self.frame_8)
+        self.checkbox_key_and.setObjectName(u"checkbox_key_and")
+        self.checkbox_key_and.setStyleSheet(u"QCheckBox::indicator {\n"
 "    \n"
 "    background-color: white;\n"
 "    border-radius: 5px;\n"
@@ -653,11 +668,11 @@ class Ui_WriterEditor(object):
 "\n"
 "")
 
-        self.horizontalLayout_6.addWidget(self.btn_writer_key_and)
+        self.horizontalLayout_6.addWidget(self.checkbox_key_and)
 
-        self.btn_writer_key_or = QCheckBox(self.frame_8)
-        self.btn_writer_key_or.setObjectName(u"btn_writer_key_or")
-        self.btn_writer_key_or.setStyleSheet(u"QCheckBox::indicator {\n"
+        self.checkbox_key_or = QCheckBox(self.frame_8)
+        self.checkbox_key_or.setObjectName(u"checkbox_key_or")
+        self.checkbox_key_or.setStyleSheet(u"QCheckBox::indicator {\n"
 "    \n"
 "    background-color: white;\n"
 "    border-radius: 5px;\n"
@@ -671,7 +686,7 @@ class Ui_WriterEditor(object):
 "\n"
 "")
 
-        self.horizontalLayout_6.addWidget(self.btn_writer_key_or)
+        self.horizontalLayout_6.addWidget(self.checkbox_key_or)
 
         self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
@@ -701,11 +716,11 @@ class Ui_WriterEditor(object):
 
         self.verticalLayout_10.addWidget(self.label_5)
 
-        self.scrollArea_writerKey_2 = QScrollArea(self.valueInfo)
-        self.scrollArea_writerKey_2.setObjectName(u"scrollArea_writerKey_2")
-        self.scrollArea_writerKey_2.setMinimumSize(QSize(0, 120))
-        self.scrollArea_writerKey_2.setMaximumSize(QSize(16777215, 120))
-        self.scrollArea_writerKey_2.setStyleSheet(u"*{\n"
+        self.scrollArea_writerValue = QScrollArea(self.valueInfo)
+        self.scrollArea_writerValue.setObjectName(u"scrollArea_writerValue")
+        self.scrollArea_writerValue.setMinimumSize(QSize(0, 120))
+        self.scrollArea_writerValue.setMaximumSize(QSize(16777215, 120))
+        self.scrollArea_writerValue.setStyleSheet(u"*{\n"
 "background-color: rgb(255, 255, 255);\n"
 "border:1px solid rgb(232, 232, 232);\n"
 "color: rgb(121, 121, 121);\n"
@@ -790,16 +805,16 @@ class Ui_WriterEditor(object):
 "QWidget{\n"
 " border:none;\n"
 "}")
-        self.scrollArea_writerKey_2.setWidgetResizable(True)
-        self.scrollAreaWidgetContents_2 = QWidget()
-        self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
-        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 470, 106))
-        self.scrollAreaWidgetContents_2.setMaximumSize(QSize(16777215, 106))
-        self.horizontalLayout_8 = QHBoxLayout(self.scrollAreaWidgetContents_2)
-        self.horizontalLayout_8.setSpacing(10)
-        self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
-        self.horizontalLayout_8.setContentsMargins(10, 0, 10, 0)
-        self.ValueName1 = QWidget(self.scrollAreaWidgetContents_2)
+        self.scrollArea_writerValue.setWidgetResizable(True)
+        self.valueRepo = QWidget()
+        self.valueRepo.setObjectName(u"valueRepo")
+        self.valueRepo.setGeometry(QRect(0, 0, 470, 106))
+        self.valueRepo.setMaximumSize(QSize(16777215, 106))
+        self.valueGrid = QHBoxLayout(self.valueRepo)
+        self.valueGrid.setSpacing(10)
+        self.valueGrid.setObjectName(u"valueGrid")
+        self.valueGrid.setContentsMargins(10, 0, 10, 0)
+        self.ValueName1 = QWidget(self.valueRepo)
         self.ValueName1.setObjectName(u"ValueName1")
         self.ValueName1.setMinimumSize(QSize(90, 90))
         self.ValueName1.setMaximumSize(QSize(75, 75))
@@ -835,34 +850,36 @@ class Ui_WriterEditor(object):
 
         self.verticalLayout_9.addWidget(self.frame_10)
 
-        self.text_ValueName = QTextEdit(self.ValueName1)
-        self.text_ValueName.setObjectName(u"text_ValueName")
-        self.text_ValueName.setMaximumSize(QSize(16777215, 54))
-        self.text_ValueName.setStyleSheet(u"border:none;")
+        self.line_valueName = QLineEdit(self.ValueName1)
+        self.line_valueName.setObjectName(u"line_valueName")
+        self.line_valueName.setMinimumSize(QSize(0, 55))
+        self.line_valueName.setStyleSheet(u"border:None;\n"
+"font: 700 10pt \"Microsoft YaHei UI\";")
+        self.line_valueName.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
 
-        self.verticalLayout_9.addWidget(self.text_ValueName)
+        self.verticalLayout_9.addWidget(self.line_valueName)
 
 
-        self.horizontalLayout_8.addWidget(self.ValueName1)
+        self.valueGrid.addWidget(self.ValueName1)
 
-        self.writer_add_key_2 = QWidget(self.scrollAreaWidgetContents_2)
-        self.writer_add_key_2.setObjectName(u"writer_add_key_2")
-        self.writer_add_key_2.setMinimumSize(QSize(90, 90))
-        self.writer_add_key_2.setMaximumSize(QSize(75, 75))
-        self.writer_add_key_2.setStyleSheet(u"*{\n"
+        self.writer_addvalue = QWidget(self.valueRepo)
+        self.writer_addvalue.setObjectName(u"writer_addvalue")
+        self.writer_addvalue.setMinimumSize(QSize(90, 90))
+        self.writer_addvalue.setMaximumSize(QSize(75, 75))
+        self.writer_addvalue.setStyleSheet(u"*{\n"
 "background-color: rgb(255, 255, 255);\n"
 "border:1px solid rgb(239, 239, 248);\n"
 "border-radius:10px;\n"
 "}\n"
 "")
-        self.horizontalLayout_9 = QHBoxLayout(self.writer_add_key_2)
+        self.horizontalLayout_9 = QHBoxLayout(self.writer_addvalue)
         self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
         self.horizontalLayout_9.setContentsMargins(0, 0, 0, 0)
-        self.btn_writer_addKey_2 = QPushButton(self.writer_add_key_2)
-        self.btn_writer_addKey_2.setObjectName(u"btn_writer_addKey_2")
-        self.btn_writer_addKey_2.setMinimumSize(QSize(90, 90))
-        self.btn_writer_addKey_2.setMaximumSize(QSize(90, 90))
-        self.btn_writer_addKey_2.setStyleSheet(u"*:hover{\n"
+        self.btn_writer_addValue = QPushButton(self.writer_addvalue)
+        self.btn_writer_addValue.setObjectName(u"btn_writer_addValue")
+        self.btn_writer_addValue.setMinimumSize(QSize(90, 90))
+        self.btn_writer_addValue.setMaximumSize(QSize(90, 90))
+        self.btn_writer_addValue.setStyleSheet(u"*:hover{\n"
 "	background-color: rgb(245, 245, 245);\n"
 "}\n"
 "\n"
@@ -873,21 +890,21 @@ class Ui_WriterEditor(object):
 "*{\n"
 "border-radius:10px;\n"
 "}")
-        self.btn_writer_addKey_2.setIcon(icon3)
-        self.btn_writer_addKey_2.setIconSize(QSize(30, 30))
+        self.btn_writer_addValue.setIcon(icon3)
+        self.btn_writer_addValue.setIconSize(QSize(30, 30))
 
-        self.horizontalLayout_9.addWidget(self.btn_writer_addKey_2)
+        self.horizontalLayout_9.addWidget(self.btn_writer_addValue)
 
 
-        self.horizontalLayout_8.addWidget(self.writer_add_key_2)
+        self.valueGrid.addWidget(self.writer_addvalue)
 
         self.horizontalSpacer_5 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.horizontalLayout_8.addItem(self.horizontalSpacer_5)
+        self.valueGrid.addItem(self.horizontalSpacer_5)
 
-        self.scrollArea_writerKey_2.setWidget(self.scrollAreaWidgetContents_2)
+        self.scrollArea_writerValue.setWidget(self.valueRepo)
 
-        self.verticalLayout_10.addWidget(self.scrollArea_writerKey_2)
+        self.verticalLayout_10.addWidget(self.scrollArea_writerValue)
 
 
         self.verticalLayout_2.addWidget(self.valueInfo)
@@ -907,11 +924,11 @@ class Ui_WriterEditor(object):
 
         self.verticalLayout_12.addWidget(self.label_6)
 
-        self.scrollArea_writerKey_3 = QScrollArea(self.processInfo)
-        self.scrollArea_writerKey_3.setObjectName(u"scrollArea_writerKey_3")
-        self.scrollArea_writerKey_3.setMinimumSize(QSize(0, 205))
-        self.scrollArea_writerKey_3.setMaximumSize(QSize(16777215, 250))
-        self.scrollArea_writerKey_3.setStyleSheet(u"*{\n"
+        self.scrollArea_writerProcess = QScrollArea(self.processInfo)
+        self.scrollArea_writerProcess.setObjectName(u"scrollArea_writerProcess")
+        self.scrollArea_writerProcess.setMinimumSize(QSize(0, 205))
+        self.scrollArea_writerProcess.setMaximumSize(QSize(16777215, 250))
+        self.scrollArea_writerProcess.setStyleSheet(u"*{\n"
 "background-color: rgb(255, 255, 255);\n"
 "border:1px solid rgb(232, 232, 232);\n"
 "color: rgb(121, 121, 121);\n"
@@ -996,18 +1013,18 @@ class Ui_WriterEditor(object):
 "QWidget{\n"
 " border:none;\n"
 "}")
-        self.scrollArea_writerKey_3.setWidgetResizable(True)
-        self.scrollAreaWidgetContents_3 = QWidget()
-        self.scrollAreaWidgetContents_3.setObjectName(u"scrollAreaWidgetContents_3")
-        self.scrollAreaWidgetContents_3.setGeometry(QRect(0, 0, 470, 242))
-        self.scrollAreaWidgetContents_3.setMaximumSize(QSize(16777215, 242))
-        self.horizontalLayout_10 = QHBoxLayout(self.scrollAreaWidgetContents_3)
-        self.horizontalLayout_10.setSpacing(10)
-        self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
-        self.horizontalLayout_10.setContentsMargins(10, 0, 10, 0)
-        self.process1 = QWidget(self.scrollAreaWidgetContents_3)
+        self.scrollArea_writerProcess.setWidgetResizable(True)
+        self.processRepo = QWidget()
+        self.processRepo.setObjectName(u"processRepo")
+        self.processRepo.setGeometry(QRect(0, 0, 470, 242))
+        self.processRepo.setMaximumSize(QSize(16777215, 242))
+        self.processGrid = QHBoxLayout(self.processRepo)
+        self.processGrid.setSpacing(10)
+        self.processGrid.setObjectName(u"processGrid")
+        self.processGrid.setContentsMargins(10, 0, 10, 0)
+        self.process1 = QWidget(self.processRepo)
         self.process1.setObjectName(u"process1")
-        self.process1.setMinimumSize(QSize(110, 210))
+        self.process1.setMinimumSize(QSize(150, 210))
         self.process1.setMaximumSize(QSize(110, 210))
         self.process1.setStyleSheet(u"*{\n"
 "background-color:rgb(110, 92, 194);\n"
@@ -1026,9 +1043,12 @@ class Ui_WriterEditor(object):
         self.frame_11.setStyleSheet(u"border:none")
         self.frame_11.setFrameShape(QFrame.StyledPanel)
         self.frame_11.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_5 = QHBoxLayout(self.frame_11)
+        self.horizontalLayout_5.setSpacing(0)
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.horizontalLayout_5.setContentsMargins(0, 0, 0, 0)
         self.btn_writer_deleteProcess = QPushButton(self.frame_11)
         self.btn_writer_deleteProcess.setObjectName(u"btn_writer_deleteProcess")
-        self.btn_writer_deleteProcess.setGeometry(QRect(80, 6, 20, 20))
         self.btn_writer_deleteProcess.setMinimumSize(QSize(20, 20))
         self.btn_writer_deleteProcess.setMaximumSize(QSize(20, 20))
         self.btn_writer_deleteProcess.setStyleSheet(u"*{background-color:rgb(158, 132, 235);}\n"
@@ -1042,14 +1062,20 @@ class Ui_WriterEditor(object):
 "}")
         self.btn_writer_deleteProcess.setIcon(icon)
 
+        self.horizontalLayout_5.addWidget(self.btn_writer_deleteProcess, 0, Qt.AlignRight)
+
+
         self.verticalLayout_11.addWidget(self.frame_11)
 
-        self.text_processName = QTextEdit(self.process1)
-        self.text_processName.setObjectName(u"text_processName")
-        self.text_processName.setMaximumSize(QSize(16777215, 40))
-        self.text_processName.setStyleSheet(u"color:rgb(255, 255, 255)")
+        self.line_processName = QLineEdit(self.process1)
+        self.line_processName.setObjectName(u"line_processName")
+        self.line_processName.setMinimumSize(QSize(0, 31))
+        self.line_processName.setStyleSheet(u"color:rgb(255, 255, 255);\n"
+"border-radius:10px;\n"
+"font: 700 10pt \"Microsoft YaHei UI\";")
+        self.line_processName.setAlignment(Qt.AlignCenter)
 
-        self.verticalLayout_11.addWidget(self.text_processName)
+        self.verticalLayout_11.addWidget(self.line_processName)
 
         self.checkBox_writer_rewrite = QCheckBox(self.process1)
         self.checkBox_writer_rewrite.setObjectName(u"checkBox_writer_rewrite")
@@ -1078,31 +1104,32 @@ class Ui_WriterEditor(object):
         self.text_writer_process.setObjectName(u"text_writer_process")
         self.text_writer_process.setMinimumSize(QSize(0, 110))
         self.text_writer_process.setMaximumSize(QSize(16777215, 112))
-        self.text_writer_process.setStyleSheet(u"background-color:rgb(255, 255, 255);")
+        self.text_writer_process.setStyleSheet(u"background-color:rgb(255, 255, 255);\n"
+"font: 9pt \"Microsoft YaHei UI\";")
 
         self.verticalLayout_11.addWidget(self.text_writer_process)
 
 
-        self.horizontalLayout_10.addWidget(self.process1)
+        self.processGrid.addWidget(self.process1)
 
-        self.writer_add_key_3 = QWidget(self.scrollAreaWidgetContents_3)
-        self.writer_add_key_3.setObjectName(u"writer_add_key_3")
-        self.writer_add_key_3.setMinimumSize(QSize(110, 210))
-        self.writer_add_key_3.setMaximumSize(QSize(110, 210))
-        self.writer_add_key_3.setStyleSheet(u"*{\n"
+        self.writer_addProcess = QWidget(self.processRepo)
+        self.writer_addProcess.setObjectName(u"writer_addProcess")
+        self.writer_addProcess.setMinimumSize(QSize(150, 210))
+        self.writer_addProcess.setMaximumSize(QSize(150, 210))
+        self.writer_addProcess.setStyleSheet(u"*{\n"
 "background-color: rgb(255, 255, 255);\n"
 "border:1px solid rgb(239, 239, 248);\n"
 "border-radius:10px;\n"
 "}\n"
 "")
-        self.horizontalLayout_11 = QHBoxLayout(self.writer_add_key_3)
+        self.horizontalLayout_11 = QHBoxLayout(self.writer_addProcess)
         self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
         self.horizontalLayout_11.setContentsMargins(0, 0, 0, 0)
-        self.btn_writer_addKey_3 = QPushButton(self.writer_add_key_3)
-        self.btn_writer_addKey_3.setObjectName(u"btn_writer_addKey_3")
-        self.btn_writer_addKey_3.setMinimumSize(QSize(110, 210))
-        self.btn_writer_addKey_3.setMaximumSize(QSize(110, 210))
-        self.btn_writer_addKey_3.setStyleSheet(u"*:hover{\n"
+        self.btn_writer_addProcess = QPushButton(self.writer_addProcess)
+        self.btn_writer_addProcess.setObjectName(u"btn_writer_addProcess")
+        self.btn_writer_addProcess.setMinimumSize(QSize(150, 210))
+        self.btn_writer_addProcess.setMaximumSize(QSize(150, 210))
+        self.btn_writer_addProcess.setStyleSheet(u"*:hover{\n"
 "	background-color: rgb(245, 245, 245);\n"
 "}\n"
 "\n"
@@ -1113,21 +1140,21 @@ class Ui_WriterEditor(object):
 "*{\n"
 "border-radius:10px;\n"
 "}")
-        self.btn_writer_addKey_3.setIcon(icon3)
-        self.btn_writer_addKey_3.setIconSize(QSize(30, 30))
+        self.btn_writer_addProcess.setIcon(icon3)
+        self.btn_writer_addProcess.setIconSize(QSize(30, 30))
 
-        self.horizontalLayout_11.addWidget(self.btn_writer_addKey_3)
+        self.horizontalLayout_11.addWidget(self.btn_writer_addProcess)
 
 
-        self.horizontalLayout_10.addWidget(self.writer_add_key_3)
+        self.processGrid.addWidget(self.writer_addProcess)
 
         self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.horizontalLayout_10.addItem(self.horizontalSpacer_6)
+        self.processGrid.addItem(self.horizontalSpacer_6)
 
-        self.scrollArea_writerKey_3.setWidget(self.scrollAreaWidgetContents_3)
+        self.scrollArea_writerProcess.setWidget(self.processRepo)
 
-        self.verticalLayout_12.addWidget(self.scrollArea_writerKey_3)
+        self.verticalLayout_12.addWidget(self.scrollArea_writerProcess)
 
 
         self.verticalLayout_2.addWidget(self.processInfo)
@@ -1145,16 +1172,9 @@ class Ui_WriterEditor(object):
         WriterEditor.setWindowTitle(QCoreApplication.translate("WriterEditor", u"Form", None))
         self.btn_close.setText("")
         self.label.setText(QCoreApplication.translate("WriterEditor", u"Writer Editor", None))
-        self.WriterName.setHtml(QCoreApplication.translate("WriterEditor", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"hr { height: 1px; border-width: 0; }\n"
-"li.unchecked::marker { content: \"\\2610\"; }\n"
-"li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Microsoft YaHei UI'; font-size:15px; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:700;\">\u8fdb\u5ea6\u786e\u8ba4</span></p></body></html>", None))
+        self.label_writerParent.setText(QCoreApplication.translate("WriterEditor", u"parent", None))
         self.checkBox_writerAsRow.setText(QCoreApplication.translate("WriterEditor", u"\u884c\u5199\u5165", None))
-        self.checkBox__writerAsColumn.setText(QCoreApplication.translate("WriterEditor", u"\u5217\u5199\u5165", None))
+        self.checkBox_writerAsColumn.setText(QCoreApplication.translate("WriterEditor", u"\u5217\u5199\u5165", None))
         self.label_2.setText(QCoreApplication.translate("WriterEditor", u"\u4f5c\u7528\u4e8e\u5de5\u4f5c\u7c3f\u540d\u79f0", None))
         self.label_3.setText(QCoreApplication.translate("WriterEditor", u"\u4f5c\u7528\u4e8e\u5de5\u4f5c\u8868\u540d\u79f0\uff08\u9009\u586b\uff09", None))
         self.btn_writer_addWbName.setText("")
@@ -1166,36 +1186,12 @@ class Ui_WriterEditor(object):
         self.btn_writer_deleteSheetName.setText("")
         self.label_4.setText(QCoreApplication.translate("WriterEditor", u"\u68c0\u7d22\u53d8\u91cf\u540d\u79f0", None))
         self.btn_writer_deleteKey.setText("")
-        self.text_keyName.setHtml(QCoreApplication.translate("WriterEditor", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"hr { height: 1px; border-width: 0; }\n"
-"li.unchecked::marker { content: \"\\2610\"; }\n"
-"li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Microsoft YaHei UI'; font-size:11px; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; font-weight:700;\">\u5408\u540c\u53f7</span></p></body></html>", None))
-        self.btn_writer_key_and.setText(QCoreApplication.translate("WriterEditor", u"\u4e0e", None))
-        self.btn_writer_key_or.setText(QCoreApplication.translate("WriterEditor", u"\u6216", None))
+        self.checkbox_key_and.setText(QCoreApplication.translate("WriterEditor", u"\u4e0e", None))
+        self.checkbox_key_or.setText(QCoreApplication.translate("WriterEditor", u"\u6216", None))
         self.label_5.setText(QCoreApplication.translate("WriterEditor", u"\u5199\u5165\u53d8\u91cf\u540d\u79f0", None))
         self.btn_writer_deleteValue.setText("")
-        self.text_ValueName.setHtml(QCoreApplication.translate("WriterEditor", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"hr { height: 1px; border-width: 0; }\n"
-"li.unchecked::marker { content: \"\\2610\"; }\n"
-"li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Microsoft YaHei UI'; font-size:11px; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; font-weight:700;\">\u5229\u6da6</span></p></body></html>", None))
         self.label_6.setText(QCoreApplication.translate("WriterEditor", u"\u64cd\u4f5c", None))
         self.btn_writer_deleteProcess.setText("")
-        self.text_processName.setHtml(QCoreApplication.translate("WriterEditor", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"hr { height: 1px; border-width: 0; }\n"
-"li.unchecked::marker { content: \"\\2610\"; }\n"
-"li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Microsoft YaHei UI'; font-size:11px; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; font-weight:700;\">\u8fdb\u5ea6\u786e\u8ba4</span></p></body></html>", None))
         self.checkBox_writer_rewrite.setText(QCoreApplication.translate("WriterEditor", u"\u8986\u76d6", None))
     # retranslateUi
 

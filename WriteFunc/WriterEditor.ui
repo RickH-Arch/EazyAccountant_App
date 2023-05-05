@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>690</width>
-    <height>925</height>
+    <width>688</width>
+    <height>916</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -114,11 +114,11 @@ border-bottom-right-radius:0px;}</string>
 
 *:hover{
 	
-	background-color: rgb(249, 246, 255);
+	background-color: rgb(94, 80, 168);
 }
 QPushButton:pressed{
 	
-	background-color:rgb(228, 226, 234);
+	background-color:rgb(84, 71, 148);
 }</string>
        </property>
        <property name="text">
@@ -238,26 +238,12 @@ QPushButton:pressed{
               <number>0</number>
              </property>
              <item>
-              <widget class="QTextEdit" name="WriterName">
+              <widget class="QLineEdit" name="line_writerName">
                <property name="font">
                 <font>
-                 <pointsize>-1</pointsize>
-                 <italic>false</italic>
-                 <bold>false</bold>
+                 <pointsize>20</pointsize>
+                 <bold>true</bold>
                 </font>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">font:15px</string>
-               </property>
-               <property name="html">
-                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-hr { height: 1px; border-width: 0; }
-li.unchecked::marker { content: &quot;\2610&quot;; }
-li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Microsoft YaHei UI'; font-size:15px; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:700;&quot;&gt;进度确认&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
               </widget>
              </item>
@@ -280,7 +266,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_2">
              <property name="leftMargin">
-              <number>0</number>
+              <number>5</number>
              </property>
              <property name="topMargin">
               <number>0</number>
@@ -292,9 +278,28 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <number>0</number>
              </property>
              <item>
+              <widget class="QLabel" name="label_writerParent">
+               <property name="focusPolicy">
+                <enum>Qt::ClickFocus</enum>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">color: rgb(156, 156, 156);</string>
+               </property>
+               <property name="text">
+                <string>parent</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
               <spacer name="horizontalSpacer">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::Preferred</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
@@ -333,7 +338,7 @@ QCheckBox::indicator:checked {
               </widget>
              </item>
              <item>
-              <widget class="QCheckBox" name="checkBox__writerAsColumn">
+              <widget class="QCheckBox" name="checkBox_writerAsColumn">
                <property name="maximumSize">
                 <size>
                  <width>60</width>
@@ -359,19 +364,6 @@ QCheckBox::indicator:checked {
                 <string>列写入</string>
                </property>
               </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_2">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
              </item>
             </layout>
            </widget>
@@ -438,6 +430,12 @@ QCheckBox::indicator:checked {
                 </property>
                 <item>
                  <widget class="QLabel" name="label_2">
+                  <property name="minimumSize">
+                   <size>
+                    <width>240</width>
+                    <height>0</height>
+                   </size>
+                  </property>
                   <property name="maximumSize">
                    <size>
                     <width>16777215</width>
@@ -481,7 +479,7 @@ QCheckBox::indicator:checked {
                </property>
                <layout class="QHBoxLayout" name="horizontalLayout_4">
                 <property name="spacing">
-                 <number>5</number>
+                 <number>10</number>
                 </property>
                 <property name="leftMargin">
                  <number>0</number>
@@ -535,7 +533,7 @@ QScrollBar {
                  <widget class="QFrame" name="frame_6">
                   <property name="minimumSize">
                    <size>
-                    <width>37</width>
+                    <width>25</width>
                     <height>0</height>
                    </size>
                   </property>
@@ -646,6 +644,12 @@ QPushButton:pressed{
                 </item>
                 <item>
                  <widget class="QListWidget" name="list_writer_sheetName">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>0</height>
+                   </size>
+                  </property>
                   <property name="styleSheet">
                    <string notr="true">*{border-radius:10px;
 background-color: rgb(255, 255, 255);
@@ -684,7 +688,7 @@ QScrollBar {
                  <widget class="QFrame" name="frame_7">
                   <property name="minimumSize">
                    <size>
-                    <width>37</width>
+                    <width>25</width>
                     <height>0</height>
                    </size>
                   </property>
@@ -710,7 +714,7 @@ QScrollBar {
                    <property name="bottomMargin">
                     <number>0</number>
                    </property>
-                   <item>
+                   <item alignment="Qt::AlignRight">
                     <widget class="QPushButton" name="btn_writer_addSheetName">
                      <property name="minimumSize">
                       <size>
@@ -753,7 +757,7 @@ QPushButton:pressed{
                      </property>
                     </widget>
                    </item>
-                   <item>
+                   <item alignment="Qt::AlignRight">
                     <widget class="QPushButton" name="btn_writer_deleteSheetName">
                      <property name="minimumSize">
                       <size>
@@ -861,6 +865,7 @@ QPushButton:pressed{
             </property>
             <property name="styleSheet">
              <string notr="true">*{
+border-radius:10px;
 background-color: rgb(255, 255, 255);
 border:1px solid lightgray;
 color: rgb(121, 121, 121);
@@ -947,7 +952,7 @@ QWidget{
             <property name="widgetResizable">
              <bool>true</bool>
             </property>
-            <widget class="QWidget" name="scrollAreaWidgetContents">
+            <widget class="QWidget" name="keyRepo">
              <property name="geometry">
               <rect>
                <x>0</x>
@@ -962,7 +967,10 @@ QWidget{
                <height>106</height>
               </size>
              </property>
-             <layout class="QHBoxLayout" name="horizontalLayout_5">
+             <property name="styleSheet">
+              <string notr="true">border-radius:10px</string>
+             </property>
+             <layout class="QHBoxLayout" name="keyGrid">
               <property name="spacing">
                <number>10</number>
               </property>
@@ -1046,7 +1054,7 @@ border-radius:10px;
                      </size>
                     </property>
                     <property name="styleSheet">
-                     <string notr="true">*{background-color:rgb(246, 237, 255);}
+                     <string notr="true">*{background-color:rgb(231, 210, 255);}
 *:hover{
 	
 	background-color: rgb(223, 145, 146);
@@ -1067,25 +1075,27 @@ background-color: rgb(203, 125, 126);
                   </widget>
                  </item>
                  <item>
-                  <widget class="QTextEdit" name="text_keyName">
-                   <property name="maximumSize">
+                  <widget class="QLineEdit" name="line_keyName">
+                   <property name="minimumSize">
                     <size>
-                     <width>16777215</width>
-                     <height>54</height>
+                     <width>0</width>
+                     <height>55</height>
                     </size>
                    </property>
-                   <property name="styleSheet">
-                    <string notr="true">border:none;</string>
+                   <property name="font">
+                    <font>
+                     <family>Microsoft YaHei UI</family>
+                     <pointsize>10</pointsize>
+                     <italic>false</italic>
+                     <bold>true</bold>
+                    </font>
                    </property>
-                   <property name="html">
-                    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-hr { height: 1px; border-width: 0; }
-li.unchecked::marker { content: &quot;\2610&quot;; }
-li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Microsoft YaHei UI'; font-size:11px; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:700;&quot;&gt;合同号&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   <property name="styleSheet">
+                    <string notr="true">border:None;
+font: 700 10pt &quot;Microsoft YaHei UI&quot;;</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignHCenter|Qt::AlignTop</set>
                    </property>
                   </widget>
                  </item>
@@ -1205,7 +1215,7 @@ border-radius:10px;
               <number>0</number>
              </property>
              <item>
-              <widget class="QCheckBox" name="btn_writer_key_and">
+              <widget class="QCheckBox" name="checkbox_key_and">
                <property name="styleSheet">
                 <string notr="true">QCheckBox::indicator {
     
@@ -1227,7 +1237,7 @@ QCheckBox::indicator:checked {
               </widget>
              </item>
              <item>
-              <widget class="QCheckBox" name="btn_writer_key_or">
+              <widget class="QCheckBox" name="checkbox_key_or">
                <property name="styleSheet">
                 <string notr="true">QCheckBox::indicator {
     
@@ -1326,7 +1336,7 @@ QCheckBox::indicator:checked {
            </widget>
           </item>
           <item>
-           <widget class="QScrollArea" name="scrollArea_writerKey_2">
+           <widget class="QScrollArea" name="scrollArea_writerValue">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -1427,7 +1437,7 @@ QWidget{
             <property name="widgetResizable">
              <bool>true</bool>
             </property>
-            <widget class="QWidget" name="scrollAreaWidgetContents_2">
+            <widget class="QWidget" name="valueRepo">
              <property name="geometry">
               <rect>
                <x>0</x>
@@ -1442,7 +1452,7 @@ QWidget{
                <height>106</height>
               </size>
              </property>
-             <layout class="QHBoxLayout" name="horizontalLayout_8">
+             <layout class="QHBoxLayout" name="valueGrid">
               <property name="spacing">
                <number>10</number>
               </property>
@@ -1547,25 +1557,19 @@ background-color: rgb(203, 125, 126);
                   </widget>
                  </item>
                  <item>
-                  <widget class="QTextEdit" name="text_ValueName">
-                   <property name="maximumSize">
+                  <widget class="QLineEdit" name="line_valueName">
+                   <property name="minimumSize">
                     <size>
-                     <width>16777215</width>
-                     <height>54</height>
+                     <width>0</width>
+                     <height>55</height>
                     </size>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">border:none;</string>
+                    <string notr="true">border:None;
+font: 700 10pt &quot;Microsoft YaHei UI&quot;;</string>
                    </property>
-                   <property name="html">
-                    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-hr { height: 1px; border-width: 0; }
-li.unchecked::marker { content: &quot;\2610&quot;; }
-li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Microsoft YaHei UI'; font-size:11px; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:700;&quot;&gt;利润&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   <property name="alignment">
+                    <set>Qt::AlignHCenter|Qt::AlignTop</set>
                    </property>
                   </widget>
                  </item>
@@ -1573,7 +1577,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                </widget>
               </item>
               <item>
-               <widget class="QWidget" name="writer_add_key_2" native="true">
+               <widget class="QWidget" name="writer_addvalue" native="true">
                 <property name="minimumSize">
                  <size>
                   <width>90</width>
@@ -1608,7 +1612,7 @@ border-radius:10px;
                   <number>0</number>
                  </property>
                  <item>
-                  <widget class="QPushButton" name="btn_writer_addKey_2">
+                  <widget class="QPushButton" name="btn_writer_addValue">
                    <property name="minimumSize">
                     <size>
                      <width>90</width>
@@ -1710,7 +1714,7 @@ border-radius:10px;
            </widget>
           </item>
           <item>
-           <widget class="QScrollArea" name="scrollArea_writerKey_3">
+           <widget class="QScrollArea" name="scrollArea_writerProcess">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -1811,7 +1815,7 @@ QWidget{
             <property name="widgetResizable">
              <bool>true</bool>
             </property>
-            <widget class="QWidget" name="scrollAreaWidgetContents_3">
+            <widget class="QWidget" name="processRepo">
              <property name="geometry">
               <rect>
                <x>0</x>
@@ -1826,7 +1830,7 @@ QWidget{
                <height>242</height>
               </size>
              </property>
-             <layout class="QHBoxLayout" name="horizontalLayout_10">
+             <layout class="QHBoxLayout" name="processGrid">
               <property name="spacing">
                <number>10</number>
               </property>
@@ -1846,7 +1850,7 @@ QWidget{
                <widget class="QWidget" name="process1" native="true">
                 <property name="minimumSize">
                  <size>
-                  <width>110</width>
+                  <width>150</width>
                   <height>210</height>
                  </size>
                 </property>
@@ -1903,29 +1907,38 @@ border-radius:10px;
                    <property name="frameShadow">
                     <enum>QFrame::Raised</enum>
                    </property>
-                   <widget class="QPushButton" name="btn_writer_deleteProcess">
-                    <property name="geometry">
-                     <rect>
-                      <x>80</x>
-                      <y>6</y>
-                      <width>20</width>
-                      <height>20</height>
-                     </rect>
+                   <layout class="QHBoxLayout" name="horizontalLayout_5">
+                    <property name="spacing">
+                     <number>0</number>
                     </property>
-                    <property name="minimumSize">
-                     <size>
-                      <width>20</width>
-                      <height>20</height>
-                     </size>
+                    <property name="leftMargin">
+                     <number>0</number>
                     </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>20</width>
-                      <height>20</height>
-                     </size>
+                    <property name="topMargin">
+                     <number>0</number>
                     </property>
-                    <property name="styleSheet">
-                     <string notr="true">*{background-color:rgb(158, 132, 235);}
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <item alignment="Qt::AlignRight">
+                     <widget class="QPushButton" name="btn_writer_deleteProcess">
+                      <property name="minimumSize">
+                       <size>
+                        <width>20</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>20</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">*{background-color:rgb(158, 132, 235);}
 *:hover{
 	
 	background-color: rgb(223, 145, 146);
@@ -1934,37 +1947,34 @@ border-radius:10px;
 *:pressed{
 background-color: rgb(203, 125, 126);
 }</string>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="icon">
-                     <iconset resource="../resource.qrc">
-                      <normaloff>:/icons/icon/关闭.ico</normaloff>:/icons/icon/关闭.ico</iconset>
-                    </property>
-                   </widget>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                      <property name="icon">
+                       <iconset resource="../resource.qrc">
+                        <normaloff>:/icons/icon/关闭.ico</normaloff>:/icons/icon/关闭.ico</iconset>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QTextEdit" name="text_processName">
-                   <property name="maximumSize">
+                  <widget class="QLineEdit" name="line_processName">
+                   <property name="minimumSize">
                     <size>
-                     <width>16777215</width>
-                     <height>40</height>
+                     <width>0</width>
+                     <height>31</height>
                     </size>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">color:rgb(255, 255, 255)</string>
+                    <string notr="true">color:rgb(255, 255, 255);
+border-radius:10px;
+font: 700 10pt &quot;Microsoft YaHei UI&quot;;</string>
                    </property>
-                   <property name="html">
-                    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-hr { height: 1px; border-width: 0; }
-li.unchecked::marker { content: &quot;\2610&quot;; }
-li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Microsoft YaHei UI'; font-size:11px; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:700;&quot;&gt;进度确认&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
                    </property>
                   </widget>
                  </item>
@@ -2015,7 +2025,8 @@ QCheckBox::indicator:checked {
                     </size>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">background-color:rgb(255, 255, 255);</string>
+                    <string notr="true">background-color:rgb(255, 255, 255);
+font: 9pt &quot;Microsoft YaHei UI&quot;;</string>
                    </property>
                   </widget>
                  </item>
@@ -2023,16 +2034,16 @@ QCheckBox::indicator:checked {
                </widget>
               </item>
               <item>
-               <widget class="QWidget" name="writer_add_key_3" native="true">
+               <widget class="QWidget" name="writer_addProcess" native="true">
                 <property name="minimumSize">
                  <size>
-                  <width>110</width>
+                  <width>150</width>
                   <height>210</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
-                  <width>110</width>
+                  <width>150</width>
                   <height>210</height>
                  </size>
                 </property>
@@ -2058,16 +2069,16 @@ border-radius:10px;
                   <number>0</number>
                  </property>
                  <item>
-                  <widget class="QPushButton" name="btn_writer_addKey_3">
+                  <widget class="QPushButton" name="btn_writer_addProcess">
                    <property name="minimumSize">
                     <size>
-                     <width>110</width>
+                     <width>150</width>
                      <height>210</height>
                     </size>
                    </property>
                    <property name="maximumSize">
                     <size>
-                     <width>110</width>
+                     <width>150</width>
                      <height>210</height>
                     </size>
                    </property>
@@ -2103,6 +2114,9 @@ border-radius:10px;
                <spacer name="horizontalSpacer_6">
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Expanding</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
