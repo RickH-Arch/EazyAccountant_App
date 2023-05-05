@@ -185,6 +185,11 @@ class WriteDataManager:
         w.name = newName
         self.RefreshJson()
         return True
+    
+    def SwitchWriterRowCol(self,groupName,writerName,state):
+        w = self.GetWriter(groupName,writerName)
+        w.isRowProcess = state
+        self.RefreshJson()
 
         
 

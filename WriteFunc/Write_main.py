@@ -220,6 +220,10 @@ class WriteMain(QWidget):
             ui.checkBox_writerAsRow.setChecked(True)
         else:
             ui.checkBox_writerAsColumn.setChecked(True)
+
+        ui.checkBox_writerAsRow.clicked.connect(lambda:self.SwitchRowColProcess(ui.checkBox_writerAsRow,ui.checkBox_writerAsColumn,True))
+        ui.checkBox_writerAsColumn.clicked.connect(lambda:self.SwitchRowColProcess(ui.checkBox_writerAsRow,ui.checkBox_writerAsColumn,False))
+
         if writer.key_and_mode == True:
             ui.checkbox_key_and.setChecked(True)
         else:
@@ -245,9 +249,11 @@ class WriteMain(QWidget):
         
         
     def RenameWriter(self,groupName,oldWriterName,newWriterName):
+        ui = self.we.ui
+        writer = self.dataMgr.GetWriter(groupName,oldWriterName)
         if self.dataMgr.RenameWriter(groupName,oldWriterName,newWriterName):
-            writer = self.dataMgr.GetWriter(groupName,newWriterName)
-            ui = self.we.ui
+            
+            
             self.RefreshKeyGrid(writer.keyNames,ui.label_writerParent.text(),ui.line_writerName.text(),ui.keyGrid)
             self.RefreshValueGrid(writer.valueNames,ui.label_writerParent.text(),ui.line_writerName.text(),ui.valueGrid)
             self.RefreshProcessGrid(writer.processes,ui.label_writerParent.text(),ui.line_writerName.text(),ui.processGrid)
@@ -262,7 +268,18 @@ class WriteMain(QWidget):
             else:
                 self.GridShowFilted(self.cBox_cache,self.grid_cache,filterStr)
         else:
-            QMessageBox.warning(self, "警告", "请勿在全部写入组视图中进行复制操作")
+            QMessageBox.warning(self, "警告", "该名称已在当前写入组中存在")
+            ui.line_writerName.setText(writer.name)
+
+    def SwitchRowColProcess(self,rowCheck,colCheck,state):
+        self.dataMgr.SwitchWriterRowCol(self.cBox_cache.currentText(),self.writer_cache.name,state)
+        if state == True:
+            rowCheck.setChecked(True)
+            colCheck.setChecked(False)
+        else:
+            rowCheck.setChecked(False)
+            colCheck.setChecked(True)
+
 
 
 

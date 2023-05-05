@@ -41,7 +41,7 @@
                 {
                     "py/object": "WriteFunc.WriteDataManager.Writer",
                     "name": "\u6838\u5bf9",
-                    "selected": true,
+                    "selected": false,
                     "parent": "aef",
                     "isRowProcess": true,
                     "key_and_mode": true,
@@ -67,9 +67,9 @@
                 {
                     "py/object": "WriteFunc.WriteDataManager.Writer",
                     "name": "\u65b0\u5199\u51651_\u62f7",
-                    "selected": false,
+                    "selected": true,
                     "parent": "aef",
-                    "isRowProcess": true,
+                    "isRowProcess": false,
                     "key_and_mode": true,
                     "workbookNames": [],
                     "sheetNames": [],
