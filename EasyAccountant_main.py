@@ -24,7 +24,7 @@ from WriteFunc.Write_main import *
 from utils.DoubleClickChecker import DoubleClickChecker
 from utils.DataManager import DataMgr
 
-from WriteFunc.WriterEditor import WriterEditor
+from WriteFunc.WriterEditorWindow import WriterEditor
 
 
 WINDOW_SIZE = 0

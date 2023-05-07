@@ -8,7 +8,8 @@ from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
 from PySide6.QtGui import *
     
 from PySide6.QtWidgets import *
-from .WriterEditor import WriterEditor
+from .WriterEditorWindow import WriterEditor
+from .ProcesserWindow  import Processer
 
 from utils.FolderPathManager import FolderPathMgr
 from .WriteDataManager import WriteDataManager
@@ -724,6 +725,10 @@ class WriteMain(QWidget):
         btn_writer_opr.setMinimumSize(QSize(35, 29))
         btn_writer_opr.setMaximumSize(QSize(30, 29))
         btn_writer_opr.setText("运行")
+        if parentName is not None:
+            btn_writer_opr.clicked.connect(lambda:self.OperateWriter(parentName,btn_writer_delete.parent().parent().objectName()))
+        else:
+            btn_writer_opr.clicked.connect(lambda:self.OperateWriter(cBox.currentText(),btn_writer_delete.parent().parent().objectName()))
 
         hLayout2.addWidget(btn_writer_opr)
 
@@ -1039,8 +1044,11 @@ class WriteMain(QWidget):
         text_writer_process.setMaximumSize(QSize(16777215, 112))
         text_writer_process.setStyleSheet(u"background-color:rgb(255, 255, 255);\n"
 "font: 9pt \"Microsoft YaHei UI\";")
-        text_writer_process.setPlaceholderText("在此输入python计算公式以确定填入值")
+        text_writer_process.setPlaceholderText("在此输入python计算公式以确定填入值,不同值和字符由|隔开")
         text_writer_process.setText(process.processStr)
+        text_writer_process.textChanged.connect(lambda:self.ChangeProcessStr(groupName,writerName,process.name,
+                                                                                 text_writer_process.toPlainText(),
+                                                                                 hGrid))
 
         vLayout.addWidget(text_writer_process)
 
@@ -1087,3 +1095,69 @@ class WriteMain(QWidget):
         return addProcessBox
 
 
+    def OperateWriter(self,curGroup,name):
+        self.app = QApplication.instance()
+        self.processer = Processer()
+        
+        
+        
+        w = self.dataMgr.GetWriter(curGroup,name)
+        self.writer_cache = w
+        if w is None:
+            return
+        self.InitProcesser(w)
+        
+        self.processer.show()
+        
+
+    def InitProcesser(self,writer):
+        ui = self.processer.ui
+        h = 40 + 10 + 35*2 + len(writer.keyNames)*50 + len(writer.valueNames)*50+40
+        self.processer.setFixedHeight(h)
+
+        self.clearLayout(ui.key_grid)
+        self.clearLayout(ui.value_grid)
+
+        ui.key_frame.setFixedHeight(len(writer.keyNames)*50)
+        ui.value_frame.setFixedHeight(len(writer.valueNames)*50)
+
+        for n in writer.keyNames:
+            f = self.GenerateKeyValueBox(n,ui.key_grid.parent())
+            ui.key_grid.addWidget(f)
+
+        for n in writer.valueNames:
+            f = self.GenerateKeyValueBox(n,ui.value_grid.parent())
+            ui.value_grid.addWidget(f)
+
+        
+
+
+
+    def GenerateKeyValueBox(self,name,parent):
+        frame = QFrame(parent)
+        frame.setObjectName(name)
+        frame.setMaximumSize(QSize(16777215, 50))
+        frame.setFrameShape(QFrame.StyledPanel)
+        frame.setFrameShadow(QFrame.Raised)
+        hLayout = QHBoxLayout(frame)
+        hLayout.setSpacing(0)
+        hLayout.setObjectName(u"horizontalLayout")
+        hLayout.setContentsMargins(10, 0, 10, 0)
+        label = QLabel(frame)
+        label.setObjectName(name)
+        label.setText(name+":")
+        hLayout.addWidget(label)
+
+        lineEdit = QLineEdit(frame)
+        lineEdit.setObjectName(u"lineEdit")
+        lineEdit.setMinimumSize(QSize(295, 31))
+        lineEdit.setMaximumSize(QSize(295, 16777215))
+        lineEdit.setStyleSheet(u"*{border-radius:10px;\n"
+"background-color: rgb(255, 255, 255);\n"
+"border:1px solid rgb(232, 232, 232);\n"
+"color: rgb(121, 121, 121)}")
+        
+
+        hLayout.addWidget(lineEdit, 0, Qt.AlignRight)
+
+        return frame
