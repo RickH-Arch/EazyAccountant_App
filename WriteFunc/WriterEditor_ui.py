@@ -852,12 +852,13 @@ class Ui_WriterEditor(object):
 
         self.line_valueName = QLineEdit(self.ValueName1)
         self.line_valueName.setObjectName(u"line_valueName")
-        self.line_valueName.setMinimumSize(QSize(0, 55))
+        self.line_valueName.setMinimumSize(QSize(85, 55))
+        self.line_valueName.setMaximumSize(QSize(85, 16777215))
         self.line_valueName.setStyleSheet(u"border:None;\n"
 "font: 700 10pt \"Microsoft YaHei UI\";")
         self.line_valueName.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
 
-        self.verticalLayout_9.addWidget(self.line_valueName)
+        self.verticalLayout_9.addWidget(self.line_valueName, 0, Qt.AlignHCenter)
 
 
         self.valueGrid.addWidget(self.ValueName1)
@@ -1047,6 +1048,13 @@ class Ui_WriterEditor(object):
         self.horizontalLayout_5.setSpacing(0)
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
         self.horizontalLayout_5.setContentsMargins(0, 0, 0, 0)
+        self.label_7 = QLabel(self.frame_11)
+        self.label_7.setObjectName(u"label_7")
+        self.label_7.setMaximumSize(QSize(16777215, 10))
+        self.label_7.setStyleSheet(u"color: rgb(255, 255, 255);")
+
+        self.horizontalLayout_5.addWidget(self.label_7, 0, Qt.AlignBottom)
+
         self.btn_writer_deleteProcess = QPushButton(self.frame_11)
         self.btn_writer_deleteProcess.setObjectName(u"btn_writer_deleteProcess")
         self.btn_writer_deleteProcess.setMinimumSize(QSize(20, 20))
@@ -1190,7 +1198,9 @@ class Ui_WriterEditor(object):
         self.checkbox_key_or.setText(QCoreApplication.translate("WriterEditor", u"\u6216", None))
         self.label_5.setText(QCoreApplication.translate("WriterEditor", u"\u5199\u5165\u53d8\u91cf\u540d\u79f0", None))
         self.btn_writer_deleteValue.setText("")
+        self.line_valueName.setText(QCoreApplication.translate("WriterEditor", u"dsad", None))
         self.label_6.setText(QCoreApplication.translate("WriterEditor", u"\u64cd\u4f5c", None))
+        self.label_7.setText(QCoreApplication.translate("WriterEditor", u"\u76ee\u6807\u5355\u5143\u683c\u540d\u79f0\uff1a", None))
         self.btn_writer_deleteProcess.setText("")
         self.checkBox_writer_rewrite.setText(QCoreApplication.translate("WriterEditor", u"\u8986\u76d6", None))
     # retranslateUi

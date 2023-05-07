@@ -30,6 +30,7 @@ class WriteMain(QWidget):
         self.filter_cache = None
         self.workbookName_cache = None
         self.sheetName_cache = ""
+        
 
 #-----------------------load function------------------------------
 
@@ -72,14 +73,17 @@ class WriteMain(QWidget):
     def SwitchWriterGroup(self,cBox,renameBtn,grid,textEdit):
         curText = cBox.currentText()
         msg = textEdit.text()
+
+        if curText == "全部写入组":
+                renameBtn.setStyleSheet(styles.btn_Disable)
+                self.RefreshGrid(cBox,grid)
+            
+        else:
+            renameBtn.setStyleSheet(styles.btn_Enable)
+            renameBtn.setCheckable(True)
         
         if self.dataMgr.SwitchWriterGroup(curText):
-            if curText == "全部写入组":
-                renameBtn.setStyleSheet(styles.btn_Disable)
             
-            else:
-                renameBtn.setStyleSheet(styles.btn_Enable)
-                renameBtn.setCheckable(True)
             if msg != "":
                 self.GridShowFilted(cBox,grid,msg)
             else:
@@ -193,12 +197,12 @@ class WriteMain(QWidget):
         
 
 
-    def EditWriter(self,cBox,name):
+    def EditWriter(self,curGroup,name):
         
         self.app = QApplication.instance()
         
         self.we = WriterEditor()
-        curGroup = cBox.currentText()
+        
         w = self.dataMgr.GetWriter(curGroup,name)
         self.writer_cache = w
         if w is None:
@@ -212,7 +216,7 @@ class WriteMain(QWidget):
         ui = self.we.ui
         ui.label_writerParent.setText(writer.parent)
         ui.line_writerName.setText(writer.name)
-        ui.line_writerName.setObjectName(writer.name)
+        ui.line_writerName.setObjectName("writer_name")
         self.we.ui.line_writerName.installEventFilter(self)
         
 
@@ -260,14 +264,20 @@ class WriteMain(QWidget):
 
 
     def eventFilter(self,obj,event):
+        #print(obj.objectName())
         if event.type() == QEvent.KeyPress:
             if event.key() == Qt.Key_Return:
-                self.we.ui.line_writerName.clearFocus()
-                return True
+                if obj.objectName() == "writer_name":
+                    self.we.ui.line_writerName.clearFocus()
+                    return True
+                else:
+                    obj.clearFocus()
         return super().eventFilter(obj,event)
         
         
     def RenameWriter(self,groupName,oldWriterName,newWriterName):
+        if oldWriterName == newWriterName:
+            return
         ui = self.we.ui
         writer = self.dataMgr.GetWriter(groupName,oldWriterName)
         if self.dataMgr.RenameWriter(groupName,oldWriterName,newWriterName):
@@ -352,16 +362,66 @@ class WriteMain(QWidget):
         num,name = self.dataMgr.AddKey(groupName,writerName,"新检索")
         self.RefreshKeyGrid(groupName,writerName,hGrid)
 
-    def DeleteKey(self,groupName,writerName,hGrid):
-        pass
+    def DeleteKey(self,groupName,writerName,name,hGrid):
+        if self.dataMgr.DeleteKey(groupName,writerName,name):
+            self.RefreshKeyGrid(groupName,writerName,hGrid)
+
+    def RenameKey(self,groupName,writerName,oldName,newName,hGrid):
+        if oldName == newName:
+            return
+        if self.dataMgr.RenameKey(groupName,writerName,oldName,newName):
+            self.RefreshKeyGrid(groupName,writerName,hGrid)
+            return
+        else:
+            QMessageBox.warning(self, "警告", "名称不能为空或该名称已在当前写入组中的键值存在")
+            self.RefreshKeyGrid(groupName,writerName,hGrid)
 
     def AddValue(self,groupName,writerName,hGrid):
         num,name = self.dataMgr.AddValue(groupName,writerName,"新写入")
         self.RefreshValueGrid(groupName,writerName,hGrid)
 
+    def DeleteValue(self,gName,wName,name,hGrid):
+        if self.dataMgr.DeleteValue(gName,wName,name):
+            self.RefreshValueGrid(gName,wName,hGrid)
+
+    def RenameValue(self,gName,wName,oldName,newName,hGrid):
+        if oldName == newName:
+            return
+        if self.dataMgr.RenameValue(gName,wName,oldName,newName):
+            self.RefreshValueGrid(gName,wName,hGrid)
+            return
+        else:
+            QMessageBox.warning(self, "警告", "名称不能为空或该名称已在当前写入组中的写入值存在")
+            self.RefreshValueGrid(gName,wName,hGrid)
+
     def AddProcess(self,groupName,writerName,hGrid):
-        num,name = self.dataMgr.AddProcess(groupName,writerName,"新操作")
+        num,name = self.dataMgr.AddProcess(groupName,writerName,"新名称")
         self.RefreshProcessGrid(groupName,writerName,hGrid)
+
+    def RenameProcess(self,gName,wName,oName,nName,hGrid):
+        if oName == nName:
+            return
+        if self.dataMgr.RenameProcess(gName,wName,oName,nName):
+            self.RefreshProcessGrid(gName,wName,hGrid)
+            return
+        else:
+            QMessageBox.warning(self, "警告", "名称不能为空或该名称已在当前写入组中的操作存在")
+            self.RefreshProcessGrid(gName,wName,hGrid)
+
+    def DeleteProcess(self,gName,wName,name,hGrid):
+        if self.dataMgr.DeleteProcess(gName,wName,name):
+            self.RefreshProcessGrid(gName,wName,hGrid)
+
+    def SwitchProcessRewrite(self,gName,wName,pName,state):
+        if self.dataMgr.SwitchProcessRewriteMode(gName,wName,pName,state):
+            return
+        
+    def ChangeProcessStr(self,gName,wName,pName,pStr,hGrid):
+        if self.dataMgr.ChangeProcessString(gName,wName,pName,pStr):
+            return
+        else:
+            QMessageBox.warning(self, "警告", "切换代码失败")
+            self.RefreshProcessGrid(gName,wName,hGrid)
 
     
 
@@ -591,15 +651,20 @@ class WriteMain(QWidget):
         else:
             btn_writer_name.setText(writerName)
         btn_writer_name.setStyleSheet(styles.write_btn_writerName)
+        
         btn_writer_name.clicked.connect(lambda:self.SelectWriter(cBox,btn_writer_delete.parent().parent().objectName(),grid))
         
+
         btn_writer_edit = QPushButton(frame1)
         btn_writer_edit.setObjectName(u"btn_writer_edit")
         btn_writer_edit.setMinimumSize(QSize(32, 20))
         btn_writer_edit.setMaximumSize(QSize(20, 20))
         btn_writer_edit.setStyleSheet(styles.write_btn_editWriter)
         btn_writer_edit.setText("编辑")
-        btn_writer_edit.clicked.connect(lambda:(self.EditWriter(cBox,btn_writer_delete.parent().parent().objectName()),btn_writer_name.click()))
+        if parentName is not None:
+            btn_writer_edit.clicked.connect(lambda:(self.EditWriter(parentName,btn_writer_delete.parent().parent().objectName()),btn_writer_name.click()))
+        else:
+            btn_writer_edit.clicked.connect(lambda:(self.EditWriter(cBox.currentText(),btn_writer_delete.parent().parent().objectName()),btn_writer_name.click()))
 
         hLayout1.addWidget(btn_writer_edit, 0, Qt.AlignLeft)
 
@@ -671,7 +736,7 @@ class WriteMain(QWidget):
         keyBox = QWidget(hGrid.parent())
         keyBox.setObjectName(name)
         keyBox.setMinimumSize(QSize(90, 90))
-        keyBox.setMaximumSize(QSize(75, 75))
+        keyBox.setMaximumSize(QSize(90, 90))
         keyBox.setStyleSheet(u"*{\n"
 "background-color: rgb(237, 234, 255);\n"
 "border:1px solid rgb(239, 239, 248);\n"
@@ -687,9 +752,10 @@ class WriteMain(QWidget):
         frame.setStyleSheet(u"border:none")
         frame.setFrameShape(QFrame.StyledPanel)
         frame.setFrameShadow(QFrame.Raised)
+        frame.setMaximumWidth(85)
 
         btn_writer_deleteKey = QPushButton(keyBox)
-        btn_writer_deleteKey.setObjectName(u"btn_writer_deleteKey")
+        btn_writer_deleteKey.setObjectName(name)
         btn_writer_deleteKey.setGeometry(QRect(64, 4, 20, 20))
         btn_writer_deleteKey.setMinimumSize(QSize(20, 20))
         btn_writer_deleteKey.setMaximumSize(QSize(20, 20))
@@ -705,12 +771,14 @@ class WriteMain(QWidget):
         icon = QIcon()
         icon.addFile(u":/icons/icon/\u5173\u95ed.ico", QSize(), QIcon.Normal, QIcon.Off)
         btn_writer_deleteKey.setIcon(icon)
+        btn_writer_deleteKey.clicked.connect(lambda:self.DeleteKey(groupName,writerName,name,hGrid))
 
-        vLayout.addWidget(frame)
+        vLayout.addWidget(frame, 0, Qt.AlignHCenter)
 
         line_keyName = QLineEdit(keyBox)
         line_keyName.setObjectName(name)
-        line_keyName.setMinimumSize(QSize(0, 55))
+        line_keyName.setMinimumSize(QSize(85, 55))
+        line_keyName.setMaximumSize(QSize(85, 55))
         font2 = QFont()
         font2.setFamilies([u"Microsoft YaHei UI"])
         font2.setPointSize(10)
@@ -721,8 +789,12 @@ class WriteMain(QWidget):
 "font: 700 10pt \"Microsoft YaHei UI\";")
         line_keyName.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
         line_keyName.setText(name)
+        
+        #line_keyName.installEventFilter(self)
 
-        vLayout.addWidget(line_keyName)
+        line_keyName.editingFinished.connect(lambda:self.RenameKey(groupName,writerName,line_keyName.objectName(),line_keyName.text(),hGrid))
+
+        vLayout.addWidget(line_keyName, 0, Qt.AlignHCenter)
 
         return keyBox
 
@@ -785,6 +857,7 @@ class WriteMain(QWidget):
         frame.setStyleSheet(u"border:none")
         frame.setFrameShape(QFrame.StyledPanel)
         frame.setFrameShadow(QFrame.Raised)
+        frame.setMaximumWidth(85)
 
         btn_writer_deleteValue = QPushButton(valueBox)
         btn_writer_deleteValue.setObjectName(u"btn_writer_deleteKey")
@@ -803,12 +876,15 @@ class WriteMain(QWidget):
         icon = QIcon()
         icon.addFile(u":/icons/icon/\u5173\u95ed.ico", QSize(), QIcon.Normal, QIcon.Off)
         btn_writer_deleteValue.setIcon(icon)
+        btn_writer_deleteValue.clicked.connect(lambda:self.DeleteValue(groupName,writerName,name,hGrid))
 
-        vLayout.addWidget(frame)
+        vLayout.addWidget(frame, 0, Qt.AlignHCenter)
 
         line_valueName = QLineEdit(valueBox)
         line_valueName.setObjectName(name)
-        line_valueName.setMinimumSize(QSize(0, 55))
+        line_valueName.setMinimumSize(QSize(85, 55))
+        line_valueName.setMaximumSize(QSize(85,55))
+
         font2 = QFont()
         font2.setFamilies([u"Microsoft YaHei UI"])
         font2.setPointSize(10)
@@ -819,8 +895,10 @@ class WriteMain(QWidget):
 "font: 700 10pt \"Microsoft YaHei UI\";")
         line_valueName.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
         line_valueName.setText(name)
+        line_valueName.editingFinished.connect(lambda:self.RenameValue(groupName,writerName,line_valueName.objectName(),line_valueName.text(),hGrid))
+        
 
-        vLayout.addWidget(line_valueName)
+        vLayout.addWidget(line_valueName, 0, Qt.AlignHCenter)
 
         return valueBox
 
@@ -890,6 +968,12 @@ class WriteMain(QWidget):
         horizontalLayout_5.setSpacing(0)
         horizontalLayout_5.setObjectName(u"horizontalLayout_5")
         horizontalLayout_5.setContentsMargins(0, 0, 0, 0)
+        label = QLabel(frame)
+        label.setObjectName(u"label")
+        label.setMaximumSize(QSize(16777215, 10))
+        label.setStyleSheet(u"color: rgb(255, 255, 255);")
+        label.setText(QCoreApplication.translate("WriterEditor", u"\u76ee\u6807\u5355\u5143\u683c\u540d\u79f0\uff1a", None))
+        horizontalLayout_5.addWidget(label, 0, Qt.AlignBottom)
         btn_writer_deleteProcess = QPushButton(frame)
         btn_writer_deleteProcess.setObjectName(u"btn_writer_deleteProcess")
         btn_writer_deleteProcess.setMinimumSize(QSize(20, 20))
@@ -906,19 +990,21 @@ class WriteMain(QWidget):
         icon = QIcon()
         icon.addFile(u":/icons/icon/\u5173\u95ed.ico", QSize(), QIcon.Normal, QIcon.Off)
         btn_writer_deleteProcess.setIcon(icon)
+        btn_writer_deleteProcess.clicked.connect(lambda:self.DeleteProcess(groupName,writerName,process.name,hGrid))
     
         horizontalLayout_5.addWidget(btn_writer_deleteProcess, 0, Qt.AlignRight)
         
         vLayout.addWidget(frame)
 
         line_processName = QLineEdit(processBox)
-        line_processName.setObjectName(u"line_processName")
+        line_processName.setObjectName(process.name)
         line_processName.setMinimumSize(QSize(0, 31))
         line_processName.setStyleSheet(u"color:rgb(255, 255, 255);\n"
 "border-radius:10px;\n"
 "font: 700 10pt \"Microsoft YaHei UI\";")
         line_processName.setAlignment(Qt.AlignCenter)
         line_processName.setText(process.name)
+        line_processName.editingFinished.connect(lambda:self.RenameProcess(groupName,writerName,line_processName.objectName(),line_processName.text(),hGrid))
 
         vLayout.addWidget(line_processName)
 
@@ -944,6 +1030,7 @@ class WriteMain(QWidget):
 "")
         checkBox_writer_rewrite.setChecked(process.reWrite)
         checkBox_writer_rewrite.setText("覆盖")
+        checkBox_writer_rewrite.clicked.connect(lambda:self.SwitchProcessRewrite(groupName,writerName,process.name,checkBox_writer_rewrite.isChecked()))
 
         vLayout.addWidget(checkBox_writer_rewrite,0,Qt.AlignHCenter)
         text_writer_process = QTextEdit(processBox)
@@ -952,6 +1039,7 @@ class WriteMain(QWidget):
         text_writer_process.setMaximumSize(QSize(16777215, 112))
         text_writer_process.setStyleSheet(u"background-color:rgb(255, 255, 255);\n"
 "font: 9pt \"Microsoft YaHei UI\";")
+        text_writer_process.setPlaceholderText("在此输入python计算公式以确定填入值")
         text_writer_process.setText(process.processStr)
 
         vLayout.addWidget(text_writer_process)

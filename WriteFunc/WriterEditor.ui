@@ -1556,17 +1556,26 @@ background-color: rgb(203, 125, 126);
                    </widget>
                   </widget>
                  </item>
-                 <item>
+                 <item alignment="Qt::AlignHCenter">
                   <widget class="QLineEdit" name="line_valueName">
                    <property name="minimumSize">
                     <size>
-                     <width>0</width>
+                     <width>85</width>
                      <height>55</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>85</width>
+                     <height>16777215</height>
                     </size>
                    </property>
                    <property name="styleSheet">
                     <string notr="true">border:None;
 font: 700 10pt &quot;Microsoft YaHei UI&quot;;</string>
+                   </property>
+                   <property name="text">
+                    <string>dsad</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignHCenter|Qt::AlignTop</set>
@@ -1923,6 +1932,22 @@ border-radius:10px;
                     <property name="bottomMargin">
                      <number>0</number>
                     </property>
+                    <item alignment="Qt::AlignBottom">
+                     <widget class="QLabel" name="label_7">
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>10</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);</string>
+                      </property>
+                      <property name="text">
+                       <string>目标单元格名称：</string>
+                      </property>
+                     </widget>
+                    </item>
                     <item alignment="Qt::AlignRight">
                      <widget class="QPushButton" name="btn_writer_deleteProcess">
                       <property name="minimumSize">

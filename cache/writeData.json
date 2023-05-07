@@ -42,7 +42,7 @@
             "writers": [
                 {
                     "py/object": "WriteFunc.WriteDataManager.Writer",
-                    "name": "\u6838\u5bf9",
+                    "name": "\u6838\u5bf92",
                     "selected": false,
                     "parent": "\u5408\u540c\u53f0\u8d26",
                     "isRowProcess": true,
@@ -55,7 +55,7 @@
                 },
                 {
                     "py/object": "WriteFunc.WriteDataManager.Writer",
-                    "name": "\u8fdb\u5ea6\u786e\u8ba4",
+                    "name": "\u8fdb\u5ea6\u786e\u8ba42",
                     "selected": true,
                     "parent": "\u5408\u540c\u53f0\u8d26",
                     "isRowProcess": true,
@@ -66,12 +66,15 @@
                     ],
                     "sheetNames": [],
                     "keyNames": [
-                        "\u65b0\u68c0\u7d22",
-                        "\u65b0\u68c0\u7d221"
+                        "\u65b0\u68c0\u7d221",
+                        "hhh",
+                        "\u65b0\u68c0\u7d223",
+                        "\u65b0\u68c0\u7d224",
+                        "\u65b0\u68c0\u7d225"
                     ],
                     "valueNames": [
                         "\u65b0\u5199\u5165",
-                        "\u65b0\u5199\u51651"
+                        "\u65b0\u5199\u516512"
                     ],
                     "processes": [
                         {
@@ -83,23 +86,10 @@
                         {
                             "py/object": "WriteFunc.WriteDataManager.Process",
                             "name": "\u65b0\u64cd\u4f5c1",
-                            "reWrite": true,
+                            "reWrite": false,
                             "processStr": ""
                         }
                     ]
-                },
-                {
-                    "py/object": "WriteFunc.WriteDataManager.Writer",
-                    "name": "\u6302\u8d77",
-                    "selected": false,
-                    "parent": "\u5408\u540c\u53f0\u8d26",
-                    "isRowProcess": false,
-                    "key_and_mode": false,
-                    "workbookNames": [],
-                    "sheetNames": [],
-                    "keyNames": [],
-                    "valueNames": [],
-                    "processes": []
                 },
                 {
                     "py/object": "WriteFunc.WriteDataManager.Writer",
@@ -113,9 +103,49 @@
                         "11122",
                         "233"
                     ],
+                    "keyNames": [
+                        "\u65b0\u68c0\u7d22",
+                        "\u65b0\u68c0\u7d221"
+                    ],
+                    "valueNames": [
+                        "\u65b0\u5199\u5165",
+                        "\u65b0\u5199\u51651",
+                        "\u65b0\u5199dd"
+                    ],
+                    "processes": [
+                        {
+                            "py/object": "WriteFunc.WriteDataManager.Process",
+                            "name": "\u65b0\u540d\u79f0",
+                            "reWrite": false,
+                            "processStr": ""
+                        },
+                        {
+                            "py/object": "WriteFunc.WriteDataManager.Process",
+                            "name": "\u5229\u6da6\u7387",
+                            "reWrite": true,
+                            "processStr": ""
+                        }
+                    ]
+                },
+                {
+                    "py/object": "WriteFunc.WriteDataManager.Writer",
+                    "name": "\u6302\u8d77",
+                    "selected": false,
+                    "parent": "\u5408\u540c\u53f0\u8d26",
+                    "isRowProcess": true,
+                    "key_and_mode": true,
+                    "workbookNames": [],
+                    "sheetNames": [],
                     "keyNames": [],
                     "valueNames": [],
-                    "processes": []
+                    "processes": [
+                        {
+                            "py/object": "WriteFunc.WriteDataManager.Process",
+                            "name": "\u65b0\u540d\u79f0",
+                            "reWrite": true,
+                            "processStr": ""
+                        }
+                    ]
                 }
             ]
         }

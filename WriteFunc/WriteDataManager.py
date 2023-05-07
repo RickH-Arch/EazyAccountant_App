@@ -259,6 +259,30 @@ class WriteDataManager:
         self.RefreshJson()
         return len(w.keyNames),name
     
+    def DeleteKey(self,groupName,writerName,name):
+        w = self.GetWriter(groupName,writerName)
+        for i,n in enumerate(w.keyNames):
+            if name == n:
+                w.keyNames.pop(i)
+                self.RefreshJson()
+                return True
+        return False
+    
+    def RenameKey(self,groupName,writerName,oldN,newN):
+        if newN == "":
+            return False
+        w = self.GetWriter(groupName,writerName)
+        for n in w.keyNames:
+            if n == newN:
+                return False
+        for i,n in enumerate(w.keyNames):
+            if n == oldN:
+                w.keyNames[i] = newN
+                self.RefreshJson()
+                return True
+        return False
+
+    
     def AddValue(self,groupName,writerName,name):
         w = self.GetWriter(groupName,writerName)
         name = self.RearrangeName(w.valueNames,name)
@@ -269,13 +293,80 @@ class WriteDataManager:
         self.RefreshJson()
         return len(w.valueNames),name
     
+    def DeleteValue(self,groupName,writerName,name):
+        w = self.GetWriter(groupName,writerName)
+        for i,n in enumerate(w.valueNames):
+            if n == name:
+                w.valueNames.pop(i)
+                self.RefreshJson()
+                return True
+        return False
+    
+    def RenameValue(self,groupName,writerName,oldN,newN):
+        if newN == "":
+            return False
+        w = self.GetWriter(groupName,writerName)
+        for n in w.valueNames:
+            if n == newN:
+                return False
+        for i,n in enumerate(w.valueNames):
+            if n == oldN:
+                w.valueNames[i] = newN
+                self.RefreshJson()
+                return True
+        return False
+    
     def AddProcess(self,groupName,writerName,name):
         w = self.GetWriter(groupName,writerName)
         names = [p.name for p in w.processes ]
         name = self.RearrangeName(names,name)
         w.processes.append(Process(name))
+        self.RefreshJson()
         return len(w.processes),name
     
+    def DeleteProcess(self,groupName,writerName,name):
+        w = self.GetWriter(groupName,writerName)
+        for i,p in enumerate(w.processes):
+            if p.name == name:
+                w.processes.pop(i)
+                self.RefreshJson()
+                return True
+        return False
+    
+    def RenameProcess(self,groupName,writerName,oldN,newN):
+        if newN == "":
+            return False
+        w = self.GetWriter(groupName,writerName)
+        for p in w.processes:
+            if p.name == newN:
+                return False
+        for i,n in enumerate(w.processes):
+            if p.name == oldN:
+                p.name = newN
+                self.RefreshJson()
+                return True
+        return False
+    
+    def SwitchProcessRewriteMode(self,gName,wName,name,state):
+        w = self.GetWriter(gName,wName)
+        for p in w.processes:
+            if p.name == name:
+                p.reWrite = state
+                self.RefreshJson()
+                return True
+        return False
+    
+    def ChangeProcessString(self,gName,wName,pName,pStr):
+        w = self.GetWriter(gName,wName)
+        for p in w.processes:
+            if p.name == pName:
+                p.processStr = pStr
+                self.RefreshJson()
+                return True
+        return False
+    
+
+    # helper function
     def RearrangeName(self,names,newName):
         num = 0
         ind = 0
