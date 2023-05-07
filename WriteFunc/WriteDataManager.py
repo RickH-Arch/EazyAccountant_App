@@ -196,6 +196,105 @@ class WriteDataManager:
         w.key_and_mode = state
         self.RefreshJson()
 
+    def AddWorkbookName(self,groupName,writerName,name):
+        w = self.GetWriter(groupName,writerName)
+        for n in w.workbookNames:
+            if n == name:
+                return False
+        w.workbookNames.append(name)
+        self.RefreshJson()
+        return True
+    
+    def DeleteWorkbookName(self,groupName,writerName,name):
+        w = self.GetWriter(groupName,writerName)
+        for i,n in enumerate(w.workbookNames):
+            if n == name:
+                w.workbookNames.pop(i)
+                self.RefreshJson()
+                return True
+        return False
+    
+    def RenameWorkbookName(self,groupName,writerName,index,newName):
+        if newName == "":
+            return False
+        w = self.GetWriter(groupName,writerName)
+        w.workbookNames[index] = newName
+        self.RefreshJson()
+        return True
+    
+    def AddSheetName(self,groupName,writerName,name):
+        w = self.GetWriter(groupName,writerName)
+        for n in w.sheetNames:
+            if n == name:
+                return False
+        w.sheetNames.append(name)
+        self.RefreshJson()
+        return True
+    
+    def DeleteSheetName(self,groupName,writerName,name):
+        w = self.GetWriter(groupName,writerName)
+        for i,n in enumerate(w.sheetNames):
+            if n == name:
+                w.sheetNames.pop(i)
+                self.RefreshJson()
+                return True
+        return False
+    
+    def RenameSheetName(self,groupName,writerName,index,newName):
+        if newName == "":
+            return False
+        w = self.GetWriter(groupName,writerName)
+        w.sheetNames[index] = newName
+        self.RefreshJson()
+        return True
+    
+    def AddKey(self,groupName,writerName,name):
+        w = self.GetWriter(groupName,writerName)
+        
+        name = self.RearrangeName(w.keyNames,name)
+                
+                    
+        w.keyNames.append(name)
+        
+        self.RefreshJson()
+        return len(w.keyNames),name
+    
+    def AddValue(self,groupName,writerName,name):
+        w = self.GetWriter(groupName,writerName)
+        name = self.RearrangeName(w.valueNames,name)
+                
+                    
+        w.valueNames.append(name)
+        
+        self.RefreshJson()
+        return len(w.valueNames),name
+    
+    def AddProcess(self,groupName,writerName,name):
+        w = self.GetWriter(groupName,writerName)
+        names = [p.name for p in w.processes ]
+        name = self.RearrangeName(names,name)
+        w.processes.append(Process(name))
+        return len(w.processes),name
+    
+    def RearrangeName(self,names,newName):
+        num = 0
+        ind = 0
+        for n in names:
+            if n[:len(newName)] == newName:
+                if len(n)>len(newName):
+                    try:
+                        curInd = int(n[len(newName)])
+                    except:
+                        curInd = 0
+                    if curInd>ind:
+                        ind = curInd
+                num+=1
+        if num >0 and num<ind+1:
+            newName = newName + str(ind+1)
+        elif num>0:
+            newName = newName+str(num)
+
+        return newName
         
 
     def RefreshJson(self):

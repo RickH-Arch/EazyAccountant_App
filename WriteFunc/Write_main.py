@@ -28,6 +28,8 @@ class WriteMain(QWidget):
         self.cBox_cache = None
         self.grid_cache = None
         self.filter_cache = None
+        self.workbookName_cache = None
+        self.sheetName_cache = ""
 
 #-----------------------load function------------------------------
 
@@ -69,7 +71,7 @@ class WriteMain(QWidget):
 
     def SwitchWriterGroup(self,cBox,renameBtn,grid,textEdit):
         curText = cBox.currentText()
-        msg = textEdit.toPlainText()
+        msg = textEdit.text()
         
         if self.dataMgr.SwitchWriterGroup(curText):
             if curText == "全部写入组":
@@ -173,7 +175,7 @@ class WriteMain(QWidget):
             cs = textEdit.textCursor()
             cs.movePosition(QTextCursor.End)
             textEdit.setTextCursor(cs)
-        curGroup = cBox.currentText()
+        
           
         if msg == "":
             self.RefreshGrid(cBox,grid)
@@ -216,6 +218,7 @@ class WriteMain(QWidget):
 
         ui.line_writerName.editingFinished.connect(lambda:self.RenameWriter(writer.parent,writer.name,ui.line_writerName.text()))
         
+        #row-col process switch
         if writer.isRowProcess == True:
             ui.checkBox_writerAsRow.setChecked(True)
         else:
@@ -224,6 +227,7 @@ class WriteMain(QWidget):
         ui.checkBox_writerAsRow.clicked.connect(lambda:self.SwitchRowColProcess(ui.checkBox_writerAsRow,ui.checkBox_writerAsColumn,True))
         ui.checkBox_writerAsColumn.clicked.connect(lambda:self.SwitchRowColProcess(ui.checkBox_writerAsRow,ui.checkBox_writerAsColumn,False))
 
+        #and-or value switch
         if writer.key_and_mode == True:
             ui.checkbox_key_and.setChecked(True)
         else:
@@ -232,15 +236,27 @@ class WriteMain(QWidget):
         ui.checkbox_key_and.clicked.connect(lambda:self.SwitchAndOrKey(ui.checkbox_key_and,ui.checkbox_key_or,True))
         ui.checkbox_key_or.clicked.connect(lambda:self.SwitchAndOrKey(ui.checkbox_key_and,ui.checkbox_key_or,False))
 
+        #workbook name and sheet name list
         for name in writer.workbookNames:
             ui.list_Writer_wbName.addItem(QListWidgetItem(name))
 
         for name in writer.sheetNames:
             ui.list_writer_sheetName.addItem(QListWidgetItem(name))
+            
+        ui.btn_writer_addWbName.clicked.connect(lambda:self.AddWorkbookName(ui.list_Writer_wbName))
+        ui.btn_Writer_deleteWbName.clicked.connect(lambda:self.DeleteWorkbookName(ui.list_Writer_wbName))
+        ui.list_Writer_wbName.itemDoubleClicked.connect(lambda item:self.ListDoubleClickedEdit(item))
+        ui.list_Writer_wbName.itemChanged.connect(lambda item: self.OnWbListChange(ui.list_Writer_wbName,item))
 
-        self.RefreshKeyGrid(writer.keyNames,ui.label_writerParent.text(),ui.line_writerName.text(),ui.keyGrid)
-        self.RefreshValueGrid(writer.valueNames,ui.label_writerParent.text(),ui.line_writerName.text(),ui.valueGrid)
-        self.RefreshProcessGrid(writer.processes,ui.label_writerParent.text(),ui.line_writerName.text(),ui.processGrid)
+        ui.btn_writer_addSheetName.clicked.connect(lambda:self.AddSheetName(ui.list_writer_sheetName))
+        ui.btn_writer_deleteSheetName.clicked.connect(lambda:self.DeleteSheetName(ui.list_writer_sheetName))
+        ui.list_writer_sheetName.itemDoubleClicked.connect(lambda item:self.ListDoubleClickedEdit(item))
+        ui.list_writer_sheetName.itemChanged.connect(lambda item: self.OnSheetListChange(ui.list_writer_sheetName,item))
+
+        self.RefreshKeyGrid(ui.label_writerParent.text(),ui.line_writerName.text(),ui.keyGrid)
+        self.RefreshValueGrid(ui.label_writerParent.text(),ui.line_writerName.text(),ui.valueGrid)
+        self.RefreshProcessGrid(ui.label_writerParent.text(),ui.line_writerName.text(),ui.processGrid)
+
 
 
     def eventFilter(self,obj,event):
@@ -257,9 +273,9 @@ class WriteMain(QWidget):
         if self.dataMgr.RenameWriter(groupName,oldWriterName,newWriterName):
             
             
-            self.RefreshKeyGrid(writer.keyNames,ui.label_writerParent.text(),ui.line_writerName.text(),ui.keyGrid)
-            self.RefreshValueGrid(writer.valueNames,ui.label_writerParent.text(),ui.line_writerName.text(),ui.valueGrid)
-            self.RefreshProcessGrid(writer.processes,ui.label_writerParent.text(),ui.line_writerName.text(),ui.processGrid)
+            self.RefreshKeyGrid(ui.label_writerParent.text(),ui.line_writerName.text(),ui.keyGrid)
+            self.RefreshValueGrid(ui.label_writerParent.text(),ui.line_writerName.text(),ui.valueGrid)
+            self.RefreshProcessGrid(ui.label_writerParent.text(),ui.line_writerName.text(),ui.processGrid)
 
             
             try:
@@ -291,11 +307,72 @@ class WriteMain(QWidget):
         else:
             andCheck.setChecked(False)
             orCheck.setChecked(True)
+    
+    def AddWorkbookName(self,list):
+        name = "新工作簿名称"
+        if self.dataMgr.AddWorkbookName(self.cBox_cache.currentText(),self.writer_cache.name,name):
+            list.addItem(QListWidgetItem(name))
+
+    def DeleteWorkbookName(self,list):
+        item = list.item(list.currentRow())
+        if self.dataMgr.DeleteWorkbookName(self.cBox_cache.currentText(),self.writer_cache.name,item.text()):
+            list.takeItem(list.currentRow())
+            del item
+
+    def OnWbListChange(self,list,item):
+        index = list.row(item)
+        target = item.text()
+        if target != "":
+            self.workbookName_cache = self.QlistToList(list)
+            self.dataMgr.RenameWorkbookName(self.cBox_cache.currentText(),self.writer_cache.name,index,target)
+        else:
+            item.setText(self.workbookName_cache[index])
+
+    def AddSheetName(self,list):
+        name = "新工作表名称"
+        if self.dataMgr.AddSheetName(self.cBox_cache.currentText(),self.writer_cache.name,name):
+            list.addItem(QListWidgetItem(name))
+
+    def DeleteSheetName(self,list):
+        item = list.item(list.currentRow())
+        if self.dataMgr.DeleteSheetName(self.cBox_cache.currentText(),self.writer_cache.name,item.text()):
+            list.takeItem(list.currentRow())
+            del item
+
+    def OnSheetListChange(self,list,item):
+        index = list.row(item)
+        target = item.text()
+        if target != "":
+            self.sheetName_cache = self.QlistToList(list)
+            self.dataMgr.RenameSheetName(self.cBox_cache.currentText(),self.writer_cache.name,index,target)
+        else:
+            item.setText(self.sheetName_cache[index])
+
+    def AddKey(self,groupName,writerName,hGrid):
+        num,name = self.dataMgr.AddKey(groupName,writerName,"新检索")
+        self.RefreshKeyGrid(groupName,writerName,hGrid)
+
+    def DeleteKey(self,groupName,writerName,hGrid):
+        pass
+
+    def AddValue(self,groupName,writerName,hGrid):
+        num,name = self.dataMgr.AddValue(groupName,writerName,"新写入")
+        self.RefreshValueGrid(groupName,writerName,hGrid)
+
+    def AddProcess(self,groupName,writerName,hGrid):
+        num,name = self.dataMgr.AddProcess(groupName,writerName,"新操作")
+        self.RefreshProcessGrid(groupName,writerName,hGrid)
+
+    
+
+            
 
 
         
-    def RefreshKeyGrid(self,names,groupName,writerName,hGrid):
+    def RefreshKeyGrid(self,groupName,writerName,hGrid):
         self.clearLayout(hGrid)
+        w = self.dataMgr.GetWriter(groupName,writerName)
+        names = w.keyNames
         for name in names:
             box = self.GenerateKeyBox(name,groupName,writerName,hGrid)
             hGrid.addWidget(box)
@@ -305,8 +382,10 @@ class WriteMain(QWidget):
             hSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
             hGrid.addItem(hSpacer)
 
-    def RefreshValueGrid(self,names,groupName,writerName,hGrid):
+    def RefreshValueGrid(self,groupName,writerName,hGrid):
         self.clearLayout(hGrid)
+        w = self.dataMgr.GetWriter(groupName,writerName)
+        names = w.valueNames
         for name in names:
             box = self.GenerateValueBox(name,groupName,writerName,hGrid)
             hGrid.addWidget(box)
@@ -316,8 +395,10 @@ class WriteMain(QWidget):
             hSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
             hGrid.addItem(hSpacer)
 
-    def RefreshProcessGrid(self,processes,groupName,writerName,hGrid):
+    def RefreshProcessGrid(self,groupName,writerName,hGrid):
         self.clearLayout(hGrid)
+        w = self.dataMgr.GetWriter(groupName,writerName)
+        processes = w.processes
         for process in processes:
             box = self.GenerateProcessBox(process,groupName,writerName,hGrid)
             hGrid.addWidget(box)
@@ -327,7 +408,7 @@ class WriteMain(QWidget):
             hSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
             hGrid.addItem(hSpacer)
 
-        
+    
 
         
         
@@ -423,6 +504,19 @@ class WriteMain(QWidget):
             if len(g.writers)+1<writerRepoColNum:
                 hSpacer = QSpacerItem(40,20,QSizePolicy.Expanding, QSizePolicy.Minimum)
                 grid.addItem(hSpacer,0,len(g.writers)+1,1,1)
+
+    def QlistToList(self,list):
+        l = []
+        for i in range(list.count()):
+            item = list.item(i)
+            text = item.text()
+            l.append(text)
+        return l
+    
+    def ListDoubleClickedEdit(self,item):
+        item.setFlags(item.flags() | Qt.ItemIsEditable)
+        if not item.isSelected():
+            item.setSelected(True)
 
 
     def GenerateAddWriterBox(self,uiParent,cBox,grid):
@@ -666,6 +760,7 @@ class WriteMain(QWidget):
         icon3.addFile(u":/icons/icon/\u6dfb\u52a0.ico", QSize(), QIcon.Normal, QIcon.Off)
         btn_writer_addKey.setIcon(icon3)
         btn_writer_addKey.setIconSize(QSize(30, 30))
+        btn_writer_addKey.clicked.connect(lambda:self.AddKey(groupName,writerName,hGrid))
 
         return addKeyBox
 
@@ -763,6 +858,7 @@ class WriteMain(QWidget):
         icon3.addFile(u":/icons/icon/\u6dfb\u52a0.ico", QSize(), QIcon.Normal, QIcon.Off)
         btn_writer_addValue.setIcon(icon3)
         btn_writer_addValue.setIconSize(QSize(30, 30))
+        btn_writer_addValue.clicked.connect(lambda:self.AddValue(groupName,writerName,hGrid))
 
         return addValueBox
 
@@ -896,6 +992,7 @@ class WriteMain(QWidget):
         icon3.addFile(u":/icons/icon/\u6dfb\u52a0.ico", QSize(), QIcon.Normal, QIcon.Off)
         btn_writer_addProcess.setIcon(icon3)
         btn_writer_addProcess.setIconSize(QSize(30, 30))
+        btn_writer_addProcess.clicked.connect(lambda:self.AddProcess(groupName,writerName,hGrid))
 
         hLayout.addWidget(btn_writer_addProcess)
 
