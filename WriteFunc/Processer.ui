@@ -465,7 +465,7 @@ border-bottom-right-radius:10px;}</string>
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton">
+          <widget class="QPushButton" name="btn_operate">
            <property name="minimumSize">
             <size>
              <width>50</width>
@@ -495,7 +495,7 @@ QPushButton:pressed{
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_2">
+          <widget class="QPushButton" name="btn_close2">
            <property name="minimumSize">
             <size>
              <width>50</width>

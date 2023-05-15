@@ -9,6 +9,9 @@ class ExcelManager:
         self.workbookNameCache = []
 
     def GetExcelWorkBook(self,path,words):
+        '''
+        return workbooks as list, and name of each workbook as list
+        '''
         self.__private_ResetCache()
         if isinstance(path,list):
             workbooks,names = self.__private_LoadExcelWorkBookFromPaths(path,words)
@@ -17,6 +20,10 @@ class ExcelManager:
         return workbooks,names
     
     def GetSheetsFromWorkbook(self,workbook,keywords):
+        '''
+        get sheets from one workbook
+        return sheets as list, and name of each sheet as list
+        '''
         sheets = []
         sheetNames = []
         sheet_names = workbook.sheetnames
@@ -111,18 +118,21 @@ class ExcelManager:
 
 
     
-    def AnalyzeFileName(self,target_str,specific_str):
+    def AnalyzeFileName(self,fileName,name):
+        '''
+        return True if fileName contains name
+        '''
         ind = 0
         get = False
         start = False
-        if '*' in specific_str:
-            for i,w in enumerate(target_str) :
-                if ind>=len(specific_str):
+        if '*' in name:
+            for i,w in enumerate(fileName) :
+                if ind>=len(name):
                     continue
-                if specific_str[ind] == '*':
+                if name[ind] == '*':
                     ind += 1
                     continue
-                if w == specific_str[ind]:
+                if w == name[ind]:
                     start = True
                     get = True
                     ind += 1
@@ -130,7 +140,7 @@ class ExcelManager:
                     get = False
                     start = False
                     ind = 0
-        elif specific_str in target_str:
+        elif name in fileName:
             get = True
         return get
 

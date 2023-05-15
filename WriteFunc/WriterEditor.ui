@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>688</width>
-    <height>916</height>
+    <height>912</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -446,7 +446,7 @@ QCheckBox::indicator:checked {
                    <string notr="true">color: rgb(127, 127, 127);</string>
                   </property>
                   <property name="text">
-                   <string>作用于工作簿名称</string>
+                   <string>作用于工作簿名称（必填）</string>
                   </property>
                  </widget>
                 </item>
@@ -845,7 +845,7 @@ QPushButton:pressed{
              <string notr="true">color: rgb(127, 127, 127);</string>
             </property>
             <property name="text">
-             <string>检索变量名称</string>
+             <string>检索变量名称 (将根据下列名称是否满足给定值定位行或列，值需在运行时填入）</string>
             </property>
            </widget>
           </item>
@@ -986,7 +986,7 @@ QWidget{
               <property name="bottomMargin">
                <number>0</number>
               </property>
-              <item>
+              <item alignment="Qt::AlignVCenter">
                <widget class="QWidget" name="keyName1" native="true">
                 <property name="minimumSize">
                  <size>
@@ -1331,7 +1331,7 @@ QCheckBox::indicator:checked {
              <string notr="true">color: rgb(127, 127, 127);</string>
             </property>
             <property name="text">
-             <string>写入变量名称</string>
+             <string>写入变量名称（操作将调用具有下列名称的值，值需在运行时填入）</string>
             </property>
            </widget>
           </item>
@@ -1934,6 +1934,12 @@ border-radius:10px;
                     </property>
                     <item alignment="Qt::AlignBottom">
                      <widget class="QLabel" name="label_7">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>13</height>
+                       </size>
+                      </property>
                       <property name="maximumSize">
                        <size>
                         <width>16777215</width>
@@ -2008,7 +2014,7 @@ font: 700 10pt &quot;Microsoft YaHei UI&quot;;</string>
                    <property name="minimumSize">
                     <size>
                      <width>0</width>
-                     <height>24</height>
+                     <height>14</height>
                     </size>
                    </property>
                    <property name="styleSheet">
@@ -2036,17 +2042,31 @@ QCheckBox::indicator:checked {
                   </widget>
                  </item>
                  <item>
-                  <widget class="QTextEdit" name="text_writer_process">
+                  <widget class="QLineEdit" name="text_writer_input">
                    <property name="minimumSize">
                     <size>
                      <width>0</width>
-                     <height>110</height>
+                     <height>26</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">background-color:rgb(255, 255, 255);
+font: 9pt &quot;Microsoft YaHei UI&quot;;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QTextEdit" name="text_writer_calculate">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>64</height>
                     </size>
                    </property>
                    <property name="maximumSize">
                     <size>
                      <width>16777215</width>
-                     <height>112</height>
+                     <height>60</height>
                     </size>
                    </property>
                    <property name="styleSheet">

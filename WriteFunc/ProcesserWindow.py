@@ -39,6 +39,7 @@ class Processer(QWidget):
         self.setFixedWidth(400)
 
         self.ui.btn_close.clicked.connect(lambda:self.close())
+        self.ui.btn_close2.clicked.connect(lambda:self.close())
 
     def mousePressEvent(self, event: QtGui.QMouseEvent) -> None:
         if event.button() == Qt.LeftButton:

@@ -2457,7 +2457,7 @@ border-bottom-right-radius:10px;</string>
           <item>
            <widget class="QStackedWidget" name="stackedWidget_side">
             <property name="currentIndex">
-             <number>0</number>
+             <number>2</number>
             </property>
             <widget class="QWidget" name="sidePage_extract">
              <widget class="QListWidget" name="list_programStep">
@@ -2748,7 +2748,7 @@ QPushButton:pressed{
             </widget>
             <widget class="QWidget" name="sidePage_settings"/>
             <widget class="QWidget" name="sidePage_write">
-             <widget class="QListWidget" name="list_programStep_2">
+             <widget class="QListWidget" name="list_writer_infoBoard">
               <property name="geometry">
                <rect>
                 <x>30</x>
@@ -2840,7 +2840,7 @@ QScrollBar:horizontal{
                <string>进程</string>
               </property>
              </widget>
-             <widget class="QPushButton" name="btn_writer_processClear">
+             <widget class="QPushButton" name="btn_writer_infoBoardClear">
               <property name="geometry">
                <rect>
                 <x>174</x>

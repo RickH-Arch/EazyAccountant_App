@@ -163,6 +163,8 @@ class MainWindow(QMainWindow):
         ####################################################
 #--------------------------------------------------------------------------------------------------------------
         #################write page setting#################
+        writerMain.infoBoard = self.ui.list_writer_infoBoard
+        self.ui.btn_writer_infoBoardClear.clicked.connect(lambda:self.ui.list_writer_infoBoard.clear())
         #folderPath
         writerMain.LoadFolderPath(self.ui.list_write_folderPath)
         self.ui.btn_write_readFolder.clicked.connect(lambda:writerMain.AddFolderPath(self.ui.list_write_folderPath))

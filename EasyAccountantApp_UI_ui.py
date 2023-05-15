@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'EasyAccountantApp_UI.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.4.2
+## Created by: Qt User Interface Compiler version 6.5.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -1453,10 +1453,10 @@ class Ui_MainWindow(object):
         self.stackedWidget_side.addWidget(self.sidePage_settings)
         self.sidePage_write = QWidget()
         self.sidePage_write.setObjectName(u"sidePage_write")
-        self.list_programStep_2 = QListWidget(self.sidePage_write)
-        self.list_programStep_2.setObjectName(u"list_programStep_2")
-        self.list_programStep_2.setGeometry(QRect(30, 40, 191, 387))
-        self.list_programStep_2.setStyleSheet(u"*{border-radius:10px;\n"
+        self.list_writer_infoBoard = QListWidget(self.sidePage_write)
+        self.list_writer_infoBoard.setObjectName(u"list_writer_infoBoard")
+        self.list_writer_infoBoard.setGeometry(QRect(30, 40, 191, 387))
+        self.list_writer_infoBoard.setStyleSheet(u"*{border-radius:10px;\n"
 "background-color: rgb(255, 255, 255);\n"
 "border:1px solid rgb(232, 232, 232);\n"
 "color: rgb(121, 121, 121);\n"
@@ -1521,10 +1521,10 @@ class Ui_MainWindow(object):
         self.folderPathLable_3.setGeometry(QRect(30, 20, 91, 16))
         self.folderPathLable_3.setFont(font1)
         self.folderPathLable_3.setStyleSheet(u"color: rgb(127, 127, 127);")
-        self.btn_writer_processClear = QPushButton(self.sidePage_write)
-        self.btn_writer_processClear.setObjectName(u"btn_writer_processClear")
-        self.btn_writer_processClear.setGeometry(QRect(174, 381, 39, 39))
-        self.btn_writer_processClear.setStyleSheet(u"*{border-radius:5px;\n"
+        self.btn_writer_infoBoardClear = QPushButton(self.sidePage_write)
+        self.btn_writer_infoBoardClear.setObjectName(u"btn_writer_infoBoardClear")
+        self.btn_writer_infoBoardClear.setGeometry(QRect(174, 381, 39, 39))
+        self.btn_writer_infoBoardClear.setStyleSheet(u"*{border-radius:5px;\n"
 "	font-size:12px;\n"
 "	color: rgb(255, 255, 255);\n"
 "	\n"
@@ -1562,7 +1562,7 @@ class Ui_MainWindow(object):
 
         self.stackedWidget.setCurrentIndex(0)
         self.tag_group.setCurrentIndex(-1)
-        self.stackedWidget_side.setCurrentIndex(0)
+        self.stackedWidget_side.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1618,6 +1618,6 @@ class Ui_MainWindow(object):
         self.btn_ExtractionReset.setText(QCoreApplication.translate("MainWindow", u"\u91cd\u7f6e", None))
         self.btn_processDelete.setText("")
         self.folderPathLable_3.setText(QCoreApplication.translate("MainWindow", u"\u8fdb\u7a0b", None))
-        self.btn_writer_processClear.setText(QCoreApplication.translate("MainWindow", u"\u6e05\u7a7a", None))
+        self.btn_writer_infoBoardClear.setText(QCoreApplication.translate("MainWindow", u"\u6e05\u7a7a", None))
     # retranslateUi
 

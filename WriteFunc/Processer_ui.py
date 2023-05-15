@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'Processer.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.4.2
+## Created by: Qt User Interface Compiler version 6.5.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -236,10 +236,10 @@ class Ui_Processer(object):
 
         self.horizontalLayout_7.addItem(self.horizontalSpacer)
 
-        self.pushButton = QPushButton(self.buttons)
-        self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setMinimumSize(QSize(50, 25))
-        self.pushButton.setStyleSheet(u"*{border-radius:5px;\n"
+        self.btn_operate = QPushButton(self.buttons)
+        self.btn_operate.setObjectName(u"btn_operate")
+        self.btn_operate.setMinimumSize(QSize(50, 25))
+        self.btn_operate.setStyleSheet(u"*{border-radius:5px;\n"
 "	font-size:12px;\n"
 "	color: rgb(255, 255, 255);\n"
 "	\n"
@@ -255,12 +255,12 @@ class Ui_Processer(object):
 "	background-color: rgb(235, 159, 34);\n"
 "}")
 
-        self.horizontalLayout_7.addWidget(self.pushButton)
+        self.horizontalLayout_7.addWidget(self.btn_operate)
 
-        self.pushButton_2 = QPushButton(self.buttons)
-        self.pushButton_2.setObjectName(u"pushButton_2")
-        self.pushButton_2.setMinimumSize(QSize(50, 25))
-        self.pushButton_2.setStyleSheet(u"*{border-radius:5px;\n"
+        self.btn_close2 = QPushButton(self.buttons)
+        self.btn_close2.setObjectName(u"btn_close2")
+        self.btn_close2.setMinimumSize(QSize(50, 25))
+        self.btn_close2.setStyleSheet(u"*{border-radius:5px;\n"
 "	font-size:12px;\n"
 "	color: rgb(255, 255, 255);\n"
 "	\n"
@@ -276,7 +276,7 @@ class Ui_Processer(object):
 "	background-color: rgb(203, 125, 126);\n"
 "}")
 
-        self.horizontalLayout_7.addWidget(self.pushButton_2)
+        self.horizontalLayout_7.addWidget(self.btn_close2)
 
 
         self.verticalLayout.addWidget(self.buttons)
@@ -298,7 +298,7 @@ class Ui_Processer(object):
         self.label_4.setText(QCoreApplication.translate("Processer", u"key1\uff1a", None))
         self.label_3.setText(QCoreApplication.translate("Processer", u"\u5199\u5165\u53d8\u91cf\uff1a", None))
         self.label_5.setText(QCoreApplication.translate("Processer", u"value1\uff1a", None))
-        self.pushButton.setText(QCoreApplication.translate("Processer", u"\u8fd0\u884c", None))
-        self.pushButton_2.setText(QCoreApplication.translate("Processer", u"\u5173\u95ed", None))
+        self.btn_operate.setText(QCoreApplication.translate("Processer", u"\u8fd0\u884c", None))
+        self.btn_close2.setText(QCoreApplication.translate("Processer", u"\u5173\u95ed", None))
     # retranslateUi
 

@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'WriterEditor.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.4.2
+## Created by: Qt User Interface Compiler version 6.5.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -25,7 +25,7 @@ class Ui_WriterEditor(object):
     def setupUi(self, WriterEditor):
         if not WriterEditor.objectName():
             WriterEditor.setObjectName(u"WriterEditor")
-        WriterEditor.resize(688, 916)
+        WriterEditor.resize(688, 912)
         self.writerEditor_mainWindow = QWidget(WriterEditor)
         self.writerEditor_mainWindow.setObjectName(u"writerEditor_mainWindow")
         self.writerEditor_mainWindow.setGeometry(QRect(80, 10, 500, 850))
@@ -597,7 +597,7 @@ class Ui_WriterEditor(object):
         self.verticalLayout_8.addWidget(self.line_keyName)
 
 
-        self.keyGrid.addWidget(self.keyName1)
+        self.keyGrid.addWidget(self.keyName1, 0, Qt.AlignVCenter)
 
         self.writer_add_key = QWidget(self.keyRepo)
         self.writer_add_key.setObjectName(u"writer_add_key")
@@ -1050,6 +1050,7 @@ class Ui_WriterEditor(object):
         self.horizontalLayout_5.setContentsMargins(0, 0, 0, 0)
         self.label_7 = QLabel(self.frame_11)
         self.label_7.setObjectName(u"label_7")
+        self.label_7.setMinimumSize(QSize(0, 13))
         self.label_7.setMaximumSize(QSize(16777215, 10))
         self.label_7.setStyleSheet(u"color: rgb(255, 255, 255);")
 
@@ -1087,7 +1088,7 @@ class Ui_WriterEditor(object):
 
         self.checkBox_writer_rewrite = QCheckBox(self.process1)
         self.checkBox_writer_rewrite.setObjectName(u"checkBox_writer_rewrite")
-        self.checkBox_writer_rewrite.setMinimumSize(QSize(0, 24))
+        self.checkBox_writer_rewrite.setMinimumSize(QSize(0, 14))
         self.checkBox_writer_rewrite.setStyleSheet(u"QCheckBox{\n"
 "border:none;\n"
 "color:rgb(255, 255, 255);\n"
@@ -1108,14 +1109,22 @@ class Ui_WriterEditor(object):
 
         self.verticalLayout_11.addWidget(self.checkBox_writer_rewrite, 0, Qt.AlignHCenter)
 
-        self.text_writer_process = QTextEdit(self.process1)
-        self.text_writer_process.setObjectName(u"text_writer_process")
-        self.text_writer_process.setMinimumSize(QSize(0, 110))
-        self.text_writer_process.setMaximumSize(QSize(16777215, 112))
-        self.text_writer_process.setStyleSheet(u"background-color:rgb(255, 255, 255);\n"
+        self.text_writer_input = QLineEdit(self.process1)
+        self.text_writer_input.setObjectName(u"text_writer_input")
+        self.text_writer_input.setMinimumSize(QSize(0, 26))
+        self.text_writer_input.setStyleSheet(u"background-color:rgb(255, 255, 255);\n"
 "font: 9pt \"Microsoft YaHei UI\";")
 
-        self.verticalLayout_11.addWidget(self.text_writer_process)
+        self.verticalLayout_11.addWidget(self.text_writer_input)
+
+        self.text_writer_calculate = QTextEdit(self.process1)
+        self.text_writer_calculate.setObjectName(u"text_writer_calculate")
+        self.text_writer_calculate.setMinimumSize(QSize(0, 64))
+        self.text_writer_calculate.setMaximumSize(QSize(16777215, 60))
+        self.text_writer_calculate.setStyleSheet(u"background-color:rgb(255, 255, 255);\n"
+"font: 9pt \"Microsoft YaHei UI\";")
+
+        self.verticalLayout_11.addWidget(self.text_writer_calculate)
 
 
         self.processGrid.addWidget(self.process1)
@@ -1183,7 +1192,7 @@ class Ui_WriterEditor(object):
         self.label_writerParent.setText(QCoreApplication.translate("WriterEditor", u"parent", None))
         self.checkBox_writerAsRow.setText(QCoreApplication.translate("WriterEditor", u"\u884c\u5199\u5165", None))
         self.checkBox_writerAsColumn.setText(QCoreApplication.translate("WriterEditor", u"\u5217\u5199\u5165", None))
-        self.label_2.setText(QCoreApplication.translate("WriterEditor", u"\u4f5c\u7528\u4e8e\u5de5\u4f5c\u7c3f\u540d\u79f0", None))
+        self.label_2.setText(QCoreApplication.translate("WriterEditor", u"\u4f5c\u7528\u4e8e\u5de5\u4f5c\u7c3f\u540d\u79f0\uff08\u5fc5\u586b\uff09", None))
         self.label_3.setText(QCoreApplication.translate("WriterEditor", u"\u4f5c\u7528\u4e8e\u5de5\u4f5c\u8868\u540d\u79f0\uff08\u9009\u586b\uff09", None))
         self.btn_writer_addWbName.setText("")
         self.btn_Writer_deleteWbName.setText("")
@@ -1192,11 +1201,11 @@ class Ui_WriterEditor(object):
 #endif // QT_CONFIG(whatsthis)
         self.btn_writer_addSheetName.setText("")
         self.btn_writer_deleteSheetName.setText("")
-        self.label_4.setText(QCoreApplication.translate("WriterEditor", u"\u68c0\u7d22\u53d8\u91cf\u540d\u79f0", None))
+        self.label_4.setText(QCoreApplication.translate("WriterEditor", u"\u68c0\u7d22\u53d8\u91cf\u540d\u79f0 (\u5c06\u6839\u636e\u4e0b\u5217\u540d\u79f0\u662f\u5426\u6ee1\u8db3\u7ed9\u5b9a\u503c\u5b9a\u4f4d\u884c\u6216\u5217\uff0c\u503c\u9700\u5728\u8fd0\u884c\u65f6\u586b\u5165\uff09", None))
         self.btn_writer_deleteKey.setText("")
         self.checkbox_key_and.setText(QCoreApplication.translate("WriterEditor", u"\u4e0e", None))
         self.checkbox_key_or.setText(QCoreApplication.translate("WriterEditor", u"\u6216", None))
-        self.label_5.setText(QCoreApplication.translate("WriterEditor", u"\u5199\u5165\u53d8\u91cf\u540d\u79f0", None))
+        self.label_5.setText(QCoreApplication.translate("WriterEditor", u"\u5199\u5165\u53d8\u91cf\u540d\u79f0\uff08\u64cd\u4f5c\u5c06\u8c03\u7528\u5177\u6709\u4e0b\u5217\u540d\u79f0\u7684\u503c\uff0c\u503c\u9700\u5728\u8fd0\u884c\u65f6\u586b\u5165\uff09", None))
         self.btn_writer_deleteValue.setText("")
         self.line_valueName.setText(QCoreApplication.translate("WriterEditor", u"dsad", None))
         self.label_6.setText(QCoreApplication.translate("WriterEditor", u"\u64cd\u4f5c", None))

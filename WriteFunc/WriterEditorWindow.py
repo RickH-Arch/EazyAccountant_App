@@ -26,7 +26,7 @@ class WriterEditor(QWidget):
         super().__init__(parent)
         self.ui = Ui_WriterEditor()
         self.ui.setupUi(self)
-        self.onDrag = False
+        self.OnDrag = False
         self.setWindowFlag(Qt.FramelessWindowHint | Qt.Window)
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.setAutoFillBackground(True)
