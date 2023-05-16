@@ -1057,20 +1057,8 @@ class WriteMain(QWidget):
         checkBox_writer_writeAll.setStyleSheet(u"QCheckBox{\n"
 "border:none;\n"
 "color:rgb(255, 255, 255);\n"
-"}\n"
-"QCheckBox::indicator {\n"
-"    \n"
-"    background-color: white;\n"
-"    border-radius: 5px;\n"
-"    border-style: solid;\n"
-"    border-width: 1px;\n"
-"    border-color: white;\n"
-"}\n"
-"QCheckBox::indicator:checked {\n"
-"    background-color: rgb(102, 86, 180)\n"
-"}\n"
-"\n"
-"")
+"}"
+)
         checkBox_writer_writeAll.clicked.connect(lambda:self.SwitchProcessWriteAll(groupName,writerName,process.name,checkBox_writer_writeAll.isChecked()))
 
         gridLayout.addWidget(checkBox_writer_writeAll, 0, 1, 1, 1)
@@ -1081,20 +1069,8 @@ class WriteMain(QWidget):
         checkBox_writer_rewrite.setStyleSheet(u"QCheckBox{\n"
 "border:none;\n"
 "color:rgb(255, 255, 255);\n"
-"}\n"
-"QCheckBox::indicator {\n"
-"    \n"
-"    background-color: white;\n"
-"    border-radius: 5px;\n"
-"    border-style: solid;\n"
-"    border-width: 1px;\n"
-"    border-color: white;\n"
-"}\n"
-"QCheckBox::indicator:checked {\n"
-"    background-color: rgb(102, 86, 180)\n"
-"}\n"
-"\n"
-"")
+"}"
+)
         checkBox_writer_rewrite.setChecked(process.reWrite)
         checkBox_writer_rewrite.setText("覆盖")
         checkBox_writer_rewrite.clicked.connect(lambda:self.SwitchProcessRewrite(groupName,writerName,process.name,checkBox_writer_rewrite.isChecked()))

@@ -131,7 +131,7 @@ class Processer():
                 wb.save(self.wbPaths[i])
             else:
                 wbnameNow = self.wbnames[self.wbs.index(wb)]
-                warning = wbnameNow+"中未找到录入对象"
+                warning = wbnameNow+"中未找到录入对象->"+list(self.keys_dict.keys())[0]+":"+list(self.keys_dict.values())[0]
                 self.__private_addWarning(warning)
 
     def __private_WriteToCell(self,wb,sheet,cord_tup,value):
@@ -361,6 +361,8 @@ class Processer():
                     #else:
                     #    number = float(number)
                     self.keys_dict[key] = number
+                    
+                    line.clear()
                     break
         for value in self.writer.valueNames:
             for line in value_list:
@@ -376,6 +378,7 @@ class Processer():
                     #else:
                     #    number = float(number)
                     self.values_dict[value] = number
+                    line.clear()
                     break
 
 
