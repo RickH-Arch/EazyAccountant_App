@@ -17,12 +17,12 @@ from PySide6.QtWidgets import *
 from .WriterEditorWindow import WriterEditor
 from .ProcesserWindow  import Processer
 
-from utils.FolderPathManager import FolderPathMgr
+from utils.PathManager import PathMgr
 from .WriteDataManager import WriteDataManager
 import utils.styleSheets as styles
 
 class Processer():
-    def __init__(self,writer,infoBoard) -> None:
+    def __init__(self,writer,infoBoard,paths) -> None:
         self.writer = writer
 
         self.exlMgr = ExcelManager()
@@ -34,29 +34,86 @@ class Processer():
         self.values_dict = {}
         self.widget = QWidget()
         self.infoBoard = infoBoard
+        self.wbname_cache = None
         self.__private_addInfo("======="+writer.name+"运行=======")
-
-        self.isCombinedSheet = False #sometimes a sheet has more than one data column
+        self.__private_GetExcels(paths,self.writer.workbookNames)
+        self.wbPaths = self.exlMgr.GetWorkbookPaths()
 
         
+    def Operate_batch(self,read_paths,input_wb_path):
+        pass
 
-    def Operate(self,paths,k_list,v_list):
-        self.isCombinedSheet = False
+    
+    def Operate_Onece(self,k_list,v_list):
+        
         if len(self.writer.workbookNames) == 0:
             QMessageBox.warning(self.widget, "警告", "需要填入该writer作用的工作簿名称")
             return
-        self.__private_GetExcels(paths,self.writer.workbookNames)
+        
         self.__private_GetValueFromUI(k_list,v_list)
-        for wb in self.wbs:
+
+        self.__private_Operate()
+        
+
+    def __private_Operate(self):
+        
+        
+        
+        for i,wb in enumerate(self.wbs):
+            written = False
             self.sheets,self.sheetNames = self.exlMgr.GetSheetsFromWorkbook(wb,self.writer.sheetNames)
             #now got sheet list
             for s in self.sheets:
                 for process in self.writer.processes:
                     cord_list_tup = self.__private_GetTargetCellCordFromSheet(s,process.name)
-                    if cord_list_tup is not None:
-                        value = self.__private_GetProcessCalValue(process)
-                        print("cord---->",cord_list_tup)
-                        print("value---->",value)
+                    if cord_list_tup is None or len(cord_list_tup) == 0:
+                        continue
+                    value = self.__private_GetProcessCalValue(process)
+                    inputStr = process.inputStr
+                    if "$" in inputStr:
+                        inputStr = inputStr.replace("$",str(value))
+                    for cord in cord_list_tup:
+                        if not process.writeAll and written:
+                            continue
+                        #rewrite
+                        if process.reWrite:
+                            self.__private_WriteToCell(wb,s,cord,inputStr)
+                        else:
+                            existVal = str(s.cell(row=cord[0],column=cord[1]).value)
+                            #自动添加等号
+                            if inputStr[0] == "+":
+                                if existVal is None or existVal[0] != "=":
+                                    inputStr = inputStr.replace("+","=",1)
+                                    existVal = ""
+                                inputStr = existVal+inputStr
+                            #自动补全前文末尾
+                            if inputStr[len(inputStr)-1] in [";","."]:
+                                if existVal[len(existVal)-1] != inputStr[len(inputStr)-1]:
+                                    inputStr = existVal + inputStr[len(inputStr)-1] + inputStr
+                            self.__private_WriteToCell(wb,s,cord,inputStr)
+                        
+                        written = True
+            wb.save(self.wbPaths[i])
+
+    def __private_WriteToCell(self,wb,sheet,cord_tup,value):
+        wbnameNow = self.wbnames[self.wbs.index(wb)]
+        if self.wbname_cache != wbnameNow:
+            self.__private_addInfo("----在工作簿："+wbnameNow+" 中写入----")
+            self.wbname_cache = wbnameNow
+        
+        sheetName = self.sheetNames[self.sheets.index(sheet)]
+        sheet.cell(row = cord_tup[0],column = cord_tup[1]).value = value
+        self.__private_addInfo("--->工作表："+sheetName)
+        self.__private_addInfo("("+str(chr(cord_tup[1]+64))+str(cord_tup[0])+"):")
+        value = self.insert_char_every_n_chars(value,"\n",20)
+        self.__private_addInfo(value)
+
+
+    def insert_char_every_n_chars(self,string, char, n):
+        return char.join([string[i:i+n] for i in range(0, len(string), n)])
+
+                    
+
 
 
     def __private_GetProcessCalValue(self,process):

@@ -11,7 +11,7 @@ from PySide6.QtWidgets import *
 from .WriterEditorWindow import WriterEditor
 from .ProcesserWindow  import Processer as Processer_W
 
-from utils.FolderPathManager import FolderPathMgr
+from utils.PathManager import PathMgr
 from .WriteDataManager import WriteDataManager
 import utils.styleSheets as styles
 from .back_writerProcesser import Processer
@@ -61,7 +61,7 @@ class WriteMain(QWidget):
 
 #-----------------------------------------------------
     def AddFolderPath(self,list):
-        selectedDir = FolderPathMgr.AddFolderPath()
+        selectedDir = PathMgr.AddFolderPath()
         if self.dataMgr.AddFolderPath(selectedDir):
             list.addItem(QListWidgetItem(selectedDir))
 
@@ -421,6 +421,10 @@ class WriteMain(QWidget):
         if self.dataMgr.SwitchProcessRewriteMode(gName,wName,pName,state):
             return
         
+    def SwitchProcessWriteAll(self,gName,wName,pName,state):
+        if self.dataMgr.SwitchProcessWriteAllState(gName,wName,pName,state):
+            return
+        
     def ChangeProcessStr(self,gName,wName,pName,pStr,hGrid):
         if self.dataMgr.ChangeProcessString(gName,wName,pName,pStr):
             return
@@ -437,7 +441,7 @@ class WriteMain(QWidget):
 
     def InitProcesser(self,gName,wName):
         w = self.dataMgr.GetWriter(gName,wName)
-        self.processer = Processer(w,self.infoBoard)
+        self.processer = Processer(w,self.infoBoard,self.dataMgr.data.folderPaths)
 
     
 
@@ -732,6 +736,11 @@ class WriteMain(QWidget):
         btn_writer_batchOpr.setMinimumSize(QSize(61, 29))
         btn_writer_batchOpr.setMaximumSize(QSize(30, 29))
         btn_writer_batchOpr.setText("批量运行")
+        if parentName is not None:
+            btn_writer_batchOpr.clicked.connect(lambda:self.BatchOperateWriter(parentName,btn_writer_delete.parent().parent().objectName(),))
+        else:
+            btn_writer_batchOpr.clicked.connect(lambda:self.BatchOperateWriter(cBox.currentText(),btn_writer_delete.parent().parent().objectName()))
+        
 
         hLayout2.addWidget(btn_writer_batchOpr)
 
@@ -1029,6 +1038,43 @@ class WriteMain(QWidget):
 
         vLayout.addWidget(line_processName)
 
+        frame_12 = QFrame(processBox)
+        frame_12.setObjectName(u"frame_12")
+        frame_12.setMinimumSize(QSize(0, 17))
+        frame_12.setMaximumSize(QSize(16777215, 17))
+        frame_12.setStyleSheet(u"border:none")
+        frame_12.setFrameShape(QFrame.StyledPanel)
+        frame_12.setFrameShadow(QFrame.Raised)
+        gridLayout = QGridLayout(frame_12)
+        gridLayout.setSpacing(0)
+        gridLayout.setObjectName(u"gridLayout")
+        gridLayout.setContentsMargins(5, 0, 5, 0)
+        checkBox_writer_writeAll = QCheckBox(frame_12)
+        checkBox_writer_writeAll.setObjectName(u"checkBox_writer_writeAll")
+        checkBox_writer_writeAll.setMinimumSize(QSize(0, 14))
+        checkBox_writer_writeAll.setChecked(process.writeAll)
+        checkBox_writer_writeAll.setText("写入所有")
+        checkBox_writer_writeAll.setStyleSheet(u"QCheckBox{\n"
+"border:none;\n"
+"color:rgb(255, 255, 255);\n"
+"}\n"
+"QCheckBox::indicator {\n"
+"    \n"
+"    background-color: white;\n"
+"    border-radius: 5px;\n"
+"    border-style: solid;\n"
+"    border-width: 1px;\n"
+"    border-color: white;\n"
+"}\n"
+"QCheckBox::indicator:checked {\n"
+"    background-color: rgb(102, 86, 180)\n"
+"}\n"
+"\n"
+"")
+        checkBox_writer_writeAll.clicked.connect(lambda:self.SwitchProcessWriteAll(groupName,writerName,process.name,checkBox_writer_writeAll.isChecked()))
+
+        gridLayout.addWidget(checkBox_writer_writeAll, 0, 1, 1, 1)
+
         checkBox_writer_rewrite = QCheckBox(processBox)
         checkBox_writer_rewrite.setObjectName(u"checkBox_writer_rewrite")
         checkBox_writer_rewrite.setMinimumSize(QSize(0, 14))
@@ -1053,7 +1099,9 @@ class WriteMain(QWidget):
         checkBox_writer_rewrite.setText("覆盖")
         checkBox_writer_rewrite.clicked.connect(lambda:self.SwitchProcessRewrite(groupName,writerName,process.name,checkBox_writer_rewrite.isChecked()))
 
-        vLayout.addWidget(checkBox_writer_rewrite,0,Qt.AlignHCenter)
+        gridLayout.addWidget(checkBox_writer_rewrite, 0, 0, 1, 1)
+
+        vLayout.addWidget(frame_12)
 
         text_writer_input = QLineEdit(processBox)
         text_writer_input.setObjectName(u"text_writer_input")
@@ -1122,6 +1170,12 @@ class WriteMain(QWidget):
 
         return addProcessBox
 
+    def BatchOperateWriter(self,gName,wName):
+        self.InitProcesser(gName,wName)
+        path = PathMgr.SelectExcelFile()
+        self.processer.Operate_batch(self.dataMgr.data.folderPaths,path)
+
+
 
     def OperateWriter(self,curGroup,name):
         self.app = QApplication.instance()
@@ -1160,7 +1214,7 @@ class WriteMain(QWidget):
             f = self.GenerateValueInputBox(n,ui.value_grid.parent())
             ui.value_grid.addWidget(f)
 
-        ui.btn_operate.clicked.connect(lambda:self.processer.Operate(self.dataMgr.data.folderPaths,self.key_list,self.value_list))
+        ui.btn_operate.clicked.connect(lambda:self.processer.Operate_Onece(self.key_list,self.value_list))
 
         
 

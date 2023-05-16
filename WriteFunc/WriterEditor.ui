@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>688</width>
-    <height>912</height>
+    <height>916</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -2009,16 +2009,55 @@ font: 700 10pt &quot;Microsoft YaHei UI&quot;;</string>
                    </property>
                   </widget>
                  </item>
-                 <item alignment="Qt::AlignHCenter">
-                  <widget class="QCheckBox" name="checkBox_writer_rewrite">
+                 <item>
+                  <widget class="QFrame" name="frame_12">
                    <property name="minimumSize">
                     <size>
                      <width>0</width>
-                     <height>14</height>
+                     <height>17</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>17</height>
                     </size>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">QCheckBox{
+                    <string notr="true">border:none</string>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QGridLayout" name="gridLayout">
+                    <property name="leftMargin">
+                     <number>5</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>5</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="spacing">
+                     <number>0</number>
+                    </property>
+                    <item row="0" column="1">
+                     <widget class="QCheckBox" name="checkBox_writer_writeAll">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>14</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">QCheckBox{
 border:none;
 color:rgb(255, 255, 255);
 }
@@ -2035,10 +2074,45 @@ QCheckBox::indicator:checked {
 }
 
 </string>
-                   </property>
-                   <property name="text">
-                    <string>覆盖</string>
-                   </property>
+                      </property>
+                      <property name="text">
+                       <string>写入所有</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="0">
+                     <widget class="QCheckBox" name="checkBox_writer_rewrite">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>14</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">QCheckBox{
+border:none;
+color:rgb(255, 255, 255);
+}
+QCheckBox::indicator {
+    
+    background-color: white;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: white;
+}
+QCheckBox::indicator:checked {
+    background-color: rgb(102, 86, 180)
+}
+
+</string>
+                      </property>
+                      <property name="text">
+                       <string>覆盖</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
                   </widget>
                  </item>
                  <item>
@@ -2060,13 +2134,13 @@ font: 9pt &quot;Microsoft YaHei UI&quot;;</string>
                    <property name="minimumSize">
                     <size>
                      <width>0</width>
-                     <height>64</height>
+                     <height>60</height>
                     </size>
                    </property>
                    <property name="maximumSize">
                     <size>
                      <width>16777215</width>
-                     <height>60</height>
+                     <height>64</height>
                     </size>
                    </property>
                    <property name="styleSheet">

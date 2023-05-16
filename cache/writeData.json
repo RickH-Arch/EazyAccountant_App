@@ -10,74 +10,6 @@
             "writers": [
                 {
                     "py/object": "WriteFunc.WriteDataManager.Writer",
-                    "name": "\u65b0\u5199\u5165",
-                    "selected": false,
-                    "parent": "test\u5199\u5165\u7ec4",
-                    "isRowProcess": true,
-                    "key_and_mode": true,
-                    "workbookNames": [],
-                    "sheetNames": [],
-                    "keyNames": [],
-                    "valueNames": [
-                        "\u65b0\u5199\u5165"
-                    ],
-                    "processes": [
-                        {
-                            "py/object": "WriteFunc.WriteDataManager.Process",
-                            "name": "\u65b0\u540d\u79f0",
-                            "reWrite": true,
-                            "inputStr": "",
-                            "processStr": ""
-                        }
-                    ]
-                },
-                {
-                    "py/object": "WriteFunc.WriteDataManager.Writer",
-                    "name": "\u65b0\u5199\u51651",
-                    "selected": false,
-                    "parent": "test\u5199\u5165\u7ec4",
-                    "isRowProcess": true,
-                    "key_and_mode": true,
-                    "workbookNames": [],
-                    "sheetNames": [],
-                    "keyNames": [
-                        "\u65b0\u68c0\u7d22"
-                    ],
-                    "valueNames": [],
-                    "processes": []
-                },
-                {
-                    "py/object": "WriteFunc.WriteDataManager.Writer",
-                    "name": "test2",
-                    "selected": false,
-                    "parent": "test\u5199\u5165\u7ec4",
-                    "isRowProcess": true,
-                    "key_and_mode": true,
-                    "workbookNames": [
-                        "\u54c8\u54c8"
-                    ],
-                    "sheetNames": [
-                        "\u5229\u6da6\u8868"
-                    ],
-                    "keyNames": [
-                        "\u672c\u6708\u6570"
-                    ],
-                    "valueNames": [
-                        "\u503c3",
-                        "\u503c4"
-                    ],
-                    "processes": [
-                        {
-                            "py/object": "WriteFunc.WriteDataManager.Process",
-                            "name": "\u4e0a\u5e74\u540c\u671f",
-                            "reWrite": false,
-                            "inputStr": "-> $",
-                            "processStr": "\u503c3+2*\u503c4"
-                        }
-                    ]
-                },
-                {
-                    "py/object": "WriteFunc.WriteDataManager.Writer",
                     "name": "test1",
                     "selected": true,
                     "parent": "test\u5199\u5165\u7ec4",
@@ -98,9 +30,10 @@
                         {
                             "py/object": "WriteFunc.WriteDataManager.Process",
                             "name": "\u586b\u5165",
-                            "reWrite": true,
-                            "inputStr": "\u4ed8\uff1a$\uff1b",
-                            "processStr": "\u503c1*\u503c2+\u503c2"
+                            "reWrite": false,
+                            "writeAll": false,
+                            "inputStr": "+\u4ed8\uff1a$",
+                            "processStr": "\u503c1+\u503c2*2"
                         }
                     ]
                 }

@@ -14,7 +14,7 @@ from PySide6.QtWidgets import *
 
 from ExtractFunc.ExtractDataManager import ExtractDataManager
 from utils.ExcelManager import *
-from utils.FolderPathManager import FolderPathMgr
+from utils.PathManager import PathMgr
 import utils.styleSheets as styles
 
 class ExtractMain():
@@ -113,7 +113,7 @@ class ExtractMain():
 
     #==========Data Change=========================
     def AddFolderPath(self,list):
-        selectedDir = FolderPathMgr.AddFolderPath()
+        selectedDir = PathMgr.AddFolderPath()
         if self.dataMgr.AddFolderPath(selectedDir):
             list.addItem(QListWidgetItem(selectedDir))
         
@@ -416,7 +416,7 @@ class ExtractMain():
                         colCur+=1
                     rowCur+=1
 
-            selectedDir = FolderPathMgr.SelectExportFilePath()
+            selectedDir = PathMgr.SelectExportFilePath()
             #print(selectedDir)
             self.wb.save(selectedDir[0])
             

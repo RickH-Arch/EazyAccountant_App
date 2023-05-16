@@ -374,6 +374,15 @@ class WriteDataManager:
                 return True
         return False
     
+    def SwitchProcessWriteAllState(self,gName,wName,pName,state):
+        w = self.GetWriter(gName,wName)
+        for p in w.processes:
+            if p.name == pName:
+                p.writeAll = state
+                self.RefreshJson()
+                return True
+        return False
+    
 
     # helper function
     def RearrangeName(self,names,newName):
@@ -439,6 +448,7 @@ class Process:
     def __init__(self,name) -> None:
         self.name = name
         self.reWrite = True
+        self.writeAll = False
         self.inputStr = ""
         self.processStr = ""
 

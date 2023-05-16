@@ -7,6 +7,10 @@ class ExcelManager:
     def __init__(self) -> None:
         self.workbookCache = []
         self.workbookNameCache = []
+        self.workbookPathCache = []
+
+    def GetWorkbookPaths(self):
+        return self.workbookPathCache
 
     def GetExcelWorkBook(self,path,words):
         '''
@@ -94,10 +98,12 @@ class ExcelManager:
                         workbook = load_workbook(file_path)
                         self.workbookCache.append(workbook)
                         self.workbookNameCache.append(file_name)
+                        self.workbookPathCache.append(file_path)
                 elif file_name not in self.workbookNameCache:
                     workbook = load_workbook(file_path)
                     self.workbookCache.append(workbook)
                     self.workbookNameCache.append(file_name)
+                    self.workbookPathCache.append(file_path)
 
         return self.workbookCache,self.workbookNameCache
 
