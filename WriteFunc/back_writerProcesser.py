@@ -38,10 +38,43 @@ class Processer():
         self.__private_addInfo("======="+writer.name+"运行=======")
         self.__private_GetExcels(paths,self.writer.workbookNames)
         self.wbPaths = self.exlMgr.GetWorkbookPaths()
+        self.batchOprValue_dict = {}
 
         
-    def Operate_batch(self,read_paths,input_wb_path):
-        pass
+    def Operate_batch(self,input_wb_path):
+        input_wb = openpyxl.load_workbook(input_wb_path)
+        input_sheet = input_wb.active
+        length = 0
+        for col in input_sheet.iter_cols():
+            nameNow = None
+            listNow = []
+            for i,cell in enumerate(col):
+                if i == 0:
+                    nameNow = cell.value
+                else:
+                    listNow.append(cell.value)
+            if len(listNow)>length:
+                length = len(listNow)
+            self.batchOprValue_dict[nameNow] = listNow
+
+        
+
+        for i in range(length):
+            #refresh keys_dict and values_dict
+            self.keys_dict.clear()
+            self.values_dict.clear()
+            for key,value in self.batchOprValue_dict.items():
+                value = value[i]
+                if key in self.writer.keyNames:
+                    self.keys_dict[key] = value
+                if key in self.writer.valueNames:
+                    self.values_dict[key] = value
+            if len(self.keys_dict) == 0:
+                QMessageBox.warning(self.widget, "警告", "必须至少有一个检索变量有值")
+                return
+            self.__private_Operate()
+
+
 
     
     def Operate_Onece(self,k_list,v_list):
@@ -56,9 +89,6 @@ class Processer():
         
 
     def __private_Operate(self):
-        
-        
-        
         for i,wb in enumerate(self.wbs):
             written = False
             self.sheets,self.sheetNames = self.exlMgr.GetSheetsFromWorkbook(wb,self.writer.sheetNames)
@@ -70,6 +100,9 @@ class Processer():
                         continue
                     value = self.__private_GetProcessCalValue(process)
                     inputStr = process.inputStr
+                    for key,value in self.values_dict:
+                        if key in inputStr:
+                            inputStr = inputStr.replace(key,str(value))
                     if "$" in inputStr:
                         inputStr = inputStr.replace("$",str(value))
                     for cord in cord_list_tup:
@@ -93,7 +126,12 @@ class Processer():
                             self.__private_WriteToCell(wb,s,cord,inputStr)
                         
                         written = True
-            wb.save(self.wbPaths[i])
+            if written:
+                wb.save(self.wbPaths[i])
+            else:
+                wbnameNow = self.wbnames[self.wbs.index(wb)]
+                warning = wbnameNow+"中未找到录入对象"
+                self.__private_addWarning(warning)
 
     def __private_WriteToCell(self,wb,sheet,cord_tup,value):
         wbnameNow = self.wbnames[self.wbs.index(wb)]
@@ -220,7 +258,9 @@ class Processer():
                     range.append(i+1)
                 
                 # if match the keyName
-                if name in self.writer.keyNames and self.keys_dict[name] is not None:
+                if name in self.writer.keyNames and name in self.keys_dict.keys():
+                    if self.keys_dict[name] is None:
+                        continue
                     #get values of this col
                     for col in sheet.iter_cols(min_col = i+1,max_col = i+1):
                         value_mask = [c.value == self.keys_dict[name] for c in col]
@@ -345,6 +385,11 @@ class Processer():
     
     def __private_addInfo(self,info):
         self.infoBoard.addItem(QListWidgetItem(info))
+
+    def __private_addWarning(self,warning):
+        item = QListWidgetItem(warning)
+        item.setForeground(QColor(255,0,0))
+        self.infoBoard.addItem(item)
     
 
 

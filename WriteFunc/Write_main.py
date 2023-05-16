@@ -1173,7 +1173,7 @@ class WriteMain(QWidget):
     def BatchOperateWriter(self,gName,wName):
         self.InitProcesser(gName,wName)
         path = PathMgr.SelectExcelFile()
-        self.processer.Operate_batch(self.dataMgr.data.folderPaths,path)
+        self.processer.Operate_batch(path)
 
 
 
