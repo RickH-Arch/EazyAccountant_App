@@ -100,7 +100,7 @@ class Processer():
                         continue
                     value = self.__private_GetProcessCalValue(process)
                     inputStr = process.inputStr
-                    for key,value in self.values_dict:
+                    for key,value in self.values_dict.items():
                         if key in inputStr:
                             inputStr = inputStr.replace(key,str(value))
                     if "$" in inputStr:
@@ -120,9 +120,10 @@ class Processer():
                                     existVal = ""
                                 inputStr = existVal+inputStr
                             #自动补全前文末尾
-                            if inputStr[len(inputStr)-1] in [";","."]:
+                            if inputStr[len(inputStr)-1] in [";","；",".","。"]:
                                 if existVal[len(existVal)-1] != inputStr[len(inputStr)-1]:
-                                    inputStr = existVal + inputStr[len(inputStr)-1] + inputStr
+                                    inputStr = inputStr[len(inputStr)-1] + inputStr
+                            inputStr = existVal+inputStr
                             self.__private_WriteToCell(wb,s,cord,inputStr)
                         
                         written = True
@@ -354,11 +355,11 @@ class Processer():
                         self.keys_dict[key] = None
                         break
                     number = number.replace(" ","")
-                    if not self.__private_Is_number(number):
-                        QMessageBox.warning(self.widget, "警告", "填入值不能有除数字字符外的其他符号，包括空格、*等")
-                        break
-                    else:
-                        number = float(number)
+                    #if not self.__private_Is_number(number):
+                    #    QMessageBox.warning(self.widget, "警告", "填入值不能有除数字字符外的其他符#号，包括空格、*等")
+                    #    break
+                    #else:
+                    #    number = float(number)
                     self.keys_dict[key] = number
                     break
         for value in self.writer.valueNames:
@@ -369,11 +370,11 @@ class Processer():
                         self.values_dict[value] = None
                         break
                     number = number.replace(" ","")
-                    if not self.__private_Is_number(number):
-                        QMessageBox.warning(self.widget,"警告", "填入值不能有除数字字符外的其他符号，包括空格、*等")
-                        break
-                    else:
-                        number = float(number)
+                    #if not self.__private_Is_number(number):
+                    #    QMessageBox.warning(self.widget,"警告", "填入值不能有除数字字符外的其他符#号，包括空格、*等")
+                    #    break
+                    #else:
+                    #    number = float(number)
                     self.values_dict[value] = number
                     break
 
