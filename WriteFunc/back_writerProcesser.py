@@ -124,7 +124,11 @@ class Processer():
                                 if existVal[len(existVal)-1] != inputStr[len(inputStr)-1]:
                                     inputStr = inputStr[len(inputStr)-1] + inputStr
                             inputStr = existVal+inputStr
-                            self.__private_WriteToCell(wb,s,cord,inputStr)
+                            if self.HasSameInput(inputStr):
+                                warn = wbnameNow + "检测到"+list(self.keys_dict.keys())[0]+":"+list(self.keys_dict.values())[0]+"近期有相同输入\n已禁止该输入，请人工核查"
+                                self.__private_addWarning(warn)
+                            else:
+                                self.__private_WriteToCell(wb,s,cord,inputStr)
                         
                         written = True
             if written:
@@ -150,6 +154,14 @@ class Processer():
 
     def insert_char_every_n_chars(self,string, char, n):
         return char.join([string[i:i+n] for i in range(0, len(string), n)])
+    
+    def HasSameInput(self,input_str):
+        l = input_str.split(input_str[len(input_str)-1])
+        l = [s for s in l if s != ""]
+        if l[len(l)-1] == l[len(l)-2] or l[len(l)-1] == l[len(l)-3]:
+            return True
+        else:
+            return False
 
                     
 
